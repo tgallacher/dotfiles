@@ -1,0 +1,12 @@
+[core]
+    editor = vim
+[alias]
+    co = checkout
+    ci = commit
+    st = status -s
+    br = branch
+    last = log -1 HEAD
+    dwdiff = "!f() { git diff $@ | dwdiff --diff-input -P -c | less -R; }; f"
+    plog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[push]
+    default = simple
