@@ -1,3 +1,9 @@
+" Config shell
+set shell=zsh
+"
+set autodindent
+" Don't wrap lines
+set nowrap
 " Use the Solarized Dark theme
 set background=dark
 " colorscheme solarized
