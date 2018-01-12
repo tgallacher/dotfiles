@@ -1,4 +1,3 @@
-export DEFAULT_USER=tomgallacher
 prompt_context(){};
 
 # If you come from bash you might have to change your $PATH.
