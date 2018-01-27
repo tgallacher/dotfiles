@@ -49,3 +49,5 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+alias tf='terraform'

@@ -36,10 +36,13 @@ brew install gnupg
 # Install more recent versions of some macOS tools + some useful utils.
 brew install vim --with-override-system-vi
 brew install grep openssh screen direnv dwdiff \
-    trash ifstat nmap pwgen tree openssl sqlite xz
+    trash ifstat nmap pwgen tree openssl sqlite xz jq
+
+# Install some IaC tools
+brew install terraform packer
 
 # Install other useful binaries.
-brew install git
+# brew install git
 brew install ssh-copy-id
 
 # Remove outdated versions from the cellar.
