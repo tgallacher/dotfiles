@@ -3,6 +3,13 @@
 # Install useful command-line tools using Homebrew.
 #
 
+# Make sure we have Homebrew installed
+which brew > /dev/null
+if [ ! ($? -eq 0) ]; then
+    echo '"brew" not found. Make sure to install Homebrew first';
+    exit 1;
+fi;
+
 # Make sure we’re using the latest Homebrew.
 brew update
 
