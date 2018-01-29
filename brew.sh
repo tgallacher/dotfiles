@@ -3,13 +3,6 @@
 # Install useful command-line tools using Homebrew.
 #
 
-# Make sure we have Homebrew installed
-which brew > /dev/null
-if [ ! ($? -eq 0) ]; then
-    echo '"brew" not found. Make sure to install Homebrew first';
-    exit 1;
-fi;
-
 # Make sure we’re using the latest Homebrew.
 brew update
 
@@ -35,8 +28,26 @@ brew install gnupg
 
 # Install more recent versions of some macOS tools + some useful utils.
 brew install vim --with-override-system-vi
-brew install grep openssh screen direnv dwdiff \
-    trash ifstat nmap pwgen tree openssl sqlite xz jq
+
+tools=(
+    grep
+    openssh
+    screen
+    direnv
+    dwdiff
+    trash
+    ifstat
+    nmap
+    pwgen
+    tree
+    openssl
+    sqlite
+    xz
+    jq
+    node
+)
+
+brew install "${tools[@]}"
 
 # Install some IaC tools
 brew install terraform packer
