@@ -20,6 +20,7 @@ ln -sfv "$DOTFILES_DIR/pip.conf" $HOME
 ln -sfv "$DOTFILES_DIR/shell/.zshrc" $HOME
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" $HOME
 ln -sfv "$DOTFILES_DIR/git/.gitignore" $HOME
+ln -sfv "$DOTFILES_DIR/vscode/user-settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
 
 # @todo Remember the syntax..
 # set -e {
