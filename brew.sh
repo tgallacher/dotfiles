@@ -30,21 +30,21 @@ brew install gnupg
 brew install vim --with-override-system-vi
 
 tools=(
-    grep
     openssh
+    openssl
     screen
     direnv
     dwdiff
-    trash
     ifstat
-    nmap
-    pwgen
-    tree
-    openssl
     sqlite
+    trash
+    pwgen
+    nmap
+    grep
+    tree
+    node
     xz
     jq
-    node
 )
 
 brew install "${tools[@]}"

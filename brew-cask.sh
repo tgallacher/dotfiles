@@ -9,14 +9,15 @@ brew tap caskroom/cask
 # Install packages
 
 apps=(
-  alfred
-  dropbox
-  docker
-  google-chrome
   google-chrome-canary
-  slack
-  spotify
+  google-chrome
   sublime-text
+  dropbox
+  spotify
+  alfred
+  docker
+  iterm2
+  slack
   vlc
 )
 
