@@ -10,6 +10,7 @@ brew tap caskroom/cask
 
 apps=(
   google-chrome-canary
+  visual-studio-code
   google-chrome
   sublime-text
   dropbox

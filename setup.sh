@@ -20,7 +20,6 @@ ln -sfv "$DOTFILES_DIR/pip.conf" $HOME
 ln -sfv "$DOTFILES_DIR/shell/.zshrc" $HOME
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" $HOME
 ln -sfv "$DOTFILES_DIR/git/.gitignore" $HOME
-ln -sfv "$DOTFILES_DIR/vscode/user-settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
 
 # @todo Remember the syntax..
 # set -e {
@@ -45,6 +44,10 @@ if (($? == 0)); then
 else
     echo '>> NOTE: "brew" not found. Make sure to install Homebrew first';
 fi;
+
+ln -sfv "$DOTFILES_DIR/vscode/user-settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
+# Symlink vscode binary
+ln -sfv /usr/local/bin/code '/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code'
 
 # Install global NPM packages
 source "$DOTFILES_DIR/npm.sh"
