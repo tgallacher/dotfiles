@@ -1,4 +1,4 @@
-# Tom Gallacher's Dotfiles
+# Dotfiles
 
 TODO
 
