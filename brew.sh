@@ -79,6 +79,7 @@ apps=(
   quicklook-json
   spotify
   station
+  toggl
   visual-studio-code
   vlc
   xquartz
