@@ -1,17 +1,5 @@
 #!/usr/bin/env bash
 
-# Easier navigation: .., ..., ...., ....., ~ and -
-#   Preloaded as part of Oh-my-zsh
-# alias ..="cd .."
-# alias ...="cd ../.."
-# alias ....="cd ../../.."
-# alias .....="cd ../../../.."
-
-# Shortcuts
-alias d="cd ~/Documents/Dropbox"
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
-
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
     colorflag="--color"
@@ -40,14 +28,16 @@ alias egrep='egrep --color=auto'
 alias sudo='sudo '
 
 # Show/hide hidden files in Finder
-alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+alias finder_showhidden="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias finder_hidehidden="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
 # Hide/show all desktop icons (useful when presenting)
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias finder_hidedesktopicons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias finder_showdesktopicons="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 # Print each PATH entry on a separate line
-alias path='echo -e ${PATH//:/\\n}'
+alias print_path='echo -e ${PATH//:/\\n}'
 
 alias tf='terraform'
+
+alias git_prune_branches='git fetch && git remote prune origin && git br -v | grep gone | awk '"'"'{print $1;}'"'"' | xargs -n 1 git br -d'

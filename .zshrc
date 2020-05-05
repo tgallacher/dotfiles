@@ -53,7 +53,7 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew Composer docker npm)
+plugins=(git brew docker npm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -62,7 +62,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_GB.UTF-8
 
 # Preferred editor for local and remote sessions
 export EDITOR='vim'
@@ -83,11 +83,8 @@ export EDITOR='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Hook direnv tool
-# Requires 'direnv' to be installed: run
-#   brew install direnv
-#
 # See https://direnv.net
 which direnv &> /dev/null && eval "$(direnv hook zsh)";
 
-source ./aliases.zsh
-source ./variables.zsh
+[ -f $HOME/.aliases.zsh ] && source $HOME/.aliases.zsh
+[ -f $HOME/.variables.zsh ] && source $HOME/.variables.zsh
