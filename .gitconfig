@@ -1,5 +1,8 @@
 [core]
     editor = vim
+[user]
+    name = Tom Gallacher
+    email = tgallacher@users.noreply.github.com
 [alias]
     co = checkout
     ci = commit
@@ -8,5 +11,6 @@
     last = log -1 HEAD
     dwdiff = "!f() { git diff $@ | dwdiff --diff-input -P -c | less -R; }; f"
     plog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    plog10 = plog -10
 [push]
     default = simple
