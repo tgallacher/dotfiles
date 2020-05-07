@@ -48,12 +48,6 @@ antigen init $HOME/.antigenrc
 #
 ## General config
 
-# You may need to manually set your language environment
-export LANG=en_GB.UTF-8
-
-# Preferred editor for local and remote sessions
-export EDITOR='vim'
-
 # Hook direnv tool
 # See https://direnv.net
 which direnv &> /dev/null && eval "$(direnv hook zsh)";
