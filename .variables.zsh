@@ -1,3 +1,6 @@
+#
+export TERM=xterm-256color
+
 # You may need to manually set your language environment
 export LANG=en_GB.UTF-8
 
