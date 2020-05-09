@@ -1,7 +1,7 @@
 " Config shell
 set shell=zsh
 "
-set autodindent
+set autoindent
 " Don't wrap lines
 set nowrap
 " Use the Solarized Dark theme
