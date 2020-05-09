@@ -1,6 +1,6 @@
 # customise
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir dir_writable vcs);
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator);
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs);
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs status root_indicator);
 
 POWERLEVEL9K_STATUS_OK=false;
 
