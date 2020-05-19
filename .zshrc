@@ -60,3 +60,6 @@ which direnv &> /dev/null && eval "$(direnv hook zsh)";
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+# Support adding custom local zsh config(s)
+for f in ~/.*.zshlocal; do source "$f"; done
