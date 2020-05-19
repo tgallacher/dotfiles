@@ -54,3 +54,9 @@ which direnv &> /dev/null && eval "$(direnv hook zsh)";
 
 [ -f $HOME/.aliases.zsh ] && source $HOME/.aliases.zsh
 [ -f $HOME/.variables.zsh ] && source $HOME/.variables.zsh
+
+# Allow pyenv to autoconfig python for us
+# see: https://opensource.com/article/19/5/python-3-default-mac
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
