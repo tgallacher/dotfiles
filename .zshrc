@@ -62,4 +62,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # Support adding custom local zsh config(s)
-for f in ~/.*.zshlocal; do source "$f"; done
+# Note: we use the null_glob opt to supress no match "errors"
+# @see: https://unix.stackexchange.com/a/26825
+for f in ~/.*.zshlocal(.N); do source "$f"; done
