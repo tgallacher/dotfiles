@@ -16,6 +16,9 @@ HIST_STAMPS="yyyy-mm-dd"
 # == Antibody
 # @see https://getantibody.github.io/
 source <(antibody init)
+# Update Oh-My-Zsh install location so that normal .oh-my-zsh works
+antibody bundle robbyrussell/oh-my-zsh kind:dummy
+export ZSH=$(antibody path robbyrussell/oh-my-zsh)
 
 antibody bundle < $HOME/.antibodyrc
 
