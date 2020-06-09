@@ -1,5 +1,3 @@
-prompt_context(){};
-
 # Bootstrap antigen
 # @see https://github.com/zsh-users/antigen
 source $(brew list antigen | grep zsh | head -n 1)
