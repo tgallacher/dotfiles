@@ -1,7 +1,3 @@
-# Bootstrap antigen
-# @see https://github.com/zsh-users/antigen
-source $(brew list antigen | grep zsh | head -n 1)
-
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
 
@@ -40,13 +36,23 @@ HIST_STAMPS="yyyy-mm-dd"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-antigen init $HOME/.antigenrc
-
 ## /end Oh-My-ZSH config
 #
 ## General config
+#
+#
+
+# == Antigen
+# @see https://github.com/zsh-users/antigen
+source $(brew list antigen | grep zsh | head -n 1)
 
 # Hook direnv tool
+# source $HOME/.powerlevel9k.zsh
+antigen init $HOME/.antigenrc
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # See https://direnv.net
 which direnv &> /dev/null && eval "$(direnv hook zsh)";
 
