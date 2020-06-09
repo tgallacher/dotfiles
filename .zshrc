@@ -13,12 +13,11 @@ HIST_STAMPS="yyyy-mm-dd"
 #
 #
 
-# == Antigen
-# @see https://github.com/zsh-users/antigen
-source $(brew list antigen | grep zsh | head -n 1)
+# == Antibody
+# @see https://getantibody.github.io/
+source <(antibody init)
 
-# source $HOME/.powerlevel9k.zsh
-antigen init $HOME/.antigenrc
+antibody bundle < $HOME/.antibodyrc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
