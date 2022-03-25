@@ -31,6 +31,9 @@ which direnv &> /dev/null && eval "$(direnv hook zsh)";
 # Allow pyenv to autoconfig python for us
 # see: https://opensource.com/article/19/5/python-3-default-mac
 if command -v pyenv 1>/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
 fi
 
