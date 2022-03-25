@@ -1,5 +1,5 @@
-[core]
-    editor = vim
+# [core]
+#     editor = vim
 [user]
     name = Tom Gallacher
     email = tgallacher@users.noreply.github.com
