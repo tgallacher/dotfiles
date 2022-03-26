@@ -5,7 +5,6 @@
 robbyrussell/oh-my-zsh
 
 # Load Oh my ZSH plugins
-robbyrussell/oh-my-zsh path:plugins/brew
 robbyrussell/oh-my-zsh path:plugins/colored-man-pages
 robbyrussell/oh-my-zsh path:plugins/docker
 robbyrussell/oh-my-zsh path:plugins/fancy-ctrl-z
