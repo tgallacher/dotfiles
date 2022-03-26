@@ -1,5 +1,7 @@
 # [core]
 #     editor = vim
+[init]
+    defaultBranch = main
 [user]
     name = Tom Gallacher
     email = tgallacher@users.noreply.github.com
