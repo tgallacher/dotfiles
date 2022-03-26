@@ -1,4 +1,6 @@
 #!/bin/bash
+#
+# Based on: https://github.com/altrgeek/bspwm-polybar/
 
 ## Environment
 export PATH="${PATH}:$HOME/.scripts"
@@ -19,7 +21,7 @@ getcolors () {
   WHITE=$(xrdb -query | grep 'color7:'| awk '{print $NF}')
 }
 # xrdb ~/.Xresources
-COLOR=$(shuf -n1 -e ~/.colors/*)
+COLOR=$(shuf -n1 -e $HOME/.config/.colors/*)
 xrdb -merge $COLOR
 
 
@@ -83,11 +85,11 @@ bspc config left_padding 5
 # bspc rule -a Viewnior state=floating follow=on focus=on
 
 ## Autostart
-killall -9 sxhkd vanela xsettingsd dunst
+killall -9 sxhkd xsettingsd dunst
 xsetroot -cursor_name left_ptr
 xbacklight -set 10
 
-xset fp+ ~/.fonts/misc # Load fonts in X
+xset fp+ $HOME/.config/.fonts/misc # Load fonts in X
 
 sxhkd &       # hotkey bindings
 launch.sh     # polybar
@@ -98,7 +100,7 @@ dunst \
   -cb "$BACKGROUND" -cf "$FOREGROUND" -cfr "$RED" &
 
 # set Wallpaper
-hsetroot -cover ~/.config/wall.png -tint '#9ccfe6' &
+hsetroot -cover $HOME/.config/wall.png -tint '#9ccfe6' &
 sleep 0.5
 
 notify-send "Bspwm Loaded"
