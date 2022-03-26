@@ -89,6 +89,8 @@ killall -9 sxhkd xsettingsd dunst
 xsetroot -cursor_name left_ptr
 xbacklight -set 10
 
+setup_monitors
+
 xset fp+ $HOME/.config/.fonts/misc # Load fonts in X
 
 sxhkd &       # hotkey bindings
