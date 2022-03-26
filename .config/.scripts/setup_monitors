@@ -39,7 +39,7 @@ internal_monitor=eDP-1
 # }
 
 external_monitor_as_primary_only() {
-  local external_monitor_name=$(xrandr -q | grep '\sconnected' | grep -v "$internal_monitor" | grep -Po '^[-\w]')
+  local external_monitor_name=$(xrandr -q | grep -w 'connected' | grep -v "$internal_monitor" | grep -Po '^[-\w]')
 
 	xrandr --output "$external_monitor_name" --primary --auto --output "$internal_monitor" --off
 }
