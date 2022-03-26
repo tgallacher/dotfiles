@@ -1,22 +1,22 @@
 ## Launch terminal
 super + Return
-	urxvt
-
-## Drawing terminal
-super + shift + Return
-	urdraw
+	$TERMINAL
 
 ## Launch Rofi start menu
 super + d
 	rofia
 
 ## Launch common apps
-super + shift + {f,w,g}
-	{thunar,firefox,geany}
+super + shift + {f,w,s}
+	{thunar,brave,spotify}
+
+# program launcher
+super + @space
+	rofia -terminal $TERMINAL -show drun
 
 ## Take a screenshot
-Print
-	screeny
+@Print
+	flameshot
 
 ## Volume control
 XF86Audio{RaiseVolume,LowerVolume,Mute}
@@ -60,11 +60,11 @@ super + {h,v,r}
 
 ## Toggle beetwen floating & tiled
 super + space
-    bspc node -t "~"{floating,tiled}
+  bspc node -t "~"{floating,tiled}
 
 ## Pseudo Tiled & tiled mode
 super + {p,t}
-    bspc node -t {pseudo_tiled,tiled}
+  bspc node -t {pseudo_tiled,tiled}
 
 ## Send the window to another edge of the screen
 super + {_,shift + }{Left,Down,Up,Right}
