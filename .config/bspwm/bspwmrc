@@ -91,7 +91,7 @@ xbacklight -set 10
 
 setup_monitors
 
-xset fp+ $HOME/.config/.fonts/misc # Load fonts in X
+xset fp+ $HOME/.config/.fonts/        # Load fonts in X
 
 sxhkd &       # hotkey bindings
 launch.sh     # polybar
