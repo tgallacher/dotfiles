@@ -7,41 +7,46 @@ export PATH="$HOME/.config/.scripts:${PATH}"
 export PATH="$HOME/.config/bspwm:${PATH}"
 export PATH="$HOME/.config/polybar:${PATH}"
 
-## Coloring
-getcolors () {
-  FOREGROUND=$(xrdb -query | grep 'foreground:'| awk '{print $NF}')
-  BACKGROUND=$(xrdb -query | grep 'background:'| awk '{print $NF}')
-  BLACK=$(xrdb -query | grep 'color0:'| awk '{print $NF}')
-  RED=$(xrdb -query | grep 'color1:'| awk '{print $NF}')
-  GREEN=$(xrdb -query | grep 'color2:'| awk '{print $NF}')
-  YELLOW=$(xrdb -query | grep 'color3:'| awk '{print $NF}')
-  BLUE=$(xrdb -query | grep 'color4:'| awk '{print $NF}')
-  MAGENTA=$(xrdb -query | grep 'color5:'| awk '{print $NF}')
-  CYAN=$(xrdb -query | grep 'color6:'| awk '{print $NF}')
-  WHITE=$(xrdb -query | grep 'color7:'| awk '{print $NF}')
-}
-# xrdb ~/.Xresources
-COLOR=$(shuf -n1 -e $HOME/.config/.colors/*)
-xrdb -merge $COLOR
+# ## Coloring
+# getcolors () {
+#   FOREGROUND=$(xrdb -query | grep 'foreground:'| awk '{print $NF}')
+#   BACKGROUND=$(xrdb -query | grep 'background:'| awk '{print $NF}')
+#   BLACK=$(xrdb -query | grep 'color0:'| awk '{print $NF}')
+#   RED=$(xrdb -query | grep 'color1:'| awk '{print $NF}')
+#   GREEN=$(xrdb -query | grep 'color2:'| awk '{print $NF}')
+#   YELLOW=$(xrdb -query | grep 'color3:'| awk '{print $NF}')
+#   BLUE=$(xrdb -query | grep 'color4:'| awk '{print $NF}')
+#   MAGENTA=$(xrdb -query | grep 'color5:'| awk '{print $NF}')
+#   CYAN=$(xrdb -query | grep 'color6:'| awk '{print $NF}')
+#   WHITE=$(xrdb -query | grep 'color7:'| awk '{print $NF}')
+# }
+# # xrdb ~/.Xresources
+# COLOR=$(shuf -n1 -e $HOME/.config/.colors/*)
+# xrdb -merge $COLOR
 
 
 ## Bspwm configurations
 bspc monitor -d '1' '2' '3' '4' '5' '6'
 bspc config focus_follows_pointer true
-bspc config border_width 2
-bspc config window_gap 8
-bspc config focused_border_color "$BLUE"
-bspc config normal_border_color "$BLACK"
-bspc config active_border_color "$MAGENTA"
-bspc config presel_feedback_color "$GREEN"
-bspc config borderless_monocle true
-bspc config gapless_monocle true
+
+bspc config split_ratio     0.52
+bspc config border_width    2
+bspc config window_gap      8
+bspc config top_padding     0
+bspc config right_padding   5
+bspc config bottom_padding  5
+bspc config left_padding    5
+
+# bspc config focused_border_color  "$BLUE"
+# bspc config normal_border_color   "$BLACK"
+# bspc config active_border_color   "$MAGENTA"
+# bspc config presel_feedback_color "$GREEN"
+
+bspc config borderless_monocle  true
+bspc config gapless_monocle     true
 bspc config paddingless_monocle true
-bspc config single_monocle false
-bspc config top_padding 0
-bspc config right_padding 5
-bspc config bottom_padding 5
-bspc config left_padding 5
+bspc config single_monocle      false
+
 
 ## Window rules
 # remove all rules first
@@ -89,21 +94,20 @@ killall -9 sxhkd xsettingsd dunst
 xsetroot -cursor_name left_ptr
 xbacklight -set 10
 
-setup_monitors
-
 xset fp+ $HOME/.config/.fonts/               # Load fonts in X
 xset fp+ /usr/share/icons/fontawesome/otfs   # Load fonts in X
 
 sxhkd &       # hotkey bindings
 launch.sh     # polybar
 xsettingsd &
-dunst \
-  -lb "$BACKGROUND" -lf "$FOREGROUND" -lfr "$GREEN" \
-  -nb "$BACKGROUND" -nf "$FOREGROUND" -nfr "$BLUE" \
-  -cb "$BACKGROUND" -cf "$FOREGROUND" -cfr "$RED" &
+dunst &
+# dunst \
+#   -lb "$BACKGROUND" -lf "$FOREGROUND" -lfr "$GREEN" \
+#   -nb "$BACKGROUND" -nf "$FOREGROUND" -nfr "$BLUE" \
+#   -cb "$BACKGROUND" -cf "$FOREGROUND" -cfr "$RED" &
 
 # set Wallpaper
-hsetroot -cover $HOME/.config/wall.png -tint '#9ccfe6' &
+hsetroot -cover $HOME/.config/wall.jpg -tint '#9ccfe6' &
 sleep 0.5
 
 notify-send "Bspwm Loaded"
