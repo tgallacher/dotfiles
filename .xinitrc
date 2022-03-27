@@ -35,7 +35,7 @@ export LC_PAPER=en_GB.utf8
 export LC_TELEPHONE=id_ID.utf8
 export LC_TIME=en_GB.utf8
 
-
+. ~/.config/.scripts/setup_monitors
 
 ## Launch Bspwm
 # All other autostarts live in bspwmrc
