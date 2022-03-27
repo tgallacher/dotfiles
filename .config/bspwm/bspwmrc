@@ -97,6 +97,8 @@ xbacklight -set 10
 xset fp+ $HOME/.config/.fonts/               # Load fonts in X
 xset fp+ /usr/share/icons/fontawesome/otfs   # Load fonts in X
 
+setup_monitors
+
 sxhkd &       # hotkey bindings
 launch.sh     # polybar
 xsettingsd &
