@@ -3,7 +3,7 @@
 # Based on: https://github.com/altrgeek/bspwm-polybar/
 
 ## Environment
-export PATH="$HOME/.scripts:${PATH}"
+export PATH="$HOME/.config/.scripts:${PATH}"
 export PATH="$HOME/.config/bspwm:${PATH}"
 export PATH="$HOME/.config/polybar:${PATH}"
 
