@@ -8,10 +8,9 @@
  */
 
 configuration {
-	font:							"Iosevka Nerd Font 10";
+    font:                           "JetBrains Mono 10";
     show-icons:                     true;
-	icon-theme: 					"Papirus";
-    display-drun: 					"";
+    icon-theme:                     "Papirus-Dark";
     drun-display-format:            "{name}";
     disable-history:                false;
     fullscreen:                     false;

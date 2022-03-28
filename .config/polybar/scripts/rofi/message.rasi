@@ -5,7 +5,7 @@
 * {
     background-color:       @bg;
     text-color:             @fg;
-	font:				 	"Iosevka Nerd Font 10";
+	font:				 	"JetBrains Mono 10";
 }
 
 window {
