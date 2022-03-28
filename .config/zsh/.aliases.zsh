@@ -9,6 +9,8 @@ else # macOS `ls`
     export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
 fi
 
+alias vim="nvim"
+
 # List all files colorized in long format
 alias l="ls -lF ${colorflag}"
 
