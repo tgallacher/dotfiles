@@ -8,7 +8,7 @@ alt + d
 
 # program switcher (rofi)
 alt + @space
-	rofia -terminal $TERMINAL -show window -modi drun,window -theme ~/.config/polybar/scripts/rofi/launcher.rasi
+	"$HOME/.config/polybar/scripts/launcher.sh" window
 
 ## Take a screenshot
 @Print
