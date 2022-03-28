@@ -109,7 +109,7 @@ dunst &
 #   -cb "$BACKGROUND" -cf "$FOREGROUND" -cfr "$RED" &
 
 # set Wallpaper
-hsetroot -cover $HOME/.config/wall.jpg -tint '#9ccfe6' &
+hsetroot -cover $HOME/.config/wallpapers/bg_5.jpg -tint '#9ccfe6' &
 sleep 0.5
 
 notify-send "Bspwm Loaded"
