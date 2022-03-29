@@ -1,5 +1,5 @@
 ## Launch terminal
-alt + Return
+super + Return
 	$TERMINAL
 
 # App switcher/launcher (rofi)
