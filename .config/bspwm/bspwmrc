@@ -54,6 +54,7 @@ bspc config remove_disabled_monitors  true
 bspc rule -r *:*
 
 bspc rule -a Slack desktop='^3' follow=on focus=on
+bspc rule -a Spotify desktop='^3' follow=on focus=on
 
 #1 > terminal
 # bspc rule -a URxvt desktop='^1' follow=on focus=on
