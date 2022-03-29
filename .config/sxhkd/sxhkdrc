@@ -2,13 +2,9 @@
 alt + Return
 	$TERMINAL
 
-## App launcher (rofi)
-alt + d
-	"$HOME/.config/polybar/scripts/launcher.sh"
-
-# program switcher (rofi)
-alt + @space
-	"$HOME/.config/polybar/scripts/launcher.sh" window
+# App switcher/launcher (rofi)
+alt + {_,shift +}@space
+	"$HOME/.config/polybar/scripts/launcher.sh" {window,drun}
 
 ## Take a screenshot
 @Print
@@ -17,6 +13,13 @@ alt + @space
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
+
+# lockscreen
+super + x
+	systemctl suspend
+
+super + shift + x
+	"$XDG_CONFIG_HOME/polybar/scripts/powermenu.sh"
 
 #
 # bspwm hotkeys
