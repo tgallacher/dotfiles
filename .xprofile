@@ -1,0 +1,2 @@
+# Need this to be the first thing that runs; especially before bspwm
+$HOME/.config/.scripts/setup_monitors
