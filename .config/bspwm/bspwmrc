@@ -97,8 +97,8 @@ bspc rule -a Spotify desktop='^3' follow=on focus=on
 ## Autostart
 killall -9 sxhkd xsettingsd dunst
 xsetroot -cursor_name left_ptr
-xbacklight -set 10
 
+mkfontdir $HOME/.config/.fonts/
 xset fp+ $HOME/.config/.fonts/               # Load fonts in X
 
 setup_monitors
