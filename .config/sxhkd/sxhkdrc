@@ -8,7 +8,7 @@ super + {_,shift +}@space
 
 ## Take a screenshot
 @Print
-	flameshot
+	flameshot gui --clipboard
 
 # make sxhkd reload its configuration files:
 super + Escape
