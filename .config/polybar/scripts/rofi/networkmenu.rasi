@@ -28,7 +28,7 @@ window {
     border:                         0px 0px 0px 0px;
     border-color:                   @ac;
     border-radius:                  0px;
-    width:                          500px;
+    width:                          750px;
     location:                       center;
     x-offset:                       0;
     y-offset:                       0;
@@ -45,9 +45,9 @@ textbox-prompt-colon {
     padding:                        0px;
     background-color:               @bga;
     text-color:                     @ac;
-    expand: false;
-    str: "";
-    font:                           "feather 12";
+    expand:                         false;
+    str:                            "";
+    font:                           "Font Awesome 6 Free Regular 12";
 }
 
 entry {
