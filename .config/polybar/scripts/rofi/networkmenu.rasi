@@ -47,7 +47,7 @@ textbox-prompt-colon {
     text-color:                     @ac;
     expand:                         false;
     str:                            "";
-    font:                           "Font Awesome 6 Free Regular 12";
+    font:                           "feather 12";
 }
 
 entry {
