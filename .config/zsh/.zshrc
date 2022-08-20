@@ -11,14 +11,8 @@ HIST_STAMPS="yyyy-mm-dd"
 ## General config
 #
 
-# == Antibody
-# @see https://getantibody.github.io/
-source <(antibody init)
-# Update Oh-My-Zsh install location so that normal .oh-my-zsh works
-antibody bundle robbyrussell/oh-my-zsh kind:dummy
-export ZSH=$(antibody path robbyrussell/oh-my-zsh)
-
-antibody bundle < $ZDOTDIR/.antibodyrc
+# == Zsh Plugin manager
+source ./.antigenrc
 
 # To customize prompt, run `p10k configure` or edit $ZDOTDIR/.p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh

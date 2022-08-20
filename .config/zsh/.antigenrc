@@ -1,0 +1,50 @@
+# This file is created during the install
+source $HOME/antigen.zsh
+
+# Load oh-my-zsh library
+antigen use oh-my-zsh
+
+if [[ "$(uname)" == "Darwin" ]]; then
+  antigen bundle brew
+  antigen bundle brew-cask
+fi
+
+antigen bundle <<EOBUNDLES
+  colored-man-pages
+
+  docker
+
+  fancy-ctrl-z
+
+  # Helpful prompts for aliases if you forget and type the full cmd
+  djui/alias-tips
+
+  git
+
+  git-extras
+
+  kubectl
+
+  npm
+
+  # useage: `node-docs fs`
+  node
+
+  yarn
+
+  # auto update Antigen plugins: checks 1 per week
+  unixorn/autoupdate-antigen.zshplugin
+
+  # Fish like autosuggestions
+  zsh-users/zsh-autosuggestions
+
+  zsh-users/zsh-syntax-highlighting
+
+  # Extra zsh completions
+  zsh-users/zsh-completions
+EOBUNDLES
+
+antigen theme romkatv/powerlevel10k
+
+# Save antigen config
+antigen apply
