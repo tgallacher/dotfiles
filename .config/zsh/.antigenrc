@@ -1,13 +1,8 @@
-# This file is created during the install
-source $HOME/antigen.zsh
+# This file is created during the Homebrew install
+source $(brew --prefix)/share/antigen/antigen.zsh
 
 # Load oh-my-zsh library
 antigen use oh-my-zsh
-
-if [[ "$(uname)" == "Darwin" ]]; then
-  antigen bundle brew
-  antigen bundle brew-cask
-fi
 
 antigen bundle <<EOBUNDLES
   colored-man-pages
@@ -26,9 +21,6 @@ antigen bundle <<EOBUNDLES
   kubectl
 
   npm
-
-  # useage: `node-docs fs`
-  node
 
   yarn
 
