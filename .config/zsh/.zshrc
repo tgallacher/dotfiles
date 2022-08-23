@@ -6,6 +6,9 @@ HIST_STAMPS="yyyy-mm-dd"
 
 # /end Oh-My-ZSH config
 
+# == Personal aliases / vars
+[ -f $ZDOTDIR/.aliases.zsh ] && source $ZDOTDIR/.aliases.zsh
+[ -f $ZDOTDIR/.variables.zsh ] && source $ZDOTDIR/.variables.zsh
 
 #
 ## General config
@@ -36,10 +39,6 @@ export NVM_DIR="$HOME/.nvm"
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# == Personal aliases / vars etc
-[ -f $ZDOTDIR/.aliases.zsh ] && source $ZDOTDIR/.aliases.zsh
-[ -f $ZDOTDIR/.variables.zsh ] && source $ZDOTDIR/.variables.zsh
 
 # == Local overrides
 # Support adding custom local zsh config(s)
