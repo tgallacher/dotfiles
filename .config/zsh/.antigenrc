@@ -4,37 +4,23 @@ source $(brew --prefix)/share/antigen/antigen.zsh
 # Load oh-my-zsh library
 antigen use oh-my-zsh
 
-antigen bundle <<EOBUNDLES
-  colored-man-pages
-
-  docker
-
-  fancy-ctrl-z
-
-  # Helpful prompts for aliases if you forget and type the full cmd
-  djui/alias-tips
-
-  git
-
-  git-extras
-
-  kubectl
-
-  npm
-
-  yarn
-
-  # auto update Antigen plugins: checks 1 per week
-  unixorn/autoupdate-antigen.zshplugin
-
-  # Fish like autosuggestions
-  zsh-users/zsh-autosuggestions
-
-  zsh-users/zsh-syntax-highlighting
-
-  # Extra zsh completions
-  zsh-users/zsh-completions
-EOBUNDLES
+antigen bundle colored-man-pages
+antigen bundle docker
+antigen bundle fancy-ctrl-z
+# Helpful prompts for aliases if you forget and type the full cmd
+antigen bundle djui/alias-tips
+antigen bundle git
+antigen bundle git-extras
+antigen bundle kubectl
+antigen bundle npm
+antigen bundle yarn
+# auto update Antigen plugins: checks 1 per week
+antigen bundle unixorn/autoupdate-antigen.zshplugin
+# Fish like autosuggestions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+# Extra zsh completions
+antigen bundle zsh-users/zsh-completions
 
 antigen theme romkatv/powerlevel10k
 
