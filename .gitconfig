@@ -17,3 +17,5 @@
 [push]
     default = simple
     autoSetupRemote = true
+[advice]
+    skippedCherryPicks = false
