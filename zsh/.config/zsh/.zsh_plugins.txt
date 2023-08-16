@@ -61,6 +61,7 @@ ohmyzsh/ohmyzsh               path:plugins/brew
 ohmyzsh/ohmyzsh               path:plugins/direnv
 ohmyzsh/ohmyzsh               path:plugins/nvm
 ohmyzsh/ohmyzsh               path:plugins/pyenv
+ohmyzsh/ohmyzsh               path:plugins/node
 
 # completions and/or aliase   s for various tools
 ohmyzsh/ohmyzsh               path:plugins/kubectl
