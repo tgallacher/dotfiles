@@ -1,21 +1,48 @@
-# [core]
-#     editor = vim
+[core]
+  editor = vim
+    pager = delta Requires `brew install git-delta`
+
 [init]
-    defaultBranch = main
+  defaultBranch = main
 [user]
-    name = Tom Gallacher
-    email = tgallacher@users.noreply.github.com
-[alias]
-    co = checkout
-    ci = commit
-    st = status -s
-    br = branch
-    last = log -1 HEAD
-    dwdiff = "!f() { git diff $@ | dwdiff --diff-input -P -c | less -R; }; f"
-    plog = "!l() { git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit $@; }; l"
-    plog10 = plog -10
+  name = Tom Gallacher
+  email = tgallacher@users.noreply.github.com
+  ; signingkey = 
+; [commit]
+;     gpgsign = true
+; [credential]
+;     helper = osxkeychain
+; [gpg]
+;     program = /usr/local/MacGPG2/bin/gpg2
 [push]
-    default = simple
-    autoSetupRemote = true
+  default = simple
+  autoSetupRemote = true
 [advice]
-    skippedCherryPicks = false
+  skippedCherryPicks = false
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  side-by-side = true
+  line-numbers = true
+[merge]
+  conflictstyle = diff3
+[diff]
+  colorMoved = default
+[rebase]
+  instructionFormat = (%an) %s
+
+[alias]
+  co = checkout
+  ci = commit
+  st = status -s
+  br = branch
+  last = log -1 HEAD
+  dwdiff = "!f() { git diff $@ | dwdiff --diff-input -P -c | less -R; }; f"
+  plog = "!l() { git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit $@; }; l"
+  plog10 = plog -10
+  p10 = plog -10
+  p20 = plog -20
+
+# vim: ft=ini
