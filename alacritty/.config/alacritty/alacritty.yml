@@ -29,7 +29,7 @@ window:
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
-  decorations: full
+  decorations: buttonless
 
   startup_mode: Maximized
 
@@ -202,7 +202,7 @@ cursor:
   style: 
     shape: Block
   vi_mode_style:
-    shape: Beam
+    shape: Underline
     
 # Live config reload (changes require restart)
 live_config_reload: true
