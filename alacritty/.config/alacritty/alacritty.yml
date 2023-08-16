@@ -170,12 +170,14 @@ selection:
 cursor:
   style: 
     shape: Block
+    blinking: on
+    vi_mode_style: on
+    unfocussed_hollow: true
   vi_mode_style:
     shape: Underline
     
 # Live config reload (changes require restart)
 live_config_reload: true
-theme: Catppuccin
 
 # Shell
 #
@@ -225,3 +227,4 @@ key_bindings:
   - { key: Return, mods: Super|Shift, action: SpawnNewInstance }
   - { key: Key3, mods: Alt, chars: "#" } # Alt + #
 
+fullscreen: true
