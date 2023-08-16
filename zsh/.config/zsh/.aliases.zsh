@@ -23,6 +23,10 @@ alias la="ls -laF ${colorflag}"
 # List only directories
 alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 
+# quick clear
+# TODO: fix keybinding for clearing terminal, due to VIM mappings for switching windows in tmux
+alias cl="clear"
+
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
 alias grep='grep --color=auto'
