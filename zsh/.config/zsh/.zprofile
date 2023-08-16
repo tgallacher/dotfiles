@@ -18,12 +18,6 @@ export VISUAL="nvim"
 # Paths
 #
 
-# Ensure path arrays do not contain duplicates.
-typeset -gU path fpath
-# remove duplicat entries from $PATH
-# zsh uses $path array along with $PATH 
-typeset -U PATH path
-
 # Set the list of directories that zsh searches for commands
 path=(
   $HOME/{,s}bin(N)
@@ -41,4 +35,15 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/share:$PATH"
 
+# Pyenv bootstrap
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
+
+# Ensure path arrays do not contain duplicates.
+typeset -gU path fpath
+# remove duplicat entries from $PATH
+# zsh uses $path array along with $PATH 
+typeset -U PATH path
 
