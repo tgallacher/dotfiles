@@ -47,9 +47,10 @@ $ZDOTDIR/.variables.zsh
 # bundles can often be made available simply with the `kind:path` annotation.
 #
 ###
-ohmyzsh/ohmyzsh               path:lib/clipboard.zsh
-ohmyzsh/ohmyzsh               path:lib/directories.zsh
-ohmyzsh/ohmyzsh               path:lib/theme-and-appearance.zsh
+ohmyzsh/ohmyzsh               path:lib
+# ohmyzsh/ohmyzsh               path:lib/clipboard.zsh
+# ohmyzsh/ohmyzsh               path:lib/directories.zsh
+# ohmyzsh/ohmyzsh               path:lib/theme-and-appearance.zsh
 
 ohmyzsh/ohmyzsh               path:plugins/copybuffer
 ohmyzsh/ohmyzsh               path:plugins/copyfile
