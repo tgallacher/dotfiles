@@ -44,5 +44,6 @@ alias finder_showdesktopicons="defaults write com.apple.finder CreateDesktop -bo
 alias print_path='echo -e ${PATH//:/\\n}'
 
 alias tf='terraform'
+alias yw='yarn workspace'
 
 alias git_prune_branches='git fetch && git remote prune origin && git br -v | grep gone | awk '"'"'{print $1;}'"'"' | xargs -n 1 git br -d'
