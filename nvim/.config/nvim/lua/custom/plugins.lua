@@ -3,12 +3,71 @@ local overrides = require "custom.configs.overrides"
 ---@type NvPluginSpec[]
 local plugins = {
 
-  -- Override plugin definition options
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
+
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   lazy = false,
+  --   opts = function()
+  --     return require "custom.configs.copilot"
+  --   end,
+  --   config = function(_, opts)
+  --     require("copilot").setup(opts)
+  --   end,
+  -- },
+
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      -- format & linting
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+          require "custom.configs.null-ls"
+        end,
+      },
+    },
+    config = function()
+      require "plugins.configs.lspconfig"
+      require "custom.configs.lspconfig"
+    end,
+  },
+
+  {
+    "anuvyklack/pretty-fold.nvim",
+    lazy = false,
+    config = function()
+      require("pretty-fold").setup()
+    end,
+  },
+
+  --   {
+  --     "mfussenegger/nvim-dap",
+  --     init = function()
+  --       require("core.utils").load_mappings "dap"
+  --     end,
+  --   },
+  -- {
+  --    "theHamsta/nvim-dap-virtual-text",
+  --    lazy = false,
+  --    config = function(_, opts)
+  --      require("nvim-dap-virtual-text").setup()
+  --    end
+  --  },
 
   -- override plugin configs
   {
+    "nvim-tree/nvim-tree.lua",
+    opts = overrides.nvimtree,
+  },
+
+  {
     "williamboman/mason.nvim",
-    opts = vim.tbl_deep_extend("force", overrides.mason, {
+    opts = {
+      ensure_installed = {
       -- lua stuff
       "lua-language-server",
       "stylua",
@@ -23,7 +82,8 @@ local plugins = {
       "terraform-ls",
       "yaml-language-server",
       "nix-lsp",
-    }),
+      },
+    },
   },
 
   {
@@ -31,32 +91,28 @@ local plugins = {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    opts = vim.tbl_deep_extend("force", overrides.treesitter, {
-      "vim",
-      "lua",
-      "html",
-      "css",
-      "javascript",
-      "typescript",
-      "tsx",
-      "markdown",
-      "markdown_inline",
-      "json",
-      "bash",
-      "dockerfile",
-      "nix",
-      "terraform",
-      "toml",
-      "yaml",
-    }),
+    opts = {
+      ensure_installed = {
+        "vim",
+        "lua",
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "tsx",
+        "markdown",
+        "markdown_inline",
+        "json",
+        "bash",
+        "dockerfile",
+        "nix",
+        "terraform",
+        "toml",
+        "yaml",
+      },
+    },
   },
 
-  {
-    "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
-  },
-
-  -- Install a plugin
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
@@ -68,19 +124,14 @@ local plugins = {
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
   },
 
-  { 
+  {
     "theprimeagen/harpoon",
-    lazy = false 
+    lazy = false,
   },
   --
-  -- 
+  --
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",

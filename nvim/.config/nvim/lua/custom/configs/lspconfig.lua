@@ -2,9 +2,14 @@ local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
+local util = require "lspconfig/util"
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "lua_ls" }
+local servers = {
+  "html",
+  "cssls",
+  "tsserver",
+}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -13,5 +18,13 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- 
+--
 -- lspconfig.pyright.setup { blabla}
+--
+
+lspconfig.terraformls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "terraform-ls", "serve" },
+  root_dir = util.root_pattern(".terraform", ".git"),
+}
