@@ -28,6 +28,11 @@ M.general = {
     ["n"] = { "nzzzv", "Next search item, keeping center cursor" },
     ["N"] = { ":", "Prev search item, keeping center cursor" },
     ["<leader>X"] = { "<cmd>!chmod +x %<CR>", "Make file executable", { silent = true } },
+    -- Ensure better compatibility with tmux
+    ["<C-h>"] = { "<cmd> TmuxNavigateLeft<CR>", "window left" },
+    ["<C-l>"] = { "<cmd> TmuxNavigateRight<CR>", "window right" },
+    ["<C-j>"] = { "<cmd> TmuxNavigateDown<CR>", "window down" },
+    ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up" },
   },
 
   v = {
