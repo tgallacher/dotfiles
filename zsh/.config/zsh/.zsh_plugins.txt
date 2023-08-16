@@ -49,6 +49,7 @@ $ZDOTDIR/.variables.zsh
 ###
 ohmyzsh/ohmyzsh               path:lib/clipboard.zsh
 ohmyzsh/ohmyzsh               path:lib/directories.zsh
+ohmyzsh/ohmyzsh               path:lib/theme-and-appearance.zsh
 
 ohmyzsh/ohmyzsh               path:plugins/copybuffer
 ohmyzsh/ohmyzsh               path:plugins/copyfile
