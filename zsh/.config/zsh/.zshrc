@@ -42,7 +42,7 @@ antidote load
 # Support adding custom local zsh config(s)
 # Note: we use the null_glob opt to supress no match "errors"
 #   @see: https://unix.stackexchange.com/a/26825
-for f in $HOME/zshlocal(.N); do source "$f"; done
+for f in $HOME/.*.zshlocal(.N); do source "$f"; done
 
 # Autogen'd: To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
