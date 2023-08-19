@@ -1,6 +1,6 @@
 [core]
   editor = vim
-    pager = delta Requires `brew install git-delta`
+  pager = delta ; Requires `brew install git-delta`
 
 [init]
   defaultBranch = main
