@@ -100,7 +100,7 @@ nvim_tree.setup({
     centralize_selection = true,
     cursorline = true,
     float = {
-      enable = true,
+      enable = false,
       open_win_config = function()
         local screen_w = vim.opt.columns:get()
         local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
@@ -122,11 +122,11 @@ nvim_tree.setup({
       end,
     },
     preserve_window_proportions = true,
-    width = function()
-      return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
-    end,
-    -- side = "left",
-    -- width = 40,
+    -- width = function()
+    --   return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
+    -- end,
+    side = "left",
+    width = 40,
   },
   ui = {
     confirm = {
