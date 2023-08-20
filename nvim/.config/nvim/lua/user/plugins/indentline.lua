@@ -50,13 +50,14 @@ vim.g.indent_blankline_context_patterns = {
 -- HACK: work-around for https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
 vim.wo.colorcolumn = "99999"
 
-vim.cmd [[highlight IndentBlanklineIndent1 guifg=#6b7089 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent2 guifg=#84a0c6 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent3 guifg=#a093c7 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent4 guifg=#89b8c2 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent5 guifg=#e98989 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent6 guifg=#e9b189 gui=nocombine]]
+local colors = require "user.plugins.colorscheme.colors"
 
+vim.cmd(string.format([[highlight IndentBlanklineIndent1 guifg=%s gui=nocombine]], colors.color_9))
+vim.cmd(string.format([[highlight IndentBlanklineIndent2 guifg=%s gui=nocombine]], colors.color_3))
+vim.cmd(string.format([[highlight IndentBlanklineIndent3 guifg=%s gui=nocombine]], colors.color_4))
+vim.cmd(string.format([[highlight IndentBlanklineIndent4 guifg=%s gui=nocombine]], colors.color_4))
+vim.cmd(string.format([[highlight IndentBlanklineIndent5 guifg=%s gui=nocombine]], colors.color_6))
+vim.cmd(string.format([[highlight IndentBlanklineIndent6 guifg=%s gui=nocombine]], colors.color_7))
 
 vim.opt.list = true
 vim.opt.listchars:append "space:⋅"
