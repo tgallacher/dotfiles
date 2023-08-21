@@ -12,9 +12,14 @@ configs.setup {
     "bash", 
     "javascript",
     "typescript",
+    "jsdoc",
+    "graphql",
     "vimdoc",
     "terraform",
-    "dockerfile"
+    "dockerfile",
+    "nix",
+    "yaml",
+    "prisma",
   }, 
 
   -- ensure_installed = "all", -- one of "all" or a list of languages
