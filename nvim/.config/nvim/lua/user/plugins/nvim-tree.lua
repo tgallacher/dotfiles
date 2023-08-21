@@ -9,11 +9,11 @@ local WIDTH_RATIO = 0.5   -- Floating window width ratio
 nvim_tree.setup({
   actions = {
     change_dir = {
-      enable = true,
+      enable = false,
       restrict_above_cwd = true       -- Prevent cd'ing outside cwd
     },
     open_file = {
-      quit_on_open = true,           -- Close Nvimt-tree when opening file
+      quit_on_open = true,           -- Close Nvim-tree when opening file
     }
   },
   disable_netrw = true,
@@ -90,10 +90,10 @@ nvim_tree.setup({
       },
     },
   },
-  sync_root_with_cwd = true,                          -- Changes the tree root directory on `DirChanged` and refreshes the tree
+  sync_root_with_cwd = false,                          -- Changes the tree root directory on `DirChanged` and refreshes the tree
   update_focused_file = {
     enable = true,
-    update_root = true,
+    update_root = false,
   },
   view = {
     adaptive_size = false,
