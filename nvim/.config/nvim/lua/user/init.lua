@@ -19,4 +19,5 @@ require "user.plugins.telescope"
 require "user.plugins.treesitter"
 require "user.plugins.nvim-bufdel"
 require "user.plugins.tmux-nav"
+require "user.plugins.noice"
 
