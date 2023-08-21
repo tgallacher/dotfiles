@@ -51,10 +51,16 @@ return packer.startup(function(use)
   }
 
 	-- Telescope
-	use "nvim-telescope/telescope.nvim"
+	use {
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    requires = { 
+      {'nvim-lua/plenary.nvim'} 
+    }
+  }
 
 	-- Treesitter
-	use {
+  use {
     "nvim-treesitter/nvim-treesitter",
     requires = {
       "nvim-treesitter/nvim-treesitter-textobjects"
@@ -69,7 +75,12 @@ return packer.startup(function(use)
 	use "lewis6991/gitsigns.nvim"
   use "ThePrimeagen/git-worktree.nvim"
 
-  use "tpope/vim-surround"
+  use { 
+    "tpope/vim-surround",
+    requires = {
+      "tpope/vim-repeat"
+    }
+  }
   use "ThePrimeagen/harpoon"
   use "folke/twilight.nvim"
 
