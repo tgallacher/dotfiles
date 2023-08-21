@@ -135,6 +135,8 @@ local diagnostics = {
 	always_visible = true,
 }
 
+local colors = require "user.plugins.colorscheme.colors"
+
 lualine.setup({
   options = {
     theme = "iceberg_dark",
@@ -147,24 +149,24 @@ lualine.setup({
     lualine_a = { "mode" },
     lualine_b = { diagnostics, "buffers", "diff" },
     lualine_x = {
-      {
-        require("noice").api.status.message.get_hl,
-        cond = require("noice").api.status.message.has,
-      },
+      -- {
+      --   require("noice").api.status.message.get_hl,
+      --   cond = require("noice").api.status.message.has,
+      -- },
       {
         require("noice").api.status.command.get,
         cond = require("noice").api.status.command.has,
-        color = { fg = "#ff9e64" },
+        color = { fg = colors.color_6 },
       },
       {
         require("noice").api.status.mode.get,
         cond = require("noice").api.status.mode.has,
-        color = { fg = "#ff9e64" },
+        color = { fg = colors.color_6 },
       },
       {
         require("noice").api.status.search.get,
         cond = require("noice").api.status.search.has,
-        color = { fg = "#ff9e64" },
+        color = { fg = colors.color_6 },
       },   
     },
     lualine_y = {  "filetype" },
