@@ -30,22 +30,25 @@ vim.opt.updatetime = 300                         -- faster completion (4000ms de
 vim.opt.writebackup = false                      -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 vim.opt.hidden = true                            -- navigate buffers without losing unsaved work
 vim.opt.expandtab = true                         -- convert tabs to spaces
+vim.opt.autoindent = true                        -- convert tab to spaces 
 vim.opt.shiftwidth = 2                           -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2                              -- insert 2 spaces for a tab
 vim.opt.softtabstop = 2 
 
+vim.opt.background = "dark"                      -- ensure dark version of colourschemes are auto selected
 vim.opt.cursorline = true                        -- highlight the current line
 vim.opt.number = true                            -- set numbered lines
-vim.opt.relativenumber = true                   -- set relative numbered lines
+vim.opt.relativenumber = true                    -- set relative numbered lines
 vim.opt.numberwidth = 4                          -- set number column width to 2 {default 4}
 
 vim.opt.signcolumn = "yes"                       -- always show the sign column, otherwise it would shift the text each time
-vim.opt.wrap = true                              -- display lines as one long line
+vim.opt.wrap = false                             -- display lines as one long line
 vim.opt.linebreak = true                         -- companion to wrap, don't split words
 vim.opt.scrolloff = 8                            -- minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 8                        -- minimal number of screen columns either side of cursor if wrap is `false`
-vim.opt.guifont = "monospace:h17"                -- the font used in graphical neovim applications
+-- vim.opt.guifont = "monospace:h17"                -- the font used in graphical neovim applications
 vim.opt.whichwrap = "bs<>[]hl"                   -- which "horizontal" keys are allowed to travel to prev/next line
+vim.opt.backspace = "indent,eol,start"           -- allow backspace on indent, end of line or insert mode start position
 
 -- vim.opt.shortmess = "ilmnrx"                        -- flags to shorten vim messages, see :help 'shortmess'
 vim.opt.shortmess:append "c"                           -- don't give |ins-completion-menu| messages
