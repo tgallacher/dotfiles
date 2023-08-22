@@ -5,25 +5,29 @@
 -- import lspconfig plugin safely
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status then
+  vim.notify("Failed to load 'lspconfig'")
   return
 end
 
 -- import cmp-nvim-lsp plugin safely
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status then
+  vim.notify("Failed to load 'cmp_nvim_lsp'")
   return
 end
 
 -- import typescript plugin safely
 local typescript_setup, typescript = pcall(require, "typescript")
 if not typescript_setup then
+  vim.notify("Failed to load 'typescript'")
   return
 end
 
 
 local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
-	local keymap = vim.api.nvim_buf_set_keymap
+	-- local keymap = vim.api.nvim_buf_set_keymap
+	local keymap = vim.keymap
 
  --  keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	-- keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
