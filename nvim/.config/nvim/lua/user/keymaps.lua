@@ -22,6 +22,10 @@ vim.keymap.set("", "<leader>f", "<Nop>", opts)
 vim.keymap.set("", "gb", "<Nop>", opts)
 vim.keymap.set("", "gc", "<Nop>", opts)
 
+--#######################################################
+-- GENERAL
+--#######################################################
+
 ----------------------------------------------------------
 -- Normal --
 ----------------------------------------------------------
@@ -106,3 +110,12 @@ vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 -- vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
+--#######################################################
+-- PLUGINS
+--#######################################################
+
+-- folke/twilight
+vim.keymap.set("n", "<leader>tw", "<cmd> :Twilight <CR>", opts)
+
+-- "folke/zen-mode.nvim"
+vim.keymap.set("n", "<leader>zm", "<cmd> :ZenMode <CR>", opts)

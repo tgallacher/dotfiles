@@ -117,12 +117,13 @@ return packer.startup(function(use)
   -- use "ThePrimeagen/harpoon"
   use "folke/twilight.nvim"
   use "folke/noice.nvim"
-  use "folke/trouble.nvim"
+  -- use "folke/trouble.nvim"
   use "folke/todo-comments.nvim"
+  use "folke/zen-mode.nvim" 
 
   -- use "akinsho/toggleterm.nvim" 
   -- use "goolord/alpha-nvim"        -- Custom NVim dashboard
-  use "ahmedkhalf/project.nvim" 
+  -- use "ahmedkhalf/project.nvim" 
 	use "folke/which-key.nvim"
 
   -- use "ThePrimeagen/git-worktree.nvim"
