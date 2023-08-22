@@ -14,6 +14,13 @@ telescope.setup {
     prompt_prefix = "  ",
     selection_caret = " ",
     path_display = { "smart" },
+    mappings = {
+      i = {
+        ["<C-k>"] = actions.move_selection_previous, -- move to prev result
+        ["<C-j>"] = actions.move_selection_next, -- move to next result
+        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
+      },
+    },
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
@@ -27,16 +34,25 @@ telescope.setup {
       show_pluto = true,
     },
   },
-  extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
-  },
+  -- extensions = {
+  --   -- Your extension configuration goes here:
+  --   -- extension_name = {
+  --   --   extension_config_key = value,
+  --   -- }
+  --   -- please take a look at the readme of the extension you want to configure
+  -- },
 }
 
+-- Enable telescope fzf native, if installed
+pcall(require('telescope').load_extension, 'fzf')
+
+----------------------------------------------------------
 -- KEYMAPS --
+----------------------------------------------------------
+local opts = { noremap = true, silent = true }
+
+vim.keymap.set("n", "<leader>f", "<Nop>", opts)
+
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>fa", function() builtin.find_files({ no_ignore=true, follow=true }) end, { desc = "Find all files"} )
 vim.keymap.set("n", "<leader>fw", builtin.live_grep, { desc = "Find text in cwd" })
@@ -48,9 +64,3 @@ vim.keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "F
 
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Help"})
 
--- Enable telescope fzf native, if installed
-pcall(require('telescope').load_extension, 'fzf')
-
-local opts = { noremap = true, silent = true }
-
-vim.keymap.set("n", "<leader>f", "<Nop>", opts)

@@ -14,6 +14,9 @@ nvim_tree.setup({
     },
     open_file = {
       quit_on_open = true,           -- Close Nvim-tree when opening file
+      window_picker = {
+        enable = false                -- disable to ensure explorer works well with splits
+      }
     }
   },
   disable_netrw = true,
@@ -136,7 +139,8 @@ nvim_tree.setup({
   }
 })
 
--- KEYMAPS --
-vim.keymap.set("n", "<leader>e", "<cmd> NvimTreeFocus <CR>", { desc="Focus nvimtree", noremap = true, silent = true })
-vim.keymap.set("n", "<C-n>", "<cmd> NvimTreeToggle <CR>", { desc="Toggle nvimtree" })
+----------------------------------------------------------
+-- KEYMAPS
+----------------------------------------------------------
+vim.keymap.set("n", "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc="Toggle nvimtree", noremap = true, silent = true })
 
