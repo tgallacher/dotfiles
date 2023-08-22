@@ -104,6 +104,7 @@ return packer.startup(function(use)
 	use "lewis6991/gitsigns.nvim"
   use "nvim-lualine/lualine.nvim"                  -- bottom status bar
   use "cocopon/iceberg.vim"                        -- colorscheme
+  use "bluz71/vim-nightfly-guicolors"              -- colorscheme
   use "lukas-reineke/indent-blankline.nvim"
   
   use { 
