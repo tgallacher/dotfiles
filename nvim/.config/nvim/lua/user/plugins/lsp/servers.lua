@@ -18,6 +18,7 @@ local M = {
     "sqlls",
     "taplo", -- toml
     "terraformls",
+    "gopls",
   },
 -- Language servers config
 --  Note: key must match Mason LSP server name above
