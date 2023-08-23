@@ -79,7 +79,7 @@ return packer.startup(function(use)
 	-- lsp
   use "williamboman/mason.nvim"                       -- Automatically install LSPs to stdpath for neovim
   use "williamboman/mason-lspconfig.nvim"
-  use "jayp0521/mason-null-ls.nvim"                  -- bridges gap b/w mason & null-ls
+  use "jay-babu/mason-null-ls.nvim"                  -- bridges gap b/w mason & null-ls
   use "neovim/nvim-lspconfig"                         -- LSP Configuration & Plugins
   use { "glepnir/lspsaga.nvim", branch = "main" }     -- enhanced lsp uis
   use "jose-elias-alvarez/null-ls.nvim"               -- for formatters and linters
