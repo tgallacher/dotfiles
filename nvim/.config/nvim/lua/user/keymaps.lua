@@ -119,3 +119,6 @@ vim.keymap.set("n", "<leader>tw", "<cmd> :Twilight <CR>", opts)
 
 -- "folke/zen-mode.nvim"
 vim.keymap.set("n", "<leader>zm", "<cmd> :ZenMode <CR>", opts)
+-- 
+-- "f-person/git-blame"
+vim.keymap.set("n", "<leader>gbl", "<cmd> :GitBlameToggle <CR>", opts)
