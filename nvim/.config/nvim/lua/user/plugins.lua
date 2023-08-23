@@ -120,6 +120,7 @@ return packer.startup(function(use)
   -- use "folke/trouble.nvim"
   use "folke/todo-comments.nvim"
   use "folke/zen-mode.nvim" 
+  use "f-person/git-blame.nvim"
 
   -- use "akinsho/toggleterm.nvim" 
   -- use "goolord/alpha-nvim"        -- Custom NVim dashboard
