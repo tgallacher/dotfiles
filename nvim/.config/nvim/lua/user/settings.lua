@@ -2,6 +2,9 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Preserve zoom on Tmux navigation
+-- see: christoomey/vim-tmux-navigator
+vim.g.tmux_navigator_preserve_zoom = 1
 
 vim.loader.enable()                              -- Optimize plugin loading
 
