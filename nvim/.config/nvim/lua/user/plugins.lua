@@ -21,6 +21,7 @@ vim.cmd([[
   augroup end
 ]])
 
+local packer = nil
 -- Use a protected call so we don't error out on first use
 local status_ok, _packer = pcall(require, "packer")
 if not status_ok then
@@ -105,8 +106,9 @@ return packer.startup(function(use)
   use "nvim-lualine/lualine.nvim"                  -- bottom status bar
   use "cocopon/iceberg.vim"                        -- colorscheme
   use "bluz71/vim-nightfly-guicolors"              -- colorscheme
+  use "jaredgorski/spacecamp"                      -- colorscheme
   use "lukas-reineke/indent-blankline.nvim"
-  
+  use "wadackel/vim-dogrun" 
   use { 
     "norcalli/nvim-colorizer.lua",
     config = function() require("colorizer").setup() end
