@@ -40,6 +40,7 @@ local colors = require "user.plugins.colorscheme.colors"
 lualine.setup({
   options = {
     theme = "iceberg_dark",
+    -- theme = "dogrun",
     icons_enabled = true,
     component_separators = "|",
     section_separators = "",
