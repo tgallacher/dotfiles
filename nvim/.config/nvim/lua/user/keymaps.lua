@@ -125,3 +125,6 @@ vim.keymap.set("n", "<leader>zm", "<cmd> :ZenMode <CR>", opts)
 -- 
 -- "f-person/git-blame"
 vim.keymap.set("n", "<leader>gbl", "<cmd> :GitBlameToggle <CR>", opts)
+
+-- glepnir/lspsaga.nvim 
+vim.keymap.set({ "n", "t" }, "<A-d>", "<cmd> Lspsaga term_toggle <CR>")
