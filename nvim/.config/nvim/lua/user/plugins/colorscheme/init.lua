@@ -2,8 +2,8 @@
 -- Plugin: "cocopon/iceberg.vim"
 --
 -- local colorscheme = "iceberg"
--- local colorscheme = "nightfly"
-local colorscheme = "dogrun"
+local colorscheme = "nightfly"
+-- local colorscheme = "dogrun"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
