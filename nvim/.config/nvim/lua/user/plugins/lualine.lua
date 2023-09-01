@@ -40,7 +40,7 @@ local colors = require "user.plugins.colorscheme.colors"
 lualine.setup({
   options = {
     -- theme = "iceberg_dark",
-    theme = "nightfy",
+    theme = "nightfly",
     icons_enabled = true,
     component_separators = "|",
     section_separators = "",
