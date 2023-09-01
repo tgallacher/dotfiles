@@ -19,8 +19,6 @@ vim.g.indent_blankline_filetype_exclude = {
 }
 vim.g.indentLine_enabled = 1
 vim.g.indent_blankline_char = "│"
--- vim.g.indent_blankline_char = "▏"
--- vim.g.indent_blankline_char = "▎"
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 vim.g.indent_blankline_show_first_indent_level = true
 vim.g.indent_blankline_use_treesitter = true
@@ -50,14 +48,21 @@ vim.g.indent_blankline_context_patterns = {
 -- HACK: work-around for https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
 vim.wo.colorcolumn = "99999"
 
-local colors = require "user.plugins.colorscheme.colors"
+-- local colors = require "user.plugins.colorscheme.colors"
+--
+-- vim.cmd(string.format([[highlight IndentBlanklineIndent1 guifg=%s gui=nocombine]], colors.color_9))
+-- vim.cmd(string.format([[highlight IndentBlanklineIndent2 guifg=%s gui=nocombine]], colors.color_9))
+-- vim.cmd(string.format([[highlight IndentBlanklineIndent3 guifg=%s gui=nocombine]], colors.color_9))
+-- vim.cmd(string.format([[highlight IndentBlanklineIndent4 guifg=%s gui=nocombine]], colors.color_9))
+-- vim.cmd(string.format([[highlight IndentBlanklineIndent5 guifg=%s gui=nocombine]], colors.color_9))
+-- vim.cmd(string.format([[highlight IndentBlanklineIndent6 guifg=%s gui=nocombine]], colors.color_9))
 
-vim.cmd(string.format([[highlight IndentBlanklineIndent1 guifg=%s gui=nocombine]], colors.color_9))
-vim.cmd(string.format([[highlight IndentBlanklineIndent2 guifg=%s gui=nocombine]], colors.color_9))
-vim.cmd(string.format([[highlight IndentBlanklineIndent3 guifg=%s gui=nocombine]], colors.color_9))
-vim.cmd(string.format([[highlight IndentBlanklineIndent4 guifg=%s gui=nocombine]], colors.color_9))
-vim.cmd(string.format([[highlight IndentBlanklineIndent5 guifg=%s gui=nocombine]], colors.color_9))
-vim.cmd(string.format([[highlight IndentBlanklineIndent6 guifg=%s gui=nocombine]], colors.color_9))
+vim.cmd(string.format([[highlight IndentBlanklineIndent1 guifg=%s gui=nocombine]], "#1e2132"))
+vim.cmd(string.format([[highlight IndentBlanklineIndent2 guifg=%s gui=nocombine]], "#1e2132"))
+vim.cmd(string.format([[highlight IndentBlanklineIndent3 guifg=%s gui=nocombine]], "#1e2132"))
+vim.cmd(string.format([[highlight IndentBlanklineIndent4 guifg=%s gui=nocombine]], "#1e2132"))
+vim.cmd(string.format([[highlight IndentBlanklineIndent5 guifg=%s gui=nocombine]], "#1e2132"))
+vim.cmd(string.format([[highlight IndentBlanklineIndent6 guifg=%s gui=nocombine]], "#1e2132"))
 
 vim.opt.list = true
 vim.opt.listchars:append "space:⋅"
@@ -73,5 +78,8 @@ indent_blankline.setup({
 	  "IndentBlanklineIndent1",
 	  "IndentBlanklineIndent2",
 	  "IndentBlanklineIndent3",
+	  "IndentBlanklineIndent4",
+	  "IndentBlanklineIndent5",
+	  "IndentBlanklineIndent6",
 	},
 })

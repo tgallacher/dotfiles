@@ -1,3 +1,5 @@
+-- TODO: Migrate to LazyVim; Packer no longer maintained...
+--
 -- Autoload packer if not installed
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -101,10 +103,10 @@ return packer.startup(function(use)
   -- ====== Visuals ====== --
   use "lewis6991/gitsigns.nvim"
   use "nvim-lualine/lualine.nvim"     -- bottom status bar
+  use "lukas-reineke/indent-blankline.nvim"
   use "cocopon/iceberg.vim"           -- colorscheme
   use "bluz71/vim-nightfly-guicolors" -- colorscheme
   use "jaredgorski/spacecamp"         -- colorscheme
-  use "lukas-reineke/indent-blankline.nvim"
   use "wadackel/vim-dogrun"           -- colorscheme
   use {
     "norcalli/nvim-colorizer.lua",
@@ -115,12 +117,19 @@ return packer.startup(function(use)
   -- ====== Misc ====== --
   -- use "ThePrimeagen/harpoon"
   use "folke/twilight.nvim"
-  use "folke/noice.nvim"
+  use "folke/noice.nvim"    -- central cmdline + message popouts
   -- use "folke/trouble.nvim"
   use "folke/todo-comments.nvim"
   use "folke/zen-mode.nvim"
-  use "f-person/git-blame.nvim"
+  use { 
+    "f-person/git-blame.nvim",
+    config = function ()
+      require("gitblame").setup({
+        enabled = false, -- disable by default so we can use keymap to toggle blame
+      })
+    end
 
+  }  
   -- use "akinsho/toggleterm.nvim"
   -- use "goolord/alpha-nvim"        -- Custom NVim dashboard
   -- use "ahmedkhalf/project.nvim"
