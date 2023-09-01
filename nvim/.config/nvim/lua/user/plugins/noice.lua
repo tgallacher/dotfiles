@@ -27,9 +27,9 @@ require("noice").setup({
       size = {
         min_width = 120,
         -- width = 420,
-        border = {
-          style = "none"
-        }
+        -- border = {
+        --   style = "none"
+        -- }
       }
     }
   }

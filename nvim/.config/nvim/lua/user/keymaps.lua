@@ -59,12 +59,14 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- == Navigate buffers
 vim.keymap.set("n", "<A-]>", "<Nop>", opts)
 vim.keymap.set("n", "<A-[>", "<Nop>", opts)
-
+vim.keymap.set("n", "<A-x>", "<Nop>", opts)
 vim.keymap.set("n", "<A-]>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<A-[>", ":bprevious<CR>", opts)
+-- FIXME: no working with corne keyboard
 vim.keymap.set("n", "<A-x>", ":bdelete<CR>", opts)
 
 -- == Move text up and down
+-- FIXME: no working with corne keyboard
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", opts)
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", opts)
 
@@ -87,6 +89,7 @@ vim.keymap.set("v", "<", "<gv^", opts)
 vim.keymap.set("v", ">", ">gv^", opts)
 
 -- Move text up and down
+-- FIXME: no working with corne keyboard
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 
@@ -99,6 +102,7 @@ vim.keymap.set("v", "p", '"_dP', opts)
 -- Move text up and down
 vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv", opts)
 vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", opts)
+-- FIXME: no working with corne keyboard
 vim.keymap.set("x", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 
@@ -124,7 +128,28 @@ vim.keymap.set("n", "<leader>tw", "<cmd> :Twilight <CR>", opts)
 vim.keymap.set("n", "<leader>zm", "<cmd> :ZenMode <CR>", opts)
 -- 
 -- "f-person/git-blame"
-vim.keymap.set("n", "<leader>gbl", "<cmd> :GitBlameToggle <CR>", opts)
+vim.keymap.set("n", "<leader>gb", "<cmd> :GitBlameToggle <CR>", opts)
 
 -- glepnir/lspsaga.nvim 
 vim.keymap.set({ "n", "t" }, "<A-d>", "<cmd> Lspsaga term_toggle <CR>")
+
+-- Telescope
+local telescope_builtins = require("telescope.builtin")
+
+vim.keymap.set("n", "<leader>f", "<Nop>", opts)
+
+vim.keymap.set("n", "<leader>ff", telescope_builtins.find_files, { desc = "Find files" })
+vim.keymap.set("n", "<leader>fa", function() telescope_builtins.find_files({ no_ignore=true, follow=true, hidden=false }) end, { desc = "Find all files"} )
+vim.keymap.set("n", "<leader>fw", telescope_builtins.live_grep, { desc = "Find text in cwd" })
+vim.keymap.set("n", "<leader>fs", telescope_builtins.grep_string, { desc = "Find text under cursor in cwd" })
+vim.keymap.set("n", "<leader>fgf", telescope_builtins.git_files, { desc = "Find file known to git" })
+vim.keymap.set("n", "<leader>fb", telescope_builtins.buffers, { desc = "Find buffer" })
+vim.keymap.set("n", "<leader>fo", telescope_builtins.oldfiles, { desc = "Find previously opened file"})
+vim.keymap.set("n", "<leader>fq", telescope_builtins.quickfix, { desc = "Find in quickfix list"})
+vim.keymap.set("n", "<leader>fib", telescope_builtins.current_buffer_fuzzy_find, { desc = "Find text inside current buffer"})
+vim.keymap.set("n", "<leader>fgb", telescope_builtins.git_bcommits, { desc = "List git commits for current buffer"})
+vim.keymap.set("n", "<leader>fgs", telescope_builtins.git_stash, { desc = "List git stashes"})
+vim.keymap.set("n", "<leader>fth", telescope_builtins.colorscheme, { desc = "List/preview colorschemes"})
+
+vim.keymap.set("n", "<leader>fh", telescope_builtins.help_tags, { desc = "Help"})
+
