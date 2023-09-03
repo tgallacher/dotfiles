@@ -20,7 +20,7 @@ local M = {
     "terraformls",
     "gopls",
   },
--- Language servers config
+-- Language servers config override
 --  Note: key must match Mason LSP server name above
   serverConfigs = {
     lua_ls = {

@@ -1,17 +1,8 @@
--- disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- Preserve zoom on Tmux navigation
--- see: christoomey/vim-tmux-navigator
-vim.g.tmux_navigator_preserve_zoom = 1
-
 vim.loader.enable()                              -- Optimize plugin loading
 
 vim.opt.backup = false                           -- creates a backup file
-vim.opt.clipboard = "unnamedplus"                -- allows neovim to access the system clipboard
+vim.opt.clipboard = "unnamedplus"                -- use the system clipboard as the default register
 vim.opt.cmdheight = 2                            -- more space in the neovim command line for displaying messages
-vim.opt.completeopt = { "menuone", "noselect" }  -- mostly just for cmp
 vim.opt.conceallevel = 0                         -- so that `` is visible in markdown files
 vim.opt.fileencoding = "utf-8"                   -- the encoding written to a file
 vim.opt.incsearch = true 
@@ -59,7 +50,7 @@ vim.opt.iskeyword:append "-"                           -- hyphenated words recog
 vim.opt.formatoptions:remove({ "c", "r", "o" })        -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles")  -- separate vim plugins from neovim in case vim still in use
 
--- [[ Highlight on yank ]]
+-- Highlight on yank
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {

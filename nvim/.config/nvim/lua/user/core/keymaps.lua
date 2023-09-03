@@ -1,8 +1,3 @@
--- Keymaps
--- Note: Plugin related keymaps live alongside each plugin config file
---
-local opts = { noremap = true, silent = true }
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -10,6 +5,7 @@ local opts = { noremap = true, silent = true }
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
+local opts = { noremap = true, silent = true }
 
 --Remap space as leader key
 vim.keymap.set("", "<Space>", "<Nop>", opts)
@@ -116,40 +112,4 @@ vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 -- vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
---#######################################################
--- PLUGINS
---#######################################################
-
--- folke/twilight
-vim.keymap.set("n", "<leader>tw", "<cmd> :Twilight <CR>", opts)
-
--- "folke/zen-mode.nvim"
-vim.keymap.set("n", "<leader>zm", "<cmd> :ZenMode <CR>", opts)
--- 
--- "f-person/git-blame"
-vim.keymap.set("n", "<leader>gb", "<cmd> :GitBlameToggle <CR>", opts)
-
--- glepnir/lspsaga.nvim 
-vim.keymap.set({ "n", "t" }, "<A-d>", "<cmd> Lspsaga term_toggle <CR>")
-
--- Telescope
-local telescope_builtins = require("telescope.builtin")
-
-vim.keymap.set("n", "<leader>f", "<Nop>", opts)
-
-vim.keymap.set("n", "<leader>ff", telescope_builtins.find_files, { desc = "Find files" })
-vim.keymap.set("n", "<leader>fa", function() telescope_builtins.find_files({ no_ignore=true, follow=true, hidden=false }) end, { desc = "Find all files"} )
-vim.keymap.set("n", "<leader>fw", telescope_builtins.live_grep, { desc = "Find text in cwd" })
-vim.keymap.set("n", "<leader>fs", telescope_builtins.grep_string, { desc = "Find text under cursor in cwd" })
-vim.keymap.set("n", "<leader>fgf", telescope_builtins.git_files, { desc = "Find file known to git" })
-vim.keymap.set("n", "<leader>fb", telescope_builtins.buffers, { desc = "Find buffer" })
-vim.keymap.set("n", "<leader>fo", telescope_builtins.oldfiles, { desc = "Find previously opened file"})
-vim.keymap.set("n", "<leader>fq", telescope_builtins.quickfix, { desc = "Find in quickfix list"})
-vim.keymap.set("n", "<leader>fib", telescope_builtins.current_buffer_fuzzy_find, { desc = "Find text inside current buffer"})
-vim.keymap.set("n", "<leader>fgb", telescope_builtins.git_bcommits, { desc = "List git commits for current buffer"})
-vim.keymap.set("n", "<leader>fgs", telescope_builtins.git_stash, { desc = "List git stashes"})
-vim.keymap.set("n", "<leader>fth", telescope_builtins.colorscheme, { desc = "List/preview colorschemes"})
-
-vim.keymap.set("n", "<leader>fh", telescope_builtins.help_tags, { desc = "Help"})
 
