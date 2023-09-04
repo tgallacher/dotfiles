@@ -179,6 +179,10 @@ return {
 					normal_bg = "#022746",
 				},
 			},
+      floaterm = {
+        width = 0.9,
+        height = 0.9,
+      }
 		},
 		keys = {
 			{ "<A-d>", "<cmd>Lspsaga term_toggle <CR>", mode = { "n", "t" } },
