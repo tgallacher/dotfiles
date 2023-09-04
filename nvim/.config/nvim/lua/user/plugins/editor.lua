@@ -243,9 +243,9 @@ return {
       -- find
       { "<leader>fb", "<cmd>Telescope buffers<cr>",                           desc = "Buffers" },
       { "<leader>ff", "<cmd>Telescope find_files<cr>",                        desc = "Find Files (root dir)" },
-      { "<leader>fF", "<cmd>Telescope find_files cwd=true",                   desc = "Find Files (cwd)", },
+      { "<leader>fF", "<cmd>Telescope find_files cwd=true<cr>",                   desc = "Find Files (cwd)", },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>",                          desc = "Recent" },
-      { "<leader>fR", "<cmd>Telescope oldfiles cwd=vim.loop.cwd()",           desc = "Recent (cwd)", },
+      { "<leader>fR", "<cmd>Telescope oldfiles cwd=vim.loop.cwd()<cr>",           desc = "Recent (cwd)", },
       -- git
       { "<leader>gc", "<cmd>Telescope git_bcommits<CR>",                      desc = "commits" },
       { "<leader>gs", "<cmd>Telescope git_status<CR>",                        desc = "status" },
@@ -257,8 +257,8 @@ return {
       { "<leader>sC", "<cmd>Telescope commands<cr>",                          desc = "Commands" },
       { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>",               desc = "Document diagnostics", },
       { "<leader>sD", "<cmd>Telescope diagnostics<cr>",                       desc = "Workspace diagnostics", },
-      { "<leader>sg", "<cmd>Telescope live_grep",                             desc = "Grep (root dir)", },
-      { "<leader>sG", "<cmd>Telescope live_grep cwd=false",                   desc = "Grep (cwd)", },
+      { "<leader>sg", "<cmd>Telescope live_grep<cr>",                             desc = "Grep (root dir)", },
+      { "<leader>sG", "<cmd>Telescope live_grep cwd=false<cr>",                   desc = "Grep (cwd)", },
       { "<leader>sh", "<cmd>Telescope help_tags<cr>",                         desc = "Help Pages", },
       { "<leader>sH", "<cmd>Telescope highlights<cr>",                        desc = "Search Highlight Groups", },
       { "<leader>sk", "<cmd>Telescope keymaps<cr>",                           desc = "Key Maps" },
@@ -266,16 +266,16 @@ return {
       { "<leader>sm", "<cmd>Telescope marks<cr>",                             desc = "Jump to Mark", },
       { "<leader>so", "<cmd>Telescope vim_options<cr>",                       desc = "Options" },
       { "<leader>sR", "<cmd>Telescope resume<cr>",                            desc = "Resume" },
-      { "<leader>sw", "<cmd>Telescope grep_string word_match='-w'",           desc = "Word (root dir)", },
-      { "<leader>sW", "<cmd>Telescope grep_string cwd=false,word_match='-w'", desc = "Word (cwd)", },
-      { "<leader>sw", "<cmd>Telescope grep_string mode='v'",                  desc = "Selection (root dir)", },
+      { "<leader>sw", "<cmd>Telescope grep_string word_match='-w'<cr>",           desc = "Word (root dir)", },
+      { "<leader>sW", "<cmd>Telescope grep_string cwd=false,word_match='-w'<cr>", desc = "Word (cwd)", },
+      { "<leader>sw", "<cmd>Telescope grep_string mode='v'<cr>",                  desc = "Selection (root dir)", },
       {
         "<leader>sW",
-        "<cmd>Telescope grep_string cwd=false",
+        "<cmd>Telescope grep_string cwd=false<cr>",
         mode = "v",
         desc = "Selection (cwd)",
       },
-      { "<leader>uC", "<cmd>Telescope colorscheme enable_preview=true", desc = "Colorscheme with preview", },
+      { "<leader>uC", "<cmd>Telescope colorscheme enable_preview=true<cr>", desc = "Colorscheme with preview", },
       -- {
       -- 	"<leader>ss",
       -- 	Util.telescope("lsp_document_symbols", {
@@ -437,7 +437,8 @@ return {
   -- git visuals / actions
   {
     "lewis6991/gitsigns.nvim",
-    opt = {
+    main = "gitsigns",
+    opts = {
       on_attach = function(bufnr)
         local gs = require("gitsigns")
         local function map(mode, l, r, opts)
@@ -615,7 +616,7 @@ return {
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    cmd = { "TroubleToggle", "Trouble" },
+    -- cmd = { "TroubleToggle", "Trouble" },
     opts = { use_diagnostic_signs = true },
     keys = {
       -- TODO: review hot key. Clashing with buffer management?
