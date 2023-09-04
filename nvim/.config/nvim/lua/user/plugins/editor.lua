@@ -4,14 +4,14 @@ return {
     "nvim-treesitter/nvim-treesitter",
     version = false, -- mainline
     build = ":TSUpdate",
+    main = "nvim-treesitter.configs",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
-    cmd = "TSUpdateSync",
     opts = {
-      ensure_installed = { -- put the language you want in this array
+      ensure_installed = {
         "lua",
         "markdown",
         "markdown_inline",
@@ -47,10 +47,10 @@ return {
         enable = true,
         enable_autocmd = false,
       },
-      sync_install = true, -- install languages synchronously  only applied to `ensure_installed`
       auto_install = true,
     },
   },
+
   -- file explorer
   {
     "nvim-tree/nvim-tree.lua",
@@ -66,6 +66,9 @@ return {
 
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
+
+      -- vim.opt.foldmethod=expr
+      -- vim.opt.foldexpr=nvim_treesitter#foldexpr()
 
       nvim_tree.setup({
         actions = {
@@ -99,7 +102,7 @@ return {
           --   vim.fn.stdpath "config" .. "/lua/custom"
           -- },
           custom = { -- Regex to filter (do not show if match)
-            "^.git$", 
+            "^.git$",
           },
         },
         git = {
