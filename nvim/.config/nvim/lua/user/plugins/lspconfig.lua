@@ -37,10 +37,10 @@ return {
 
 	{
 		"jay-babu/mason-null-ls.nvim",
-		dependencies = { 
-      "williamboman/mason.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
-    },
+		dependencies = {
+			"williamboman/mason.nvim",
+			"jose-elias-alvarez/null-ls.nvim",
+		},
 		opts = {
 			-- list of formatters & linters for mason to install
 			ensure_installed = {
@@ -55,7 +55,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
-    main = "lspconfig",
+		main = "lspconfig",
 		dependencies = {
 			"williamboman/mason.nvim", -- Automatically install LSPs to stdpath for neovim
 			"williamboman/mason-lspconfig.nvim",
@@ -128,7 +128,7 @@ return {
 				local opts = { on_attach = on_attach, capabilities = capabilities }
 				server = vim.split(server, "@")[1]
 
-        -- merge overrides if defined
+				-- merge overrides if defined
 				if lspconfigs.serverConfigs[server] then
 					opts = vim.tbl_deep_extend("force", lspconfigs.serverConfigs[server], opts)
 				end
@@ -162,11 +162,11 @@ return {
 	{
 		"glepnir/lspsaga.nvim",
 		branch = "main",
-    main = "lspsaga",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
+		main = "lspsaga",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
 		opts = {
 			-- keybinds for navigation in lspsaga window
 			scroll_preview = { scroll_down = "<C-f>", scroll_up = "<C-b>" },
@@ -179,10 +179,10 @@ return {
 					normal_bg = "#022746",
 				},
 			},
-      floaterm = {
-        width = 0.9,
-        height = 0.9,
-      }
+			floaterm = {
+				width = 0.9,
+				height = 0.9,
+			},
 		},
 		keys = {
 			{ "<A-d>", "<cmd>Lspsaga term_toggle <CR>", mode = { "n", "t" } },
@@ -192,11 +192,11 @@ return {
 	-- Formatters
 	{
 		"jose-elias-alvarez/null-ls.nvim",
-    main = "null-ls",
+		main = "null-ls",
 		dependencies = {
 			{
 				"jay-babu/mason-null-ls.nvim",
-        main = "mason-null-ls",
+				main = "mason-null-ls",
 				opts = {
 					ensure_installed = lspconfigs.servers,
 					automatic_installations = false,
