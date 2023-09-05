@@ -258,7 +258,7 @@ return {
       { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>",                   desc = "Document diagnostics", },
       { "<leader>sD", "<cmd>Telescope diagnostics<cr>",                           desc = "Workspace diagnostics", },
       { "<leader>sg", "<cmd>Telescope live_grep<cr>",                             desc = "Grep (root dir)", },
-      { "<leader>sG", "<cmd>Telescope live_grep cwd=false<cr>",                   desc = "Grep (cwd)", },
+      { "<leader>sG", "<cmd>Telescope live_grep cwd=true<cr>",                   desc = "Grep (cwd)", },
       { "<leader>sh", "<cmd>Telescope help_tags<cr>",                             desc = "Help Pages", },
       { "<leader>sH", "<cmd>Telescope highlights<cr>",                            desc = "Search Highlight Groups", },
       { "<leader>sk", "<cmd>Telescope keymaps<cr>",                               desc = "Key Maps" },
@@ -342,7 +342,7 @@ return {
 				path_display = { "truncate" },
 				winblend = 0,
 				border = {},
-        file_ignore_patterns = { "node_modules" },
+				file_ignore_patterns = { "node_modules" },
 				color_devicons = true,
 				set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 				mappings = {
