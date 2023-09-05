@@ -692,4 +692,27 @@ return {
 		end,
 		opts = {},
 	},
+
+  -- align
+	"godlygeek/tabular",
+	{
+    "preservim/vim-markdown",
+		-- event = { "BufReadPost", "BufNewFile" },
+    ft = {"markdown"}
+  },
+  
+  {
+    "mzlogin/vim-markdown-toc",
+		-- event = { "BufReadPost", "BufNewFile" },
+    ft = {"markdown"}
+  },
+
+  {
+    "ellisonleao/glow.nvim",
+    opts = {
+      install_path = "/opt/homebrew/bin"
+    },
+    -- config = function(p),
+    cmd = "Glow" 
+  },
 }
