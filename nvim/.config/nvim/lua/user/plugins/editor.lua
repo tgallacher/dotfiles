@@ -695,6 +695,17 @@ return {
 
   -- align
 	"godlygeek/tabular",
+  
+  -- Markdown tools
+  -- Keymaps deault
+  -- zr: reduces fold level throughout the buffer
+  -- zR: opens all folds
+  -- zm: increases fold level throughout the buffer
+  -- zM: folds everything all the way
+  -- za: open a fold your cursor is on
+  -- zA: open a fold your cursor is on recursively
+  -- zc: close a fold your cursor is on
+  -- zC: close a fold your cursor is on recursively
 	{
     "preservim/vim-markdown",
 		-- event = { "BufReadPost", "BufNewFile" },
@@ -708,11 +719,12 @@ return {
   },
 
   {
-    "ellisonleao/glow.nvim",
-    opts = {
-      install_path = "/opt/homebrew/bin"
-    },
-    -- config = function(p),
-    cmd = "Glow" 
-  },
+    "iamcco/markdown-preview.nvim",
+    main = "markdown-preview",
+    build = function() vim.fn["mkdp#util#install"]() end,
+    ft = "markdown",
+    keys = {
+      { "<leader>mp",  "<cmd>MarkdownPreviewToggle<cr>", desc="Toggle markdown preview" }
+    }
+  }
 }
