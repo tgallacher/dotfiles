@@ -476,14 +476,14 @@ return {
 	-- Easier management of buffers
 	{
 		"ojroques/nvim-bufdel",
-		opts = {
-			on_attach = function()
-				local opts = { noremap = true, silent = true }
-
-				vim.keymap.set("n", "<leader>x", ":BufDel <CR>", opts)
-				vim.keymap.set("n", "<leader>X", ":BufDelOthers <CR>", opts)
-			end,
-		},
+		event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      quit = false,
+    },
+    keys = {
+      { "<leader>bc", "<cmd> BufDel<cr>", desc = "Close current buffer" },
+      { "<leader>bC", "<cmd> BufDelOthers<cr>", desc = "Close all other buffers" },
+    },
 	},
 
 	-- autoclose tags
