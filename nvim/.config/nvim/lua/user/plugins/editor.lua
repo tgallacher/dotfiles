@@ -237,87 +237,148 @@ return {
 		},
     -- stylua: ignore
     keys = {
-      { "<leader>,",  "<cmd>Telescope buffers show_all_buffers=true<cr>",         desc = "Switch Buffer" },
-      { "<leader>/",  "<cmd>Telescope live_grep<cr>",                             desc = "Grep (root dir)", },
-      { "<leader>:",  "<cmd>Telescope command_history<cr>",                       desc = "Command History", },
-      -- find
-      { "<leader>fb", "<cmd>Telescope buffers<cr>",                               desc = "Buffers" },
-      { "<leader>ff", "<cmd>Telescope find_files<cr>",                            desc = "Find Files (root dir)" },
-      { "<leader>fF", "<cmd>Telescope find_files cwd=true<cr>",                   desc = "Find Files (cwd)", },
-      { "<leader>fr", "<cmd>Telescope oldfiles<cr>",                              desc = "Recent" },
-      { "<leader>fR", "<cmd>Telescope oldfiles cwd=vim.loop.cwd()<cr>",           desc = "Recent (cwd)", },
-      -- git
-      { "<leader>gc", "<cmd>Telescope git_bcommits<CR>",                          desc = "commits" },
-      { "<leader>gs", "<cmd>Telescope git_status<CR>",                            desc = "status" },
-      -- search
-      { '<leader>s"', "<cmd>Telescope registers<cr>",                             desc = "Registers", },
-      { "<leader>sa", "<cmd>Telescope autocommands<cr>",                          desc = "Auto Commands", },
-      { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>",             desc = "Buffer" },
-      { "<leader>sc", "<cmd>Telescope command_history<cr>",                       desc = "Command History", },
-      { "<leader>sC", "<cmd>Telescope commands<cr>",                              desc = "Commands" },
-      { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>",                   desc = "Document diagnostics", },
-      { "<leader>sD", "<cmd>Telescope diagnostics<cr>",                           desc = "Workspace diagnostics", },
-      { "<leader>sg", "<cmd>Telescope live_grep<cr>",                             desc = "Grep (root dir)", },
-      { "<leader>sG", "<cmd>Telescope live_grep cwd=true<cr>",                   desc = "Grep (cwd)", },
-      { "<leader>sh", "<cmd>Telescope help_tags<cr>",                             desc = "Help Pages", },
-      { "<leader>sH", "<cmd>Telescope highlights<cr>",                            desc = "Search Highlight Groups", },
-      { "<leader>sk", "<cmd>Telescope keymaps<cr>",                               desc = "Key Maps" },
-      { "<leader>sM", "<cmd>Telescope man_pages<cr>",                             desc = "Man Pages", },
-      { "<leader>sm", "<cmd>Telescope marks<cr>",                                 desc = "Jump to Mark", },
-      { "<leader>so", "<cmd>Telescope vim_options<cr>",                           desc = "Options" },
-      { "<leader>sR", "<cmd>Telescope resume<cr>",                                desc = "Resume" },
-      { "<leader>sw", "<cmd>Telescope grep_string word_match='-w'<cr>",           desc = "Word (root dir)", },
-      { "<leader>sW", "<cmd>Telescope grep_string cwd=false,word_match='-w'<cr>", desc = "Word (cwd)", },
+      -- { "<leader>", function() require("telescope.builtin") end, desc="" },
+      -- FIXME: seems to ignore dot files/folders...
+      {
+        "<leader>sr",
+        function() require("telescope.builtin").resume() end,
+        desc = "Resume previous telescope w/state"
+      },
+      {
+        "<leader>st",
+        function() require("telescope.builtin").live_grep() end,
+        desc = "Find string (root dir)"
+      },
+      {
+        "<leader>sT",
+        function() require("telescope.builtin").live_grep({ grep_open_files = true }) end,
+        desc = "Find string (open buffers)"
+      },
+      {
+        "<leader>ff",
+        function() require("telescope.builtin").find_files() end,
+        desc = "Find files"
+      },
+      {
+        "<leader>fF",
+        function() require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) end,
+        desc = "Find files (hidden,ignored)"
+      },
+      {
+        "<leader>fs",
+        function() require("telescope.builtin").current_buffer_fuzzy_find() end,
+        desc = "Find string inside current buffer"
+      },
+      {
+        "<leader>fg",
+        function()
+          require("telescope.builtin").git_files({
+            show_untracked = true,
+            recurse_submodules = true
+          })
+        end,
+        desc = "Find git files"
+      },
+      {
+        "<leader>gc",
+        function() require("telescope.builtin").git_bcommits() end,
+        desc = "Show git commits for current buffer"
+      },
+      {
+        "<leader>gs",
+        function() require("telescope.builtin").git_status() end,
+        desc = "Show git status for current buffer"
+      },
+      {
+        "<leader>fr",
+        function() require("telescope.builtin").oldfiles() end,
+        desc = "Show recently opened files"
+      },
+      {
+        "<leader>sh",
+        function() require("telescope.builtin").search_history() end,
+        desc = "Show search history"
+      },
+      {
+        "<leader>,",
+        function() require("telescope.builtin").buffers({ ignore_current_buffer = true, sort_mru = true }) end,
+        desc = "Show open buffers"
+      },
+      {
+        "<leader>th",
+        function() require("telescope.builtin").colorscheme({ enable_preview = true }) end,
+        desc = "Show available colorschemes"
+      },
+      {
+        "<leader>sp",
+        function() require("telescope.builtin").spell_suggest() end,
+        desc = "Show spelling suggestions for word under cursor"
+      },
+      {
+        "<a-r>",
+        function() require("telescope.builtin").treesitter() end,
+        desc = "Show symbols in buffer"
+      },
+      {
+        "<leader>sd",
+        function() require("telescope.builtin").diagnostics({ bufnr = 0 }) end,
+        desc = "Document diagnostics",
+      },
+      {
+        "<leader>sD",
+        function() require("telescope.builtin").diagnostics() end,
+        desc = "Workspace diagnostics",
+      },
       {
         "<leader>sw",
-        "<cmd>Telescope grep_string<cr>",
+        function() require("telescope.builtin").grep_string() end,
         mode = "v",
-        desc =
-        "Selection (root dir)",
+        desc = "Selection (root dir)",
       },
+      -- {
+      --   "<leader>sW",
+      --   "<cmd>Telescope grep_string cwd=false<cr>",
+      --   mode = "v",
+      --   desc = "Selection (cwd)",
+      -- },
       {
-        "<leader>sW",
-        "<cmd>Telescope grep_string cwd=false<cr>",
-        mode = "v",
-        desc = "Selection (cwd)",
+        "<leader>bs",
+        function()
+          require("telescope.builtin").lsp_document_symbols({
+            symbols = {
+              "Class",
+              "Function",
+              "Method",
+              "Constructor",
+              "Interface",
+              "Module",
+              "Struct",
+              "Trait",
+              "Field",
+              "Property",
+            },
+          })
+        end,
+        desc = "Goto Symbol",
       },
-      { "<leader>uC", "<cmd>Telescope colorscheme enable_preview=true<cr>", desc = "Colorscheme with preview", },
-      -- {
-      -- 	"<leader>ss",
-      -- 	Util.telescope("lsp_document_symbols", {
-      -- 		symbols = {
-      -- 			"Class",
-      -- 			"Function",
-      -- 			"Method",
-      -- 			"Constructor",
-      -- 			"Interface",
-      -- 			"Module",
-      -- 			"Struct",
-      -- 			"Trait",
-      -- 			"Field",
-      -- 			"Property",
-      -- 		},
-      -- 	}),
-      -- 	desc = "Goto Symbol",
-      -- },
-      -- {
-      -- 	"<leader>sS",
-      -- 	Util.telescope("lsp_dynamic_workspace_symbols", {
-      -- 		symbols = {
-      -- 			"Class",
-      -- 			"Function",
-      -- 			"Method",
-      -- 			"Constructor",
-      -- 			"Interface",
-      -- 			"Module",
-      -- 			"Struct",
-      -- 			"Trait",
-      -- 			"Field",
-      -- 			"Property",
-      -- 		},
-      -- 	}),
-      -- 	desc = "Goto Symbol (Workspace)",
-      -- },
+      -- -- {
+      -- -- 	"<leader>sS",
+      -- -- 	Util.telescope("lsp_dynamic_workspace_symbols", {
+      -- -- 		symbols = {
+      -- -- 			"Class",
+      -- -- 			"Function",
+      -- -- 			"Method",
+      -- -- 			"Constructor",
+      -- -- 			"Interface",
+      -- -- 			"Module",
+      -- -- 			"Struct",
+      -- -- 			"Trait",
+      -- -- 			"Field",
+      -- -- 			"Property",
+      -- -- 		},
+      -- -- 	}),
+      -- -- 	desc = "Goto Symbol (Workspace)",
+      -- -- },
     },
 		opts = {
 			defaults = {
@@ -363,13 +424,10 @@ return {
 						--   local line = action_state.get_current_line()
 						--   Util.telescope("find_files", { hidden = true, default_text = line })()
 						-- end,
-						-- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
 						["<C-k>"] = function(...)
-							-- return require("telescope.actions").cycle_history_next(...)
 							return require("telescope.actions").move_selection_previous(...)
 						end,
 						["<C-j>"] = function(...)
-							-- return require("telescope.actions").cycle_history_prev(...)
 							return require("telescope.actions").move_selection_next(...)
 						end,
 						["<C-f>"] = function(...)
