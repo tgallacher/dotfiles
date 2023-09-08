@@ -44,8 +44,8 @@ return {
         sources = { "nvim_diagnostic" },
         sections = { "error", "warn" },
         symbols = {
-          error = " ",
-          warn = " ",
+          error = " ",
+          warn  = " ",
         },
         colored = false,
         update_in_insert = false,
