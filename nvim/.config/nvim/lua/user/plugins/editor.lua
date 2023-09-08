@@ -34,8 +34,8 @@ return {
 				"devicetree",
 			},
 			highlight = {
-				enable = true, -- false will disable the whole extension
-				disable = { "css" }, -- list of language that will be disabled
+				enable = true, 
+				disable = { "css" }, 
 			},
 			autopairs = { enable = true },
 			autotag = { enable = true },
@@ -43,6 +43,7 @@ return {
 				enable = true,
 				disable = { "python", "css" },
 			},
+      illuminate = { enable = true },
 			context_commentstring = {
 				enable = true,
 				enable_autocmd = false,
@@ -238,12 +239,12 @@ return {
     -- stylua: ignore
     keys = {
       -- { "<leader>", function() require("telescope.builtin") end, desc="" },
-      -- FIXME: seems to ignore dot files/folders...
       {
         "<leader>sr",
         function() require("telescope.builtin").resume() end,
         desc = "Resume previous telescope w/state"
       },
+      -- FIXME: seems to ignore dot files/folders...
       {
         "<leader>st",
         function() require("telescope.builtin").live_grep() end,
@@ -291,7 +292,7 @@ return {
       },
       {
         "<leader>fr",
-        function() require("telescope.builtin").oldfiles() end,
+        function() require("telescope.builtin").oldfiles({ only_cwd = true }) end,
         desc = "Show recently opened files"
       },
       {
@@ -316,7 +317,7 @@ return {
       },
       {
         "<a-r>",
-        function() require("telescope.builtin").treesitter() end,
+        function() require("tejescope.builtin").treesitter() end,
         desc = "Show symbols in buffer"
       },
       {
@@ -381,7 +382,14 @@ return {
       -- -- },
     },
 		opts = {
-			defaults = {
+      pickers = {
+        live_grep = {
+          additional_args = function()
+            return {"--hidden"}
+          end
+        },
+      },
+      defaults = {
 				prompt_prefix = " ",
 				selection_caret = " ",
 				layout_config = {
@@ -628,7 +636,7 @@ return {
 	-- instances.
 	{
 		"RRethy/vim-illuminate",
-		event = { "BufReadPost", "BufNewFile" },
+		-- event = { "BufEnter", "BufReadPre", "BufNewFile" },
 		opts = {
 			delay = 200,
 			large_file_cutoff = 2000,
@@ -642,11 +650,12 @@ return {
 			illuminate.configure(opts)
 
 			local function map(key, dir, buffer)
+        local buf = buffer or 0;
 				vim.keymap.set("n", key, function()
 					illuminate["goto_" .. dir .. "_reference"](false)
-				end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+				end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buf })
 			end
-
+			--
 			map("]]", "next")
 			map("[[", "prev")
 
@@ -659,10 +668,10 @@ return {
 				end,
 			})
 		end,
-		keys = {
-			{ "]]", desc = "Next Reference" },
-			{ "[[", desc = "Prev Reference" },
-		},
+		-- keys = {
+		-- 	{ "]]", function() require("illuminate").goto_next_reference() end, desc = "Next Reference" },
+		-- 	{ "[[", function() require("illuminate").goto_prev_reference() end, desc = "Prev Reference" },
+		-- },
 	},
 
 	{ "lukas-reineke/indent-blankline.nvim" },
@@ -678,16 +687,12 @@ return {
 		keys = {
 			{
 				"]t",
-				function()
-					require("todo-comments").jump_next()
-				end,
+				function() require("todo-comments").jump_next() end,
 				desc = "Next todo comment",
 			},
 			{
 				"[t",
-				function()
-					require("todo-comments").jump_prev()
-				end,
+				function() require("todo-comments").jump_prev() end,
 				desc = "Previous todo comment",
 			},
 			{ "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
@@ -770,13 +775,11 @@ return {
 	-- zC: close a fold your cursor is on recursively
 	{
 		"preservim/vim-markdown",
-		-- event = { "BufReadPost", "BufNewFile" },
 		ft = { "markdown" },
 	},
 
 	{
 		"mzlogin/vim-markdown-toc",
-		-- event = { "BufReadPost", "BufNewFile" },
 		ft = { "markdown" },
 	},
 

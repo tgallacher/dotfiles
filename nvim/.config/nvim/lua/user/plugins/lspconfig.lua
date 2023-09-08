@@ -2,10 +2,10 @@ local lspconfigs = require("user.plugins.lsp._servers")
 
 -- configure Diagnostic symbols in signcolumn
 local signs = {
-	{ name = "DiagnosticSignError", text = "" },
-	{ name = "DiagnosticSignWarn", text = "" },
-	{ name = "DiagnosticSignHint", text = "" },
-	{ name = "DiagnosticSignInfo", text = "" },
+	{ name = "DiagnosticSignError", text = "" },
+	{ name = "DiagnosticSignWarn", text = "" },
+	{ name = "DiagnosticSignHint", text = "" },
+	{ name = "DiagnosticSignInfo", text = "󰙎" },
 }
 
 return {
@@ -16,9 +16,9 @@ return {
 			ui = {
 				border = "none",
 				icons = {
-					package_installed = "◍",
-					package_pending = "◍",
-					package_uninstalled = "◍",
+					package_installed = "",
+					package_pending = "󰇘",
+					package_uninstalled = "",
 				},
 			},
 			log_level = vim.log.levels.INFO,
@@ -26,6 +26,26 @@ return {
 		},
 	},
 
+	-- formatters
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		main = "null-ls",
+		opts = {
+			debug = false,
+			-- sources = {
+			-- 		require("null-ls").builtins.formatting.prettier,
+			-- 		require("null-ls").builtins.formatting.stylua,
+   --        require("null-ls").builtins.diagnostics.eslint_d.with({ -- js/ts linter
+			-- 	     -- only enable eslint if root has .eslintrc.js
+			-- 	     condition = function(utils)
+			-- 	       -- todo: add support for all eslint config file types
+			-- 	       return utils.root_has_file(".eslintrc.js") -- change file extension if you use something else
+			-- 	     end,
+			-- 	  }),
+			-- },
+		},
+    config = true,
+	},
 	{
 		"williamboman/mason-lspconfig.nvim",
 		dependencies = { "williamboman/mason.nvim" },
@@ -45,8 +65,8 @@ return {
 			-- list of formatters & linters for mason to install
 			ensure_installed = {
 				"prettier", -- ts/js formatter
+        "eslint_d", -- ts/js linter
 				"stylua", -- lua formatter
-				"eslint_d", -- ts/js linter
 			},
 			automatic_installation = true,
 		},
@@ -60,24 +80,6 @@ return {
 			"williamboman/mason.nvim", -- Automatically install LSPs to stdpath for neovim
 			"williamboman/mason-lspconfig.nvim",
 			"hrsh7th/cmp-nvim-lsp",
-		},
-		opts = {
-			-- options for vim.diagnostic.config()
-			diagnostics = {
-				virtual_text = false,
-				signs = { active = signs },
-				update_in_insert = true,
-				underline = true,
-				severity_sort = true,
-				float = {
-					focusable = true,
-					style = "minimal",
-					border = "rounded",
-					source = "always",
-					header = "",
-					prefix = "",
-				},
-			},
 		},
 		config = function()
 			local lspconfig = require("lspconfig")
@@ -133,18 +135,13 @@ return {
 					opts = vim.tbl_deep_extend("force", lspconfigs.serverConfigs[server], opts)
 				end
 
-				-- FIXME: set up TS LSP
-				-- if server == "tsserver" then
-				--   -- TS server doesn't follow the std config syntax :|
-				--   typescript.setup({
-				--     server = {
-				--       capabilities = capabilities,
-				--       on_attach = on_attach,
-				--     },
-				--   })
-				-- else
-				lspconfig[server].setup(opts)
-				-- end
+        if server == "tsserver" then
+          -- TS server doesn't follow the std config syntax :|
+          opts = {
+            server = opts
+          }
+        end
+        lspconfig[server].setup(opts)
 			end
 
 			-- configure Diagnostic symbols in signcolumn
@@ -161,8 +158,9 @@ return {
 	-- LSP UI
 	{
 		"glepnir/lspsaga.nvim",
+    event = "LspAttach",
 		branch = "main",
-		main = "lspsaga",
+		-- main = "lspsaga",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",
@@ -184,58 +182,9 @@ return {
 				height = 0.9,
 			},
 		},
+    config = true,
 		keys = {
-			{ "<A-d>", "<cmd>Lspsaga term_toggle <CR>", mode = { "n", "t" } },
-		},
-	},
-
-	-- Formatters
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		main = "null-ls",
-		dependencies = {
-			{
-				"jay-babu/mason-null-ls.nvim",
-				main = "mason-null-ls",
-				opts = {
-					ensure_installed = lspconfigs.servers,
-					automatic_installations = false,
-					handlers = {},
-				},
-			},
-		},
-		opts = {
-			debug = false,
-			sources = {
-				-- 	formatting.prettier,
-				-- 	formatting.stylua,
-				--    diagnostics.eslint_d.with({ -- js/ts linter
-				--      -- only enable eslint if root has .eslintrc.js
-				--      condition = function(utils)
-				--        -- TODO: add support for all ESLint config file types
-				--        return utils.root_has_file(".eslintrc.js") -- change file extension if you use something else
-				--      end,
-				--    }),
-			},
-			-- -- configure format on save
-			-- on_attach = function(current_client, bufnr)
-			--   if current_client.supports_method("textDocument/formatting") then
-			--     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-			--     vim.api.nvim_create_autocmd("BufWritePre", {
-			--       group = augroup,
-			--       buffer = bufnr,
-			--       callback = function()
-			--         vim.lsp.buf.format({
-			--           filter = function(client)
-			--             --  only use null-ls for formatting instead of lsp server
-			--             return client.name == "null-ls"
-			--           end,
-			--           bufnr = bufnr,
-			--         })
-			--       end,
-			--     })
-			--   end
-			-- end,
+			{ "<A-d>", "<cmd>Lspsaga term_toggle<CR>", mode = { "n", "t" } },
 		},
 	},
 }
