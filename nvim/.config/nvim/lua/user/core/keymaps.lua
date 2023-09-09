@@ -7,6 +7,7 @@
 --   command_mode = "c",
 local opts = { noremap = true, silent = true }
 
+vim.keymap.set("", "s", "<Nop>", opts)
 --Remap space as leader key
 vim.keymap.set("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "

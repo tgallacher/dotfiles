@@ -55,24 +55,24 @@ vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- separate vim plugins fr
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
   group = highlight_group,
   pattern = '*',
+  callback = function() vim.highlight.on_yank() end,
 })
 
--- configure Diagnostic symbols in signcolumn
-local signs = {
-	{ name = "DiagnosticSignError", text = "" },
-	{ name = "DiagnosticSignWarn", text = "" },
-	{ name = "DiagnosticSignHint", text = "" },
-	{ name = "DiagnosticSignInfo", text = "󰙎" },
-}
+local signs = require("user.plugins.config").icons
 
 vim.diagnostic.config({
   virtual_text = false,
-  signs = { active = signs },
+  -- configure Diagnostic symbols in signcolumn
+  signs = { 
+    active = {
+      { name = "DiagnosticSignError", text = signs.error },
+      { name = "DiagnosticSignWarn", text = signs.warn },
+      { name = "DiagnosticSignHint", text = signs.hint },
+      { name = "DiagnosticSignInfo", text = signs.info },
+    } 
+  },
   update_in_insert = true,
   underline = true,
   severity_sort = true,

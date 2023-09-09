@@ -11,18 +11,22 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-	{ import = "user.plugins" },
-	-- { import = "user.plugins.lsp" },
-}, {
-	install = {
-		colorscheme = { "nightfly" },
-	},
-	checker = {
-		enabled = true,
-		notify = false,
-	},
-	change_detection = {
-		notify = false,
-	},
-})
+-- note: all `.lua` files are autoloaded from in a folder which is defined here
+ require("lazy").setup{
+  spec = {
+    { import = "user.plugins.core" },
+    { import = "user.plugins.editor" },
+    { import = "user.plugins.editor.lsp" },
+    { import = "user.plugins.ui" },
+  },
+  install = {
+    colorscheme = { "iceberg", "nightfly" },
+  },
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
+}
