@@ -160,7 +160,7 @@ return {
 			},
 			{
 				"<leader>ef",
-				"<cmd>NvimTreeFindFileToggle<CR>",
+        function() require("nvim-tree.api").tree.toggle({ find_file = true, focus = false }) end,
 				{ noremap = true, silent = true, desc = "Toggle file explorer on current file" },
 			},
 			{
