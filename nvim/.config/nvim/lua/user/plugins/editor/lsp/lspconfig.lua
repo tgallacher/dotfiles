@@ -58,9 +58,8 @@ return {
         keymap("]w", lsputils.diagnostic_goto(true, "WARNING"), { desc = "Next Warning" })
         keymap("[w", lsputils.diagnostic_goto(false, "WARNING"), { desc = "Prev Warning" })
 				keymap("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
-				keymap("n", "<leader>fm", function()
-					vim.lsp.buf.format({ async = true })
-				end, opts)
+        -- stylua: ignore
+				keymap("n", "<leader>fm", function() vim.lsp.buf.format({ async = true }) end, opts)
         keymap({"n", "v"},"<leader>ca", "<cmd>Lspsaga code_action<cr>", opts)
         -- stylua: ignore
         keymap("n", "<leader>ls", function() require("telescope.builtin").lsp_document_symbols() end, opts) -- document symbols

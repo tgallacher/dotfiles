@@ -7,7 +7,7 @@ return {
       require("styler").setup {
         themes = {
           markdown = { colorscheme = "nightlfy" },
-          help = { colorscheme = "gruvbox" },
+          help = { colorscheme = "catppuccin" },
         },
       }
     end,
