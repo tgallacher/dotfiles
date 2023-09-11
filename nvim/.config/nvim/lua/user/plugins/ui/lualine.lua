@@ -38,10 +38,12 @@ return {
           component_separators = "|",
           section_separators = "",
           disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
+          gloabalstatus = true,
         },
         sections = {
           lualine_a = { "mode" },
           lualine_b = { diagnostics, "buffers", "diff" },
+          lualine_c = {},
           lualine_x = {
             -- {
             --   require("noice").api.status.message.get_hl,
@@ -50,22 +52,24 @@ return {
             {
               require("noice").api.status.command.get,
               cond = require("noice").api.status.command.has,
-              -- color = { fg = colors.color_6 },
             },
             {
               require("noice").api.status.mode.get,
               cond = require("noice").api.status.mode.has,
-              -- color = { fg = colors.color_6 },
             },
             {
               require("noice").api.status.search.get,
               cond = require("noice").api.status.search.has,
-              -- color = { fg = colors.color_6 },
             },
           },
           lualine_y = { spaces, "filetype", "progress", "location" },
           lualine_z = { "branch" },
         },
+        extensions = {
+          "lazy", 
+          "nvim-tree",
+          "toggleterm",
+        }
       }
     end,
   },
