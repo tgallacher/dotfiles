@@ -1,10 +1,10 @@
-local icons = require("user.plugins.config").icons
+local icons = require("user.config.icons")
 
 return {
   	-- file explorer
 	{
 		"nvim-tree/nvim-tree.lua",
-		dversion = "*",
+		version = "*",
 		lazy = false,
 		ependencies = {
 			"nvim-tree/nvim-web-devicons",
@@ -39,14 +39,14 @@ return {
 					show_on_dirs = true,
 					show_on_open_dirs = false,
 					icons = {
-						hint = icons.hint,
-						info = icons.info,
-						warning = icons.warning,
-						error = icons.error,
+						hint = icons.diagnostics.Hint,
+						info = icons.diagnostics.Information,
+						warning = icons.diagnostics.Warning,
+						error = icons.diagnostics.Error,
 					},
 				},
 				filters = {
-					dotfiles = false, -- Do not show dotfiles (toggle with `H`)
+					dotfiles = false, -- show dotfiles (toggle with `H`)
 					-- exclude = {                                  -- Always show these files/dirs (e.g. do not filter them)
 					--   vim.fn.stdpath "config" .. "/lua/custom"
 					-- },
@@ -82,27 +82,26 @@ return {
 						},
 						git_placement = "after",
 						glyphs = {
-							default = "",
-							-- default = "󰈚",
-							symlink = "",
+							default = icons.kind.File,
+							symlink = icons.kind.symlink,
 							folder = {
-								default = "",
-								empty = "",
-								empty_open = "",
-								open = "",
-								symlink = "",
+								default = icons.kind.Folder,
+								empty = icons.ui.EmptyFolder,
+								empty_open = icons.ui.EmptyFolderOpen,
+								open = icons.ui.FolderOpen,
+								symlink = icons.ui.FileSymlink,
 								symlink_open = "",
-								arrow_open = "",
-								arrow_closed = "",
+								arrow_open = icons.ui.ArrowDown,
+								arrow_closed = icons.ui.ArrowRight,
 							},
 							git = {
 								unstaged = "~",
-								staged = "✓",
-								unmerged = "",
-								renamed = "➜",
-								untracked = "U",
-								deleted = "-",
-								ignored = "◌",
+                staged = icons.git.FileStaged,
+								unmerged = icons.git.FileUnmerged,
+								renamed = icons.git.FileRenamed,
+								untracked = icons.git.FileUntracked,
+								deleted = icons.git.FileDeleted,
+								ignored = icons.git.FileIgnored,
 							},
 						},
 					},

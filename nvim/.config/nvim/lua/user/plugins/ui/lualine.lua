@@ -1,3 +1,5 @@
+local icons = require "user.config.icons"
+
 return {
   -- statusline
   {
@@ -17,18 +19,16 @@ return {
 
       local diagnostics = {
         "diagnostics",
-        sources = { "nvim_diagnostic" },
+        sources = { "nvim_lsp", "nvim_diagnostic" },
         sections = { "error", "warn" },
         symbols = {
-          error = " ",
-          warn  = " ",
+          error = icons.ui.Close .. " ",
+          warn  = icons.diagnostics.Warning .. " ",
         },
         colored = false,
         update_in_insert = false,
         always_visible = true,
       }
-
-      -- local colors = require("user.plugins.colorscheme.colors")
 
       return {
         options = {
