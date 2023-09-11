@@ -1,4 +1,5 @@
 local lsp = require("user.plugins.config").lsp
+local lsputils = require("user.plugins.editor.lsp.utils.utils")
 
 return {
   -- bridge gap between Mason + Lspconfig
@@ -10,15 +11,19 @@ return {
 			automatic_installation = true,
 		},
 	},
-	
+
   -- LSP config
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
-		main = "lspconfig",
 		dependencies = {
-			"williamboman/mason.nvim", -- Automatically install LSPs to stdpath for neovim
-			"williamboman/mason-lspconfig.nvim",
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+      { "j-hui/fidget.nvim", config = true, tag = "legacy" },
+      { "smjonas/inc-rename.nvim", config = true },
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "jay-babu/mason-null-ls.nvim",
+
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
@@ -31,24 +36,36 @@ return {
 
 			local on_attach = function(client, bufnr)
 				local opts = { noremap = true, silent = true, buffer = bufnr }
-				local keymap = vim.keymap
+				local keymap = vim.keymap.set
 
-				-- set keybinds
-				keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
-				keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
-				keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
-				keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
-				keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
-				keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
-				keymap.set("n", "<leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
-				keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
-				keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
-				keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-				keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
-				keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
-				keymap.set("n", "<leader>fm", function()
+				keymap("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
+        -- stylua: ignore
+				keymap("n", "gd", function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end, opts) -- got to declaration
+				keymap("n", "gD", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
+        -- stylua: ignore
+				keymap("n", "gi", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end, opts) -- go to implementation
+        -- stylua: ignore
+        keymap("gt", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end, opts) -- goto type definition
+				keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
+				keymap("n", "<leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
+				keymap("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
+				-- keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
+				-- keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
+        keymap("]d", lsputils.diagnostic_goto(true), { desc = "Next Diagnostic" })
+        keymap("[d", lsputils.diagnostic_goto(false), { desc = "Prev Diagnostic" })
+        keymap("]e", lsputils.diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+        keymap("[e", lsputils.diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+        keymap("]w", lsputils.diagnostic_goto(true, "WARNING"), { desc = "Next Warning" })
+        keymap("[w", lsputils.diagnostic_goto(false, "WARNING"), { desc = "Prev Warning" })
+				keymap("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
+				keymap("n", "<leader>fm", function()
 					vim.lsp.buf.format({ async = true })
 				end, opts)
+        keymap({"n", "v"},"<leader>ca", "<cmd>Lspsaga code_action<cr>", opts)
+        -- stylua: ignore
+        keymap("n", "<leader>ls", function() require("telescope.builtin").lsp_document_symbols() end, opts) -- document symbols
+        -- stylua: ignore
+        keymap("n","<leader>lS", function() require("telescope.builtin").lsp_dynamic_workspace_symbols() end, opts) -- workspace symbols
 
 				-- typescript specific keymaps (e.g. rename file and update imports)
 				if client.name == "tsserver" then

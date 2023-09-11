@@ -1,3 +1,5 @@
+local icons = require "user.config.icons"
+
 return {
 	-- LSP UI
 	{
@@ -16,8 +18,12 @@ return {
 			definition = {
 				edit = "<CR>",
 			},
+      lightbulb = {
+        virtual_text = false,
+      },
 			ui = {
-				colors = {
+        code_action = icons.ui.Lightbulb, 
+        colors = {
 					normal_bg = "#022746",
 				},
 			},
@@ -27,8 +33,8 @@ return {
 			},
 		},
     config = true,
-		keys = {
-			{ "<A-d>", "<cmd>Lspsaga term_toggle<CR>", mode = { "n", "t" } },
-		},
+		-- keys = {
+		-- 	{ "<A-d>", "<cmd>Lspsaga term_toggle<CR>", mode = { "n", "t" } },
+		-- },
 	},
 }

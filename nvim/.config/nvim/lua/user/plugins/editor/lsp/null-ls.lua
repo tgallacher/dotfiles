@@ -2,12 +2,12 @@ return {
 	-- formatters
 	{
 		"jose-elias-alvarez/null-ls.nvim",
-		main = "null-ls",
+		-- main = "null-ls",
 		opts = {
 			debug = false,
 			-- sources = {
 			-- 		require("null-ls").builtins.formatting.prettier,
-			-- 		require("null-ls").builtins.formatting.stylua,
+					-- require("null-ls").builtins.formatting.stylua,
    --        require("null-ls").builtins.diagnostics.eslint_d.with({ -- js/ts linter
 			-- 	     -- only enable eslint if root has .eslintrc.js
 			-- 	     condition = function(utils)

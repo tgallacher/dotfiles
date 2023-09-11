@@ -14,8 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 -- note: all `.lua` files are autoloaded from in a folder which is defined here
  require("lazy").setup{
   spec = {
-    { import = "user.plugins.core" },
     { import = "user.plugins.editor" },
+    { import = "user.plugins.editor.cmp" },
     { import = "user.plugins.editor.lsp" },
     { import = "user.plugins.ui" },
   },
