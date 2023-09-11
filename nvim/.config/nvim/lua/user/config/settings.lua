@@ -65,30 +65,3 @@ vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- separate vim plugins fr
 
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
-
-
-local signs = require("user.plugins.config").icons
-
-vim.diagnostic.config({
-  virtual_text = false,
-  -- configure Diagnostic symbols in signcolumn
-  signs = { 
-    active = {
-      { name = "DiagnosticSignError", text = signs.error },
-      { name = "DiagnosticSignWarn", text = signs.warn },
-      { name = "DiagnosticSignHint", text = signs.hint },
-      { name = "DiagnosticSignInfo", text = signs.info },
-    } 
-  },
-  update_in_insert = true,
-  underline = true,
-  severity_sort = true,
-  float = {
-    focusable = true,
-    style = "minimal",
-    border = "rounded",
-    source = "always",
-    header = "",
-    prefix = "",
-  }
-})
