@@ -8,13 +8,9 @@ if vim.fn.argc(-1) == 0 then
     callback = function()
       require "user.config.keymaps"
       require "user.config.autocmds"
-      require "user.config.keymaps"
-      -- require "utils.contextmenu"
     end,
   })
 else
   require "user.config.keymaps"
   require "user.config.autocmds"
-  require "user.config.keymaps"
-  -- require "utils.contextmenu"
 end
