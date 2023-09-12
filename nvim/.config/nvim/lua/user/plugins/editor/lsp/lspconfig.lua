@@ -1,4 +1,4 @@
-local lsp = require("user.plugins.config").lsp
+local lsp = require("user.plugins.config.lsp")
 local lsputils = require "user.plugins.editor.lsp.utils.utils"
 
 return {

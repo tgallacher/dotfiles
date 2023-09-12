@@ -1,4 +1,4 @@
-local icons = require("user.plugins.config").icons
+local icons = require("user.config.icons")
 
 return {
 	-- git visuals / actions
@@ -17,11 +17,11 @@ return {
 				map("n", "<leader>gbt", gs.toggle_current_line_blame)
 			end,
 			signs = {
-				add = { text = icons.add },
-				change = { text = icons.change },
-				delete = { text = icons.delete },
-				topdelete = { text = icons.delete },
-				changedelete = { text = icons.change },
+				add = { text = icons.git.LineAdded },
+				change = { text = icons.git.LineModified },
+				delete = { text = icons.git.LineDeleted },
+				topdelete = { text = icons.git.LineDeleted },
+				changedelete = { text = icons.git.LineDeleted },
 			},
 			signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
 			numhl = true, -- Toggle with `:Gitsigns toggle_numhl`

@@ -37,9 +37,9 @@ return {
     Variable = " ",
   },
   git = {
-    LineAdded = "",
+    LineAdded = "+",
     LineModified = "~",
-    LineRemoved = "󰍴",
+    LineDeleted = "󰍴",
     FileDeleted = "D",
     FileIgnored = "◌",
     FileRenamed = "R",
