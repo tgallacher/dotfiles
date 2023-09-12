@@ -52,11 +52,12 @@ return {
       { "<leader>zm", ":ZenMode <CR>", "n", { noremap = true, silent = true } },
     },
   },
-  
+
   -- visualise hex codes
   {
     "norcalli/nvim-colorizer.lua",
-    main = "colorizer",
-    config = true,
+    config = function()
+      require("colorizer").setup()
+    end,
   },
 }
