@@ -1,22 +1,18 @@
 return {
-  keymenu = {
-    which_key = true,
-    mini_clue = false,
-  },
   -- enable language configs
-  pde = {
-    ai = true,
-    docker = true,
+  lsp = {
+    ai = false,
+    docker = false,
     go = false,
-    html = true,
-    json = true,
+    html = false,
+    json = false,
     lua = true,
     python = false,
-    react = true,
-    rust = true,
-    tailwind = true,
+    react = false,
+    rust = false,
+    tailwind = false,
     terraform = false,
-    typescript = true,
-    yaml = true,
+    typescript = false,
+    yaml = false,
   },
 }
