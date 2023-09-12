@@ -18,13 +18,20 @@ return {
 		"bluz71/vim-nightfly-colors",
 		name = "nightfly",
 		lazy = false,
-		priority = 1000,
-    config = function()
-      vim.cmd([[colorscheme nightfly]])
-    end
+		-- priority = 1000,
+  --   config = function()
+  --     vim.cmd([[colorscheme nightfly]])
+  --   end
 	},
 
-	{ "cocopon/iceberg.vim", lazy = true },
+	{ 
+    "cocopon/iceberg.vim",
+		lazy = false,
+		priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme iceberg]])
+    end
+  },
 
 	{ "jaredgorski/spacecamp", lazy = true },
 
