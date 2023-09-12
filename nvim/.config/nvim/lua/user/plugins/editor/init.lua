@@ -155,7 +155,16 @@ return {
   {
     "dnlhc/glance.nvim",
     cmd = { "Glance" },
-    opts = {},
+    opts = {
+      preview_win_opts = { wrap = false },
+      theme = { mode = "darken" }
+    },
+    keys = {
+      {"<localleader>gD",  "<cmd>Glance definitions<cr>"},
+      {"<localleader>gR",  "<cmd>Glance references<cr>"},
+      {"<localleader>gY",  "<cmd>Glance type_definitions<cr>"},
+      {"<localleader>gM",  "<cmd>Glance implementations<cr>"},
+    }
   },
 
   -- show keyboard with keys that have keymaps
