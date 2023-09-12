@@ -37,14 +37,14 @@ return {
   -- toggle comment lines/blocks, gcc or gbc etc
   {
 		"numToStr/Comment.nvim",
-		-- event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
     keys = { 
-      { "gc", mode = { "n", "v" } },
-      { "gcc", mode = { "n", "v" } },
-      { "gbc", mode = { "n", "v" } } 
+      { "gc", mode = { "v" } },
+      { "gcc", mode = { "n" } },
+      { "gbc", mode = { "n", "v" } },
     },
 		config = function()
 			local comment = require("Comment")
