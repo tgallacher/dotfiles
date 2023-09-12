@@ -24,12 +24,11 @@ return {
     end
 	},
 
-	{ "cocopon/iceberg.vim" },
+	{ "cocopon/iceberg.vim", lazy = true },
 
-	{ "jaredgorski/spacecamp" },
+	{ "jaredgorski/spacecamp", lazy = true },
 
-	-- dogrun
-	{ "wadackel/vim-dogrun" },
+	{ "wadackel/vim-dogrun", lazy = true },
 
   {
     "catppuccin/nvim",
