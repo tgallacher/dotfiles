@@ -67,77 +67,49 @@ return {
     end,
   },
 
-	-- Easier management of buffers
-	{
-		"ojroques/nvim-bufdel",
-		event = { "BufReadPre", "BufNewFile" },
+  -- Easier management of buffers
+  {
+    "ojroques/nvim-bufdel",
+    event = { "BufReadPre", "BufNewFile" },
     opts = { quit = false },
     keys = {
-      { "<leader>bc", "<cmd> BufDel<cr>", desc = "Close current buffer" },
+      { "<leader>bc", "<cmd> BufDel<cr>",       desc = "Close current buffer" },
       { "<leader>bC", "<cmd> BufDelOthers<cr>", desc = "Close all other buffers" },
     },
-	},
+  },
 
-	-- autoclose tags
-	{
-		"windwp/nvim-ts-autotag",
-		dependencies = { "nvim-treesitter" },
-		event = { "InsertEnter" },
-	},
-	
+  -- autoclose tags
+  {
+    "windwp/nvim-ts-autotag",
+    dependencies = { "nvim-treesitter" },
+    event = { "InsertEnter" },
+  },
+
   -- consistent window nav with Tmux
-	{
-		"christoomey/vim-tmux-navigator",
-		config = function( )
-			return {
-				on_attach = function()
-					-- Preserve zoom on Tmux navigation
-					vim.g.tmux_navigator_preserve_zoom = 1
+  {
+    "christoomey/vim-tmux-navigator",
+    event = "VimEnter",
+    init = function()
+      -- Preserve zoom on Tmux navigation
+      vim.g.tmux_navigator_preserve_zoom = 1
+    end,
+  },
 
-					vim.keymap.set(
-						"n",
-						"<C-h>",
-						"<cmd> TmuxNavigateLeft<CR>",
-						{ noremap = true, silent = true, desc = "Window left" }
-					)
-					vim.keymap.set(
-						"n",
-						"<C-l>",
-						"<cmd> TmuxNavigateRight<CR>",
-						{ noremap = true, silent = true, desc = "Window right" }
-					)
-					vim.keymap.set(
-						"n",
-						"<C-j>",
-						"<cmd> TmuxNavigateDown<CR>",
-						{ noremap = true, silent = true, desc = "Window down" }
-					)
-					vim.keymap.set(
-						"n",
-						"<C-k>",
-						"<cmd> TmuxNavigateUp<CR>",
-						{ noremap = true, silent = true, desc = "Window up" }
-					)
-				end,
-			}
-		end,
-	},
-
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-		end,
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
     config = true,
-	},
+  },
 
-	{
-		"tpope/vim-surround",
-		event = { "BufReadPost", "BufNewFile" },
+  {
+    "tpope/vim-surround",
+    event = { "BufReadPost", "BufNewFile" },
     enabled = false,
-	},
+  },
 
   -- add:    ys{motion}{char}
   -- delete: ds{char}
