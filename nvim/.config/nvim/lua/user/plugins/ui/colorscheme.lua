@@ -22,15 +22,21 @@ return {
   --   config = function()
   --     vim.cmd([[colorscheme nightfly]])
   --   end
-	},
+  },
 
-	{ 
-    "cocopon/iceberg.vim",
+  { 
+    'rose-pine/neovim', 
+    name = 'rose-pine',
 		lazy = false,
 		priority = 1000,
     config = function()
-      vim.cmd([[colorscheme iceberg]])
+      vim.cmd([[colorscheme rose-pine]])
     end
+  },
+
+  { 
+    "cocopon/iceberg.vim",
+    lazy = true,
   },
 
 	{ "jaredgorski/spacecamp", lazy = true },
