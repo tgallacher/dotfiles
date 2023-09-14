@@ -1,18 +1,13 @@
 return {
   -- enable language configs
   lsp = {
-    ai = false,
+    markdown = true,
     docker = false,
-    go = false,
     html = false,
     json = false,
     lua = true,
-    python = false,
-    react = false,
-    rust = false,
-    tailwind = false,
-    terraform = false,
-    typescript = false,
+    terraform = true,
+    typescript = true,
     yaml = false,
   },
 }

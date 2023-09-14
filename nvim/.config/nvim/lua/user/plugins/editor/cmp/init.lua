@@ -184,7 +184,7 @@ return {
         ext_opts = {
           [types.insertNode] = {
             unvisited = {
-              virt_text = { { "|", "Conceal" } },
+              virt_text = { { "$", "Conceal" } },
               -- virt_text_pos = "inline",
             },
           },
@@ -212,6 +212,7 @@ return {
     config = function(_, opts)
       require("luasnip").setup(opts)
 
+      -- TODO: add personal snippets
       -- Load personal snippets
       -- local snippets_folder = vim.fn.stdpath "config" .. "/lua/users/plugins/editer/cmp/snippets/"
       -- require("luasnip.loaders.from_lua").lazy_load { paths = snippets_folder }
@@ -221,6 +222,4 @@ return {
       -- end, {})
     end,
   },
-  -- buffer completions
-  
 }

@@ -12,15 +12,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- note: all `.lua` files are autoloaded from in a folder which is defined here
+-- note: this includes `<folder>/init.lua` files
  require("lazy").setup{
   spec = {
     { import = "user.plugins.editor" },
-    { import = "user.plugins.editor.cmp" },
-    { import = "user.plugins.editor.lsp" },
     { import = "user.plugins.ui" },
+    { import = "user.pde" },
   },
   install = {
-    colorscheme = { "iceberg", "nightfly" },
+    colorscheme = { "rose-pine", "iceberg", "nightfly" },
   },
   checker = {
     enabled = true,
