@@ -85,6 +85,7 @@ function M.setup(_, opts)
       capabilities = capabilities,
     }, servers[server] or {})
 
+    opts.setup = opts.setup or {}
     -- Augment setup within plugin setup opts; return true to
     -- prevent lspconfig.setup {} running
     if opts.setup[server] then
