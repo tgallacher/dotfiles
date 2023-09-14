@@ -2,7 +2,7 @@ return {
   -- enable language configs
   lsp = {
     markdown = true,
-    docker = false,
+    docker = true,
     html = false,
     json = false,
     lua = true,
