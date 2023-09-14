@@ -17,11 +17,11 @@ return {
 
   {
     "monaqa/dial.nvim",
-    keys = { 
-      { "<C-a>", mode = { "n", "v" } }, 
-      { "<C-x>", mode = { "n", "v" } },
+    keys = {
+      { "<C-a>",  mode = { "n", "v" } },
+      { "<C-x>",  mode = { "n", "v" } },
       { "g<C-a>", mode = { "v" } },
-      { "g<C-x>", mode = { "v" } } 
+      { "g<C-x>", mode = { "v" } },
     },
     -- stylua: ignore
     init = function()
@@ -36,25 +36,25 @@ return {
 
   -- toggle comment lines/blocks, gcc or gbc etc
   {
-		"numToStr/Comment.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			"JoosepAlviste/nvim-ts-context-commentstring",
-		},
-    keys = { 
-      { "gc", mode = { "v" } },
+    "numToStr/Comment.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+    keys = {
+      { "gc",  mode = { "v" } },
       { "gcc", mode = { "n" } },
       { "gbc", mode = { "n", "v" } },
     },
-		config = function()
-			local comment = require("Comment")
+    config = function()
+      local comment = require "Comment"
 
-			comment.setup({
+      comment.setup {
         ignore = "^$",
-				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-			})
-		end,
-	},
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      }
+    end,
+  },
 
   {
     "max397574/better-escape.nvim",
@@ -120,8 +120,8 @@ return {
     opts = {},
   },
 
-	-- align
-	"godlygeek/tabular",
+  -- align
+  "godlygeek/tabular",
 
   -- TODO: add keymaps
   {
@@ -129,14 +129,14 @@ return {
     cmd = { "Glance" },
     opts = {
       preview_win_opts = { wrap = false },
-      theme = { mode = "darken" }
+      theme = { mode = "darken" },
     },
     keys = {
-      {"<localleader>gD",  "<cmd>Glance definitions<cr>"},
-      {"<localleader>gR",  "<cmd>Glance references<cr>"},
-      {"<localleader>gY",  "<cmd>Glance type_definitions<cr>"},
-      {"<localleader>gM",  "<cmd>Glance implementations<cr>"},
-    }
+      { "<localleader>gD", "<cmd>Glance definitions<cr>" },
+      { "<localleader>gR", "<cmd>Glance references<cr>" },
+      { "<localleader>gY", "<cmd>Glance type_definitions<cr>" },
+      { "<localleader>gM", "<cmd>Glance implementations<cr>" },
+    },
   },
 
   -- show keyboard with keys that have keymaps
