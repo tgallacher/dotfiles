@@ -2,10 +2,11 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
   local newVirtText = {}
   local totalLines = vim.api.nvim_buf_line_count(0)
   local foldedLines = endLnum - lnum
-  local suffix = ("  %d %d%%"):format(foldedLines, foldedLines / totalLines * 100)
+  local suffix = ("   %d(%d%%)"):format(foldedLines, foldedLines / totalLines * 100)
   local sufWidth = vim.fn.strdisplaywidth(suffix)
   local targetWidth = width - sufWidth
   local curWidth = 0
+
   for _, chunk in ipairs(virtText) do
     local chunkText = chunk[1]
     local chunkWidth = vim.fn.strdisplaywidth(chunkText)
@@ -35,20 +36,20 @@ return {
     "kevinhwang91/nvim-ufo",
     dependencies = {
       "kevinhwang91/promise-async",
-      {
-        "luukvbaal/statuscol.nvim",
-        config = function()
-          local builtin = require "statuscol.builtin"
-          require("statuscol").setup {
-            relculright = true,
-            segments = {
-              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-              { text = { "%s" }, click = "v:lua.ScSa" },
-              { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
-            },
-          }
-        end,
-      },
+      -- {
+      --   "luukvbaal/statuscol.nvim",
+      --   config = function()
+      --     local builtin = require "statuscol.builtin"
+      --     require("statuscol").setup {
+      --       relculright = true,
+      --       segments = {
+      --         { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+      --         { text = { "%s" }, click = "v:lua.ScSa" },
+      --         { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+      --       },
+      --     }
+      --   end,
+      -- },
     },
     --stylua: ignore
     keys = {
@@ -73,6 +74,11 @@ return {
       fold_virt_text_handler = handler,
     },
     config = function(_, opts)
+      vim.o.foldcolumn = '1' -- '0' is not bad
+      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+
       require("ufo").setup(opts)
     end,
   },
