@@ -1,12 +1,14 @@
-if not require("user.config.pde").lsp.markdown then
-  return {}
-end
+if not require("user.config.pde").lsp.markdown then return {} end
 
 return {
   {
+    "williamboman/mason.nvim",
+    opts = function(_, opts) vim.list_extend(opts.ensure_installed, { "marksman" }) end,
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = {
-      -- make sure mason installs the server
       servers = {
         marksman = {},
       },

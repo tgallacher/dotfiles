@@ -12,25 +12,11 @@ return {
     },
     opts = {
       ensure_installed = {
-        -- "shfmt",
-        -- "markdown",
-        -- "markdown_inline",
         "bash",
-        -- "javascript",
-        -- "typescript",
-        -- "jsdoc",
-        -- "graphql",
-        -- "vimdoc",
-        -- "terraform",
-        -- "nix",
-        -- "yaml",
-        -- "prisma",
-        -- "json",
-        -- "tsx",
-        -- "vim",
         "gitignore",
-        -- "kconfig",
-        -- "devicetree",
+        -- zmk
+        "kconfig",
+        "devicetree",
       },
       highlight = {
         enable = true,

@@ -1,16 +1,13 @@
-if not require("user.config.pde").lsp.docker then
-  return {}
-end
+if not require("user.config.pde").lsp.docker then return {} end
 
 return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "dockerfile" })
-      end
+      if type(opts.ensure_installed) == "table" then vim.list_extend(opts.ensure_installed, { "dockerfile" }) end
     end,
   },
+
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
@@ -22,13 +19,14 @@ return {
       })
     end,
     dependencies = {
-      "mason.nvim",
+      "williamboman/mason.nvim",
       opts = function(_, opts)
         opts.ensure_installed = opts.ensure_installed or {}
-        vim.list_extend(opts.ensure_installed, { "hadolint" })
+        vim.list_extend(opts.ensure_installed, { "dockerfile-language-server", "docker-compose-language-service", "hadolint" })
       end,
     },
   },
+
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -38,15 +36,14 @@ return {
       },
     },
   },
+
   {
-    "telescope.nvim",
+    "nvim-telescope/telescope.nvim",
     dependencies = {
       {
         "lpoto/telescope-docker.nvim",
         opts = {},
-        config = function(_, opts)
-          require("telescope").load_extension "docker"
-        end,
+        config = function(_, opts) require("telescope").load_extension "docker" end,
         keys = {
           { "<leader>fd", "<Cmd>Telescope docker<CR>", desc = "Docker" },
         },

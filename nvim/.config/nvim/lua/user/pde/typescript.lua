@@ -4,7 +4,7 @@ if not require("user.config.pde").lsp.typescript then return {} end
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts) vim.list_extend(opts.ensure_installed, { "javascript", "typescript", "tsx" }) end,
+    opts = function(_, opts) vim.list_extend(opts.ensure_installed, { "javascript", "typescript", "tsx", "jsdoc", "graphql", "prisma" }) end,
   },
 
   {
@@ -49,9 +49,8 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = { "pmizio/typescript-tools.nvim" },
     opts = {
-      -- make sure mason installs the server
       servers = {
-        -- ESLint
+        prismals = {},
         eslint = {
           settings = {
             -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root

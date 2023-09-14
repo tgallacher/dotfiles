@@ -1,13 +1,15 @@
 return {
-  -- enable language configs
+  -- language configs semaphores
   lsp = {
     markdown = true,
     docker = true,
-    html = false,
-    json = false,
+    nix = true,
+    html = true,
+    json = true,
     lua = true,
     terraform = true,
     typescript = true,
-    yaml = false,
+    python = false,
+    yaml = true,
   },
 }
