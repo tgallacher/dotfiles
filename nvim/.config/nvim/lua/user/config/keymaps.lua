@@ -28,7 +28,7 @@ keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 keymap("n", "<leader>nh", ":nohl<CR>")
 
-keymap("n", "x", '"_x')       -- delete character without adding to register
+keymap("n", "x", '"_x') -- delete character without adding to register
 
 -- == Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -50,7 +50,7 @@ keymap("n", "N", "Nzzzv")
 keymap("n", "g,", "g,zvzz")
 keymap("n", "g;", "g;zvzz")
 
--- == Resize windows with arrows 
+-- == Resize windows with arrows
 keymap("n", "<S-Up>", ":resize -2<CR>", opts)
 keymap("n", "<S-Down>", ":resize +2<CR>", opts)
 keymap("n", "<S-Left>", ":vertical resize -2<CR>", opts)
@@ -68,8 +68,8 @@ keymap("n", "<A-x>", ":bdelete<CR>", opts)
 
 -- == Move text up and down
 -- FIXME: no working with corne keyboard
-keymap("n", "<A-j>", ":m .+1<CR>==", opts)
-keymap("n", "<A-k>", ":m .-2<CR>==", opts)
+keymap("n", "<A-J>", ":m .+1<CR>==", opts)
+keymap("n", "<A-K>", ":m .-2<CR>==", opts)
 
 -- == Misc
 keymap("n", "<leader>X", "<cmd>!chmod +x %<CR>", { desc = "Make file executable" })
@@ -80,7 +80,7 @@ keymap("n", "[<Space>", "O<Esc>", opts)
 ----------------------------------------------------------
 -- Insert --
 ----------------------------------------------------------
--- Press jk fast to exit insert mode 
+-- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
 
@@ -100,7 +100,7 @@ keymap("v", "<", "<gv^", opts)
 keymap("v", ">", ">gv^", opts)
 
 -- Move text up and down
--- FIXME: no working with corne keyboard
+-- FIXME: Clash with Tmux keyboard shortcut
 keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 
@@ -128,4 +128,3 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
