@@ -18,7 +18,7 @@ yabai -m config mouse_drop_action swap
 
 ## Disable specific apps
 yabai -m rule --add app="^System Settings$" manage=off
-yabai -m rule --add app="^Zoom" manage=off
-# yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Zoom*" manage=off
+yabai -m rule --add app="^System Settings$" manage=off
 
 # vi: ft=conf
