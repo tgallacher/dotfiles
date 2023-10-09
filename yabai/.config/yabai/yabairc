@@ -12,7 +12,7 @@ yabai -m config window_gap 10
 
 ## mouse setting
 # move cursor with window focus
-yabai -m config mouse_follows_focus on
+yabai -m config mouse_follows_focus off
 yabai -m config mouse_drop_action swap
 
 
@@ -20,5 +20,6 @@ yabai -m config mouse_drop_action swap
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Zoom*" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^1Password$" manage=off
 
 # vi: ft=conf
