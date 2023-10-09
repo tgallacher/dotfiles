@@ -14,8 +14,8 @@ return {
   {
     "monaqa/dial.nvim",
     keys = {
-      { "<C-a>",  mode = { "n", "v" } },
-      { "<C-x>",  mode = { "n", "v" } },
+      { "<C-a>", mode = { "n", "v" } },
+      { "<C-x>", mode = { "n", "v" } },
       { "g<C-a>", mode = { "v" } },
       { "g<C-x>", mode = { "v" } },
     },
@@ -38,17 +38,17 @@ return {
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
     keys = {
-      { "gc",  mode = { "v" } },
+      { "gc", mode = { "v" } },
       { "gcc", mode = { "n" } },
       { "gbc", mode = { "n", "v" } },
     },
     config = function()
-      local comment = require "Comment"
+      local comment = require("Comment")
 
-      comment.setup {
+      comment.setup({
         ignore = "^$",
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-      }
+      })
     end,
   },
 
@@ -57,9 +57,9 @@ return {
     enabled = true,
     event = "InsertEnter",
     config = function()
-      require("better_escape").setup {
+      require("better_escape").setup({
         mapping = { "jk" },
-      }
+      })
     end,
   },
 
@@ -69,7 +69,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = { quit = false },
     keys = {
-      { "<leader>bc", "<cmd> BufDel<cr>",       desc = "Close current buffer" },
+      { "<leader>bc", "<cmd> BufDel<cr>", desc = "Close current buffer" },
       { "<leader>bC", "<cmd> BufDelOthers<cr>", desc = "Close all other buffers" },
     },
   },
@@ -99,12 +99,6 @@ return {
       vim.o.timeoutlen = 300
     end,
     config = true,
-  },
-
-  {
-    "tpope/vim-surround",
-    event = { "BufReadPost", "BufNewFile" },
-    enabled = false,
   },
 
   -- add:    ys{motion}{char}

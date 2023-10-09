@@ -18,9 +18,7 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
       table.insert(newVirtText, { chunkText, hlGroup })
       chunkWidth = vim.fn.strdisplaywidth(chunkText)
       -- str width returned from truncate() may less than 2nd argument, need padding
-      if curWidth + chunkWidth < targetWidth then
-        suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
-      end
+      if curWidth + chunkWidth < targetWidth then suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth) end
       break
     end
     curWidth = curWidth + chunkWidth
@@ -34,6 +32,7 @@ end
 return {
   {
     "kevinhwang91/nvim-ufo",
+    enabled = false,
     dependencies = {
       "kevinhwang91/promise-async",
       -- {
@@ -74,7 +73,7 @@ return {
       fold_virt_text_handler = handler,
     },
     config = function(_, opts)
-      vim.o.foldcolumn = '1' -- '0' is not bad
+      vim.o.foldcolumn = "1" -- '0' is not bad
       vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true

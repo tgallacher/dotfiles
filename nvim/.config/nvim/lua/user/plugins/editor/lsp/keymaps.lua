@@ -27,15 +27,15 @@ end
 function M.on_attach(client, buffer)
   local self = M.new(client, buffer)
 
-  self:map("gf", "Lspsaga lsp_finder", { desc = "" }) -- show definition, references
-  self:map("gd", "Telescope lsp_definitions reuse_win=true", { desc = "" }) -- got to declaration
-  self:map("gD", "Lspsaga peek_definition", { desc = "" }) -- see definition and make edits in window
-  self:map("gi", "Telescope lsp_implementations reuse_win=true", { desc = "" }) -- go to implementation
-  self:map("gR", "Telescope lsp_references reuse_win=true", { desc = "" }) -- go to implementation
-  self:map("gt", "Telescope lsp_type_definitions reuse_win=true", { desc = "" }) -- goto type definition
-  self:map("<localleader>rn", "Lspsaga rename", { desc = "" }) -- smart rename
-  self:map("<localleader>D", "Lspsaga show_line_diagnostics", { desc = "" }) -- show  diagnostics for line
-  self:map("<localleader>d", "Lspsaga show_cursor_diagnostics", { desc = "" }) -- show diagnostics for cursor
+  self:map("gf", "Lspsaga lsp_finder", { desc = "show definition, references" })
+  self:map("gd", "Telescope lsp_definitions reuse_win=true", { desc = "got to declaration" })
+  self:map("gD", "Lspsaga peek_definition", { desc = "see definition and make edits in window" })
+  self:map("gi", "Telescope lsp_implementations reuse_win=true", { desc = "go to implementation" })
+  self:map("gR", "Telescope lsp_references reuse_win=true", { desc = "go to implementation" })
+  self:map("gt", "Telescope lsp_type_definitions reuse_win=true", { desc = "goto type definition" })
+  self:map("<localleader>rn", "Lspsaga rename", { desc = "smart rename" })
+  self:map("<localleader>D", "Lspsaga show_line_diagnostics", { desc = "show  diagnostics for line" })
+  self:map("<localleader>d", "Lspsaga show_cursor_diagnostics", { desc = "show diagnostics for cursor" })
 
   -- stylua: ignore start
   self:map("]d", function() diagnostic_goto(true) end, { desc = "Next Diagnostic" })
