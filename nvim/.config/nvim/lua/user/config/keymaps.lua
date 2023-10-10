@@ -86,7 +86,7 @@ keymap("i", "kj", "<ESC>", opts)
 
 -- Auto indent
 keymap("n", "i", function()
-  if #vim.fn.getline "." == 0 then
+  if #vim.fn.getline(".") == 0 then
     return [["_cc]]
   else
     return "i"

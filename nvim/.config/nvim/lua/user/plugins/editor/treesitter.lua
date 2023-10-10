@@ -11,6 +11,7 @@ return {
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
     opts = {
+      auto_install = true,
       ensure_installed = {
         "bash",
         "gitignore",
@@ -33,7 +34,6 @@ return {
         enable = true,
         enable_autocmd = false,
       },
-      auto_install = true,
     },
   },
 }

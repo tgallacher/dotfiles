@@ -6,7 +6,7 @@ return {
 
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile" },
     main = "ibl",
     opts = {},
   },
@@ -52,16 +52,16 @@ return {
     end,
   },
 
-  {
-    "max397574/better-escape.nvim",
-    enabled = true,
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup({
-        mapping = { "jk" },
-      })
-    end,
-  },
+  -- {
+  --   "max397574/better-escape.nvim",
+  --   enabled = true,
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("better_escape").setup({
+  --       mapping = { "jk" },
+  --     })
+  --   end,
+  -- },
 
   -- Easier management of buffers
   {
@@ -74,7 +74,7 @@ return {
     },
   },
 
-  -- autoclose tags
+  -- autoclose html tags
   {
     "windwp/nvim-ts-autotag",
     dependencies = { "nvim-treesitter" },
@@ -111,13 +111,14 @@ return {
   },
 
   -- align
-  "godlygeek/tabular",
+  -- "godlygeek/tabular",
 
   -- TODO: add keymaps
   {
     "dnlhc/glance.nvim",
     cmd = { "Glance" },
     opts = {
+      -- configure preview window
       preview_win_opts = { wrap = false },
       theme = { mode = "darken" },
     },
@@ -130,11 +131,11 @@ return {
   },
 
   -- show keyboard with keys that have keymaps
-  {
-    "jokajak/keyseer.nvim",
-    opts = {},
-    version = false,
-    event = "VeryLazy",
-    cmd = { "KeySeer" },
-  },
+  -- {
+  --   "jokajak/keyseer.nvim",
+  --   opts = {},
+  --   version = false,
+  --   event = "VeryLazy",
+  --   cmd = { "KeySeer" },
+  -- },
 }

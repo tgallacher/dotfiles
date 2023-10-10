@@ -9,44 +9,42 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
       "saadparwaiz1/cmp_luasnip",
-      "onsails/lspkind.nvim" -- vscode-like pictograms on completion popover
+      "onsails/lspkind.nvim", -- vscode-like pictograms on completion popover
     },
     opts = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       local lspkind = require("lspkind")
-      local neogen = require "neogen"
-      local compare = require "cmp.config.compare"
+      -- local neogen = require("neogen")
+      local compare = require("cmp.config.compare")
 
       local check_backspace = function()
         local col = vim.fn.col(".") - 1
         return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
       end
-      local source_names = {
-        nvim_lsp = "(LSP)",
-        luasnip = "(Snippet)",
-        buffer = "(Buffer)",
-        path = "(Path)",
-      }
-      local duplicates = {
-        buffer = 1,
-        path = 1,
-        nvim_lsp = 0,
-        luasnip = 1,
-      }
-      local has_words_before = function()
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
-      end
+      -- local source_names = {
+      --   nvim_lsp = "(LSP)",
+      --   luasnip = "(Snippet)",
+      --   buffer = "(Buffer)",
+      --   path = "(Path)",
+      -- }
+      -- local duplicates = {
+      --   buffer = 1,
+      --   path = 1,
+      --   nvim_lsp = 0,
+      --   luasnip = 1,
+      -- }
+      -- local has_words_before = function()
+      --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      --   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      -- end
 
       return {
         completion = {
           completeopt = "menu,menuone,noinsert",
-        }, 
+        },
         snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
+          expand = function(args) luasnip.lsp_expand(args.body) end,
         },
         sorting = {
           priority_weight = 2,
@@ -109,12 +107,12 @@ return {
             ellipsis_char = "...",
           }),
         },
-        sources = cmp.config.sources {
+        sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "buffer" },
           { name = "path" },
-        },
+        }),
         confirm_opts = {
           behavior = cmp.ConfirmBehavior.Replace,
           select = false,
@@ -132,7 +130,7 @@ return {
       }
     end,
     config = function(_, opts)
-      local cmp = require "cmp"
+      local cmp = require("cmp")
       cmp.setup(opts)
 
       -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -154,9 +152,9 @@ return {
       })
 
       -- Auto pairs
-      local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
-    end
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
+    end,
   },
 
   {
@@ -169,13 +167,11 @@ return {
       "saadparwaiz1/cmp_luasnip", -- snippet completions
       {
         "rafamadriz/friendly-snippets",
-        config = function()
-          require("luasnip.loaders.from_vscode").lazy_load()
-        end,
+        config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
       },
     },
     opts = function()
-      local types = require "luasnip.util.types"
+      local types = require("luasnip.util.types")
       return {
         history = true,
         delete_check_events = "TextChanged",

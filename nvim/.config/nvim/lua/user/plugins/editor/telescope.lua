@@ -10,42 +10,42 @@ return {
       {
         "<leader>sr",
         function() require("telescope.builtin").resume() end,
-        desc = "Resume previous telescope w/state"
+        desc = "Resume previous telescope w/state",
       },
       {
         "<leader>st",
         function() require("telescope.builtin").live_grep() end,
-        desc = "Find string (root dir)"
+        desc = "Find string (root dir)",
       },
       {
         "<leader>sT",
         function() require("telescope.builtin").live_grep({ grep_open_files = true }) end,
-        desc = "Find string (open buffers)"
+        desc = "Find string (open buffers)",
       },
       {
         "<leader>ff",
         function() require("telescope.builtin").find_files() end,
-        desc = "Find files"
+        desc = "Find files",
       },
       {
         "<leader>fh",
         function() require("telescope.builtin").find_files({ hidden = true }) end,
-        desc = "Find files (hidden)"
+        desc = "Find files (hidden)",
       },
       {
         "<leader>fi",
         function() require("telescope.builtin").find_files({ no_ignore = true }) end,
-        desc = "Find files (ignored)"
+        desc = "Find files (ignored)",
       },
       {
         "<leader>fF",
         function() require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) end,
-        desc = "Find files (hidden,ignored)"
+        desc = "Find files (hidden,ignored)",
       },
       {
         "<leader>fs",
         function() require("telescope.builtin").current_buffer_fuzzy_find() end,
-        desc = "Find string inside current buffer"
+        desc = "Find string inside current buffer",
       },
       {
         "<leader>fg",
@@ -54,47 +54,47 @@ return {
             show_untracked = true,
           })
         end,
-        desc = "Find git files"
+        desc = "Find git files",
       },
       {
         "<leader>gc",
         function() require("telescope.builtin").git_bcommits() end,
-        desc = "Show git commits for current buffer"
+        desc = "Show git commits for current buffer",
       },
       {
         "<leader>gs",
         function() require("telescope.builtin").git_status() end,
-        desc = "Show git status"
+        desc = "Show git status",
       },
       {
         "<leader>fr",
         function() require("telescope.builtin").oldfiles({ only_cwd = true }) end,
-        desc = "Show recently opened files"
+        desc = "Show recently opened files",
       },
       {
         "<leader>sh",
         function() require("telescope.builtin").search_history() end,
-        desc = "Show search history"
+        desc = "Show search history",
       },
       {
         "<leader>,",
         function() require("telescope.builtin").buffers({ ignore_current_buffer = true, sort_mru = true }) end,
-        desc = "Show open buffers"
+        desc = "Show open buffers",
       },
       {
         "<leader>th",
         function() require("telescope.builtin").colorscheme({ enable_preview = true }) end,
-        desc = "Show available colorschemes"
+        desc = "Show available colorschemes",
       },
       {
         "<leader>sp",
         function() require("telescope.builtin").spell_suggest() end,
-        desc = "Show spelling suggestions for word under cursor"
+        desc = "Show spelling suggestions for word under cursor",
       },
-      {
+      { -- FIXME: clash with Tmux
         "<a-r>",
         function() require("telescope.builtin").treesitter() end,
-        desc = "Show symbols in buffer"
+        desc = "Show symbols in buffer",
       },
       {
         "<leader>sd",
@@ -113,7 +113,7 @@ return {
       --   desc = "Find selection (root dir)",
       -- },
       {
-        "<leader>bs",
+        "<leader>gts",
         function()
           require("telescope.builtin").lsp_document_symbols({
             symbols = {
@@ -133,7 +133,7 @@ return {
         desc = "Goto Symbol",
       },
       {
-        "<leader>sS",
+        "<leader>gtS",
         function()
           require("telescope.builtin").lsp_dynamic_workspace_symbols({
             symbols = {
@@ -156,7 +156,7 @@ return {
     opts = {
       pickers = {
         live_grep = {
-          additional_args = function() return { "--hidden" } end
+          additional_args = function() return { "--hidden" } end,
         },
       },
       defaults = {
@@ -186,12 +186,8 @@ return {
         set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
         mappings = {
           i = {
-            ["<c-t>"] = function(...)
-              return require("trouble.providers.telescope").open_with_trouble(...)
-            end,
-            ["<a-t>"] = function(...)
-              return require("trouble.providers.telescope").open_selected_with_trouble(...)
-            end,
+            ["<c-t>"] = function(...) return require("trouble.providers.telescope").open_with_trouble(...) end,
+            ["<a-t>"] = function(...) return require("trouble.providers.telescope").open_selected_with_trouble(...) end,
             -- ["<a-i>"] = function()
             --   local action_state = require("telescope.actions.state")
             --   local line = action_state.get_current_line()
@@ -202,27 +198,17 @@ return {
             --   local line = action_state.get_current_line()
             --   Util.telescope("find_files", { hidden = true, default_text = line })()
             -- end,
-            ["<C-k>"] = function(...)
-              return require("telescope.actions").move_selection_previous(...)
-            end,
-            ["<C-j>"] = function(...)
-              return require("telescope.actions").move_selection_next(...)
-            end,
-            ["<C-f>"] = function(...)
-              return require("telescope.actions").preview_scrolling_down(...)
-            end,
-            ["<C-b>"] = function(...)
-              return require("telescope.actions").preview_scrolling_up(...)
-            end,
+            ["<C-k>"] = function(...) return require("telescope.actions").move_selection_previous(...) end,
+            ["<C-j>"] = function(...) return require("telescope.actions").move_selection_next(...) end,
+            ["<C-f>"] = function(...) return require("telescope.actions").preview_scrolling_down(...) end,
+            ["<C-b>"] = function(...) return require("telescope.actions").preview_scrolling_up(...) end,
             -- map actions.which_key to <C-h> (default: <C-/>)
             -- actions.which_key shows the mappings for your picker,
             -- e.g. git_{create, delete, ...}_branch for the git_branches picker
             ["<C-h>"] = "which_key",
           },
           n = {
-            ["q"] = function(...)
-              return require("telescope.actions").close(...)
-            end,
+            ["q"] = function(...) return require("telescope.actions").close(...) end,
           },
         },
       },
