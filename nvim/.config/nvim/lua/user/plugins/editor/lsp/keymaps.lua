@@ -21,7 +21,7 @@ function diagnostic_goto(next, severity)
   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
   severity = severity and vim.diagnostic.severity[severity] or nil
 
-  return function() go { severity = severity } end
+  return function() go({ severity = severity }) end
 end
 
 function M.on_attach(client, buffer)
@@ -47,9 +47,9 @@ function M.on_attach(client, buffer)
   -- stylua: ignore end
 
   -- keymap("n", "<localleader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
-  self:map("<localleader>ca", "<cmd>Lspsaga code_action<cr>", { mode = { "n", "v" } })
-  self:map("<localleader>gs", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "" }) -- document symbols
-  self:map("<localleader>gS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", { desc = "" }) -- workspace symbols
+  self:map("<localleader>ca", "Lspsaga code_action", { mode = { "n", "v" } })
+  self:map("<localleader>gs", "Telescope lsp_document_symbols", { desc = "" }) -- document symbols
+  self:map("<localleader>gS", "Telescope lsp_dynamic_workspace_symbols", { desc = "" }) -- workspace symbols
 
   -- TODO:
   -- local format = require("plugins.lsp.format").format
