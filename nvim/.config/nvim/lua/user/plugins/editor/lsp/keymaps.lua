@@ -30,8 +30,8 @@ function M.on_attach(client, buffer)
   self:map("gf", "Lspsaga lsp_finder", { desc = "show definition, references" })
   self:map("gd", "Telescope lsp_definitions reuse_win=true", { desc = "got to declaration" })
   self:map("gD", "Lspsaga peek_definition", { desc = "see definition and make edits in window" })
-  self:map("gi", "Telescope lsp_implementations reuse_win=true", { desc = "go to implementation" })
-  self:map("gR", "Telescope lsp_references reuse_win=true", { desc = "go to implementation" })
+  self:map("gi", "Telescope lsp_implementations reuse_win=true", { desc = "show implementations" })
+  self:map("gR", "Telescope lsp_references reuse_win=true", { desc = "show references" })
   self:map("gt", "Telescope lsp_type_definitions reuse_win=true", { desc = "goto type definition" })
   self:map("<localleader>rn", "Lspsaga rename", { desc = "smart rename" })
   self:map("<localleader>D", "Lspsaga show_line_diagnostics", { desc = "show  diagnostics for line" })
@@ -48,8 +48,8 @@ function M.on_attach(client, buffer)
 
   -- keymap("n", "<localleader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
   self:map("<localleader>ca", "Lspsaga code_action", { mode = { "n", "v" } })
-  self:map("<localleader>gs", "Telescope lsp_document_symbols", { desc = "" }) -- document symbols
-  self:map("<localleader>gS", "Telescope lsp_dynamic_workspace_symbols", { desc = "" }) -- workspace symbols
+  self:map("<localleader>gs", "Telescope lsp_document_symbols", { desc = "document symbols" })
+  self:map("<localleader>gS", "Telescope lsp_dynamic_workspace_symbols", { desc = "workspace symbols" })
 
   -- TODO:
   -- local format = require("plugins.lsp.format").format
