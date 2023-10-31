@@ -5,3 +5,5 @@ zsh/.config/zsh/.zsh_plugins.zsh
 
 # Neovim
 nvim/.config/nvim/plugin
+
+.DS_Store
