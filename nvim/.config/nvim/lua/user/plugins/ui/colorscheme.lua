@@ -3,50 +3,46 @@ return {
   {
     "folke/styler.nvim",
     event = "VeryLazy",
+    enabled = false,
     config = function()
-      require("styler").setup {
+      require("styler").setup({
         themes = {
           markdown = { colorscheme = "nightlfy" },
           help = { colorscheme = "catppuccin" },
+          ts = { colorscheme = "catppuccin-mocha" },
         },
-      }
+      })
     end,
   },
 
-	-- nightfly
-	{
-		"bluz71/vim-nightfly-colors",
-		name = "nightfly",
-		lazy = false,
-		-- priority = 1000,
-  --   config = function()
-  --     vim.cmd([[colorscheme nightfly]])
-  --   end
+  {
+    "bluz71/vim-nightfly-colors",
+    name = "nightfly",
+    lazy = false,
+    enabled = false,
+    -- priority = 1000,
+    --   config = function()
+    --     vim.cmd([[colorscheme nightfly]])
+    --   end
   },
 
-  { 
-    'rose-pine/neovim', 
-    name = 'rose-pine',
-		lazy = false,
-		priority = 1000,
-    config = function()
-      vim.cmd([[colorscheme rose-pine]])
-    end
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    lazy = false,
+    -- priority = 1000,
+    -- config = function() vim.cmd([[colorscheme rose-pine]]) end,
   },
 
-  { 
-    "cocopon/iceberg.vim",
-    lazy = true,
-  },
-
-	{ "jaredgorski/spacecamp", lazy = true },
-
-	{ "wadackel/vim-dogrun", lazy = true },
+  { "cocopon/iceberg.vim", enabled = false, lazy = true },
+  { "wadackel/vim-dogrun", enabled = false, lazy = true },
 
   {
     "catppuccin/nvim",
-    lazy = true,
+    lazy = false,
     name = "catppuccin",
+    priority = 1000,
+    config = function() vim.cmd([[colorscheme catppuccin-macchiato]]) end,
     opts = {
       integrations = {
         alpha = true,
@@ -70,7 +66,7 @@ return {
         neotest = true,
         noice = true,
         notify = true,
-        neotree = true,
+        neotree = false,
         semantic_tokens = true,
         telescope = true,
         treesitter = true,
