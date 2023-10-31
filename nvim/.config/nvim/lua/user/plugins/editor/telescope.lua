@@ -23,7 +23,7 @@ return {
         desc = "Find string (open buffers)",
       },
       {
-        "<leader>ff",
+        "<leader>fF",
         function() require("telescope.builtin").find_files() end,
         desc = "Find files",
       },
@@ -38,7 +38,7 @@ return {
         desc = "Find files (ignored)",
       },
       {
-        "<leader>fF",
+        "<leader>ff",
         function() require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) end,
         desc = "Find files (hidden,ignored)",
       },
