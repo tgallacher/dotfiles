@@ -8,17 +8,17 @@ return {
     },
     keys = {
       {
-        "<leader>sr",
+        "<leader>tr",
         function() require("telescope.builtin").resume() end,
         desc = "Resume previous telescope w/state",
       },
       {
-        "<leader>st",
+        "<leader>ts",
         function() require("telescope.builtin").live_grep() end,
         desc = "Find string (root dir)",
       },
       {
-        "<leader>sT",
+        "<leader>tS",
         function() require("telescope.builtin").live_grep({ grep_open_files = true }) end,
         desc = "Find string (open buffers)",
       },
@@ -57,6 +57,11 @@ return {
         desc = "Find git files",
       },
       {
+        "<leader>fr",
+        function() require("telescope.builtin").oldfiles({ only_cwd = true }) end,
+        desc = "Show recently opened files",
+      },
+      {
         "<leader>gc",
         function() require("telescope.builtin").git_bcommits() end,
         desc = "Show git commits for current buffer",
@@ -67,12 +72,7 @@ return {
         desc = "Show git status",
       },
       {
-        "<leader>fr",
-        function() require("telescope.builtin").oldfiles({ only_cwd = true }) end,
-        desc = "Show recently opened files",
-      },
-      {
-        "<leader>sh",
+        "<leader>tsh",
         function() require("telescope.builtin").search_history() end,
         desc = "Show search history",
       },
@@ -92,17 +92,17 @@ return {
         desc = "Show spelling suggestions for word under cursor",
       },
       { -- FIXME: clash with Tmux
-        "<a-r>",
+        "<localleader>s",
         function() require("telescope.builtin").treesitter() end,
         desc = "Show symbols in buffer",
       },
       {
-        "<leader>sd",
+        "<localleader>sd",
         function() require("telescope.builtin").diagnostics({ bufnr = 0 }) end,
         desc = "Document diagnostics",
       },
       {
-        "<leader>sD",
+        "<localleader>sD",
         function() require("telescope.builtin").diagnostics() end,
         desc = "Workspace diagnostics",
       },
@@ -113,7 +113,7 @@ return {
       --   desc = "Find selection (root dir)",
       -- },
       {
-        "<leader>gts",
+        "<localleader>gts",
         function()
           require("telescope.builtin").lsp_document_symbols({
             symbols = {
@@ -133,7 +133,7 @@ return {
         desc = "Goto Symbol",
       },
       {
-        "<leader>gtS",
+        "<localleader>gtS",
         function()
           require("telescope.builtin").lsp_dynamic_workspace_symbols({
             symbols = {
@@ -186,8 +186,8 @@ return {
         set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
         mappings = {
           i = {
-            ["<c-t>"] = function(...) return require("trouble.providers.telescope").open_with_trouble(...) end,
-            ["<a-t>"] = function(...) return require("trouble.providers.telescope").open_selected_with_trouble(...) end,
+            ["<C-t>"] = function(...) return require("trouble.providers.telescope").open_with_trouble(...) end,
+            ["<A-t>"] = function(...) return require("trouble.providers.telescope").open_selected_with_trouble(...) end,
             -- ["<a-i>"] = function()
             --   local action_state = require("telescope.actions.state")
             --   local line = action_state.get_current_line()
@@ -206,6 +206,7 @@ return {
             -- actions.which_key shows the mappings for your picker,
             -- e.g. git_{create, delete, ...}_branch for the git_branches picker
             ["<C-h>"] = "which_key",
+            ["<C-c>"] = function(...) return require("telescope.actions").close(...) end,
           },
           n = {
             ["q"] = function(...) return require("telescope.actions").close(...) end,
