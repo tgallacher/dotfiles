@@ -13,12 +13,12 @@ return {
         desc = "Resume previous telescope w/state",
       },
       {
-        "<leader>ts",
+        "<leader>lg",
         function() require("telescope.builtin").live_grep() end,
         desc = "Find string (root dir)",
       },
       {
-        "<leader>tS",
+        "<leader>lG",
         function() require("telescope.builtin").live_grep({ grep_open_files = true }) end,
         desc = "Find string (open buffers)",
       },
@@ -72,7 +72,7 @@ return {
         desc = "Show git status",
       },
       {
-        "<leader>tsh",
+        "<leader>sh",
         function() require("telescope.builtin").search_history() end,
         desc = "Show search history",
       },
