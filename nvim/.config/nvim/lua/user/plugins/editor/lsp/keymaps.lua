@@ -34,7 +34,7 @@ function M.on_attach(client, buffer)
   self:map("gR", "Telescope lsp_references reuse_win=true", { desc = "show references" })
   self:map("gt", "Telescope lsp_type_definitions reuse_win=true", { desc = "goto type definition" })
   self:map("<localleader>rn", "Lspsaga rename", { desc = "smart rename" })
-  self:map("<localleader>D", "Lspsaga show_line_diagnostics", { desc = "show  diagnostics for line" })
+  self:map("<localleader>D", "Lspsaga show_line_diagnostics", { desc = "show diagnostics for line" })
   self:map("<localleader>d", "Lspsaga show_cursor_diagnostics", { desc = "show diagnostics for cursor" })
 
   -- stylua: ignore start
@@ -48,8 +48,6 @@ function M.on_attach(client, buffer)
 
   -- keymap("n", "<localleader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
   self:map("<localleader>ca", "Lspsaga code_action", { mode = { "n", "v" } })
-  self:map("<localleader>gs", "Telescope lsp_document_symbols", { desc = "document symbols" })
-  self:map("<localleader>gS", "Telescope lsp_dynamic_workspace_symbols", { desc = "workspace symbols" })
 
   -- TODO:
   -- local format = require("plugins.lsp.format").format
