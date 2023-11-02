@@ -6,12 +6,19 @@ return {
     "RRethy/vim-illuminate",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      --   "neovim/nvim-lspconfig",
+      "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {
       delay = 200,
       providers = { "lsp", "treesitter" },
+    },
+    -- this doesn't seem to be documented, but it has fixed the keymap issue :shrug
+    mappings = {
+      i = {
+        ["<a-n>"] = function() require("illuminate").goto_next_reference() end,
+        ["<a-r>"] = function() require("illuminate").goto_prev_reference() end,
+      },
     },
     config = function(_, opts) require("illuminate").configure(opts) end,
   },
