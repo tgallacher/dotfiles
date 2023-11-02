@@ -50,14 +50,9 @@ function M.on_attach(client, buffer)
   self:map("<localleader>ca", "Lspsaga code_action", { mode = { "n", "v" } })
 
   -- TODO:
-  -- local format = require("plugins.lsp.format").format
-  -- self:map("<leader>lf", format, { desc = "Format Document", has = "documentFormatting" })
-  -- self:map("<leader>lf", format, { desc = "Format Range", mode = "v", has = "documentRangeFormatting" })
-  -- self:map("<leader>lr", M.rename, { expr = true, desc = "Rename", has = "rename" })
-
-  -- self:map("<leader>ls", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
-  -- self:map("<leader>lS", require("telescope.builtin").lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
-  -- self:map("<leader>lw", require("plugins.lsp.utils").toggle_diagnostics, { desc = "Toggle Inline Diagnostics" })
+  local format = require("user.plugins.editor.lsp.format").format
+  self:map("<leader>lf", format, { desc = "Format Document", has = "documentFormatting" })
+  self:map("<leader>lf", format, { desc = "Format Range", mode = "v", has = "documentRangeFormatting" })
 end
 
 return M

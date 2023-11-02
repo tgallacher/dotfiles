@@ -1,5 +1,5 @@
-local lsp = require "user.plugins.config.lsp"
-local icons = require "user.config.icons"
+local lsp = require("user.plugins.config.lsp")
+local icons = require("user.config.icons")
 
 return {
   -- LSP package manager
@@ -27,7 +27,7 @@ return {
     },
     config = function(_, opts)
       require("mason").setup(opts)
-      local msnr = require "mason-registry"
+      local msnr = require("mason-registry")
 
       local ensure_installed = function()
         for _, tool in ipairs(opts.ensure_installed) do
@@ -116,7 +116,7 @@ return {
     event = "BufReadPre",
     dependencies = { "williamboman/mason.nvim" },
     opts = function()
-      local nullls = require "null-ls"
+      local nullls = require("null-ls")
 
       return {
         debug = false,
@@ -131,9 +131,9 @@ return {
     end,
     keys = {
       {
-        -- stylua: ignore
+        -- TODO: how does this compare to plugins.editor.lsp.format#format?
         "<localleader>fm",
-        function() vim.lsp.buf.format { async = true } end,
+        function() vim.lsp.buf.format({ async = true }) end,
         mode = { "n", "v" },
         { desc = "Format" },
       },
