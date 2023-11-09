@@ -51,3 +51,8 @@ alias tf='terraform'
 alias yw='yarn workspace'
 
 alias git_prune_branches='git fetch && git remote prune origin && git br -v | grep gone | awk '"'"'{print $1;}'"'"' | xargs -n 1 git br -d'
+
+print_pid_cwd() {
+  local pid=$1;
+  lsof -a -p $pid -d cwd -Fn
+}
