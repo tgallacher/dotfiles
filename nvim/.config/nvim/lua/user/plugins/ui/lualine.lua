@@ -1,4 +1,4 @@
-local icons = require "user.config.icons"
+local icons = require("user.config.icons")
 
 return {
   -- statusline
@@ -13,9 +13,7 @@ return {
       -- 	end,
       -- }
 
-      local spaces = function()
-        return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
-      end
+      local spaces = function() return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth") end
 
       local diagnostics = {
         "diagnostics",
@@ -23,7 +21,7 @@ return {
         sections = { "error", "warn" },
         symbols = {
           error = icons.ui.Close .. " ",
-          warn  = icons.diagnostics.Warning .. " ",
+          warn = icons.diagnostics.Warning .. " ",
         },
         colored = false,
         update_in_insert = false,
@@ -33,6 +31,7 @@ return {
       return {
         options = {
           -- theme = "iceberg_dark",
+          -- TODO: migrate catpuccin coloscheme
           theme = "nightfly",
           icons_enabled = true,
           component_separators = "|",
@@ -42,7 +41,17 @@ return {
         },
         sections = {
           lualine_a = { "mode" },
-          lualine_b = { diagnostics, "buffers", "diff" },
+          lualine_b = {
+            diagnostics,
+            {
+              "buffers",
+              use_mode_colors = false,
+              buffers_color = {
+                active = { fg = "#c6a0f6" }, -- Color for active buffer.
+              },
+            },
+            "diff",
+          },
           lualine_c = {},
           lualine_x = {
             -- {
@@ -66,11 +75,11 @@ return {
           lualine_z = { "branch" },
         },
         extensions = {
-          "lazy", 
+          "lazy",
           "nvim-tree",
           "toggleterm",
-        }
+        },
       }
     end,
   },
-} 
+}
