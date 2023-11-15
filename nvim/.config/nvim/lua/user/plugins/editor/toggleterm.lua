@@ -14,7 +14,7 @@ return {
     shading_factor = 0.3,
     start_in_insert = true,
     persist_size = true,
-    direction = "horizontal",
+    direction = "float",
     winbar = { enabled = false },
   },
 }
