@@ -58,16 +58,16 @@ keymap("n", "<S-Right>", ":vertical resize +2<CR>", opts)
 
 -- == Navigate buffers
 keymap("n", "<A-]>", "<Nop>", opts)
-keymap("n", "<A-[>", "<Nop>", opts)
-keymap("n", "<A-x>", "<Nop>", opts)
-
 keymap("n", "<A-]>", ":bnext<CR>", opts)
+
+keymap("n", "<A-[>", "<Nop>", opts)
 keymap("n", "<A-[>", ":bprevious<CR>", opts)
--- FIXME: no working with corne keyboard
+
+keymap("n", "<A-x>", "<Nop>", opts)
 keymap("n", "<A-x>", ":bdelete<CR>", opts)
 
 -- == Move text up and down
--- FIXME: no working with corne keyboard
+-- FIXME: Conflict with Tmux hotkeys
 keymap("n", "<A-J>", ":m .+1<CR>==", opts)
 keymap("n", "<A-K>", ":m .-2<CR>==", opts)
 
@@ -100,7 +100,7 @@ keymap("v", "<", "<gv^", opts)
 keymap("v", ">", ">gv^", opts)
 
 -- Move text up and down
--- FIXME: Clash with Tmux keyboard shortcut
+-- FIXME: Conflict with Tmux hotkeys
 keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 
@@ -113,7 +113,7 @@ keymap("v", "p", '"_dP', opts)
 -- Move text up and down
 keymap("x", "J", ":m '>+1<CR>gv=gv", opts)
 keymap("x", "K", ":m '<-2<CR>gv=gv", opts)
--- FIXME: no working with corne keyboard
+-- FIXME: Conflict with Tmux hotkeys
 keymap("x", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 keymap("x", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 
