@@ -105,6 +105,10 @@ return {
             mode = "symbol",
             maxwidth = 80,
             ellipsis_char = "...",
+            before = function(entry, vim_item)
+              vim_item.dup = 0
+              return vim_item
+            end,
           }),
         },
         sources = cmp.config.sources({
