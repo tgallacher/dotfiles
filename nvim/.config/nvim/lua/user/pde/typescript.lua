@@ -4,39 +4,62 @@ if not require("user.config.pde").lsp.typescript then return {} end
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts) vim.list_extend(opts.ensure_installed, { "javascript", "typescript", "tsx", "jsdoc", "graphql", "prisma" }) end,
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
+        "javascript",
+        "typescript",
+        "tsx",
+        "jsdoc",
+        "graphql",
+        "prisma",
+      })
+    end,
   },
 
   {
     "williamboman/mason.nvim",
-    opts = function(_, opts) vim.list_extend(opts.ensure_installed, { "prettierd", "typescript-language-server", "js-debug-adapter" }) end,
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
+        "prettierd",
+        -- "typescript-language-server",
+        "js-debug-adapter",
+      })
+    end,
   },
 
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
-      local nls = require "null-ls"
+      local nls = require("null-ls")
       table.insert(opts.sources, nls.builtins.formatting.prettierd)
     end,
   },
 
   {
     "pmizio/typescript-tools.nvim",
-    dependencies = { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "neovim/nvim-lspconfig",
+      -- {
+      --   "folke/neoconf.nvim",
+      --   cmd = "Neoconf",
+      --   config = true,
+      -- },
+    },
     opts = {},
     config = function(_, opts)
-      local lsputils = require "user.plugins.editor.lsp.utils"
+      local lsputils = require("user.plugins.editor.lsp.utils")
 
       lsputils.on_attach(function(client, bufnr)
         if client.name == "tsserver" then
           -- stylua: ignore start
-          vim.keymap.set("n", "<leader>lo", "<cmd>TSToolsOrganizeImports<cr>", { buffer = bufnr, desc = "Organize Imports" })
-          vim.keymap.set("n", "<leader>lO", "<cmd>TSToolsSortImports<cr>", { buffer = bufnr, desc = "Sort Imports" })
-          vim.keymap.set("n", "<leader>lu", "<cmd>TSToolsRemoveUnused<cr>", { buffer = bufnr, desc = "Removed Unused" })
-          vim.keymap.set("n", "<leader>lz", "<cmd>TSToolsGoToSourceDefinition<cr>", { buffer = bufnr, desc = "Go To Source Definition" })
-          vim.keymap.set("n", "<leader>lR", "<cmd>TSToolsRemoveUnusedImports<cr>", { buffer = bufnr, desc = "Removed Unused Imports" })
-          vim.keymap.set("n", "<leader>lF", "<cmd>TSToolsFixAll<cr>", { buffer = bufnr, desc = "Fix All" })
-          vim.keymap.set("n", "<leader>lA", "<cmd>TSToolsAddMissingImports<cr>", { buffer = bufnr, desc = "Add Missing Imports" })
+          vim.keymap.set("n", "<localleader>lo", "<cmd>TSToolsOrganizeImports<cr>", { buffer = bufnr, desc = "Organize Imports" })
+          vim.keymap.set("n", "<localleader>lO", "<cmd>TSToolsSortImports<cr>", { buffer = bufnr, desc = "Sort Imports" })
+          vim.keymap.set("n", "<localleader>lu", "<cmd>TSToolsRemoveUnused<cr>", { buffer = bufnr, desc = "Removed Unused" })
+          vim.keymap.set("n", "<localleader>lz", "<cmd>TSToolsGoToSourceDefinition<cr>", { buffer = bufnr, desc = "Go To Source Definition" })
+          vim.keymap.set("n", "<localleader>lR", "<cmd>TSToolsRemoveUnusedImports<cr>", { buffer = bufnr, desc = "Removed Unused Imports" })
+          vim.keymap.set("n", "<localleader>lF", "<cmd>TSToolsFixAll<cr>", { buffer = bufnr, desc = "Fix All" })
+          vim.keymap.set("n", "<localleader>lA", "<cmd>TSToolsAddMissingImports<cr>", { buffer = bufnr, desc = "Add Missing Imports" })
           -- stylua: ignore end
         end
       end)
@@ -65,7 +88,7 @@ return {
               local client = vim.lsp.get_active_clients({ bufnr = event.buf, name = "eslint" })[1]
               if client then
                 local diag = vim.diagnostic.get(event.buf, { namespace = vim.lsp.diagnostic.get_namespace(client.id) })
-                if #diag > 0 then vim.cmd "EslintFixAll" end
+                if #diag > 0 then vim.cmd("EslintFixAll") end
               end
             end,
           })
@@ -184,17 +207,10 @@ return {
     "nvim-neotest/neotest",
     dependencies = {
       "nvim-neotest/neotest-jest",
-      "thenbe/neotest-playwright",
     },
     opts = function(_, opts)
       vim.list_extend(opts.adapters or {}, {
-        require "neotest-jest",
-        require("neotest-playwright").adapter {
-          options = {
-            persist_project_selection = true,
-            enable_dynamic_test_discovery = true,
-          },
-        },
+        require("neotest-jest"),
       })
 
       return opts

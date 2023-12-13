@@ -1,4 +1,3 @@
-local lsp = require("user.plugins.config.lsp")
 local icons = require("user.config.icons")
 
 return {
