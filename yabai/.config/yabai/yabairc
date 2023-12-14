@@ -12,7 +12,7 @@ yabai -m config window_gap 15
 
 ## mouse setting
 # move cursor with window focus
-yabai -m config mouse_follows_focus off
+yabai -m config mouse_follows_focus on 
 yabai -m config mouse_drop_action swap
 
 
