@@ -35,11 +35,6 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
--- split windows
-keymap("n", "<leader>sv", "<C-w>s", opts)
-keymap("n", "<leader>sh", "<C-w>h", opts)
-keymap("n", "<leader>se", "<C-w>=", opts) -- equalise windows
-keymap("n", "<leader>sx", ":close<CR>", opts) -- close window under cursor
 
 -- == Navigation, keeping cursor center of page
 keymap("n", "J", "mzJ`z")
@@ -50,9 +45,17 @@ keymap("n", "N", "Nzzzv")
 keymap("n", "g,", "g,zvzz")
 keymap("n", "g;", "g;zvzz")
 
+-- split windows
+keymap("n", "<leader>sh", "<C-w>s", opts)
+keymap("n", "<leader>sv", "<C-w>v", opts)
+keymap("n", "<leader>s^", "<C-w>^", opts)     -- Open split, using the alternative file in the split
+keymap("n", "<leader>sn", "<C-w>n", opts)     -- Open split with new empty file
+keymap("n", "<leader>se", "<C-w>=", opts)     -- equalise windows
+keymap("n", "<leader>sx", ":close<CR>", opts) -- close window under cursor
+
 -- == Resize windows with arrows
-keymap("n", "<S-Up>", ":resize -2<CR>", opts)
-keymap("n", "<S-Down>", ":resize +2<CR>", opts)
+keymap("n", "<S-Up>", ":resize +2<CR>", opts)
+keymap("n", "<S-Down>", ":resize -2<CR>", opts)
 keymap("n", "<S-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<S-Right>", ":vertical resize +2<CR>", opts)
 
