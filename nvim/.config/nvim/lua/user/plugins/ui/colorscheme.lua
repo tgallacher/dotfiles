@@ -1,3 +1,5 @@
+local function setColourScheme(name) vim.cmd("colorscheme " .. name) end
+
 return {
   -- different theme per filetype
   {
@@ -29,6 +31,7 @@ return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
+    enabled = false,
     lazy = false,
     -- priority = 1000,
     -- config = function() vim.cmd([[colorscheme rose-pine]]) end,
@@ -42,7 +45,7 @@ return {
     lazy = false,
     name = "catppuccin",
     priority = 1000,
-    config = function() vim.cmd([[colorscheme catppuccin-macchiato]]) end,
+    config = function() vim.cmd([[colorscheme catppuccin-mocha]]) end,
     opts = {
       integrations = {
         alpha = true,
