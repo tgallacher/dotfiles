@@ -1,37 +1,41 @@
-{ lib, fInputs, nixpkgs, nixpkgs-unstable, home-manager, cVars, ... }:
+{ lib, inputs, nixpkgs, nixpkgs-unstable, home-manager, vars, ... }:
 
 let
-	system = "x86_64-linux";
+  system = "x86_64-linux";
 
-	pkgs = import nixpkgs {
-		inherit system;
-		config.allowUnfree = true;
-	};
+  pkgs = import nixpkgs {
+    inherit system;
+    config.allowUnfree = true;
+  };
 
-	unstable = import nixpkgs-unstable {
-		inherit system;
-		config.allowUnfree = true;
-	};
-
-	lib = nixpkgs.lib;
+  pkgs-unstable = import nixpkgs-unstable {
+    inherit system;
+    config = {
+      allowUnfree = true;
+      # Obsidian is lagging way behind ElectronJS LTS
+      # see: https://github.com/NixOS/nixpkgs/issues/273611#issuecomment-1858755633 
+      permittedInsecurePackages = lib.optional (pkgs-unstable.obsidian.version == "1.5.3") "electron-25.9.0";
+    };
+  };
 in
 {
-	pn50 = lib.nixosSystem {
-		inherit system;
-		specialArgs = {
-			inherit fInputs system pkgs unstable cVars;
-			host = {
-				hostName = "pn50";
-			};
-		};
+  pn50 = lib.nixosSystem {
+    inherit system;
+    specialArgs = {
+      inherit lib home-manager inputs system pkgs pkgs-unstable vars;
+      host = {
+        name = "pn50";
+      };
+    };
 
-		modules = [
-			./shared.nix
-			./pn50
-			home-manager.nixosModules.home-manager {
-				home-manager.useGlobalPkgs = true;
-				home-manager.useUserPackages = true;
-			}
-		];
-	};
+    modules = [
+      ./shared.nix
+      ./pn50
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+      }
+    ];
+  };
 }

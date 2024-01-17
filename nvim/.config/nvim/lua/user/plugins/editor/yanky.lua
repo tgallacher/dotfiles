@@ -2,11 +2,12 @@ return {
   -- better yank/paste
   {
     "gbprod/yanky.nvim",
+    enabled = false,
     dependencies = { { "kkharji/sqlite.lua", enabled = not jit.os:find "Windows" } },
     opts = function()
-      local mapping = require "yanky.telescope.mapping"
-      local mappings = mapping.get_defaults()
+      local mappings = require ("yanky.telescope.mapping").get_defaults()
       mappings.i["<c-p>"] = nil
+
       return {
         highlight = { timer = 200 },
         ring = { storage = jit.os:find "Windows" and "shada" or "sqlite" },
@@ -18,6 +19,7 @@ return {
         },
       }
     end,
+    config = true,
     keys = {
         -- stylua: ignore
       { "<leader>zp", function() require("telescope").extensions.yank_history.yank_history({ }) end, desc = "Open Yank History" },

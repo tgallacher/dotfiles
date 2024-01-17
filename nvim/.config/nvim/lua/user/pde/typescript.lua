@@ -37,6 +37,7 @@ return {
 
   {
     "pmizio/typescript-tools.nvim",
+    ft = { "ts", "tsx", "js", "jsx" },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",

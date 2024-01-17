@@ -33,7 +33,8 @@ window:
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
-  decorations: buttonless
+  #decorations: buttonless
+  decorations: full
 
   startup_mode: Maximized
 
@@ -66,7 +67,7 @@ font:
     # style: Regular
     
   # Point size of the font
-  size: 14
+  size: 10
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -184,8 +185,8 @@ live_config_reload: true
 # You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
 # Entries in shell.args are passed unmodified as arguments to the shell.
 #
-shell:
-  program: /bin/zsh
+#shell:
+#  program: /usr/bin/env zsh
 #   args:
 #     - --login
 # Key bindings
@@ -227,4 +228,4 @@ key_bindings:
   - { key: Return, mods: Super|Shift, action: SpawnNewInstance }
   - { key: Key3, mods: Alt, chars: "#" } # Alt + #
 
-fullscreen: true
+fullscreen: false

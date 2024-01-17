@@ -4,13 +4,13 @@
 #
 
 # Autogen'd: 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
+# Enable Powerlevel10k instant prompt. Should stay close to the top of .zshrc.
+#
+# Note: Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
 
 CASE_SENSITIVE="true"
 
@@ -33,10 +33,17 @@ mkdir -p $ZSH_CACHE_DIR/completions
 
 
 autoload -Uz compinit && compinit
-# == Zsh Plugin manager
-source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
-antidote load 
 
+# == Zsh Plugin manager
+if [ $__IS_OSX -eq 1 ]; then 
+  source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
+elif [ $__IS_NIXOS -eq 1 ]; then
+  # FIXME: Remove need to manually keep Nix PKGS version (23.11) in sync with the Nix Flake config
+  source "$(nix eval --raw nixpkgs/nixos-23.11#antidote.outPath)/share/antidote/antidote.zsh"
+else 
+  source ${ZDOTDIR:-~}/.antidote/antidote.zsh 
+fi
+antidote load 
 
 # == Local overrides
 # Support adding custom local zsh config(s)

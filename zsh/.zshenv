@@ -1,3 +1,8 @@
+##!/usr/bin/env zsh
+
+# Helper to improve interop between desktop / laptop
+export __IS_OSX=$(uname -s | grep -cF "Darwin")
+export __IS_NIXOS=$(uname -v | grep -cF "NixOS")
 
 # cleaning up home folder
 export XDG_CONFIG_HOME="$HOME/.config"

@@ -1,146 +1,159 @@
-{ lib, unstable, fInputs, cVars, config, pkgs, host, ... }:
+{ lib, pkgs, pkgs-unstable, inputs, vars, config, host, ... }:
 
 {
-#	imports = (
-#		import ../modules/?.nix
-#	);
+  #	imports = (
+  #		import ../modules/?.nix
+  #	);
 
   nix = {
-	  package = pkgs.nixVersions.unstable;
-	  settings = {
-			auto-optimise-store = true;
-			experimental-features = [ "nix-command" "flakes" ];
-	  };
-	  # gc = {
-	  # 	automatic = true;
-	  #       dates = "weekly";
-	  #       options = "--delete-older-than 7d";
-	  # };
-	}; 
+    # package = pkgs-unstable.nixVersions.unstable;
+    package = pkgs-unstable.nixVersions.nix_2_17;
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
+    # gc = {
+    # 	automatic = true;
+    #       dates = "weekly";
+    #       options = "--delete-older-than 7d";
+    # };
+  };
 
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  		# Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-  networking.hostName = host.hostName;
+  networking = {
+    # Note: Pick only one of the below networking options.
+    # wireless.enable = true;  		# Enables wireless support via wpa_supplicant.
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
+
+    hostName = host.name;
+  };
 
   time.timeZone = "Europe/London";
   i18n.defaultLocale = "en_GB.UTF-8";
 
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
-
   services = {
-		printing.enable = false;
+    printing.enable = false;
 
-		pipewire = {
-			enable = true;
-			alsa = {
-				enable = true;
-				support32Bit = true;
-			};
-			pulse.enable = true;
-			jack.enable = true;
-		};
+    openssh = {
+      enable = true;
+      #	allowSFTP = true;
+      #	extraConfig = ''
+      #		HostKeyAlgorithms +ssh-rsa
+      #	'';
+    };
+  };
 
-		openssh = {
-			enable = true;
-		#	allowSFTP = true;
-		#	extraConfig = ''
-		#		HostKeyAlgorithms +ssh-rsa
-		#	'';
-		};
-	};
-
+  ## Audio
+  services.pipewire = {
+    enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    pulse.enable = true;
+    jack.enable = true;
+  };
   sound.enable = true;
   hardware.pulseaudio.enable = false;
 
+
   security = {
-		rtkit.enable = true;
-		polkit.enable = true;
-		sudo.wheelNeedsPassword = false;
-	};
+    rtkit.enable = true;
+    polkit.enable = true;
+    sudo.wheelNeedsPassword = false;
+  };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed in system profile. 
+  # To search, run: `$ nix search <pacakge_name>`
   environment = {
-		variables = {
-			TERMINAL = "${cVars.terminal}";
-			EDITOR = "${cVars.editor}";
-			VISUAL = "${cVars.editor}";
-		};
+    # variables = { };
 
-		systemPackages = with pkgs; [
-			# CLI
-			pkgs."${cVars.terminal}" 	# Terminal emulator
-			btop 								# Resource manager
-			curl 								# Fetch stuff
-			difftastic					# Diff visualiser
-			direnv							# Dynamic shell configs
-			dwdiff							# Another diff visualiser
-			fzf									# Find stuff
-			git									# Version
-			home-manager 				# Nix home dir manaager
-			iperf								# Network performance
-			neovim							# The only editor
-			tmux								# Terminal super powers
-			ranger 							# File manager
-			tldr 								# Man docs helper
+    systemPackages = with pkgs; [
+      antidote # Zsh plugin manager
+      nodejs_20 # Also req. for Neovim/Mason
+      cargo # Neovim/Mason dep. (rnix) 
+      terraform # Neovim/Mason dep. (terraform-fmt)
+      nixpkgs-fmt # Neovim/Mason dep. (rnix)
+      coreutils # Neovim/Mason dep. (C utils)
+      gcc # Neovim/Mason dep. (C compiler)
+      gnumake # Neovim dep.
+      pyenv
 
-			# Audio/Video
-			alsa-utils 					# Audio control
-			feh 								# Image viewer
-			mpv 								# Media player
-			pipewire 						# Audio server/control
-			pulseaudio					# Audio server/control
-			vlc 								# Media player
 
-			# Apps
+      # CLI
+      pkgs."${vars.terminal}" # Terminal emulator
+      btop # Resource manager
+      bat # cat with wings
+      curl # Fetch stuff
+      difftastic # Diff visualiser
+      direnv # Dynamic shell configs
+      dwdiff # Another diff visualiser
+      fzf # Find stuff (also dep. of Neovim/Telescope)
+      git # Version control
+      home-manager # Nix home dir manaager
+      iperf # Network performance
+      neovim # The only editor
+      tmux # Terminal super powers
+      ranger # File manager
+      tldr # Man docs helper
 
-			# File Management
-			okular 							# PDF viewer
-			p7zip 							# File encryption
-			rsync 							# File transfer
-			unzip 							# Zip files
-			unrar 							# Rar files
-			zip 								# Zip
-		] ++
-		(with unstable; [
-			# Apps
-			_1password-gui  		# Secrets
-			brave 							# Web browser
-		]);
-	};
+      # Audio/Video
+      alsa-utils # Audio control
+      feh # Image viewer
+      mpv # Media player
+      pipewire # Audio server/control
+      pulseaudio # Audio server/control
+      vlc # Media player
 
-	fonts.packages = with pkgs; [
-		carlito 										# NixOS
-		vegur 											# NixOS
-		jetbrains-mono
-		font-awesome
-		(nerdfonts.override {
-			fonts = [
-				"FiraCode"
-			];
-		})
-	];
+      # File Management
+      okular # PDF viewer
+      p7zip # File encryption
+      rsync # File transfer
+      unzip # Zip files
+      unrar # Rar files
+      zip # Zip
+    ] ++
+    (with pkgs-unstable; [
+      # CLIs
+      alacritty
+      python3
+
+      # Apps
+      _1password-gui # Secrets
+      brave # Web browser
+      discord # chat
+      obsidian # notetaking
+      spotify # music
+      ticktick # todos
+    ]);
+  };
+
+  fonts.packages = with pkgs; [
+    carlito # NixOS
+    vegur # NixOS
+    font-awesome
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "JetBrainsMono"
+      ];
+    })
+  ];
 
   programs = {
-		zsh.enable = true;
-	};
+    zsh.enable = true;
+  };
 
-  users.users.${cVars.primaryUser} = {
+  users.users.${vars.primaryUser} = {
     shell = pkgs.zsh;
     extraGroups = [ "wheel" "video" "audio" "networkmanager" ]; # "wheel" -> Enable ‘sudo’ for the user.
-    initialPassword = "Passw0rd!";
+    initialPassword = "Passw0rd!"; # Don't forget to change after initial set up!
     isNormalUser = true;
   };
 
-	home-manager.users.${cVars.primaryUser} = {
-		home.stateVersion = "23.05";
-		programs.home-manager.enable = true;
-	};
+  home-manager.users.${vars.primaryUser} = {
+    home.stateVersion = "23.05";
+    programs.home-manager.enable = true;
+  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
@@ -156,4 +169,3 @@
   system.stateVersion = "22.11"; # Did you read the comment?
 
 }
-

@@ -6,7 +6,7 @@ return {
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
 		lazy = false,
-		ependencies = {
+		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
