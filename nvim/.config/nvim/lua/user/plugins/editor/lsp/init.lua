@@ -49,7 +49,7 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+      -- { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
       -- { "j-hui/fidget.nvim",       config = true,   tag = "legacy" },
       { "smjonas/inc-rename.nvim", config = true },
       "williamboman/mason.nvim",
