@@ -43,33 +43,4 @@
   #     }); 
   #   })
   # ];
-
-
-  # Manage Dotfiles
-  home-manager.users.${vars.primaryUser} = {
-    home.file = {
-      ".config/alacritty" = {
-        source = ../../../alacritty/.config/alacritty;
-        recursive = true;
-      };
-      ".config/git" = {
-        source = ../../../git/.config/git;
-      };
-      ".config/nvim" = {
-        source = ../../../nvim/.config/nvim;
-        # source = config.lib.file.mkOutOfStoreSymlink ../../../nvim/.config/nvim;
-        recursive = true;
-      };
-      ".config/tmux" = {
-        source = ../../../tmux/.config/tmux;
-        recursive = true;
-      };
-      ".zshenv".source = ../../../zsh/.zshenv;
-      ".config/zsh" = {
-        source = ../../../zsh/.config/zsh;
-        #source = lib.mkOutOfStoreSymlink ../../../nvim/.config/nvim;
-        recursive = true;
-      };
-    };
-  };
 }

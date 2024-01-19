@@ -35,6 +35,8 @@ in
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
+        home-manager.users.${vars.username} = import ../modules/home/default.nix;
+        home-manager.extraSpecialArgs = { inherit vars; };
       }
     ];
   };

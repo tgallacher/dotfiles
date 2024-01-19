@@ -6,8 +6,8 @@
   #	);
 
   nix = {
-    # package = pkgs-unstable.nixVersions.unstable;
-    package = pkgs-unstable.nixVersions.nix_2_17;
+    package = pkgs-unstable.nixVersions.unstable;
+    # package = pkgs-unstable.nixVersions.nix_2_17;
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
@@ -143,16 +143,11 @@
     zsh.enable = true;
   };
 
-  users.users.${vars.primaryUser} = {
+  users.users.${vars.username} = {
     shell = pkgs.zsh;
     extraGroups = [ "wheel" "video" "audio" "networkmanager" ]; # "wheel" -> Enable ‘sudo’ for the user.
     initialPassword = "Passw0rd!"; # Don't forget to change after initial set up!
     isNormalUser = true;
-  };
-
-  home-manager.users.${vars.primaryUser} = {
-    home.stateVersion = "23.05";
-    programs.home-manager.enable = true;
   };
 
   # Copy the NixOS configuration file and link it from the resulting system

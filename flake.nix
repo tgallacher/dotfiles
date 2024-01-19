@@ -13,7 +13,7 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... } @inputs:
     let
       vars = {
-        primaryUser = "tgallacher";
+        username = "tgallacher";
         terminal = "alacritty";
         editor = "nvim";
       };
