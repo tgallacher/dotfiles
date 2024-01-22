@@ -39,7 +39,8 @@ if [ $__IS_OSX -eq 1 ]; then
   source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 elif [ $__IS_NIXOS -eq 1 ]; then
   # FIXME: Remove need to manually keep Nix PKGS version (23.11) in sync with the Nix Flake config
-  source "$(nix eval --raw nixpkgs/nixos-23.11#antidote.outPath)/share/antidote/antidote.zsh"
+  # FIXME: This can get out of sync with local flake commit vs moving remove commits on this branch. This breaks zsh boot, as antidote can't be found.
+  source "$(nix eval --raw nixpkgs/nixos-unstable#antidote.outPath)/share/antidote/antidote.zsh"
 else 
   source ${ZDOTDIR:-~}/.antidote/antidote.zsh 
 fi
