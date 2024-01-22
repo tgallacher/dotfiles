@@ -12,8 +12,9 @@
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... } @inputs:
     let
-      vars = {
+      vars = rec {
         username = "tgallacher";
+        homedir = "/home/${vars.username}";
         terminal = "alacritty";
         editor = "nvim";
       };

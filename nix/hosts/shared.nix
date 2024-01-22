@@ -6,8 +6,9 @@
   #	);
 
   nix = {
-    package = pkgs-unstable.nixVersions.unstable;
-    # package = pkgs-unstable.nixVersions.nix_2_17;
+    # FIXME: see https://github.com/nix-community/home-manager/issues/4692 
+    # package = pkgs-unstable.nixVersions.unstable;
+    package = pkgs.nixVersions.stable;
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
@@ -68,7 +69,6 @@
     # variables = { };
 
     systemPackages = with pkgs; [
-      antidote # Zsh plugin manager
       nodejs_20 # Also req. for Neovim/Mason
       cargo # Neovim/Mason dep. (rnix) 
       terraform # Neovim/Mason dep. (terraform-fmt)
@@ -114,6 +114,7 @@
     ] ++
     (with pkgs-unstable; [
       # CLIs
+      antidote # Zsh plugin manager
       alacritty
       python3
 
