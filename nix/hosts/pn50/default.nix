@@ -5,11 +5,13 @@ let
 
   pkgs = import nixpkgs {
     inherit system;
+
     config.allowUnfree = true;
   };
 
   pkgs-unstable = import nixpkgs-unstable {
     inherit system;
+
     config = {
       allowUnfree = true;
       # Obsidian is lagging way behind ElectronJS LTS
@@ -21,6 +23,7 @@ in
 
 lib.nixosSystem {
   inherit system;
+
   specialArgs = {
     inherit lib home-manager inputs system pkgs pkgs-unstable vars;
     host = {
@@ -35,8 +38,8 @@ lib.nixosSystem {
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users.${vars.username} = import ../../modules/home/default.nix;
-      home-manager.extraSpecialArgs = { inherit vars; };
+      home-manager.users.${vars.username} = import ./home.nix;
+      home-manager.extraSpecialArgs = { inherit vars pkgs-unstable; };
     }
   ];
 }

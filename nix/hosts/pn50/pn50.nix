@@ -19,14 +19,11 @@
     bluetooth.enable = true;
   };
 
-  environment = {
-    systemPackages = with pkgs; [
-      whatsapp-for-linux
-    ] ++ (with pkgs-unstable; [
-      # whatsapp-for-linux
-    ]);
-  };
-
+  # environment = {
+  #   systemPackages = with pkgs; [
+  #   ] ++ (with pkgs-unstable; [
+  #   ]);
+  # };
 
   services = {
     xserver = {

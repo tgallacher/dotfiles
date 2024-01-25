@@ -15,6 +15,7 @@
       vars = rec {
         username = "tgallacher";
         homedir = "/home/${vars.username}";
+        # FIXME: stdenv not found
         # if nixpkgs.stdenv.isDarwin
         # then "/users/${vars.username}"
         # else "/home/${vars.username}";
@@ -25,7 +26,7 @@
     {
       # homeConfigurations = (
       #   import ./nix/modules/home {
-      #     inherit (nixpkgs) lib;
+      #     # inherit (nixpkgs) lib;
       #     inherit inputs nixpkgs nixpkgs-unstable home-manager vars;
       #   }
       # );
