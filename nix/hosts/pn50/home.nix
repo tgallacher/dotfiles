@@ -13,7 +13,7 @@
       package = pkgs-unstable.alacritty;
       # see: https://alacritty.org/config-alacritty.html
       settings = {
-        import = [ "~/.config/alacritty/themes/themes/github_dark_default.yaml" ];
+        import = [ "~/.alacritty/themes/themes/github_dark_default.yaml" ];
         cursor = {
           style = {
             shape = "Block";
