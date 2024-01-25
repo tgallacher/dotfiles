@@ -15,11 +15,20 @@
       vars = rec {
         username = "tgallacher";
         homedir = "/home/${vars.username}";
+        # if nixpkgs.stdenv.isDarwin
+        # then "/users/${vars.username}"
+        # else "/home/${vars.username}";
         terminal = "alacritty";
         editor = "nvim";
       };
     in
     {
+      # homeConfigurations = (
+      #   import ./nix/modules/home {
+      #     inherit (nixpkgs) lib;
+      #     inherit inputs nixpkgs nixpkgs-unstable home-manager vars;
+      #   }
+      # );
       nixosConfigurations = (
         import ./nix/hosts {
           inherit (nixpkgs) lib;

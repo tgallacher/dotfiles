@@ -1,46 +1,42 @@
-{ pkgs, pkgs-unstable, home-manager, vars, lib, config, ... }:
+{ lib, inputs, nixpkgs, nixpkgs-unstable, home-manager, vars, ... }:
 
-{
-  imports = [
-    ./hardware-configuration.nix
+let
+  system = "x86_64-linux";
+
+  pkgs = import nixpkgs {
+    inherit system;
+    config.allowUnfree = true;
+  };
+
+  pkgs-unstable = import nixpkgs-unstable {
+    inherit system;
+    config = {
+      allowUnfree = true;
+      # Obsidian is lagging way behind ElectronJS LTS
+      # see: https://github.com/NixOS/nixpkgs/issues/273611#issuecomment-1858755633 
+      permittedInsecurePackages = lib.optional (pkgs-unstable.obsidian.version == "1.5.3") "electron-25.9.0";
+    };
+  };
+in
+
+lib.nixosSystem {
+  inherit system;
+  specialArgs = {
+    inherit lib home-manager inputs system pkgs pkgs-unstable vars;
+    host = {
+      name = "pn50";
+    };
+  };
+
+  modules = [
+    ../shared.nix
+    ./pn50.nix
+    home-manager.nixosModules.home-manager
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.${vars.username} = import ../../modules/home/default.nix;
+      home-manager.extraSpecialArgs = { inherit vars; };
+    }
   ];
-
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-
-    kernelPackages = pkgs.linuxPackages_latest;
-    initrd.kernelModules = [ "amdgpu" ];
-  };
-
-  #	hardware = {
-  #		# opengl = {};
-  #	};
-  #
-  environment = {
-    systemPackages = with pkgs; [
-    ] ++ (with pkgs-unstable; [
-      whatsapp-for-linux
-    ]);
-  };
-
-
-  services = {
-    xserver = {
-      enable = true;
-      displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
-      layout = "gb";
-    };
-  };
-
-  # nixpkgs.overlays = [
-  #   (final: prev: { 
-  #     discord = prev.discord.overrideAttrs (_: { 
-  #       src = builtins.fetchTarball <link-to-tarball>; 
-  #     }); 
-  #   })
-  # ];
 }
