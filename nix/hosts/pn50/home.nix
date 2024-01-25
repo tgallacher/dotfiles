@@ -176,7 +176,7 @@
   # Manage Dotfiles
   home.file = {
     ".alacritty/themes" = {
-      source = ../../../alacritty/.config/alacritty/themes;
+      source = ../../../alacritty/themes;
       recursive = true;
     };
     # TODO: Better way to get flake location?
