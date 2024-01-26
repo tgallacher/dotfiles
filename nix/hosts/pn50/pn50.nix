@@ -1,4 +1,4 @@
-{ lib, pkgs, pkgs-unstable, ... }:
+{ lib, pkgs, upkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -35,10 +35,10 @@
   };
 
   # nixpkgs.overlays = [
-  #   (final: prev: { 
-  #     discord = prev.discord.overrideAttrs (_: { 
-  #       src = builtins.fetchTarball <link-to-tarball>; 
-  #     }); 
+  #   (final: prev: {
+  #     discord = prev.discord.overrideAttrs (_: {
+  #       src = builtins.fetchTarball <link-to-tarball>;
+  #     });
   #   })
   # ];
 }

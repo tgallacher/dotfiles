@@ -1,4 +1,4 @@
-{ lib, pkgs, pkgs-unstable, inputs, vars, config, host, ... }:
+{ lib, pkgs, upkgs, inputs, vars, config, host, ... }:
 
 {
   #	imports = (
@@ -7,7 +7,7 @@
 
   nix = {
     # FIXME: see https://github.com/nix-community/home-manager/issues/4692
-    # package = pkgs-unstable.nixVersions.unstable;
+    # package = upkgs.nixVersions.unstable;
     package = pkgs.nixVersions.stable;
     settings = {
       auto-optimise-store = true;
@@ -112,7 +112,7 @@
       unrar # Rar files
       zip # Zip
     ] ++
-    (with pkgs-unstable; [
+    (with upkgs; [
       # CLIs
       antidote # Zsh plugin manager
       python3

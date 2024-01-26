@@ -1,4 +1,4 @@
-{ self, config, pkgs, pkgs-unstable, vars, ... }:
+{ self, config, pkgs, upkgs, vars, ... }:
 let
   alacrittyFileExtension = version: if pkgs.lib.versionAtLeast version "0.13" then "toml" else "yml";
 in
@@ -8,17 +8,17 @@ in
 
   home.packages = [
     pkgs.whatsapp-for-linux
-    pkgs-unstable.alacritty-theme
+    upkgs.alacritty-theme
   ];
 
   programs = {
     alacritty = {
       enable = true;
-      package = pkgs-unstable.alacritty;
+      package = upkgs.alacritty;
       # see: https://alacritty.org/config-alacritty.html
       settings = {
         import = [
-          "${pkgs-unstable.alacritty-theme}/catppuccin_mocha.${alacrittyFileExtension ( pkgs-unstable.alacritty.version )}"
+          "${upkgs.alacritty-theme}/catppuccin_mocha.${alacrittyFileExtension ( upkgs.alacritty.version )}"
         ];
         live_config_reload = true;
         cursor = {
@@ -165,7 +165,7 @@ in
     };
     tmux = {
       enable = true;
-      package = pkgs-unstable.tmux;
+      package = upkgs.tmux;
       baseIndex = 1;
       clock24 = true;
       disableConfirmationPrompt = false;
@@ -202,7 +202,7 @@ in
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
       '';
-      plugins = with pkgs-unstable; [
+      plugins = with upkgs; [
         tmuxPlugins.yank
         tmuxPlugins.sessionist
         tmuxPlugins.vim-tmux-navigator
