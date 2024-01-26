@@ -1,4 +1,7 @@
 { self, config, pkgs, pkgs-unstable, vars, ... }:
+let
+  alacrittyFileExtension = version: if pkgs.lib.versionAtLeast version "0.13" then "toml" else "yml";
+in
 {
   home.username = vars.username;
   home.homeDirectory = vars.homedir;
@@ -15,7 +18,7 @@
       # see: https://alacritty.org/config-alacritty.html
       settings = {
         import = [
-          "${pkgs-unstable.alacritty-theme}/catppuccin_mocha.${if pkgs.lib.versionAtLeast pkgs-unstable.alacritty.version "0.13" then "toml" else "yml"}"
+          "${pkgs-unstable.alacritty-theme}/catppuccin_mocha.${alacrittyFileExtension ( pkgs-unstable.alacritty.version )}"
         ];
         live_config_reload = true;
         cursor = {
@@ -64,7 +67,7 @@
         };
         # save_to_clipboard = true;
         window = {
-          dimensions = { lines = 3; columns = 3; };
+          dimensions = { lines = 30; columns = 160; };
           padding = { x = 4; y = 4; };
           # Window decorations
           # Setting this to false will result in window without borders and title bar.
