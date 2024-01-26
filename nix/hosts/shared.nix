@@ -6,7 +6,7 @@
   #	);
 
   nix = {
-    # FIXME: see https://github.com/nix-community/home-manager/issues/4692 
+    # FIXME: see https://github.com/nix-community/home-manager/issues/4692
     # package = pkgs-unstable.nixVersions.unstable;
     package = pkgs.nixVersions.stable;
     settings = {
@@ -63,14 +63,14 @@
     sudo.wheelNeedsPassword = false;
   };
 
-  # List packages installed in system profile. 
+  # List packages installed in system profile.
   # To search, run: `$ nix search <pacakge_name>`
   environment = {
     # variables = { };
 
     systemPackages = with pkgs; [
       nodejs_20 # Also req. for Neovim/Mason
-      cargo # Neovim/Mason dep. (rnix) 
+      cargo # Neovim/Mason dep. (rnix)
       terraform # Neovim/Mason dep. (terraform-fmt)
       nixpkgs-fmt # Neovim/Mason dep. (rnix)
       coreutils # Neovim/Mason dep. (C utils)
@@ -80,7 +80,6 @@
 
 
       # CLI
-      pkgs."${vars.terminal}" # Terminal emulator
       btop # Resource manager
       bat # cat with wings
       curl # Fetch stuff
@@ -89,6 +88,7 @@
       dwdiff # Another diff visualiser
       fzf # Find stuff (also dep. of Neovim/Telescope)
       git # Version control
+      glib # require GIO for NvimTree
       home-manager # Nix home dir manaager
       iperf # Network performance
       neovim # The only editor
@@ -115,7 +115,6 @@
     (with pkgs-unstable; [
       # CLIs
       antidote # Zsh plugin manager
-      alacritty
       python3
 
       # Apps
