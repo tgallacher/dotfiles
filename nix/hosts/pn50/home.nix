@@ -5,6 +5,7 @@
 
   home.packages = [
     pkgs.whatsapp-for-linux
+    pkgs-unstable.alacritty-theme
   ];
 
   programs = {
@@ -13,18 +14,20 @@
       package = pkgs-unstable.alacritty;
       # see: https://alacritty.org/config-alacritty.html
       settings = {
-        import = [ "~/.alacritty/themes/themes/github_dark_default.yaml" ];
+        import = [
+          "${pkgs-unstable.alacritty-theme}/catppuccin_mocha.${if pkgs.lib.versionAtLeast pkgs-unstable.alacritty.version "0.13" then "toml" else "yml"}"
+        ];
+        live_config_reload = true;
         cursor = {
           style = {
             shape = "Block";
-            blinking = "on";
-            vi_mode_style = "on";
-            unfocussed_hollow = true;
+            blinking = "On";
           };
+          # unfocussed_hollow = true;
           vi_mode_style = { shape = "Underline"; };
         };
-        draw_bold_text_with_bright_colors = true;
-        fullscreen = false;
+        colors.draw_bold_text_with_bright_colors = true;
+        # fullscreen = false;
         font = {
           size = 10;
           normal = {
@@ -53,13 +56,13 @@
             y = 0;
           };
         };
-        key_bindings = [
+        keyboard.bindings = [
           { key = "Key3"; mods = "Alt"; chars = "#"; } # Alt + #
         ];
         mouse = {
           hide_when_typing = true;
         };
-        save_to_clipboard = true;
+        # save_to_clipboard = true;
         window = {
           dimensions = { lines = 3; columns = 3; };
           padding = { x = 4; y = 4; };
@@ -175,10 +178,6 @@
 
   # Manage Dotfiles
   home.file = {
-    ".alacritty/themes" = {
-      source = ../../../alacritty/themes;
-      recursive = true;
-    };
     # TODO: Better way to get flake location?
     ".config/nvim/".source = config.lib.file.mkOutOfStoreSymlink "${vars.homedir}/Code/${vars.username}/dotfiles/nvim/.config/nvim";
     ".config/tmux/tmux.conf".source = ../../../tmux/.config/tmux/tmux.conf;
