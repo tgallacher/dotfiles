@@ -114,7 +114,6 @@
     ] ++
     (with upkgs; [
       # CLIs
-      antidote # Zsh plugin manager
       python3
 
       # Apps
@@ -139,12 +138,8 @@
     })
   ];
 
-  programs = {
-    zsh.enable = true;
-  };
-
   users.users.${vars.username} = {
-    shell = pkgs.zsh;
+    shell = upkgs.zsh;
     extraGroups = [ "wheel" "video" "audio" "networkmanager" ]; # "wheel" -> Enable ‘sudo’ for the user.
     initialPassword = "Passw0rd!"; # Don't forget to change after initial set up!
     isNormalUser = true;
