@@ -18,7 +18,7 @@ in
       # see: https://alacritty.org/config-alacritty.html
       settings = {
         import = [
-          "${upkgs.alacritty-theme}/catppuccin_mocha.${alacrittyFileExtension ( upkgs.alacritty.version )}"
+          "${upkgs.alacritty-theme}/catppuccin_mocha.${alacrittyFileExtension upkgs.alacritty.version}"
         ];
         live_config_reload = true;
         cursor = {
