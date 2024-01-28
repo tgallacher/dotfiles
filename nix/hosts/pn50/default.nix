@@ -1,15 +1,16 @@
-{ lib, inputs, nixpkgs, nixpkgs-unstable, home-manager, vars, ... }:
+{ lib, inputs, vars, ... }:
 
 let
+  inherit (inputs) home-manager nixvim;
   system = "x86_64-linux";
 
-  pkgs = import nixpkgs {
+  pkgs = import inputs.nixpkgs {
     inherit system;
 
     config.allowUnfree = true;
   };
 
-  upkgs = import nixpkgs-unstable {
+  upkgs = import inputs.nixpkgs-unstable {
     inherit system;
 
     config = {
@@ -25,7 +26,7 @@ lib.nixosSystem {
   inherit system;
 
   specialArgs = {
-    inherit lib home-manager inputs system pkgs upkgs vars;
+    inherit lib inputs system pkgs upkgs vars;
     host = {
       name = "pn50";
     };
