@@ -411,7 +411,7 @@ in {
   # Manage Dotfiles
   home.file = {
     # TODO: Better way to get flake location?
-    ".config/nvim/".source = config.lib.file.mkOutOfStoreSymlink "${vars.homedir}/Code/${vars.username}/dotfiles/nvim/.config/nvim";
+    ".config/nvim/".source = config.lib.file.mkOutOfStoreSymlink "${vars.homedir}/Code/${vars.username}/dotfiles/nvim";
   };
 
   # Let Home Manager manage itself
