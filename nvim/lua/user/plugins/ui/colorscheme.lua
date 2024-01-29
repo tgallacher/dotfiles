@@ -31,21 +31,23 @@ return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    enabled = false,
-    lazy = false,
+    -- enabled = false,
+    lazy = true,
     -- priority = 1000,
-    -- config = function() vim.cmd([[colorscheme rose-pine]]) end,
+    -- config = function() setColourScheme("rose-pine") end,
   },
 
-  { "cocopon/iceberg.vim", enabled = false, lazy = true },
-  { "wadackel/vim-dogrun", enabled = false, lazy = true },
+  { "cocopon/iceberg.vim", enabled = true, lazy = true },
 
   {
     "catppuccin/nvim",
     lazy = false,
     name = "catppuccin",
     priority = 1000,
-    config = function() vim.cmd([[colorscheme catppuccin-mocha]]) end,
+    config = function(_, opts)
+      require("catppuccin").setup(opts)
+      setColourScheme("catppuccin-mocha")
+    end,
     opts = {
       integrations = {
         alpha = true,
@@ -55,7 +57,6 @@ return {
         indent_blankline = { enabled = true },
         lsp_trouble = true,
         mason = true,
-        mini = true,
         native_lsp = {
           enabled = true,
           underlines = {
@@ -65,11 +66,9 @@ return {
             information = { "undercurl" },
           },
         },
-        navic = { enabled = true, custom_bg = "lualine" },
         neotest = true,
         noice = true,
         notify = true,
-        neotree = false,
         semantic_tokens = true,
         telescope = true,
         treesitter = true,
