@@ -13,6 +13,7 @@ return {
 
   {
     "monaqa/dial.nvim",
+    lazy = true,
     keys = {
       { "<C-a>", mode = { "n", "v" } },
       { "<C-x>", mode = { "n", "v" } },

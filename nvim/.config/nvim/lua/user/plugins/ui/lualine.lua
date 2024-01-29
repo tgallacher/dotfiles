@@ -32,7 +32,7 @@ return {
         options = {
           -- theme = "iceberg_dark",
           -- TODO: migrate catpuccin coloscheme
-          theme = "nightfly",
+          -- theme = "nightfly",
           icons_enabled = true,
           component_separators = "|",
           section_separators = "",

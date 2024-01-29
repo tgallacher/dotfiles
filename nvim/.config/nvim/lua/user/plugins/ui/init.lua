@@ -5,7 +5,7 @@ return {
   -- filetype icons, used by many plugins
   "nvim-tree/nvim-web-devicons",
 
-  {
+  { -- improve some vim ui elements
     "stevearc/dressing.nvim",
     event = "VeryLazy",
     opts = {
@@ -21,7 +21,7 @@ return {
     event = "VeryLazy",
     opts = {
       -- background_colour = "#A3CCBE",
-      timeout = 5000,
+      timeout = 3000,
       max_height = function() return math.floor(vim.o.lines * 0.75) end,
       max_width = function() return math.floor(vim.o.columns * 0.75) end,
     },
@@ -31,8 +31,7 @@ return {
     end,
   },
 
-  -- dim inactive code sections
-  {
+  { -- dim inactive code sections
     "folke/twilight.nvim",
     config = true,
     keys = {
@@ -40,8 +39,7 @@ return {
     },
   },
 
-  -- distraction-free coding
-  {
+  { -- distraction-free coding
     "folke/zen-mode.nvim",
     config = true,
     keys = {
@@ -49,8 +47,7 @@ return {
     },
   },
 
-  -- visualise hex codes
-  {
+  { -- visualise hex codes
     "norcalli/nvim-colorizer.lua",
     config = function() require("colorizer").setup() end,
   },

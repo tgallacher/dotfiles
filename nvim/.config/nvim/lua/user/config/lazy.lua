@@ -20,7 +20,7 @@ require("lazy").setup {
     { import = "user.pde" },
   },
   install = {
-    colorscheme = { "rose-pine", "iceberg", "nightfly" },
+    colorscheme = { "catppuccin-mocha", "rose-pine"},
   },
   checker = {
     enabled = true,

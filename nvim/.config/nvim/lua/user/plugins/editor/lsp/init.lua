@@ -1,8 +1,8 @@
 local icons = require("user.config.icons")
 
 return {
-  -- LSP package manager
-  {
+
+  { -- LSP package manager
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
     cmd = "Mason",
@@ -44,8 +44,7 @@ return {
     end,
   },
 
-  -- LSP config
-  {
+  { -- LSP config
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
@@ -70,8 +69,7 @@ return {
     end,
   },
 
-  -- LSP UI
-  {
+  { -- LSP UI
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
     branch = "main",
@@ -109,8 +107,7 @@ return {
     -- },
   },
 
-  -- formatters
-  {
+  { -- formatters
     "jose-elias-alvarez/null-ls.nvim",
     event = "BufReadPre",
     dependencies = { "williamboman/mason.nvim" },
