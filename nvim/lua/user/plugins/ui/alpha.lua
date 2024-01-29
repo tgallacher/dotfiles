@@ -1,5 +1,6 @@
 return {
-  {
+  { -- Note: To see this don't use `nvim .` in a dir. Instead just use `nvim`.
+    -- This will prevent netrw kicking in, and then Nvim Tree hijacking that and showing the tree nav
     "goolord/alpha-nvim",
     lazy = true,
     event = "VimEnter",
