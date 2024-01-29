@@ -1,6 +1,9 @@
-{ lib, inputs, vars, ... }:
-
-let
+{
+  lib,
+  inputs,
+  vars,
+  ...
+}: let
   inherit (inputs) home-manager nixvim;
   system = "x86_64-linux";
 
@@ -21,26 +24,25 @@ let
     };
   };
 in
+  lib.nixosSystem {
+    inherit system;
 
-lib.nixosSystem {
-  inherit system;
-
-  specialArgs = {
-    inherit lib inputs system pkgs upkgs vars;
-    host = {
-      name = "pn50";
+    specialArgs = {
+      inherit lib inputs system pkgs upkgs vars;
+      host = {
+        name = "pn50";
+      };
     };
-  };
 
-  modules = [
-    ../shared.nix
-    ./pn50.nix
-    home-manager.nixosModules.home-manager
-    {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.${vars.username} = import ./home.nix;
-      home-manager.extraSpecialArgs = { inherit vars upkgs; };
-    }
-  ];
-}
+    modules = [
+      ../shared.nix
+      ./pn50.nix
+      home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.${vars.username} = import ./home.nix;
+        home-manager.extraSpecialArgs = {inherit vars upkgs;};
+      }
+    ];
+  }

@@ -1,6 +1,13 @@
-{ lib, pkgs, upkgs, inputs, vars, config, host, ... }:
-
 {
+  lib,
+  pkgs,
+  upkgs,
+  inputs,
+  vars,
+  config,
+  host,
+  ...
+}: {
   #	imports = (
   #		import ../modules/?.nix
   #	);
@@ -11,7 +18,7 @@
     package = pkgs.nixVersions.stable;
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
     };
     # gc = {
     # 	automatic = true;
@@ -56,7 +63,6 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
 
-
   security = {
     rtkit.enable = true;
     polkit.enable = true;
@@ -68,62 +74,64 @@
   environment = {
     # variables = { };
 
-    systemPackages = with pkgs; [
-      nodejs_20 # Also req. for Neovim/Mason
-      cargo # Neovim/Mason dep. (rnix)
-      terraform # Neovim/Mason dep. (terraform-fmt)
-      nixpkgs-fmt # Neovim/Mason dep. (rnix)
-      coreutils # Neovim/Mason dep. (C utils)
-      gcc # Neovim/Mason dep. (C compiler)
-      gnumake # Neovim dep.
-      pyenv
+    systemPackages = with pkgs;
+      [
+        nodejs_20 # Also req. for Neovim/Mason
+        cargo # Neovim/Mason dep. (rnix)
+        terraform # Neovim/Mason dep. (terraform-fmt)
+        nixpkgs-fmt # Neovim/Mason dep. (rnix)
+        coreutils # Neovim/Mason dep. (C utils)
+        gcc # Neovim/Mason dep. (C compiler)
+        gnumake # Neovim dep.
+        pyenv
+        stylua # Neovim frmttr
+        alejandra # Nix formatter
 
+        # CLI
+        btop # Resource manager
+        bat # cat with wings
+        curl # Fetch stuff
+        difftastic # Diff visualiser
+        direnv # Dynamic shell configs
+        dwdiff # Another diff visualiser
+        fzf # Find stuff (also dep. of Neovim/Telescope)
+        git # Version control
+        glib # require GIO for NvimTree
+        home-manager # Nix home dir manaager
+        iperf # Network performance
+        neovim # The only editor
+        tmux # Terminal super powers
+        ranger # File manager
+        tldr # Man docs helper
 
-      # CLI
-      btop # Resource manager
-      bat # cat with wings
-      curl # Fetch stuff
-      difftastic # Diff visualiser
-      direnv # Dynamic shell configs
-      dwdiff # Another diff visualiser
-      fzf # Find stuff (also dep. of Neovim/Telescope)
-      git # Version control
-      glib # require GIO for NvimTree
-      home-manager # Nix home dir manaager
-      iperf # Network performance
-      neovim # The only editor
-      tmux # Terminal super powers
-      ranger # File manager
-      tldr # Man docs helper
+        # Audio/Video
+        alsa-utils # Audio control
+        feh # Image viewer
+        mpv # Media player
+        pipewire # Audio server/control
+        pulseaudio # Audio server/control
+        vlc # Media player
 
-      # Audio/Video
-      alsa-utils # Audio control
-      feh # Image viewer
-      mpv # Media player
-      pipewire # Audio server/control
-      pulseaudio # Audio server/control
-      vlc # Media player
+        # File Management
+        okular # PDF viewer
+        p7zip # File encryption
+        rsync # File transfer
+        unzip # Zip files
+        unrar # Rar files
+        zip # Zip
+      ]
+      ++ (with upkgs; [
+        # CLIs
+        python3
 
-      # File Management
-      okular # PDF viewer
-      p7zip # File encryption
-      rsync # File transfer
-      unzip # Zip files
-      unrar # Rar files
-      zip # Zip
-    ] ++
-    (with upkgs; [
-      # CLIs
-      python3
-
-      # Apps
-      _1password-gui # Secrets
-      brave # Web browser
-      discord # chat
-      obsidian # notetaking
-      spotify # music
-      ticktick # todos
-    ]);
+        # Apps
+        _1password-gui # Secrets
+        brave # Web browser
+        discord # chat
+        obsidian # notetaking
+        spotify # music
+        ticktick # todos
+      ]);
   };
 
   fonts.packages = with pkgs; [
@@ -140,7 +148,7 @@
 
   users.users.${vars.username} = {
     shell = upkgs.zsh;
-    extraGroups = [ "wheel" "video" "audio" "networkmanager" ]; # "wheel" -> Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "video" "audio" "networkmanager"]; # "wheel" -> Enable ‘sudo’ for the user.
     initialPassword = "Passw0rd!"; # Don't forget to change after initial set up!
     isNormalUser = true;
   };
@@ -157,5 +165,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
-
 }

@@ -1,5 +1,9 @@
-{ lib, pkgs, upkgs, ... }:
 {
+  lib,
+  pkgs,
+  upkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -11,7 +15,7 @@
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
-    initrd.kernelModules = [ "amdgpu" ];
+    initrd.kernelModules = ["amdgpu"];
   };
 
   hardware = {

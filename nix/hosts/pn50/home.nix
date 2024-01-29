@@ -1,8 +1,16 @@
-{ self, config, pkgs, upkgs, vars, ... }:
-let
-  alacrittyFileExtension = version: if pkgs.lib.versionAtLeast version "0.13" then "toml" else "yml";
-in
 {
+  self,
+  config,
+  pkgs,
+  upkgs,
+  vars,
+  ...
+}: let
+  alacrittyFileExtension = version:
+    if pkgs.lib.versionAtLeast version "0.13"
+    then "toml"
+    else "yml";
+in {
   home.username = vars.username;
   home.homeDirectory = vars.homedir;
 
@@ -27,7 +35,7 @@ in
             blinking = "On";
           };
           # unfocussed_hollow = true;
-          vi_mode_style = { shape = "Underline"; };
+          vi_mode_style = {shape = "Underline";};
         };
         colors.draw_bold_text_with_bright_colors = true;
         # fullscreen = false;
@@ -60,15 +68,25 @@ in
           };
         };
         keyboard.bindings = [
-          { key = "Key3"; mods = "Alt"; chars = "#"; } # Alt + #
+          {
+            key = "Key3";
+            mods = "Alt";
+            chars = "#";
+          } # Alt + #
         ];
         mouse = {
           hide_when_typing = true;
         };
         # save_to_clipboard = true;
         window = {
-          dimensions = { lines = 30; columns = 160; };
-          padding = { x = 4; y = 4; };
+          dimensions = {
+            lines = 30;
+            columns = 160;
+          };
+          padding = {
+            x = 4;
+            y = 4;
+          };
           # Window decorations
           # Setting this to false will result in window without borders and title bar.
           decorations = "full";
@@ -102,12 +120,12 @@ in
         };
       };
       extraConfig = {
-        core = { editor = "vim"; };
-        merge = { conflictstyle = "diff3"; };
-        diff = { colorMoved = "default"; };
-        rebase = { instructionFormat = "(%an) %s"; };
-        init = { defaultBranch = "main"; };
-        advice = { skippedCherryPicks = false; };
+        core = {editor = "vim";};
+        merge = {conflictstyle = "diff3";};
+        diff = {colorMoved = "default";};
+        rebase = {instructionFormat = "(%an) %s";};
+        init = {defaultBranch = "main";};
+        advice = {skippedCherryPicks = false;};
         # interactive = { diffFilter = "delta --color-only"; };
         push = {
           default = "simple";
@@ -277,13 +295,15 @@ in
       '';
       # add to .zshrc
       initExtra = ''
-        ${if pkgs.stdenv.isDarwin then
-          "
+        ${
+          if pkgs.stdenv.isDarwin
+          then "
             print_pid_cwd() {
               local pid=$1;
               lsof -a -p $pid -d cwd -Fn
             }
-          " else ""
+          "
+          else ""
         }
       '';
       # add to .zshrc, top of file
@@ -319,8 +339,16 @@ in
         egrep = "egrep --color=auto";
         sudo = "sudo "; # enable aliases to be sudo'd
         cl = "clear"; # TODO: move to keybind
-        l = "ls -lF ${if pkgs.stdenv.isDarwin then "-G" else "--color"}";
-        la = "ls -laF ${if pkgs.stdenv.isDarwin then "-G" else "--color"}";
+        l = "ls -lF ${
+          if pkgs.stdenv.isDarwin
+          then "-G"
+          else "--color"
+        }";
+        la = "ls -laF ${
+          if pkgs.stdenv.isDarwin
+          then "-G"
+          else "--color"
+        }";
         git_prune_branches = "git fetch && git remote prune origin && git br -v | grep gone | awk '{print $1;}' | xargs -n 1 git br -d";
       };
       history.ignoreAllDups = true;
@@ -365,7 +393,6 @@ in
       };
     };
   };
-
 
   editorconfig = {
     enable = true;
