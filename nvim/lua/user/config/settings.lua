@@ -4,7 +4,7 @@ vim.g.maplocalleader = ","
 vim.g.markdown_recommended_style = 0
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
+vim.opt.winbar = ''
 
 -- vim.loader.enable()               -- Optimize plugin loading
 
@@ -15,7 +15,7 @@ vim.opt.ignorecase = true         -- ignore case in search patterns
 vim.opt.mouse = "a"               -- allow the mouse to be used in neovim
 vim.opt.pumheight = 10            -- pop up menu height
 vim.opt.showmode = false          -- we don't need to see things like -- INSERT -- anymore
-vim.opt.showtabline = 2           -- always show tabs
+vim.opt.showtabline = 0           -- always show tabs
 vim.opt.smartcase = true          -- smart case
 vim.opt.smartindent = true        -- make indenting smarter again
 vim.opt.cmdheight = 2             -- more space in the neovim command line for displaying messages
