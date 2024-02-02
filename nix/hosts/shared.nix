@@ -15,16 +15,16 @@
   nix = {
     # FIXME: see https://github.com/nix-community/home-manager/issues/4692
     # package = upkgs.nixVersions.unstable;
-    package = pkgs.nixVersions.stable;
+    # package = pkgs.nixVersions.stable;
     settings = {
       auto-optimise-store = true;
       experimental-features = ["nix-command" "flakes"];
     };
-    # gc = {
-    # 	automatic = true;
-    #       dates = "weekly";
-    #       options = "--delete-older-than 7d";
-    # };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
   };
 
   networking = {
@@ -84,7 +84,7 @@
         gcc # Neovim/Mason dep. (C compiler)
         gnumake # Neovim dep.
         pyenv
-        stylua # Neovim frmttr
+        # stylua # Neovim frmttr
         alejandra # Nix formatter
 
         # CLI
