@@ -3,12 +3,20 @@
   pkgs,
   upkgs,
   inputs,
+  system,
+  vars,
+  config,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
     inputs.hyprland.nixosModules.default
   ];
+
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${system}.hyprland;
+  };
 
   boot = {
     loader = {
@@ -38,10 +46,25 @@
 
   services = {
     xserver = {
-      enable = true;
+      enable = false;
       # displayManager.sddm.enable = true;
       # desktopManager.plasma5.enable = true;
       layout = "gb";
+    };
+    greetd = let
+      session = {
+        command = "${lib.getExe config.programs.hyprland.package}";
+        user = "${vars.username}";
+      };
+    in {
+      enable = true;
+      vt = 1;
+      package = upkgs.greetd;
+      settings = {
+        terminal.vt = 1;
+        default_session = session;
+        initial_session = session;
+      };
     };
   };
 

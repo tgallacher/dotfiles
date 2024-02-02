@@ -51,6 +51,7 @@
   };
 
   ## Audio
+  # TODO: move to pn50/pn50.nix
   services.pipewire = {
     enable = true;
     alsa = {
@@ -63,6 +64,7 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
 
+  # TODO: move to pn50/pn50.nix
   security = {
     rtkit.enable = true;
     polkit.enable = true;
@@ -105,15 +107,20 @@
         tldr # Man docs helper
 
         # Audio/Video
+        # TODO: move to pn50/pn50.nix
         alsa-utils # Audio control
         feh # Image viewer
         mpv # Media player
+        # TODO: move to pn50/pn50.nix
         pipewire # Audio server/control
+        # TODO: move to pn50/pn50.nix
         pulseaudio # Audio server/control
         vlc # Media player
 
         # File Management
+        # TODO: move to pn50/pn50.nix
         okular # PDF viewer
+        # TODO: move to pn50/pn50.nix
         p7zip # File encryption
         rsync # File transfer
         unzip # Zip files
@@ -148,9 +155,14 @@
 
   users.users.${vars.username} = {
     shell = upkgs.zsh;
-    extraGroups = ["wheel" "video" "audio" "networkmanager"]; # "wheel" -> Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel" #  Enable ‘sudo’ for the user.
+      "video"
+      "audio"
+      "networkmanager"
+    ];
     initialPassword = "Passw0rd!"; # Don't forget to change after initial set up!
-    isNormalUser = true;
+    isNormalUser = true; # automatically set additional settings for normal users
   };
 
   # Copy the NixOS configuration file and link it from the resulting system
