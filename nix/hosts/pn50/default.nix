@@ -41,7 +41,7 @@ in
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.${vars.username} = import ./home.nix;
+        home-manager.users.${vars.username} = import ./home;
         home-manager.extraSpecialArgs = {inherit system vars upkgs inputs;};
       }
     ];
