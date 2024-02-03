@@ -67,6 +67,7 @@
       bindr = [];
 
       bind = [
+        "$mod SHIFT, W, exec, pkill waybar && waybar &"
         "$mod, SPACE, exec, pkill wofi || wofi"
         "$mod, B, exec, brave"
         "$mod, RETURN, exec, $terminal"
