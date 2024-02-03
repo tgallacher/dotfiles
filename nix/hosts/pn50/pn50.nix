@@ -54,6 +54,7 @@
     # File Management
     okular # PDF viewer
     p7zip # File encryption
+    libsForQt5.dolphin # File browser
   ];
 
   # nixpkgs.overlays = [
