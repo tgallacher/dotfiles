@@ -17,13 +17,8 @@
   };
 
   outputs = {self, ...} @ inputs: let
-    vars = rec {
+    vars = {
       username = "tgallacher";
-      homedir = "/home/${vars.username}";
-      # FIXME: stdenv not found
-      # if nixpkgs.stdenv.isDarwin
-      # then "/users/${vars.username}"
-      # else "/home/${vars.username}";
       terminal = "alacritty";
       editor = "nvim";
     };

@@ -35,6 +35,7 @@ in
     };
 
     modules = [
+      ../../modules/hyprland
       ../shared.nix
       ./pn50.nix
       home-manager.nixosModules.home-manager

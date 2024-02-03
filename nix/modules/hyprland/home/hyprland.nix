@@ -1,4 +1,27 @@
-{self, ...}: {
+# Note: This is a Home Manager module
+{
+  self,
+  upkgs,
+  pkgs,
+  inputs,
+  system,
+  ...
+}: {
+  home.packages = [
+    upkgs.bluez # bluetooth
+    upkgs.bluez-tools # bluetooth
+    upkgs.blueman # bluetooth
+
+    inputs.nixpkgs-wayland.packages.${system}.grim
+    inputs.nixpkgs-wayland.packages.${system}.mako
+    inputs.nixpkgs-wayland.packages.${system}.slurp
+    inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
+    inputs.nixpkgs-wayland.packages.${system}.swww
+    inputs.nixpkgs-wayland.packages.${system}.waybar
+    inputs.nixpkgs-wayland.packages.${system}.wlogout
+    inputs.nixpkgs-wayland.packages.${system}.wofi
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {

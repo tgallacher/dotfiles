@@ -8,10 +8,6 @@
   host,
   ...
 }: {
-  #	imports = (
-  #		import ../modules/?.nix
-  #	);
-
   nix = {
     # FIXME: see https://github.com/nix-community/home-manager/issues/4692
     # package = upkgs.nixVersions.unstable;
@@ -27,14 +23,7 @@
     };
   };
 
-  networking = {
-    # Note: Pick only one of the below networking options.
-    # wireless.enable = true;  		# Enables wireless support via wpa_supplicant.
-    networkmanager.enable = true; # Easiest to use and most distros use this by default.
-
-    hostName = host.name;
-  };
-
+  networking.hostName = host.name;
   time.timeZone = "Europe/London";
   i18n.defaultLocale = "en_GB.UTF-8";
 
@@ -51,95 +40,61 @@
   };
 
   ## Audio
-  # TODO: move to pn50/pn50.nix
-  services.pipewire = {
-    enable = true;
-    alsa = {
-      enable = true;
-      support32Bit = true;
-    };
-    pulse.enable = true;
-    jack.enable = true;
-  };
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
-
-  # TODO: move to pn50/pn50.nix
-  security = {
-    rtkit.enable = true;
-    polkit.enable = true;
-    sudo.wheelNeedsPassword = false;
-  };
 
   # List packages installed in system profile.
   # To search, run: `$ nix search <pacakge_name>`
-  environment = {
-    # variables = { };
+  environment.systemPackages = with pkgs;
+    [
+      nodejs_20 # Also req. for Neovim/Mason
+      cargo # Neovim/Mason dep. (rnix)
+      terraform # Neovim/Mason dep. (terraform-fmt)
+      nixpkgs-fmt # Neovim/Mason dep. (rnix)
+      coreutils # Neovim/Mason dep. (C utils)
+      gcc # Neovim/Mason dep. (C compiler)
+      gnumake # Neovim dep.
+      pyenv
+      # stylua # Neovim frmttr
+      alejandra # Nix formatter
 
-    systemPackages = with pkgs;
-      [
-        nodejs_20 # Also req. for Neovim/Mason
-        cargo # Neovim/Mason dep. (rnix)
-        terraform # Neovim/Mason dep. (terraform-fmt)
-        nixpkgs-fmt # Neovim/Mason dep. (rnix)
-        coreutils # Neovim/Mason dep. (C utils)
-        gcc # Neovim/Mason dep. (C compiler)
-        gnumake # Neovim dep.
-        pyenv
-        # stylua # Neovim frmttr
-        alejandra # Nix formatter
+      # CLI
+      btop # Resource manager
+      bat # cat with wings
+      curl # Fetch stuff
+      difftastic # Diff visualiser
+      direnv # Dynamic shell configs
+      dwdiff # Another diff visualiser
+      fzf # Find stuff (also dep. of Neovim/Telescope)
+      git # Version control
+      glib # require GIO for NvimTree
+      home-manager # Nix home dir manaager
+      iperf # Network performance
+      neovim # The only editor
+      tmux # Terminal super powers
+      ranger # File manager
+      tldr # Man docs helper
 
-        # CLI
-        btop # Resource manager
-        bat # cat with wings
-        curl # Fetch stuff
-        difftastic # Diff visualiser
-        direnv # Dynamic shell configs
-        dwdiff # Another diff visualiser
-        fzf # Find stuff (also dep. of Neovim/Telescope)
-        git # Version control
-        glib # require GIO for NvimTree
-        home-manager # Nix home dir manaager
-        iperf # Network performance
-        neovim # The only editor
-        tmux # Terminal super powers
-        ranger # File manager
-        tldr # Man docs helper
+      # Audio/Video
+      vlc # Media player
 
-        # Audio/Video
-        # TODO: move to pn50/pn50.nix
-        alsa-utils # Audio control
-        feh # Image viewer
-        mpv # Media player
-        # TODO: move to pn50/pn50.nix
-        pipewire # Audio server/control
-        # TODO: move to pn50/pn50.nix
-        pulseaudio # Audio server/control
-        vlc # Media player
+      # File Management
+      rsync # File transfer
+      unzip # Zip files
+      unrar # Rar files
+      zip # Zip
+    ]
+    ++ (with upkgs; [
+      # CLIs
+      python3
 
-        # File Management
-        # TODO: move to pn50/pn50.nix
-        okular # PDF viewer
-        # TODO: move to pn50/pn50.nix
-        p7zip # File encryption
-        rsync # File transfer
-        unzip # Zip files
-        unrar # Rar files
-        zip # Zip
-      ]
-      ++ (with upkgs; [
-        # CLIs
-        python3
-
-        # Apps
-        _1password-gui # Secrets
-        brave # Web browser
-        discord # chat
-        obsidian # notetaking
-        spotify # music
-        ticktick # todos
-      ]);
-  };
+      # Apps
+      _1password-gui # Secrets
+      brave # Web browser
+      discord # chat
+      obsidian # notetaking
+      spotify # music
+      ticktick # todos
+    ]);
 
   fonts.packages = with pkgs; [
     carlito # NixOS
