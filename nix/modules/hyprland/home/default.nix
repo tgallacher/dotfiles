@@ -12,5 +12,6 @@
     ./hyprland.nix
     ./wofi.nix
     ./waybar
+    ./pywal.nix
   ];
 }

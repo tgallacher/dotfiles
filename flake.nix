@@ -24,9 +24,9 @@
     };
   in {
     # homeConfigurations = (
-    #   import ./nix/modules/home {
+    #   import ./nix/hosts/pn50/home {
     #     # inherit (nixpkgs) lib;
-    #     inherit inputs nixpkgs nixpkgs-unstable home-manager vars;
+    #     inherit inputs vars;
     #   }
     # );
     nixosConfigurations = (
