@@ -120,6 +120,8 @@
         "$mod, 4, workspace, 4"
         "$mod, 5, workspace, 5"
         "$mod, 6, workspace, 6"
+        "$mod SHIFT, H, workspace, -1"
+        "$mod SHIFT, L, workspace, +1"
 
         # TODO: Media Controls
       ];
