@@ -14,18 +14,20 @@ in {
     @import "${config.xdg.cacheHome}/wal/colors-rofi-dark"
   '';
 
-  # theme = "${config.xdg.cacheHome}/wal/colors-rofi-dark.rasi";
-  # theme = "${config.xdg.cacheHome}/wal/colors-rofi-light.rasi";
+  # Note: Element layout can be found under "Layout" section within `man 5 rofi-theme`
   programs.rofi.theme = let
     # Use `mkLiteral` for string-like values that should show without quotes, e.g.:
-    # {
-    #   foo = "abc"; will result in- foo: "abc";
-    #   bar = mkLiteral "abc"; will result in- bar: abc;
-    # };
     inherit (config.lib.formats.rasi) mkLiteral;
   in {
     # Note: Workaround for not being able to figure out how to load multiple `@import` here
+    # see above
     "@import" = "${customRofiThemeLoaderPath}";
+
+    # define additional vars for reuse
+    "*" = {
+      borderRadius = mkLiteral "4px";
+      accent = mkLiteral "@color1";
+    };
 
     window = {
       width = mkLiteral "900px";
@@ -34,62 +36,48 @@ in {
       spacing = mkLiteral "0px";
       padding = mkLiteral "0px";
       margin = mkLiteral "0px";
-      color = mkLiteral "#FFFFFF";
-      border = mkLiteral "3px";
-      border-color = mkLiteral "#FFFFFF";
+      color = mkLiteral "@foreground";
+      border = mkLiteral "1px";
+      border-color = mkLiteral "@foreground";
       cursor = "default";
       transparency = "real";
       location = mkLiteral "center";
       anchor = mkLiteral "center";
       fullscreen = false;
       enabled = true;
-      border-radius = mkLiteral "10px";
+      border-radius = mkLiteral "@borderRadius";
       background-color = mkLiteral "transparent";
     };
 
     mainbox = {
       enabled = true;
-      orientation = mkLiteral "horizontal";
+      orientation = mkLiteral "vertical";
       spacing = mkLiteral "0px";
       margin = mkLiteral "0px";
+      padding = mkLiteral "0px";
       background-color = mkLiteral "@background";
-      # background-image = mkLiteral "@current-image";
-      children = map mkLiteral ["imagebox" "listbox"];
+      children = map mkLiteral ["inputbar" "listbox"];
     };
 
-    imagebox = {
-      padding = mkLiteral "18px";
-      background-color = mkLiteral "transparent";
-      orientation = mkLiteral "vertical";
-      children = map mkLiteral ["inputbar" "dummy" "mode-switcher"];
-    };
-
-    listbox = {
-      spacing = mkLiteral "20px";
-      background-color = mkLiteral "transparent";
-      orientation = mkLiteral "vertical";
-      children = map mkLiteral ["message" "listview"];
-    };
-
-    dummy = {
-      background-color = mkLiteral "transparent";
-    };
-
+    ###################
+    ## INPUT SEARCH  ##
+    ###################
     inputbar = {
       enabled = true;
-      text-color = mkLiteral "@foreground";
-      spacing = mkLiteral "10px";
+      text-color = mkLiteral "@accent";
+      spacing = mkLiteral "0px";
       padding = mkLiteral "15px";
-      border-radius = mkLiteral "10px";
+      border-radius = mkLiteral "@borderRadius";
       border-color = mkLiteral "@foreground";
       background-color = mkLiteral "@background";
       children = map mkLiteral ["textbox-prompt-colon" "entry"];
     };
 
     textbox-prompt-colon = {
+      # content = "";
+      content = "";
       enabled = true;
       expand = false;
-      str = "";
       background-color = mkLiteral "transparent";
       text-color = mkLiteral "inherit";
     };
@@ -99,12 +87,15 @@ in {
       background-color = mkLiteral "transparent";
       text-color = mkLiteral "inherit";
       cursor = mkLiteral "text";
-      placeholder = "Search";
+      placeholder = "Search...";
       placeholder-color = mkLiteral "inherit";
     };
 
+    ###################
+    ## MODE SWITCHER ##
+    ###################
     mode-switcher = {
-      enabled = true;
+      enabled = false;
       spacing = mkLiteral "20px";
       background-color = mkLiteral "transparent";
       text-color = mkLiteral "@foreground";
@@ -112,7 +103,7 @@ in {
 
     button = {
       padding = mkLiteral "10px";
-      border-radius = mkLiteral "10px";
+      border-radius = mkLiteral "@borderRadius";
       background-color = mkLiteral "@background";
       text-color = mkLiteral "inherit";
       cursor = mkLiteral "pointer";
@@ -121,7 +112,17 @@ in {
 
     "button selected" = {
       background-color = mkLiteral "@color11";
-      text-color = mkLiteral "@foreground";
+      text-color = mkLiteral "@accent";
+    };
+
+    ###################
+    ## RESULTS LIST  ##
+    ###################
+    listbox = {
+      spacing = mkLiteral "20px";
+      background-color = mkLiteral "transparent";
+      orientation = mkLiteral "vertical";
+      children = map mkLiteral ["message" "listview"];
     };
 
     listview = {
@@ -135,21 +136,21 @@ in {
       reverse = false;
       fixed-height = true;
       fixed-columns = true;
-      spacing = mkLiteral "0px";
+      spacing = mkLiteral "2px";
       padding = mkLiteral "10px";
       margin = mkLiteral "0px";
-      background-color = mkLiteral "@background";
+      background-color = mkLiteral "transparent";
       border = mkLiteral "0px";
     };
 
     element = {
       enabled = true;
-      padding = mkLiteral "10px";
-      margin = mkLiteral "5px";
+      padding = mkLiteral "5px";
+      margin = mkLiteral "0px";
       cursor = mkLiteral "pointer";
-      background-color = mkLiteral "@background";
-      border-radius = mkLiteral "10px";
-      border = mkLiteral "2px";
+      background-color = mkLiteral "inherit";
+      border-radius = mkLiteral "@borderRadius";
+      border = mkLiteral "1px";
     };
 
     "element normal.normal" = {
@@ -168,8 +169,8 @@ in {
     };
 
     "element selected.normal" = {
-      background-color = mkLiteral "@color11";
-      text-color = mkLiteral "@foreground";
+      background-color = mkLiteral "@accent";
+      text-color = mkLiteral "@background";
     };
 
     "element selected.urgent" = {
@@ -178,8 +179,8 @@ in {
     };
 
     "element selected.active" = {
-      background-color = mkLiteral "inherit";
-      text-color = mkLiteral "@foreground";
+      background-color = mkLiteral "@accent";
+      text-color = mkLiteral "@background";
     };
 
     "element alternate.normal" = {
@@ -212,13 +213,16 @@ in {
       horizontal-align = mkLiteral "0.0";
     };
 
+    ################
+    ## MESAGE BOX ##
+    ################
     message = {
       background-color = mkLiteral "transparent";
       border = mkLiteral "0px";
       margin = mkLiteral "20px 0px 0px 0px";
       padding = mkLiteral "0px";
       spacing = mkLiteral "0px";
-      border-radius = mkLiteral "10px";
+      border-radius = mkLiteral "@borderRadius";
     };
 
     textbox = {

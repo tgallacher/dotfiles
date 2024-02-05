@@ -17,12 +17,12 @@
     package = upkgs.rofi;
     location = "center";
     cycle = true;
-    font = "Fira Sans Bold 12";
+    font = "JetBrainsMono NerdFont 10";
     # FIXME: Pull from `config`
     # terminal = config.users.users.${vars.username}.shell;
     terminal = "${upkgs.zsh}/bin/zsh";
     extraConfig = {
-      modi = "drun,run";
+      modi = "drun,run,window";
       show-icons = false;
       icon-theme = "kora";
       display-drun = "APPS";
