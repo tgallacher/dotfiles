@@ -10,7 +10,8 @@
 }: {
   imports = [
     ./hyprland.nix
-    ./wofi.nix
+    # ./wofi.nix
+    ./rofi
     ./waybar
     ./pywal.nix
   ];

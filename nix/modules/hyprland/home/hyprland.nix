@@ -19,7 +19,7 @@
     inputs.nixpkgs-wayland.packages.${system}.swww
     inputs.nixpkgs-wayland.packages.${system}.waybar
     inputs.nixpkgs-wayland.packages.${system}.wlogout
-    inputs.nixpkgs-wayland.packages.${system}.wofi
+    # inputs.nixpkgs-wayland.packages.${system}.wofi
   ];
 
   wayland.windowManager.hyprland = {
@@ -68,7 +68,8 @@
 
       bind = [
         "$mod SHIFT, W, exec, pkill waybar && waybar &"
-        "$mod, SPACE, exec, pkill wofi || wofi"
+        # "$mod, SPACE, exec, pkill wofi || wofi"
+        "$mod, SPACE, exec, pkill rofi || rofi -show drun -replace"
         "$mod, B, exec, brave"
         "$mod, RETURN, exec, $terminal"
         # ", Print, exec, grimblast copy area"

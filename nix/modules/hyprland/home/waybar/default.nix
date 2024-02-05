@@ -23,6 +23,7 @@
         spacing = 0;
         modules-left = [
           # "hyprland/window"
+          "custom/appmenu"
           "wlr/taskbar"
         ];
         modules-center = [
@@ -41,6 +42,12 @@
         ];
 
         ## Modules
+        # Application Launcher
+        "custom/appmenu" = {
+          "format" = "Apps";
+          "on-click" = "rofi -show drun -replace";
+          "tooltip" = false;
+        };
         # Workspaces
         "hyprland/workspaces" = {
           on-click = "activate";
