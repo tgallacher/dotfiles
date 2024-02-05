@@ -89,7 +89,7 @@ in {
         decorations = "full";
         startup_mode = "Windowed";
         dynamic_title = true;
-        opacity = 1.0;
+        opacity = 0.8;
       };
     };
   };
