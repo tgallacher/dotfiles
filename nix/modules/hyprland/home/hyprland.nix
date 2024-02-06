@@ -26,7 +26,6 @@
     inputs.nixpkgs-wayland.packages.${system}.swww
     inputs.nixpkgs-wayland.packages.${system}.waybar
     inputs.nixpkgs-wayland.packages.${system}.wlogout
-    # inputs.nixpkgs-wayland.packages.${system}.wofi
   ];
 
   wayland.windowManager.hyprland = {
@@ -80,8 +79,8 @@
       bind = [
         "$mod SHIFT , W           , exec                      , pkill waybar && waybar &"
         # "$mod       , SPACE       , exec                      , pkill wofi || wofi"
-        "$mod       , SPACE       , exec                      , pkill rofi || rofi -show drun"
-        "$mod SHIFT , SPACE       , exec                      , pkill rofi || rofi -show window"
+        "$mod SHIFT , SPACE       , exec                      , pkill rofi || rofi -show drun"
+        "$mod       , SPACE       , exec                      , pkill rofi || hyprctl clients -j | jq -r 'map(select( .class != \"\" )) | .[] | (.address + \" \" + .title)' | rofi -dmenu | awk '{print $1;}' | xargs -I{} hyprctl dispatcher focuswindow \"address:{}\""
         "$mod       , B           , exec                      , brave"
         "$mod       , RETURN      , exec                      , $terminal"
         # "           , Print       , exec                      , grimblast copy area"
@@ -96,7 +95,6 @@
         "$mod       , T           , togglefloating            ,"
         "$mod       , P           , pseudo                    ,"
         "$mod ALT   ,             , resizeactive              ,"
-
         # Move window focus
         "$mod       , H           , movefocus                 , l"
         "$mod       , K           , movefocus                 , u"
@@ -107,7 +105,6 @@
         "$mod CTRL  , K           , movewindow                , u"
         "$mod CTRL  , L           , movewindow                , r"
         "$mod CTRL  , J           , movewindow                , d"
-
         # Move active window to workspace [1-6] (don't follow)
         "$mod CTRL  , 1           , movetoworkspacesilent     , 1"
         "$mod CTRL  , 2           , movetoworkspacesilent     , 2"
