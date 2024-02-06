@@ -37,7 +37,7 @@
   '';
 
   home.activation = let
-    wallpaper = builtins.toPath ../../../../.config/wallpapers/bg_4.jpg;
+    wallpaper = builtins.toPath ../../../../wallpapers/b-314.jpg;
   in {
     setWallpaper = lib.hm.dag.entryAfter ["writeBoundary"] ''
       run ${inputs.nixpkgs-wayland.packages.${system}.swww}/bin/swww img ${wallpaper}
