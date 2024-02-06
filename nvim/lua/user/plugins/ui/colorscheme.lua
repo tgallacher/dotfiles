@@ -6,6 +6,7 @@ return {
     main = "pywal16",
     priority = 1000,
     lazy = false,
+    enabled = false,
     config = function(_, opts)
       require("pywal16").setup(opts)
       setColourScheme("pywal16")
@@ -20,7 +21,6 @@ return {
     config = function()
       require("styler").setup({
         themes = {
-          markdown = { colorscheme = "nightlfy" },
           help = { colorscheme = "catppuccin" },
           ts = { colorscheme = "catppuccin-mocha" },
         },
@@ -33,26 +33,18 @@ return {
     name = "nightfly",
     lazy = false,
     enabled = false,
-    -- priority = 1000,
-    --   config = function()
-    --     vim.cmd([[colorscheme nightfly]])
-    --   end
   },
 
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    -- enabled = false,
+    enabled = false,
     lazy = true,
-    -- priority = 1000,
-    -- config = function() setColourScheme("rose-pine") end,
   },
-
-  { "cocopon/iceberg.vim", enabled = true, lazy = true },
 
   {
     "catppuccin/nvim",
-    enabled = false,
+    -- enabled = false,
     lazy = false,
     name = "catppuccin",
     priority = 1000,
@@ -61,6 +53,9 @@ return {
       setColourScheme("catppuccin-mocha")
     end,
     opts = {
+      transparent_background = true,
+      no_italic = false,
+      no_bold = false,
       integrations = {
         alpha = true,
         cmp = true,
