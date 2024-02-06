@@ -67,7 +67,7 @@
       };
 
       exec-once = [
-        "swww init"
+        "swww query || swww init"
         "wal -R"
         "mako"
         "waybar"
