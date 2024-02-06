@@ -206,6 +206,7 @@ return {
 
   {
     "nvim-neotest/neotest",
+    ft = {"ts", "tsx", "js", "jsx"},
     dependencies = {
       "nvim-neotest/neotest-jest",
     },

@@ -80,6 +80,7 @@ return {
   },
   {
     "nvim-neotest/neotest",
+    ft = "py",
     dependencies = {
       "nvim-neotest/neotest-python",
     },

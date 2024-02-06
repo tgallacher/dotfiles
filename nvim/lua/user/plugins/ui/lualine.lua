@@ -31,7 +31,8 @@ return {
       return {
         options = {
           -- TODO: migrate catpuccin coloscheme
-          theme = "ayu_dark",
+          -- theme = "ayu_dark",
+          theme = "pywal16-nvim",
           icons_enabled = true,
           component_separators = "|",
           section_separators = "",
@@ -46,7 +47,7 @@ return {
               "buffers",
               use_mode_colors = false,
               buffers_color = {
-                active = { fg = "#c6a0f6" }, -- Color for active buffer.
+                active = { fg = "#C29574" }, -- Color for active buffer.
               },
             },
             "diff",

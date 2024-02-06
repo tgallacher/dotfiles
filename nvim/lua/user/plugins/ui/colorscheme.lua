@@ -1,6 +1,17 @@
 local function setColourScheme(name) vim.cmd("colorscheme " .. name) end
 
 return {
+  {
+    "uZer/pywal16.nvim",
+    main = "pywal16",
+    priority = 1000,
+    lazy = false,
+    config = function(_, opts)
+      require("pywal16").setup(opts)
+      setColourScheme("pywal16")
+    end,
+  },
+
   -- different theme per filetype
   {
     "folke/styler.nvim",
@@ -41,6 +52,7 @@ return {
 
   {
     "catppuccin/nvim",
+    enabled = false,
     lazy = false,
     name = "catppuccin",
     priority = 1000,

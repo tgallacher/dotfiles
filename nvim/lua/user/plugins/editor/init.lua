@@ -13,7 +13,7 @@ return {
 
   {
     "monaqa/dial.nvim",
-    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
     keys = {
       { "<C-a>", mode = { "n", "v" } },
       { "<C-x>", mode = { "n", "v" } },

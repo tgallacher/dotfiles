@@ -2,8 +2,11 @@ return {
   -- core ui library used by various plugins
   "MunifTanjim/nui.nvim",
 
-  -- filetype icons, used by many plugins
-  "nvim-tree/nvim-web-devicons",
+  { -- filetype icons, used by many plugins
+    "nvim-tree/nvim-web-devicons",
+    event = "VimEnter",
+    config = true,
+  },
 
   { -- improve some vim ui elements
     "stevearc/dressing.nvim",
@@ -49,6 +52,7 @@ return {
 
   { -- visualise hex codes
     "norcalli/nvim-colorizer.lua",
+    event = { "BufReadPre", "BufNewFile" },
     config = function() require("colorizer").setup() end,
   },
 }
