@@ -28,21 +28,29 @@
       "$mod" = "SUPER";
       "$terminal" = "alacritty";
 
+      monitor = ",preferred,auto,1";
+
       general = {
         layout = "master";
-        border_size = 2;
+        border_size = 1;
         gaps_in = 5;
-        gaps_out = 5;
-        cursor_inactive_timeout = 5;
+        gaps_out = 10;
       };
 
       misc = {
-        disable_hyprland_logo = "yes";
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
       };
 
       master = {
-        # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-        new_is_master = true;
+        new_is_master = false;
+        # new_on_top = false;
+        orientation = "top";
+      };
+
+      dwindle = {
+        force_split = 2;
+        preserve_split = false;
       };
 
       decoration = {
@@ -62,9 +70,6 @@
         # "blueman-applet"
         # "nm-applet --indicator"
       ];
-
-      # Triggers on release of keys
-      bindr = [];
 
       bind = [
         "$mod SHIFT , W           , exec                      , pkill waybar && waybar &"
