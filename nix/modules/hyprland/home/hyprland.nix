@@ -69,6 +69,7 @@
 
       exec-once = [
         "swww init"
+        "wal -R"
         "mako"
         "waybar"
         "wl-paste --watch cliphist store" # send clipboard entires to cliphist
