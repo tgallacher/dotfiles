@@ -12,6 +12,8 @@
     upkgs.bluez-tools # bluetooth
     upkgs.blueman # bluetooth
 
+    upkgs.wl-clipboard # Wayland equiv of pbcopy; Neovim also requires this for `unnamedplus` register
+
     inputs.nixpkgs-wayland.packages.${system}.grim
     inputs.nixpkgs-wayland.packages.${system}.mako
     inputs.nixpkgs-wayland.packages.${system}.slurp
