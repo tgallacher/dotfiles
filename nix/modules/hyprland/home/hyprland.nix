@@ -13,6 +13,11 @@
     upkgs.blueman # bluetooth
 
     upkgs.wl-clipboard # Wayland equiv of pbcopy; Neovim also requires this for `unnamedplus` register
+    upkgs.cliphist
+    upkgs.go # req. by cliphist
+    upkgs.xdg-utils # req. by cliphist
+
+    upkgs.jq
 
     inputs.nixpkgs-wayland.packages.${system}.grim
     inputs.nixpkgs-wayland.packages.${system}.mako
@@ -68,7 +73,7 @@
         "swww init"
         "mako"
         "waybar"
-        # "wl-paste --watch cliphist store"
+        "wl-paste --watch cliphist store" # send clipboard entires to cliphist
         # "blueman-applet"
         # "nm-applet --indicator"
       ];
