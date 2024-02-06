@@ -63,7 +63,7 @@
 
       set -g status-left "#[fg=${theme.primary},bg=${theme.trans}]  #S #[fg=${theme.grey},bg=${theme.trans}]|"
       set -g window-status-format '#[fg=gray,bg=${theme.trans}] #I.#W'
-      set -g window-status-current-format '#[fg=${theme.primary},bg=${theme.trans}] #I.#W'
+      set -g window-status-current-format '#[fg=${theme.accent-light},bg=${theme.trans}] #I.#W'
 
       set -g pane-border-style 'fg=${theme.primary}'
       set -g pane-active-border-style 'fg=${theme.primary}'
@@ -119,7 +119,7 @@
           set -g @resurrect-capture-pane-contents 'on'
 
           # Hack: `extraConfig` is inserted after plugins, but continuum plugin needs to come after anything that edits `status-right`
-          set -g status-right "#[fg=${theme.accent},bg=${theme.trans}]#{?window_zoomed_flag, ,} #[fg=${theme.grey},bg=${theme.trans}]|#[fg=${theme.accent-light},bg=${theme.trans}] %Y-%m-%d "
+          set -g status-right "#[fg=${theme.accent},bg=${theme.trans}]#{?window_zoomed_flag, ,} #[fg=${theme.grey},bg=${theme.trans}]|#[fg=${theme.primary},bg=${theme.trans}] %Y-%m-%d "
         '';
       }
       # Note: must come after catpuccin, or anything that edits the right status bar
