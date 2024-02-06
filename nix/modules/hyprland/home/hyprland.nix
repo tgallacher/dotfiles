@@ -51,8 +51,6 @@
 
       master = {
         new_is_master = false;
-        # new_on_top = false;
-        orientation = "top";
       };
 
       dwindle = {
