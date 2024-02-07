@@ -15,9 +15,8 @@ return {
           -- theme = "pywal16-nvim",
           theme = "catppuccin",
           icons_enabled = true,
-          -- component_separators = { left = "", right = "" },
-          -- component_separators = { left = "", right = "" },
-          -- section_separators = { left = "", right = "" },
+          component_separators = { left = "", right = "" }, -- remove default separators
+          section_separators = { left = "", right = "" }, -- remove default separators
           disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline", "winbar" },
           gloabalstatus = true,
           always_divide_middle = true,
