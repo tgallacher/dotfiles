@@ -21,7 +21,7 @@ vim.opt.smartcase = true          -- smart case
 vim.opt.smartindent = true        -- make indenting smarter again
 vim.opt.cmdheight = 2             -- more space in the neovim command line for displaying messages
 vim.opt.conceallevel = 0          -- so that `` is visible in markdown files
-vim.opt.completeopt = "menuone,noselect"
+vim.opt.completeopt = "noinsert,menuone,noselect"
 vim.opt.fileencoding = "utf-8"    -- the encoding written to a file
 vim.opt.incsearch = true
 vim.opt.splitbelow = true         -- force all horizontal splits to go below current window
@@ -38,7 +38,12 @@ vim.opt.autoindent = true         -- convert tab to spaces
 vim.opt.shiftwidth = 2            -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2               -- insert 2 spaces for a tab
 vim.opt.softtabstop = 2
-vim.opt.foldenable = false        -- disable folds
+vim.opt.foldenable = true        -- disable folds
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldmethod = "manual"
+vim.opt.inccommand = "split" -- show replacements in a split window, before applying to the file
+
+vim.opt.updatetime = 250 -- time in ms for lang servers to check for errors
 
 vim.opt.background = "dark"            -- ensure dark version of colourschemes are auto selected
 vim.opt.cursorline = true              -- highlight the current line

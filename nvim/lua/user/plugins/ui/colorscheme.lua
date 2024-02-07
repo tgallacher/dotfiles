@@ -4,13 +4,13 @@ return {
   {
     "uZer/pywal16.nvim",
     main = "pywal16",
-    priority = 1000,
-    lazy = false,
+    -- priority = 1000,
+    lazy = true,
     enabled = false,
-    config = function(_, opts)
-      require("pywal16").setup(opts)
-      setColourScheme("pywal16")
-    end,
+    -- config = function(_, opts)
+    --   require("pywal16").setup(opts)
+    --   setColourScheme("pywal16")
+    -- end,
   },
 
   -- different theme per filetype
