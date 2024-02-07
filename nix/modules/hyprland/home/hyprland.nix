@@ -12,24 +12,58 @@
     upkgs.bluez-tools # bluetooth
     upkgs.blueman # bluetooth
 
-    upkgs.wl-clipboard # Wayland equiv of pbcopy; Neovim also requires this for `unnamedplus` register
+    # upkgs.wl-clipboard # Wayland equiv of pbcopy; Neovim also requires this for `unnamedplus` register
     upkgs.cliphist
     upkgs.go # req. by cliphist
     upkgs.xdg-utils # req. by cliphist
 
-    upkgs.jq
+    upkgs.jq # use for rofi window switching
 
     inputs.nixpkgs-wayland.packages.${system}.grim
     inputs.nixpkgs-wayland.packages.${system}.mako
     inputs.nixpkgs-wayland.packages.${system}.slurp
     inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
-    inputs.nixpkgs-wayland.packages.${system}.swww
+    # inputs.nixpkgs-wayland.packages.${system}.swww
     inputs.nixpkgs-wayland.packages.${system}.waybar
     inputs.nixpkgs-wayland.packages.${system}.wlogout
+    inputs.nixpkgs-wayland.packages.${system}.wl-clipboard # Wayland equiv of pbcopy; Neovim also requires this for `unnamedplus` register
   ];
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = upkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 16;
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      package = upkgs.flat-remix-gtk;
+      name = "Flat-Remix-GTK-Grey-Darkest";
+    };
+
+    iconTheme = {
+      package = upkgs.gnome.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+
+    font = {
+      name = "Sans";
+      size = 11;
+    };
+  };
+
+  xdg.configFile."hypr/hyprpaper.conf".text = let
+    wallpaper = builtins.toPath ../../../../wallpapers/b-314.jpg;
+  in ''
+    preload = ${wallpaper}
+    wallpaper = ${wallpaper}
+  '';
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.variables = ["-all"];
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "alacritty";
@@ -67,8 +101,9 @@
       };
 
       exec-once = [
-        "swww query || swww init"
+        # "swww query || swww init"
         "wal -R"
+        # "hyprctl hyprpaper wallpaper ,${wallpaper}"
         "mako"
         "waybar"
         "wl-paste --watch cliphist store" # send clipboard entires to cliphist
