@@ -70,7 +70,9 @@
       set -g window-status-last-style 'fg=white,bg=${theme.trans}'
       set -g message-command-style fg=${theme.accent-light},bg=${theme.trans}
       set -g message-style fg=${theme.accent-light},bg=${theme.trans}
-      set -g mode-style fg=${theme.accent-light},bg=${theme.trans}
+      # set -g mode-style fg=${theme.accent-light},bg=${theme.trans}
+      set -g mode-style fg=${theme.accent-light},bg=terminal
+      set -gp window-style bg=terminal
     '';
     plugins = with upkgs; [
       tmuxPlugins.yank
