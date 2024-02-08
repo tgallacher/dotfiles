@@ -35,16 +35,4 @@
         color15:    {color15};
     }}
   '';
-
-  home.activation = let
-    wallpaper = builtins.toPath ../../../../wallpapers/b-314.jpg;
-  in {
-    # setWallpaper = lib.hm.dag.entryAfter ["createThemeColorsFromWallpaer"] ''
-    #   run ${inputs.hyprland.packages.${system}.hyprland}/bin/swww img ${wallpaper}
-    # '';
-    createThemeColorsFromWallpaer = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      run ${upkgs.pywal}/bin/wal -i ${wallpaper}
-      # run ${inputs.hyprland.packages.${system}.hyprland}/bin/hyprctl hyprpaper wallpaper ${wallpaper}
-    '';
-  };
 }

@@ -8,7 +8,9 @@
   system,
   config,
   ...
-}: {
+}: let
+  wallpaper = builtins.toPath ../../../../wallpapers/b-314.jpg;
+in {
   home.packages = [
     upkgs.bluez # bluetooth
     upkgs.bluez-tools # bluetooth
@@ -25,7 +27,7 @@
     inputs.nixpkgs-wayland.packages.${system}.mako
     inputs.nixpkgs-wayland.packages.${system}.slurp
     inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
-    # inputs.nixpkgs-wayland.packages.${system}.swww
+    inputs.nixpkgs-wayland.packages.${system}.swww
     inputs.nixpkgs-wayland.packages.${system}.waybar
     inputs.nixpkgs-wayland.packages.${system}.wlogout
     inputs.nixpkgs-wayland.packages.${system}.wl-clipboard # Wayland equiv of pbcopy; Neovim also requires this for `unnamedplus` register
@@ -56,12 +58,20 @@
     };
   };
 
-  xdg.configFile."hypr/hyprpaper.conf".text = let
-    wallpaper = builtins.toPath ../../../../wallpapers/b-314.jpg;
-  in ''
-    preload = ${wallpaper}
-    wallpaper = ,${wallpaper}
-  '';
+  # See fixme below in `home.activation`
+  # xdg.configFile."hypr/hyprpaper.conf".text = ''
+  #   preload = ${wallpaper}
+  #   wallpaper = ,${wallpaper}
+  # '';
+
+  home.activation = {
+    createThemeColorsFromWallpaer = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      run ${upkgs.pywal}/bin/wal -i ${wallpaper}
+      # FIXME: HYPRLAND_INSTANCE_SIGNATURE not set! (is hyprland running?)
+      # run ${inputs.hyprland.packages.${system}.hyprland}/bin/hyprctl hyprpaper wallpaper ${wallpaper}
+      run ${inputs.nixpkgs-wayland.packages.${system}.swww}/bin/swww img ${wallpaper}
+    '';
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -106,10 +116,8 @@
       };
 
       exec-once = [
-        # "swww query || swww init"
         "${upkgs.pywal}/bin/wal -R"
-        # "${lib.getExe inputs.hyprland.packages.${system}.hyprctl} hyprpaper wallpaper ,${wallpaper}}"
-
+        "${inputs.nixpkgs-wayland.packages.${system}.swww}/bin/swww query || ${inputs.nixpkgs-wayland.packages.${system}.swww}/bin/swww init"
         "${inputs.nixpkgs-wayland.packages.${system}.mako}/bin/mako"
         "${inputs.nixpkgs-wayland.packages.${system}.waybar}/bin/waybar"
         "${inputs.nixpkgs-wayland.packages.${system}.wl-clipboard}/bin/wl-paste --watch cliphist store" # send clipboard entires to cliphist
