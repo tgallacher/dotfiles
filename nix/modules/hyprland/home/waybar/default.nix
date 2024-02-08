@@ -9,40 +9,39 @@
   ...
 }: {
   imports = [
-    ./style.nix
+    # ./style.nix
     ./modules.nix
   ];
 
   programs.waybar = {
     enable = true;
     package = inputs.nixpkgs-wayland.packages.${system}.waybar;
+    style = builtins.readFile ./style.css;
     settings = {
       mainBar = {
         ## General
         layer = "top"; # display bar ontop of all windows
         position = "top";
-        margin-top = 5;
-        margin-bottom = 0;
-        margin-left = 0;
-        margin-right = 0;
+        margin = "0 0 0 0";
         spacing = 0;
         modules-left = [
-          "custom/appmenu"
+          # "custom/appmenu"
           "wlr/taskbar"
-          "hyprland/window"
+          "tray"
+          "custom/calculator"
+          "custom/filemanager"
         ];
         modules-center = [
           "hyprland/workspaces"
         ];
         modules-right = [
-          "cpu"
-          "memory"
+          "custom/cliphist"
+          "group/hardware"
           "pulseaudio"
           "bluetooth"
-          "tray"
+          "network"
           "idle_inhibitor"
           "custom/exit"
-          "network"
           "clock"
         ];
       };

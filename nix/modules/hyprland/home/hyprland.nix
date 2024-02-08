@@ -22,6 +22,8 @@ in {
     upkgs.xdg-utils # req. by cliphist
 
     upkgs.jq # use for rofi window switching
+    upkgs.qalculate-gtk # calculator app
+    upkgs.networkmanagerapplet # used in waybar
 
     inputs.nixpkgs-wayland.packages.${system}.grim
     inputs.nixpkgs-wayland.packages.${system}.mako
@@ -186,13 +188,20 @@ in {
         # TODO: Media Controls
       ];
 
+      windowrule = [];
+
       windowrulev2 = [
+        # File manager
         "animation popin,class:^(dolphin)$"
         "opacity 0.8 0.8,class:^(dolphin)$"
-        # Rofi
-        "move cursor -3% -105%,class:^(rofi)$"
-        "noanim,class:^(rofi)$"
-        "opacity 0.8 0.6,class:^(rofi)$"
+        # Qalculate
+        "float,class:^(qalculate-gtk)$"
+        "center,class:^(qalculate-gtk)$"
+        # Workspace: Notes
+        "workspace 2,class:^(obsidian)$"
+        # Workspace: Personal Media
+        "workspace 3,class:^(Spotify)$"
+        "workspace 3,class:^(whatsapp-for-linux)$"
       ];
     };
   };

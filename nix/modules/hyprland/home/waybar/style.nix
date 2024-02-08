@@ -87,8 +87,8 @@
 
     #taskbar {
         background: @bg;
-        margin: 3px 15px 3px 0px;
-        padding: 0px;
+        margin: 0px 15px;
+        padding: 0px 10px;
         border-radius: 15px;
         font-weight: normal;
         font-style: normal;
@@ -180,7 +180,7 @@
     }
 
     #custom-wallpaper {
-        margin-right:25px;
+      margin-right:25px;
     }
 
     /* -----------------------------------------------------
@@ -210,7 +210,7 @@
     #custom-appmenu, #custom-appmenuwlr {
         background-color: @bgdark;
         font-size: 16px;
-        color: @textcolor1;
+        color: @textcolor2;
         border-radius: 15px;
         padding: 0px 10px 0px 10px;
         margin: 3px 15px 3px 14px;

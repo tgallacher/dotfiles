@@ -3,15 +3,33 @@
   config,
   ...
 }: {
+  xdg.configFile."waybar/scripts/cliphist.sh" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      case $1 in
+        d) cliphist list | rofi -dmenu -replace | cliphist delete
+           ;;
+
+        w) if [ `echo -e "Clear\nCancel" | rofi -dmenu` == "Clear" ] ; then
+                cliphist wipe
+           fi
+           ;;
+
+        *) cliphist list | rofi -dmenu -replace | cliphist decode | wl-copy
+           ;;
+      esac
+    '';
+  };
+
   programs.waybar.settings.mainBar = {
     ## Modules
     # Application Launcher
     "custom/appmenu" = {
       "format" = "Apps";
-      "on-click" = "rofi -show drun -replace";
+      "on-click" = "rofi -replace -show drun";
       "tooltip" = false;
     };
-    # Workspaces
     "hyprland/workspaces" = {
       on-click = "activate";
       active-only = false;
@@ -49,15 +67,26 @@
         "(.*) - Brave" = "$1";
         "(.*) - Chromium" = "$1";
         "(.*) - Brave Search" = "$1";
-        "(.*) - Outlook" = "$1";
-        "(.*) Microsoft Teams" = "$1";
       };
+    };
+    "custom/cliphist" = {
+      "format" = "";
+      "on-click" = "sleep 0.1 && ${config.xdg.configHome}/waybar/scripts/cliphist.sh";
+      "on-click-right" = "sleep 0.1 && ${config.xdg.configHome}/waybar/scripts/cliphist.sh d";
+      "on-click-middle" = "sleep 0.1 && ${config.xdg.configHome}/waybar/scripts/cliphist.sh w";
+      "tooltip" = false;
     };
     # Power Menu
     "custom/exit" = {
       format = "";
       on-click = "wlogout";
       tooltip = false;
+    };
+    # Filemanager Launcher
+    "custom/filemanager" = {
+      "format" = "";
+      "on-click" = "dolphin";
+      "tooltip" = false;
     };
     # System tray
     tray = {
@@ -78,12 +107,22 @@
       format-ethernet = "  {ipaddr}";
       format-disconnected = "Disconnected";
       tooltip-format = " {ifname} via {gwaddri}";
-      tooltip-format-wifi = "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}";
-      # tooltip-format-ethernet = " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}";
-      tooltip-format-ethernet = "{ifname}\t{ipaddr}/{cidr}\ngateway\t{gwaddr}\n\t{essid}\n{icon}  ⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}";
+      tooltip-format-wifi = ''
+          {ifname} @ {essid}
+        IP: {ipaddr}
+        Strength: {signalStrength}%
+        Freq: {frequency}MHz
+        Up: {bandwidthUpBits} Down: {bandwidthDownBits}
+      '';
+      tooltip-format-ethernet = ''
+        {ifname}  {ipaddr}/{cidr}
+        gateway   {gwaddr}
+        {essid}
+        {icon}    ⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}
+      '';
       tooltip-format-disconnected = "Disconnected";
       max-length = 50;
-      # on-click= "~/dotfiles/.settings/networkmanager.sh";
+      on-click = "nm-connection-editor";
     };
     ## Pulseaudio
     pulseaudio = {
@@ -105,6 +144,18 @@
       };
       on-click = "pavucontrol";
     };
+    # ChatGPT Launcher
+    "custom/chatgpt" = {
+      format = " ";
+      on-click = "chromium --app=https=//chat.openai.com";
+      tooltip = false;
+    };
+    # Calculator
+    "custom/calculator" = {
+      format = "";
+      on-click = "qalculate-gtk";
+      tooltip = false;
+    };
     ## Bluetooth
     bluetooth = {
       format = " {status}";
@@ -123,9 +174,17 @@
       on-click-right = "swaylock";
       tooltip = true;
     };
+    # Hardware
+    "group/hardware" = {
+      orientation = "inherit";
+      modules = [
+        "cpu"
+        "memory"
+      ];
+    };
     cpu = {
       interval = 10;
-      format = " {usage: >2}%";
+      format = " {usage: >2}%";
       max-length = 10;
     };
     memory = {
