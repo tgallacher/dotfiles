@@ -129,7 +129,6 @@ in {
 
       bind = [
         "$mod SHIFT , W           , exec                      , pkill waybar && waybar &"
-        # "$mod       , SPACE       , exec                      , pkill wofi || wofi"
         "$mod SHIFT , SPACE       , exec                      , pkill rofi || rofi -show drun"
         "$mod       , SPACE       , exec                      , pkill rofi || hyprctl clients -j | jq -r 'map(select( .class != \"\" )) | .[] | (.address + \" \" + .title)' | rofi -dmenu | awk '{print $1;}' | xargs -I{} hyprctl dispatcher focuswindow \"address:{}\""
         "$mod       , B           , exec                      , brave"
@@ -190,10 +189,10 @@ in {
       windowrulev2 = [
         "animation popin,class:^(dolphin)$"
         "opacity 0.8 0.8,class:^(dolphin)$"
-        # Wofi
-        "move cursor -3% -105%,class:^(wofi)$"
-        "noanim,class:^(wofi)$"
-        "opacity 0.8 0.6,class:^(wofi)$"
+        # Rofi
+        "move cursor -3% -105%,class:^(rofi)$"
+        "noanim,class:^(rofi)$"
+        "opacity 0.8 0.6,class:^(rofi)$"
       ];
     };
   };
