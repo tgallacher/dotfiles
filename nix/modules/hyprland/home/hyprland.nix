@@ -67,7 +67,9 @@ in {
   home.activation = {
     createThemeColorsFromWallpaer = lib.hm.dag.entryAfter ["writeBoundary"] ''
       run ${upkgs.pywal}/bin/wal -i ${wallpaper}
+
       # FIXME: HYPRLAND_INSTANCE_SIGNATURE not set! (is hyprland running?)
+      # note: HM activation scripts seem to run before greetd service (which triggers hyprland, etc) so all daemons won't have booted yet. Need to work around this
       # run ${inputs.hyprland.packages.${system}.hyprland}/bin/hyprctl hyprpaper wallpaper ${wallpaper}
       # run (${inputs.nixpkgs-wayland.packages.${system}.swww}/bin/swww query || ${inputs.nixpkgs-wayland.packages.${system}.swww}/bin/swww init) && ${inputs.nixpkgs-wayland.packages.${system}.swww}/bin/swww img ${wallpaper}
     '';
