@@ -1,10 +1,12 @@
 # Note: This is a Home Manager module
 {
   self,
+  lib,
   upkgs,
   pkgs,
   inputs,
   system,
+  config,
   ...
 }: {
   home.packages = [
@@ -58,12 +60,15 @@
     wallpaper = builtins.toPath ../../../../wallpapers/b-314.jpg;
   in ''
     preload = ${wallpaper}
-    wallpaper = ${wallpaper}
+    wallpaper = ,${wallpaper}
   '';
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.variables = ["-all"];
+    systemd = {
+      enable = true;
+      variables = ["-all"];
+    };
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "alacritty";
@@ -102,13 +107,14 @@
 
       exec-once = [
         # "swww query || swww init"
-        "wal -R"
-        # "hyprctl hyprpaper wallpaper ,${wallpaper}"
-        "mako"
-        "waybar"
-        "wl-paste --watch cliphist store" # send clipboard entires to cliphist
-        # "blueman-applet"
-        # "nm-applet --indicator"
+        "${upkgs.pywal}/bin/wal -R"
+        # "${lib.getExe inputs.hyprland.packages.${system}.hyprctl} hyprpaper wallpaper ,${wallpaper}}"
+
+        "${inputs.nixpkgs-wayland.packages.${system}.mako}/bin/mako"
+        "${inputs.nixpkgs-wayland.packages.${system}.waybar}/bin/waybar"
+        "${inputs.nixpkgs-wayland.packages.${system}.wl-clipboard}/bin/wl-paste --watch cliphist store" # send clipboard entires to cliphist
+        # # "blueman-applet"
+        # # "nm-applet --indicator"
       ];
 
       bind = [

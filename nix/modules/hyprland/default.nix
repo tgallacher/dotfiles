@@ -25,10 +25,10 @@
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
-  environment.systemPackages = [
-    upkgs.qt5-wayland
-    upkgs.qt6-wayland
-  ];
+  # environment.systemPackages = [
+  #   upkgs.qt5-wayland
+  #   upkgs.qt6-wayland
+  # ];
 
   programs.hyprland = {
     enable = true;
@@ -49,21 +49,18 @@
       desktopManager.gnome.enable = false;
       layout = "gb";
     };
-    greetd = let
-      session = {
-        command = "${lib.getExe config.programs.hyprland.package}";
-        # user = "${vars.username}";
-        user = "greeter";
-      };
-    in {
+    greetd = {
       enable = true;
-      vt = 1;
       package = upkgs.greetd;
       settings = {
         terminal.vt = 1;
-        default_session = session;
+        default_session = {
+          command = "${lib.getExe config.programs.hyprland.package}";
+          # user = "${vars.username}";
+          user = "greeter";
+        };
         # auto login
-        # initial_session = session;
+        # initial_session = "default_session";
       };
     };
   };
