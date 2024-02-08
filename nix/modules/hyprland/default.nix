@@ -56,8 +56,8 @@
         terminal.vt = 1;
         default_session = {
           command = "${lib.getExe config.programs.hyprland.package}";
-          # user = "${vars.username}";
-          user = "greeter";
+          user = "${vars.username}";
+          # user = "greeter";
         };
         # auto login
         # initial_session = "default_session";

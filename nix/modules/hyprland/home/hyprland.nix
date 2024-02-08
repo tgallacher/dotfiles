@@ -69,7 +69,7 @@ in {
       run ${upkgs.pywal}/bin/wal -i ${wallpaper}
       # FIXME: HYPRLAND_INSTANCE_SIGNATURE not set! (is hyprland running?)
       # run ${inputs.hyprland.packages.${system}.hyprland}/bin/hyprctl hyprpaper wallpaper ${wallpaper}
-      run ${inputs.nixpkgs-wayland.packages.${system}.swww}/bin/swww img ${wallpaper}
+      # run (${inputs.nixpkgs-wayland.packages.${system}.swww}/bin/swww query || ${inputs.nixpkgs-wayland.packages.${system}.swww}/bin/swww init) && ${inputs.nixpkgs-wayland.packages.${system}.swww}/bin/swww img ${wallpaper}
     '';
   };
 
