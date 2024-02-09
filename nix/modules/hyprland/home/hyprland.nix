@@ -26,9 +26,7 @@ in {
     upkgs.networkmanagerapplet # used in waybar
 
     inputs.nixpkgs-wayland.packages.${system}.grim
-    inputs.nixpkgs-wayland.packages.${system}.mako
     inputs.nixpkgs-wayland.packages.${system}.slurp
-    # inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
     inputs.nixpkgs-wayland.packages.${system}.swww
     inputs.nixpkgs-wayland.packages.${system}.wl-clipboard # Wayland equiv of pbcopy; Neovim also requires this for `unnamedplus` register
   ];
@@ -120,7 +118,6 @@ in {
       exec-once = [
         "${upkgs.pywal}/bin/wal -R"
         "${inputs.nixpkgs-wayland.packages.${system}.swww}/bin/swww query || ${inputs.nixpkgs-wayland.packages.${system}.swww}/bin/swww init"
-        "${inputs.nixpkgs-wayland.packages.${system}.mako}/bin/mako"
         "${inputs.nixpkgs-wayland.packages.${system}.waybar}/bin/waybar"
         "${inputs.nixpkgs-wayland.packages.${system}.wl-clipboard}/bin/wl-paste --watch cliphist store" # send clipboard entires to cliphist
         # # "blueman-applet"

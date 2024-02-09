@@ -9,7 +9,7 @@
     package = inputs.nixpkgs-wayland.packages.${system}.swaylock-effects;
     settings = {
       ignore-empty-password = true;
-      font = "Fira Sans Semibold";
+      font = "JetBrainsMono Nerd Font";
 
       clock = true;
       timestr = "%R";

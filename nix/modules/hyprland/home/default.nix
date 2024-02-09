@@ -9,6 +9,7 @@
   ...
 }: {
   imports = [
+    ./dunst.nix
     ./hyprland.nix
     ./pywal.nix
     ./rofi
