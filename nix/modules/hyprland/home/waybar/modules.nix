@@ -8,7 +8,7 @@
     text = ''
       #!/usr/bin/env bash
       case $1 in
-        d) cliphist list | rofi -dmenu -replace | cliphist delete
+        d) cliphist list | rofi -dmenu -replace -display-columns 2 | cliphist delete
            ;;
 
         w) if [ `echo -e "Clear\nCancel" | rofi -dmenu` == "Clear" ] ; then
@@ -16,7 +16,7 @@
            fi
            ;;
 
-        *) cliphist list | rofi -dmenu -replace | cliphist decode | wl-copy
+        *) cliphist list | rofi -dmenu -replace -display-columns 2 | cliphist decode | wl-copy
            ;;
       esac
     '';

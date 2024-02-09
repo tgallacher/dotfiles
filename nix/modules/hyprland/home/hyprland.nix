@@ -131,7 +131,7 @@ in {
         "$mod       , W           , exec                      , wlogout"
         "$mod SHIFT , W           , exec                      , pkill waybar && waybar &"
         "$mod SHIFT , SPACE       , exec                      , pkill rofi || rofi -show drun"
-        "$mod       , SPACE       , exec                      , pkill rofi || hyprctl clients -j | jq -r 'map(select( .class != \"\" )) | sort_by( .focusHistoryID )| .[] | (.address + \"\t\" + .title)' | rofi -dmenu | awk '{print $1;}' | xargs -I{} hyprctl dispatcher focuswindow \"address:{}\""
+        "$mod       , SPACE       , exec                      , pkill rofi || hyprctl clients -j | jq -r 'map(select( .class != \"\" )) | sort_by( .focusHistoryID )| .[] | (.address + \"\t\" + .title)' | rofi -dmenu -display-columns 2 | awk '{print $1;}' | xargs -I{} hyprctl dispatcher focuswindow \"address:{}\""
         "$mod       , B           , exec                      , brave"
         "$mod       , RETURN      , exec                      , $terminal"
         # "           , Print       , exec                      , grimblast copy area"
