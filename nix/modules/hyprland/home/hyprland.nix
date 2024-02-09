@@ -202,6 +202,7 @@ in {
         # Workspace: Notes
         "workspace 2,class:^(obsidian)$"
         "workspace 2,class:^(1Password)$"
+        "workspace 2,class:^(thunderbird)$"
         # Workspace: Personal Media
         "workspace 3,class:^(Spotify)$"
         "workspace 3,class:^(whatsapp-for-linux)$"

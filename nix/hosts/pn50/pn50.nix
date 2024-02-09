@@ -55,6 +55,8 @@
     okular # PDF viewer
     p7zip # File encryption
     libsForQt5.dolphin # File browser
+
+    thunderbird
   ];
 
   # nixpkgs.overlays = [
