@@ -31,7 +31,6 @@ in {
     inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
     inputs.nixpkgs-wayland.packages.${system}.swww
     inputs.nixpkgs-wayland.packages.${system}.waybar
-    inputs.nixpkgs-wayland.packages.${system}.wlogout
     inputs.nixpkgs-wayland.packages.${system}.wl-clipboard # Wayland equiv of pbcopy; Neovim also requires this for `unnamedplus` register
   ];
 

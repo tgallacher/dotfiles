@@ -10,8 +10,9 @@
 }: {
   imports = [
     ./hyprland.nix
+    ./pywal.nix
     ./rofi
     ./waybar
-    ./pywal.nix
+    ./wlogout
   ];
 }
