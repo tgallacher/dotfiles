@@ -28,7 +28,7 @@ in {
     inputs.nixpkgs-wayland.packages.${system}.grim
     inputs.nixpkgs-wayland.packages.${system}.mako
     inputs.nixpkgs-wayland.packages.${system}.slurp
-    inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
+    # inputs.nixpkgs-wayland.packages.${system}.swaylock-effects
     inputs.nixpkgs-wayland.packages.${system}.swww
     inputs.nixpkgs-wayland.packages.${system}.wl-clipboard # Wayland equiv of pbcopy; Neovim also requires this for `unnamedplus` register
   ];
@@ -128,7 +128,7 @@ in {
       ];
 
       bind = [
-        "$mod       , L           , exec                      , wlogout"
+        "$mod       , W           , exec                      , wlogout"
         "$mod SHIFT , W           , exec                      , pkill waybar && waybar &"
         "$mod SHIFT , SPACE       , exec                      , pkill rofi || rofi -show drun"
         "$mod       , SPACE       , exec                      , pkill rofi || hyprctl clients -j | jq -r 'map(select( .class != \"\" )) | sort_by( .focusHistoryID )| .[] | (.address + \"\t\" + .title)' | rofi -dmenu | awk '{print $1;}' | xargs -I{} hyprctl dispatcher focuswindow \"address:{}\""
@@ -190,14 +190,18 @@ in {
       windowrule = [];
 
       windowrulev2 = [
+        # Apps::
         # File manager
         "animation popin,class:^(dolphin)$"
         "opacity 0.8 0.8,class:^(dolphin)$"
         # Qalculate
         "float,class:^(qalculate-gtk)$"
         "center,class:^(qalculate-gtk)$"
+
+        # Workspaces::
         # Workspace: Notes
         "workspace 2,class:^(obsidian)$"
+        "workspace 2,class:^(1Password)$"
         # Workspace: Personal Media
         "workspace 3,class:^(Spotify)$"
         "workspace 3,class:^(whatsapp-for-linux)$"

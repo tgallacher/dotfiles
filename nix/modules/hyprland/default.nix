@@ -35,6 +35,9 @@
     package = inputs.hyprland.packages.${system}.hyprland;
   };
 
+  # Allow swaylock to perform authentication
+  security.pam.services.swaylock = {};
+
   services = {
     xserver = {
       enable = false;

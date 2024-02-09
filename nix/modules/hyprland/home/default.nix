@@ -12,6 +12,7 @@
     ./hyprland.nix
     ./pywal.nix
     ./rofi
+    ./swaylock.nix
     ./waybar
     ./wlogout
   ];
