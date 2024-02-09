@@ -9,10 +9,6 @@
   config,
   ...
 }: {
-  # home.packages = [
-  #   inputs.nixpkgs-wayland.packages.${system}.wlogout
-  # ];
-
   programs.wlogout = {
     enable = true;
     package = inputs.nixpkgs-wayland.packages.${system}.wlogout;
@@ -20,37 +16,37 @@
       {
         "label" = "lock";
         "action" = "sleep 1; swaylock";
-        "text" = "Lock";
+        "text" = "[L]ock";
         "keybind" = "l";
       }
       {
         "label" = "hibernate";
         "action" = "sleep 1; systemctl hibernate";
-        "text" = "Hibernate";
+        "text" = "[H]ibernate";
         "keybind" = "h";
       }
       {
         "label" = "logout";
         "action" = "sleep 1; hyprctl dispatch exit";
-        "text" = "Exit";
-        "keybind" = "e";
+        "text" = "L[o]gout";
+        "keybind" = "o";
       }
       {
         "label" = "shutdown";
         "action" = "sleep 1; systemctl poweroff";
-        "text" = "Shutdown";
+        "text" = "[S]hutdown";
         "keybind" = "s";
       }
       {
         "label" = "suspend";
         "action" = "sleep 1; systemctl suspend";
-        "text" = "Suspend";
+        "text" = "S[u]spend";
         "keybind" = "u";
       }
       {
         "label" = "reboot";
         "action" = "sleep 1; systemctl reboot";
-        "text" = "Reboot";
+        "text" = "[R]eboot";
         "keybind" = "r";
       }
     ];
