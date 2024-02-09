@@ -60,11 +60,11 @@ keymap("n", "<S-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<S-Right>", ":vertical resize +2<CR>", opts)
 
 -- == Navigate buffers
-keymap("n", "<A-]>", "<Nop>", opts)
-keymap("n", "<A-]>", ":bnext<CR>", opts)
+keymap("n", "<C-S-l>", "<Nop>", opts)
+keymap("n", "<C-S-l>", ":bnext<CR>", opts)
 
-keymap("n", "<A-[>", "<Nop>", opts)
-keymap("n", "<A-[>", ":bprevious<CR>", opts)
+keymap("n", "<C-S-h>", "<Nop>", opts)
+keymap("n", "<C-S-h>", ":bprevious<CR>", opts)
 
 keymap("n", "<A-x>", "<Nop>", opts)
 keymap("n", "<A-x>", ":bdelete<CR>", opts)
