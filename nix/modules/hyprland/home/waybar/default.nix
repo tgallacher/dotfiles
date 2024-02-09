@@ -29,17 +29,17 @@
           "wlr/taskbar"
           "tray"
           "custom/calculator"
-          "custom/filemanager"
         ];
         modules-center = [
           "hyprland/workspaces"
         ];
         modules-right = [
-          "custom/cliphist"
           "group/hardware"
           "pulseaudio"
           "bluetooth"
           "network"
+          "custom/cliphist"
+          "custom/filemanager"
           "idle_inhibitor"
           "custom/exit"
           "clock"
