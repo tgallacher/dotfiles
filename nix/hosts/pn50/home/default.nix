@@ -34,12 +34,6 @@
     };
   };
 
-  # Manage Dotfiles
-  home.file = {
-    # TODO: Better way to get flake location?
-    ".config/nvim/".source = config.lib.file.mkOutOfStoreSymlink "/home/${vars.username}/Code/${vars.username}/dotfiles/nvim";
-  };
-
   # Let Home Manager manage itself (in standalone mode)
   programs.home-manager.enable = true;
   home.stateVersion = "23.05";

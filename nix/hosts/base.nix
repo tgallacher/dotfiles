@@ -58,8 +58,6 @@
       git # Version control
       glib # require GIO for NvimTree
       iperf # Network performance
-      neovim # The only editor
-      tmux # Terminal super powers
       ranger # File manager
       w3m # img preview in ranger
       tldr # Man docs helper
