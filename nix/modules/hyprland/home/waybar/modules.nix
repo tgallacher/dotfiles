@@ -85,7 +85,7 @@
     # Filemanager Launcher
     "custom/filemanager" = {
       "format" = "";
-      "on-click" = "dolphin";
+      "on-click" = "thunar";
       "tooltip" = false;
     };
     # System tray
