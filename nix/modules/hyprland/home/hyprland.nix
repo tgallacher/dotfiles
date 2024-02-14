@@ -24,6 +24,7 @@ in {
     upkgs.jq # use for rofi window switching
     upkgs.qalculate-gtk # calculator app
     upkgs.networkmanagerapplet # used in waybar
+    # upkgs.libnotify # provides `notify-send`
 
     inputs.nixpkgs-wayland.packages.${system}.grim
     inputs.nixpkgs-wayland.packages.${system}.slurp
@@ -194,6 +195,8 @@ in {
         # Qalculate
         "float,class:^(qalculate-gtk)$"
         "center,class:^(qalculate-gtk)$"
+        # Dunst
+        "opacity 0.8 0.8,class:^(Dunst)$"
 
         # Workspaces::
         # Workspace: Notes

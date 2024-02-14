@@ -16,7 +16,7 @@
         height = "(0, 300)";
         origin = "top-center";
         scale = 0;
-        offset = "0x30";
+        offset = "0x0";
         notification_limit = 5;
         progress_bar = true; # Appears when using e.g. `notify-send -h int:value:12`
         progress_bar_height = 12;
@@ -25,14 +25,14 @@
         progrss_bar_max_width = 300;
         indicate_hidden = true;
         separate_height = 0;
-        padding = 0; # vertical padding (e.g. between text and separator)
-        horizontal_padding = 5;
-        text_icon_padding = 0;
-        frame_width = 2; # border size
+        padding = 10; # vertical padding (e.g. between text and separator)
+        horizontal_padding = 10;
+        text_icon_padding = 5;
+        frame_width = 1; # border size
         frame_color = "#fff";
-        gap_size = 3; # between notifications
+        gap_size = 5; # between notifications
         sort = true;
-        font = "JetBrainsMono Nerd Font Mono 14";
+        font = "JetBrainsMono Nerd Font Mono 10";
         # The format of the message.  Possible variables are:
         #   %a  appname
         #   %s  summary
@@ -70,6 +70,32 @@
         mouse_left_click = "close_current";
         mouse_middle_click = "do_action, close_current";
         mouse_right_click = "close_all";
+      };
+      urgency_low = {
+        # IMPORTANT: colors have to be defined in quotation marks.
+        # Otherwise the "#" and following would be interpreted as a comment.
+        background = "#00000085";
+        foreground = "#888888";
+        timeout = 10;
+        # Icon for notifications with low urgency, uncomment to enable
+        #default_icon = /path/to/icon
+      };
+
+      urgency_normal = {
+        background = "#00000085";
+        foreground = "#ffffff";
+        timeout = 10;
+        # Icon for notifications with normal urgency, uncomment to enable
+        #default_icon = /path/to/icon
+      };
+
+      urgency_critical = {
+        background = "#90000085";
+        foreground = "#ffffff";
+        frame_color = "#ffffff";
+        timeout = 15;
+        # Icon for notifications with critical urgency, uncomment to enable
+        #default_icon = /path/to/icon
       };
     };
   };
