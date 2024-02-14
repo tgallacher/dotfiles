@@ -1,7 +1,6 @@
 {
   self,
   upkgs,
-  pkgs,
   ...
 }: {
   programs.tmux = let

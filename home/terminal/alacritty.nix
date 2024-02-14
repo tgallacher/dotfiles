@@ -1,11 +1,7 @@
 {
   self,
-  config,
   pkgs,
   upkgs,
-  vars,
-  inputs,
-  system,
   ...
 }: let
   alacrittyFileExtension = version:

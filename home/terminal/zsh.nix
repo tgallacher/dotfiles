@@ -45,12 +45,7 @@
     localVariables = {
       CASE_SENSITIVE = "true";
       HIST_STAMPS = "yyyy-mm-dd";
-      # TODO: pass in via `vars`
-      # BROWSER = "brave";
-      # EDITOR = "nvim";
-      # TERMINAL = "alacritty";
-      # PAGER = "less";
-      # VISUAL = "nvim";
+      BROWSER = "brave";
     };
     # # add to .zprofile
     # profileExtra = '''';
