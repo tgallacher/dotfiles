@@ -11,6 +11,7 @@
   imports = [
     ./git.nix
     ./terminal
+    ../../../../home/nvim
   ];
 
   home.username = vars.username;
