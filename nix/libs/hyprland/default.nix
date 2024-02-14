@@ -41,16 +41,16 @@
   services = {
     xserver = {
       enable = false;
-      # Disable display managers, as we'll use `greetd`
-      displayManager.sddm.enable = false;
-      displayManager.gdm.enable = false;
-      displayManager.lightdm.enable = false;
-      displayManager.xpra.enable = false;
-      # Disable desktop managers, as we'll use Hyprland
-      desktopManager.plasma5.enable = false;
-      desktopManager.xfce.enable = false;
-      desktopManager.gnome.enable = false;
-      layout = "gb";
+      # # Disable display managers, as we'll use `greetd`
+      # displayManager.sddm.enable = false;
+      # displayManager.gdm.enable = false;
+      # displayManager.lightdm.enable = false;
+      # displayManager.xpra.enable = false;
+      # # Disable desktop managers, as we'll use Hyprland
+      # desktopManager.plasma5.enable = false;
+      # desktopManager.xfce.enable = false;
+      # desktopManager.gnome.enable = false;
+      # layout = "gb";
     };
     greetd = {
       enable = true;
