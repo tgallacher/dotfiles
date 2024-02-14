@@ -23,12 +23,18 @@
       editor = "nvim";
     };
   in {
-    # homeConfigurations = (
-    #   import ./nix/hosts/pn50/home {
-    #     # inherit (nixpkgs) lib;
-    #     inherit inputs vars;
-    #   }
-    # );
+    homeConfigurations = {
+      pn50 = inputs.home-manager.lib.homeManagerConfiguration {
+        # "${vars.username}@pn50" = inputs.home-manager.lib.homeManagerConfiguration {
+        modules = [./nix/hosts/pn50/home];
+        pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {
+          inherit inputs vars;
+          upkgs = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
+        };
+      };
+    };
+
     nixosConfigurations = (
       import ./nix/hosts {
         inherit (inputs.nixpkgs) lib;
