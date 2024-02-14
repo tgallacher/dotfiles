@@ -54,7 +54,8 @@
     # File Management
     okular # PDF viewer
     p7zip # File encryption
-    libsForQt5.dolphin # File browser
+    xfce.thunar # File manager
+    xfce.thunar-volman # Extension to add support for removable drives/media
 
     thunderbird
   ];

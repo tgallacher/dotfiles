@@ -189,8 +189,8 @@ in {
       windowrulev2 = [
         # Apps::
         # File manager
-        "animation popin,class:^(dolphin)$"
-        "opacity 0.8 0.8,class:^(dolphin)$"
+        "animation popin,class:^(thunar)$"
+        "opacity 0.8 0.8,class:^(thunar)$"
         # Qalculate
         "float,class:^(qalculate-gtk)$"
         "center,class:^(qalculate-gtk)$"
