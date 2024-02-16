@@ -60,6 +60,20 @@
     thunderbird
   ];
 
+  fonts.packages = builtins.attrValues {
+    inherit
+      (pkgs)
+      carlito # NixOS
+      vegur # NixOS
+      ;
+  };
+
+  users.users.${vars.username}.extraGroups = [
+    "video"
+    "audio"
+    "networkmanager"
+  ];
+
   # nixpkgs.overlays = [
   #   (final: prev: {
   #     discord = prev.discord.overrideAttrs (_: {
@@ -67,4 +81,7 @@
   #     });
   #   })
   # ];
+
+  # Do not change. See man configuration.nix or on https://nixos.org/nixos/options.html.
+  system.stateVersion = "22.11"; # Did you read the comment?
 }
