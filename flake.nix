@@ -14,6 +14,11 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    nix-darwin = {
+    	url = "github:LnL7/nix-darwin/master";
+	inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = {self, ...} @ inputs: let
@@ -31,6 +36,16 @@
         extraSpecialArgs = {
           inherit inputs vars;
           upkgs = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
+        };
+      };
+
+      m1pro = inputs.home-manager.lib.homeManagerConfiguration {
+	modules = [./nix/hosts/m1pro/home];
+        pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
+        extraSpecialArgs = {
+          inherit inputs vars;
+	  system = "aarch64-darwin";
+          upkgs = inputs.nixpkgs-unstable.legacyPackages.aarch64-darwin;
         };
       };
     };
