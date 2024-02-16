@@ -16,8 +16,8 @@
     };
 
     nix-darwin = {
-    	url = "github:LnL7/nix-darwin/master";
-	inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:LnL7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
@@ -31,8 +31,12 @@
     homeConfigurations = {
       pn50 = inputs.home-manager.lib.homeManagerConfiguration {
         # "${vars.username}@pn50" = inputs.home-manager.lib.homeManagerConfiguration {
-        modules = [./nix/hosts/pn50/home];
         pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+
+        modules = [
+          ./nix/hosts/pn50/home
+        ];
+
         extraSpecialArgs = {
           inherit inputs vars;
           upkgs = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
@@ -40,11 +44,14 @@
       };
 
       m1pro = inputs.home-manager.lib.homeManagerConfiguration {
-	modules = [./nix/hosts/m1pro/home];
         pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
+
+        modules = [
+          ./nix/hosts/m1pro/home
+        ];
+
         extraSpecialArgs = {
           inherit inputs vars;
-	  system = "aarch64-darwin";
           upkgs = inputs.nixpkgs-unstable.legacyPackages.aarch64-darwin;
         };
       };

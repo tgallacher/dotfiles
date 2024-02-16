@@ -2,6 +2,7 @@
   self,
   pkgs,
   upkgs,
+  config,
   ...
 }: let
   alacrittyFileExtension = version:
@@ -19,7 +20,7 @@ in {
     # see: https://alacritty.org/config-alacritty.html
     settings = {
       import = [
-        "${upkgs.alacritty-theme}/catppuccin_mocha.${alacrittyFileExtension upkgs.alacritty.version}"
+        "${upkgs.alacritty-theme}/catppuccin_mocha.${alacrittyFileExtension config.programs.alacritty.package.version}"
       ];
       live_config_reload = true;
       cursor = {
@@ -44,7 +45,7 @@ in {
         };
         italic = {
           family = "JetBrainsMono Nerd Font";
-          style = "Bold";
+          style = "Italic";
         };
         # Offset is the extra space around each character. offset.y can be thought of
         # as modifying the linespacing, and offset.x as modifying the letter spacing.
