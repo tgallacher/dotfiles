@@ -1,4 +1,8 @@
-{self, ...}: {
+{
+  self,
+  pkgs,
+  ...
+}: {
   nix = {
     # FIXME: see https://github.com/nix-community/home-manager/issues/4692
     # package = upkgs.nixVersions.unstable;
@@ -19,10 +23,19 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
+    gc =
+      {
+        automatic = true;
+        options = "--delete-older-than 7d";
+      }
+      // (
+        if pkgs.stdenv.isDarwin
+        then {
+          # interval = "weekly";
+        }
+        else {
+          dates = "weekly";
+        }
+      );
   };
 }

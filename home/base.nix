@@ -37,7 +37,7 @@
       tldr # Man docs helper
       # Audio/Video
 
-      vlc # Media player
+      #vlc # Media player
       # File Management
 
       rsync # File transfer
@@ -50,16 +50,16 @@
       (upkgs)
       # CLIs
 
-      home-manager # Nix home dir manaager
+      #home-manager # Nix home dir manaager
       python3
       # Apps
 
       _1password-gui # Secrets
-      brave # Web browser
+      #brave # Web browser
       discord # chat
       obsidian # notetaking
       spotify # music
-      ticktick # todos
+      #ticktick # todos
       ;
   };
 }

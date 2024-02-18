@@ -34,7 +34,10 @@ in {
       colors.draw_bold_text_with_bright_colors = true;
       # fullscreen = false;
       font = {
-        size = 10;
+        size =
+          if pkgs.stdenv.isDarwin
+          then 14
+          else 10;
         normal = {
           family = "JetBrainsMono Nerd Font";
           style = "Regular";
@@ -61,13 +64,19 @@ in {
           y = 0;
         };
       };
-      keyboard.bindings = [
-        {
-          key = "Key3";
-          mods = "Alt";
-          chars = "#";
-        } # Alt + #
-      ];
+      keyboard.bindings =
+        []
+        ++ (
+          if pkgs.stdenv.isDarwin
+          then [
+            {
+              key = "Key3";
+              mods = "Alt";
+              chars = "#";
+            }
+          ]
+          else []
+        ); # Alt + #
       mouse = {
         hide_when_typing = true;
       };
@@ -87,6 +96,10 @@ in {
         startup_mode = "Windowed";
         dynamic_title = true;
         opacity = 0.8;
+        option_as_alt =
+          if pkgs.stdenv.isDarwin
+          then "Both"
+          else "None";
       };
     };
   };

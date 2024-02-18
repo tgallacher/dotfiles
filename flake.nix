@@ -44,7 +44,10 @@
       };
 
       m1pro = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
+        pkgs = import inputs.nixpkgs {
+          system = "aarch64-darwin";
+          config = {allowUnfree = true;};
+        };
 
         modules = [
           ./nix/hosts/m1pro/home
@@ -52,7 +55,10 @@
 
         extraSpecialArgs = {
           inherit inputs vars;
-          upkgs = inputs.nixpkgs-unstable.legacyPackages.aarch64-darwin;
+          upkgs = import inputs.nixpkgs-unstable {
+            system = "aarch64-darwin";
+            config = {allowUnfree = true;};
+          };
         };
       };
     };
@@ -63,5 +69,30 @@
         inherit inputs vars;
       }
     );
+
+    darwinConfigurations = {
+      m1pro = inputs.nix-darwin.lib.darwinSystem {
+        specialArgs = {
+          inherit inputs vars;
+
+          host = {
+            name = "m1pro";
+          };
+
+          pkgs = import inputs.nixpkgs {
+            system = "aarch64-darwin";
+            config = {allowUnfree = true;};
+          };
+          upkgs = import inputs.nixpkgs-unstable {
+            system = "aarch64-darwin";
+            config = {allowUnfree = true;};
+          };
+        };
+
+        modules = [
+          ./nix/hosts/m1pro
+        ];
+      };
+    };
   };
 }

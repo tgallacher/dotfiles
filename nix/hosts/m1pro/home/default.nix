@@ -1,26 +1,28 @@
 {
-self,
-config,
-pkgs,
-upkgs,
-inputs,
-system,
-vars,
-...
+  self,
+  config,
+  pkgs,
+  upkgs,
+  inputs,
+  system,
+  vars,
+  lib,
+  ...
 }: {
-	imports = [
-		../../../../home/terminal
-		../../../../home/nvim
-	];
+  imports = [
+    ../../../../home/base.nix
+    ../../../../home/terminal
+    ../../../../home/nvim
+  ];
 
-	home = {
-		username = vars.username;
-		homeDirectory = "/Users/${vars.username}";
-		stateVersion = "23.11";
-	};
+  home = {
+    username = vars.username;
+    homeDirectory = lib.mkForce "/Users/${vars.username}";
+    stateVersion = "23.11";
+  };
 
-	home.packages = [];
+  home.packages = [];
 
-	# Let Home Manager manage itself (standalone use)
-	programs.home-manager.enable = true;
+  # Let Home Manager manage itself (standalone use)
+  programs.home-manager.enable = true;
 }

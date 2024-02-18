@@ -41,7 +41,29 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
+    sudo.wheelNeedsPassword = false;
   };
+
+  i18n.defaultLocale = "en_GB.UTF-8";
+  services = {
+    printing.enable = true;
+    openssh.enable = true;
+  };
+
+  ## Audio
+  sound.enable = true;
+
+  fonts.packages = with pkgs; [
+    carlito # NixOS
+    vegur # NixOS
+    font-awesome
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "JetBrainsMono"
+      ];
+    })
+  ];
 
   environment.systemPackages = with pkgs; [
     # Audio/Video
@@ -60,19 +82,19 @@
     thunderbird
   ];
 
-  fonts.packages = builtins.attrValues {
-    inherit
-      (pkgs)
-      carlito # NixOS
-      vegur # NixOS
-      ;
-  };
+  users.users.${vars.username} = {
+    isNormalUser = true; # automatically set additional settings for normal users
+    initialPassword = "Passw0rd!"; # Don't forget to change after initial set up!
+    extraGroups = [
+      "wheel" #  Enable ‘sudo’
+    ];
 
-  users.users.${vars.username}.extraGroups = [
-    "video"
-    "audio"
-    "networkmanager"
-  ];
+    extraGroups = [
+      "video"
+      "audio"
+      "networkmanager"
+    ];
+  };
 
   # nixpkgs.overlays = [
   #   (final: prev: {
