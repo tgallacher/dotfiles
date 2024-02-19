@@ -65,22 +65,44 @@
     })
   ];
 
-  environment.systemPackages = with pkgs; [
-    # Audio/Video
-    alsa-utils # Audio control
-    feh # Image viewer
-    mpv # Media player
-    pipewire # Audio server/control
-    pulseaudio # Audio server/control
+  environment.systemPackages = builtins.attrValues {
+    inherit
+      (pkgs)
+      # Audio/Video
 
-    # File Management
-    okular # PDF viewer
-    p7zip # File encryption
-    xfce.thunar # File manager
-    xfce.thunar-volman # Extension to add support for removable drives/media
+      alsa-utils # Audio control
+      feh # Image viewer
+      mpv # Media player
+      pipewire # Audio server/control
+      pulseaudio # Audio server/control
 
-    thunderbird
-  ];
+      # File Management
+
+      okular # PDF viewer
+      p7zip # File encryption
+      "xfce.thunar" # File manager
+      "xfce.thunar-volman" # Extension to add support for removable drives/media
+      ;
+
+    inherit
+      (upkgs)
+      # Audio/Video
+
+      vlc # Media player
+      # CLI
+
+      home-manager # Nix home dir manaager
+      # Apps
+
+      _1password-gui # Secrets
+      brave
+      discord # chat
+      obsidian # notetaking
+      spotify # music
+      thunderbird
+      ticktick # todos
+      ;
+  };
 
   users.users.${vars.username} = {
     isNormalUser = true; # automatically set additional settings for normal users

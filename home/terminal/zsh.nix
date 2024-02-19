@@ -47,8 +47,14 @@
       HIST_STAMPS = "yyyy-mm-dd";
       BROWSER = "brave";
     };
-    # # add to .zprofile
-    # profileExtra = '''';
+    # add to .zprofile
+    profileExtra = ''
+      ${
+        if pkgs.stdenv.isDarwin
+        then "eval \"$(/opt/homebrew/bin/brew shellenv)\""
+        else ""
+      }
+    '';
     # # env vars set for each session
     # sessionVariables = { };
     shellAliases = {

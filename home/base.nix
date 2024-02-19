@@ -36,9 +36,6 @@
       ranger # File manager
       w3m # img preview in ranger
       tldr # Man docs helper
-      # Audio/Video
-
-      #vlc # Media player
 
       # File Management
 
@@ -52,19 +49,7 @@
       (upkgs)
       # CLIs
 
-      #home-manager # Nix home dir manaager
-
       python3
-      # Apps
-
-      _1password-gui # Secrets
-      #brave # Web browser
-
-      discord # chat
-      obsidian # notetaking
-      spotify # music
-      #ticktick # todos
-
       ;
   };
 }
