@@ -22,6 +22,7 @@
 
       # CLI
 
+      ripgrep
       btop # Resource manager
       bat # cat with wings
       curl # Fetch stuff
@@ -38,6 +39,7 @@
       # Audio/Video
 
       #vlc # Media player
+
       # File Management
 
       rsync # File transfer
@@ -51,15 +53,18 @@
       # CLIs
 
       #home-manager # Nix home dir manaager
+
       python3
       # Apps
 
       _1password-gui # Secrets
       #brave # Web browser
+
       discord # chat
       obsidian # notetaking
       spotify # music
       #ticktick # todos
+
       ;
   };
 }

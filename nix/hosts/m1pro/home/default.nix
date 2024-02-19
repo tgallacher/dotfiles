@@ -10,6 +10,7 @@
   ...
 }: {
   imports = [
+    inputs.mac-app-util.homeManagerModules.default
     ../../../../home/base.nix
     ../../../../home/terminal
     ../../../../home/nvim
@@ -21,7 +22,9 @@
     stateVersion = "23.11";
   };
 
-  home.packages = [];
+  home.packages = [
+    upkgs.raycast
+  ];
 
   # Let Home Manager manage itself (standalone use)
   programs.home-manager.enable = true;

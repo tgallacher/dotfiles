@@ -15,6 +15,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    # see: https://github.com/nix-community/home-manager/issues/1341#issuecomment-1821526984
+    mac-app-util.url = "github:hraban/mac-app-util"; # Fix Application link / spotlight, etc
     nix-darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -30,10 +32,10 @@
   in {
     homeConfigurations = {
       pn50 = inputs.home-manager.lib.homeManagerConfiguration {
-        # "${vars.username}@pn50" = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
 
         modules = [
+          inputs.mac-app-util.darwinModules.default
           ./nix/hosts/pn50/home
         ];
 

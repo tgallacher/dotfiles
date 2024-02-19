@@ -95,7 +95,10 @@ in {
         decorations = "full";
         startup_mode = "Windowed";
         dynamic_title = true;
-        opacity = 0.8;
+        opacity =
+          if pkgs.stdenv.isDarwin
+          then 1.0
+          else 0.8;
         option_as_alt =
           if pkgs.stdenv.isDarwin
           then "Both"
