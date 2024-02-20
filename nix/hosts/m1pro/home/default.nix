@@ -10,7 +10,7 @@
   ...
 }: {
   imports = [
-    inputs.mac-app-util.homeManagerModules.default
+    # inputs.mac-app-util.homeManagerModules.default
     ../../../../home/base.nix
     ../../../../home/terminal
     ../../../../home/nvim

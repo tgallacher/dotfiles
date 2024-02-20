@@ -3,6 +3,7 @@
   pkgs,
   upkgs,
   config,
+  osConfig,
   ...
 }: let
   alacrittyFileExtension = version:
@@ -17,6 +18,14 @@ in {
   programs.alacritty = {
     enable = true;
     package = upkgs.alacritty;
+    # package = upkgs.emptyFile;
+    # package =
+    #   if pkgs.stdenv.isDarwin
+    #   # GUI app, so to avoid nix-darwin GUI location weirdness then install alacritty using homebrew
+    #   # see: https://github.com/LnL7/nix-darwin/issues/139
+    #   # see: https://github.com/LnL7/nix-darwin/issues/214
+    #   then "${osConfig.homebrew.brewPrefix}/alacritty"
+    #   else upkgs.alacritty;
     # see: https://alacritty.org/config-alacritty.html
     settings = {
       import = [
@@ -92,7 +101,10 @@ in {
         };
         # Window decorations
         # Setting this to false will result in window without borders and title bar.
-        decorations = "full";
+        decorations =
+          if pkgs.stdenv.isDarwin
+          then "Buttonless"
+          else "Full";
         startup_mode = "Windowed";
         dynamic_title = true;
         opacity =

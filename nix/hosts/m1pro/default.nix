@@ -35,8 +35,8 @@
   };
 
   users.users.${vars.username} = {
-    # createHome = true;
-    # home = "/Users/${vars.username}";
+    createHome = true;
+    home = "/Users/${vars.username}";
     isHidden = false;
   };
 
@@ -61,6 +61,7 @@
     taps = [];
     brews = [];
     casks = [
+      "alacritty"
       "ticktick" # todo
       "brave-browser"
       "spotify"
@@ -68,6 +69,7 @@
       "discord"
       "1password"
       "1password-cli"
+      "whatsapp"
     ];
     masApps = {};
     global = {
@@ -128,32 +130,33 @@
       disable-shadow = true;
     };
     NSGlobalDomain = {
-      AppleInterfaceStyle = "Dark";
-      AppleShowScrollBars = "WhenScrolling";
-      AppleKeyboardUIMode = 3; # keyboard control over OSX UI; 0 - tab in modal dialogs; 2/3 = all controls
-      ApplePressAndHoldEnabled = false; # diasable in favour of key-repeat
-
-      # Set fast key repeat
-      InitialKeyRepeat = 20;
-      KeyRepeat = 1;
-
-      NSAutomaticCapitalizationEnabled = false;
-      NSAutomaticPeriodSubstitutionEnabled = false;
-      NSAutomaticSpellingCorrectionEnabled = false;
-      NSAutomaticQuoteSubstitutionEnabled = false; # PITA with coding
-      NSNavPanelExpandedStateForSaveMode = true;
-      NSNavPanelExpandedStateForSaveMode2 = true;
-      PMPrintingExpandedStateForPrint = true;
-      PMPrintingExpandedStateForPrint2 = true;
-      NSAutomaticDashSubstitutionEnabled = false; # PITA with coding
-      NSDocumentSaveNewDocumentsToCloud = false;
-      NSTableViewDefaultSizeMode = 2; # finder sidebar icon size: 1,2,3
       "com.apple.keyboard.fnState" = false; # use Fn keys are normal F1, F2, ...
       "com.apple.mouse.tapBehavior" = 1; # 1, null: trackpad tap to click enablbed when "1"
-      "com.apple.trackpad.enableSecondaryClick" = true;
       "com.apple.swipescrolldirection" = false; # set natural scrolling direction
-      AppleMetricUnits = 1;
+      "com.apple.trackpad.enableSecondaryClick" = true;
       AppleICUForce24HourTime = true; # 24 hr clock
+      AppleInterfaceStyle = "Dark";
+      AppleKeyboardUIMode = 3; # keyboard control over OSX UI; 0 - tab in modal dialogs; 2/3 = all controls
+      AppleMetricUnits = 1;
+      ApplePressAndHoldEnabled = false; # diasable in favour of key-repeat
+      AppleShowScrollBars = "WhenScrolling";
+
+      InitialKeyRepeat = 20; # Set fast key repeat
+      KeyRepeat = 1; # Set fast key repeat
+
+      NSAutomaticCapitalizationEnabled = false;
+      NSAutomaticDashSubstitutionEnabled = false; # PITA with coding
+      NSAutomaticPeriodSubstitutionEnabled = false;
+      NSAutomaticQuoteSubstitutionEnabled = false; # PITA with coding
+      NSAutomaticSpellingCorrectionEnabled = false;
+      NSDocumentSaveNewDocumentsToCloud = false;
+
+      NSNavPanelExpandedStateForSaveMode = true;
+      NSNavPanelExpandedStateForSaveMode2 = true;
+      NSTableViewDefaultSizeMode = 2; # finder sidebar icon size: 1,2,3
+
+      PMPrintingExpandedStateForPrint = true;
+      PMPrintingExpandedStateForPrint2 = true;
     };
 
     CustomUserPreferences = {
