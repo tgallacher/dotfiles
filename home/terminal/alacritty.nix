@@ -83,6 +83,11 @@ in {
               mods = "Alt";
               chars = "#";
             }
+            {
+              key = "Return";
+              mods = "Super|Shift";
+              action = "SpawnNewInstance";
+            }
           ]
           else []
         ); # Alt + #
