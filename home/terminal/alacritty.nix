@@ -101,8 +101,8 @@ in {
           columns = 160;
         };
         padding = {
-          x = 4;
-          y = 4;
+          x = 0;
+          y = 0;
         };
         # Window decorations
         # Setting this to false will result in window without borders and title bar.
