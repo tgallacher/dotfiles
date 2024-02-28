@@ -37,25 +37,25 @@
       ##################################################
 
       # focus within space
-      cmd - j : yabai -m window --focus south
-      cmd - k : yabai -m window --focus north
-      cmd - h : yabai -m window --focus west
-      cmd - l : yabai -m window --focus east
+      cmd + ctrl - j : yabai -m window --focus south
+      cmd + ctrl - k : yabai -m window --focus north
+      cmd + ctrl - h : yabai -m window --focus west
+      cmd + ctrl - l : yabai -m window --focus east
 
       # change focus between external displays (left, right)
-      cmd - s : yabai -m display --focus west
-      cmd - g : yabai -m display --focus east
+      cmd + ctrl - s : yabai -m display --focus west
+      cmd + ctrl - g : yabai -m display --focus east
 
       ##
       ## Windows / Layouts
       ##################################################
 
-      cmd - r : yabai -m space --rotate 270                         # rotate layout clockwise
-      cmd - y : yabai -m space --mirror y-axis                      # flip along y-axis
-      cmd - x : yabai -m space --mirror x-axis                      # flip along x-axis
-      cmd - t : yabai -m window --toggle float --grid 4:4:1:1:2:2   # toggle window float
-      cmd - m : yabai -m window --toggle zoom-fullscreen            # toggle fullscreen
-      cmd - e : yabai -m space --balance                            # rebalance windows on screen
+      cmd + ctrl - r : yabai -m space --rotate 270                         # rotate layout clockwise
+      cmd + ctrl - y : yabai -m space --mirror y-axis                      # flip along y-axis
+      cmd + ctrl - x : yabai -m space --mirror x-axis                      # flip along x-axis
+      cmd + ctrl - t : yabai -m window --toggle float --grid 4:4:1:1:2:2   # toggle window float
+      cmd + ctrl - m : yabai -m window --toggle zoom-fullscreen            # toggle fullscreen
+      cmd + ctrl - e : yabai -m space --balance                            # rebalance windows on screen
 
       # Resize window
       cmd + ctrl - j : yabai -m window --resize bottom:150:0
@@ -91,12 +91,12 @@
       cmd + shift - n : yabai -m window --space next;
 
       # move window to space #
-      cmd + shift - 1 : yabai -m window --space 1;
-      cmd + shift - 2 : yabai -m window --space 2;
-      cmd + shift - 3 : yabai -m window --space 3;
-      cmd + shift - 4 : yabai -m window --space 4;
-      cmd + shift - 5 : yabai -m window --space 5;
-      cmd + shift - 6 : yabai -m window --space 6;
+      ctrl + shift - 1 : yabai -m window --space 1;
+      ctrl + shift - 2 : yabai -m window --space 2;
+      ctrl + shift - 3 : yabai -m window --space 3;
+      ctrl + shift - 4 : yabai -m window --space 4;
+      ctrl + shift - 5 : yabai -m window --space 5;
+      ctrl + shift - 6 : yabai -m window --space 6;
 
       ##
       ## Services
@@ -113,7 +113,6 @@
   };
 
   system.defaults.CustomUserPreferences = {
-    # NSGlobalDomain._HIHideMenuBar = true; # hide OSX menubar
     "com.apple.spaces".spans-displays = 0; # 0 means enabled
     "com.apple.dock".mru-spaces = 0;
     "com.apple.WindowManager".StandardHideDesktopIcons = 0;
