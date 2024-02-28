@@ -61,9 +61,10 @@
   homebrew = {
     enable = true; # allow nix-darwin to manage brew?
     taps = [];
-    brews = [];
+    brews = [
+      "libiconv" # rnix-lsp
+    ];
     casks = [
-      "alacritty"
       "ticktick" # todo
       "brave-browser"
       "spotify"
