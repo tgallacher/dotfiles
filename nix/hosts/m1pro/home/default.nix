@@ -26,6 +26,10 @@
     upkgs.raycast
   ];
 
+  home.file.".hushlogin".text = ''
+    # silence tty start up spam
+  '';
+
   # Let Home Manager manage itself (standalone use)
   programs.home-manager.enable = true;
 }
