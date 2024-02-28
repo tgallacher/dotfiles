@@ -18,7 +18,7 @@ return {
         desc = "Find string (root dir)",
       },
       {
-        "<leader>lG",
+        "<localleader>lg",
         function() require("telescope.builtin").live_grep({ grep_open_files = true }) end,
         desc = "Find string (open buffers)",
       },
@@ -43,17 +43,13 @@ return {
         desc = "Find files (hidden,ignored)",
       },
       {
-        "<leader>fs",
+        "<localleader>fs",
         function() require("telescope.builtin").current_buffer_fuzzy_find() end,
         desc = "Find string inside current buffer",
       },
       {
         "<leader>fg",
-        function()
-          require("telescope.builtin").git_files({
-            show_untracked = true,
-          })
-        end,
+        function() require("telescope.builtin").git_files({ show_untracked = true }) end,
         desc = "Find git files",
       },
       {
@@ -62,17 +58,17 @@ return {
         desc = "Show recently opened files",
       },
       {
-        "<leader>gc",
+        "<localleader>gc",
         function() require("telescope.builtin").git_bcommits() end,
         desc = "Show git commits for current buffer",
       },
       {
-        "<leader>gs",
+        "<localleader>gs",
         function() require("telescope.builtin").git_status() end,
         desc = "Show git status",
       },
       {
-        "<leader>sh",
+        "<leader>th",
         function() require("telescope.builtin").search_history() end,
         desc = "Show search history",
       },
@@ -91,8 +87,8 @@ return {
         function() require("telescope.builtin").spell_suggest() end,
         desc = "Show spelling suggestions for word under cursor",
       },
-      { -- FIXME: clash with Tmux
-        "<localleader>s",
+      {
+        "<localleader>ss",
         function() require("telescope.builtin").treesitter() end,
         desc = "Show symbols in buffer",
       },
@@ -102,7 +98,7 @@ return {
         desc = "Document diagnostics",
       },
       {
-        "<localleader>sD",
+        "<leader>sd",
         function() require("telescope.builtin").diagnostics() end,
         desc = "Workspace diagnostics",
       },
@@ -133,7 +129,7 @@ return {
         desc = "Goto Symbol",
       },
       {
-        "<localleader>gtS",
+        "<leader>gts",
         function()
           require("telescope.builtin").lsp_dynamic_workspace_symbols({
             symbols = {
