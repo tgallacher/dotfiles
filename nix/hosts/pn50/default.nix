@@ -1,9 +1,9 @@
 {
-  lib,
   inputs,
   vars,
   ...
 }: let
+  inherit (inputs.nixpkgs) lib;
   inherit (inputs) home-manager;
   system = "x86_64-linux";
 

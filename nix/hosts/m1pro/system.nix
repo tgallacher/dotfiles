@@ -103,9 +103,6 @@
     };
 
     CustomUserPreferences = {
-      # "NSGlobalDomain" = {
-      #   "_HIHideMenuBar" = 1;
-      # };
       "com.apple.finder" = {
         ShowExternalHardDrivesOnDesktop = true;
         ShowHardDrivesOnDesktop = true;

@@ -1,8 +1,11 @@
 {
   self,
   upkgs,
+  config,
   ...
-}: {
+}: let
+  hasSketchybar = config.services.sketchybar.enable;
+in {
   services.yabai = {
     enable = true;
     package = upkgs.yabai;
@@ -22,13 +25,38 @@
       yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
       yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
       yabai -m rule --add app="^(Calculator|Software Update|Dictionary|System Preferences|System Settings|Photo Booth|Archive Utility|App Store|Alfred|Activity Monitor)$" manage=off
-      # Apps
-      yabai -m rule --add app="^zoom*" manage=off
-      yabai -m rule --add app="^1password" manage=off
+      # Apps: General
+
+      # Space: Primary
+      # yabai -m rule --add title="^Alacritty" space=1
+
+      # Space: Secondary
+      yabai -m rule --add title="^1Password" space=2
+      yabai -m rule --add title="^TickTick" space=2
+
+      # Space: ?
+      yabai -m rule --add app="^zoom*" manage=off space=3
+      yabai -m rule --add title="^Obsidian" space=3
+
+      # Space: Social
+      yabai -m rule --add title="^WhatsApp" space=4
+
+      ${
+        if hasSketchybar
+        then ''
+          # Sketchybar
+          yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+          yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+          yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+        ''
+        else ""
+      }
     '';
   };
 
-  services.skhd = {
+  services.skhd = let
+    sketchybarWinFocus = "sketchybar --trigger window_focus";
+  in {
     enable = true;
     package = upkgs.skhd;
     skhdConfig = ''
@@ -53,9 +81,19 @@
       cmd + ctrl - r : yabai -m space --rotate 270                         # rotate layout clockwise
       cmd + ctrl - y : yabai -m space --mirror y-axis                      # flip along y-axis
       cmd + ctrl - x : yabai -m space --mirror x-axis                      # flip along x-axis
-      cmd + ctrl - t : yabai -m window --toggle float --grid 4:4:1:1:2:2   # toggle window float
-      cmd + ctrl - m : yabai -m window --toggle zoom-fullscreen            # toggle fullscreen
       cmd + ctrl - e : yabai -m space --balance                            # rebalance windows on screen
+      cmd + ctrl - m : yabai -m window --toggle zoom-fullscreen            # toggle fullscreen
+      cmd + ctrl - t : yabai -m window --toggle float ${ # toggle window float
+        if hasSketchybar
+        then "; ${sketchybarWinFocus}"
+        else ""
+      }
+      # cmd + ctrl - t : yabai -m window --toggle float --grid 4:4:1:1:2:2   # toggle window float
+      cmd + ctrl - t : yabai -m window --toggle float ${ # toggle window float
+        if hasSketchybar
+        then "; ${sketchybarWinFocus}"
+        else ""
+      }
 
       # Resize window
       cmd + ctrl - j : yabai -m window --resize bottom:150:0

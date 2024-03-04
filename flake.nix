@@ -15,6 +15,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    nix-colors.url = "github:misterio77/nix-colors";
+
     # see: https://github.com/nix-community/home-manager/issues/1341#issuecomment-1821526984
     # mac-app-util.url = "github:hraban/mac-app-util"; # Fix Application link / spotlight, etc
     nix-darwin = {
@@ -30,6 +32,7 @@
       editor = "nvim";
     };
   in {
+    # TODO: Consider removing this, as not all HOME stuff is configured through HM
     homeConfigurations = {
       pn50 = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
@@ -66,34 +69,14 @@
 
     nixosConfigurations = (
       import ./nix/hosts {
-        inherit (inputs.nixpkgs) lib;
         inherit inputs vars;
       }
     );
 
-    darwinConfigurations = {
-      m1pro = inputs.nix-darwin.lib.darwinSystem {
-        specialArgs = {
-          inherit inputs vars;
-
-          host = {
-            name = "m1pro";
-          };
-
-          pkgs = import inputs.nixpkgs {
-            system = "aarch64-darwin";
-            config = {allowUnfree = true;};
-          };
-          upkgs = import inputs.nixpkgs-unstable {
-            system = "aarch64-darwin";
-            config = {allowUnfree = true;};
-          };
-        };
-
-        modules = [
-          ./nix/hosts/m1pro
-        ];
-      };
-    };
+    darwinConfigurations = (
+      import ./nix/hosts {
+        inherit inputs vars;
+      }
+    );
   };
 }

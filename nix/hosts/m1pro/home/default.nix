@@ -11,10 +11,13 @@
 }: {
   imports = [
     # inputs.mac-app-util.homeManagerModules.default
+    inputs.nix-colors.homeManagerModules.default
     ../../../../home/base.nix
     ../../../../home/terminal
     ../../../../home/nvim
   ];
+
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
   home = {
     username = vars.username;
