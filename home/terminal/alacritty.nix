@@ -42,6 +42,9 @@ in {
       };
       colors.draw_bold_text_with_bright_colors = true;
       # fullscreen = false;
+      env = {
+        TERM = "xterm-256color";
+      };
       font = {
         size =
           if pkgs.stdenv.isDarwin

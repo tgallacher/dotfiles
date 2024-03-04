@@ -23,7 +23,10 @@
     terminal = "xterm-256color";
     extraConfig = ''
       # true colors
-      set-option -sa terminal-overrides ",xterm*:Tc"
+      # set-option -sa terminal-overrides ",xterm*:Tc"
+      set -ag terminal-overrides ",xterm-256color:RGB"
+      set -g default-terminal "tmux-256color"
+
       set-option -g focus-events on
 
       # set-option -g renumber-windows on             # Re-number remaining windows when one is closed
