@@ -21,30 +21,34 @@ in {
       mouse_drop_action = "swap";
     };
     extraConfig = ''
-      # OSX
-      yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+      ### OSX
+      yabai -m rule --add label="Finder" app="^Finder$" manage=off
+      yabai -m rule --add title="(Co(py|nnect)|Move|Info|Pref)" manage=off
       yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
       yabai -m rule --add app="^(Calculator|Software Update|Dictionary|System Preferences|System Settings|Photo Booth|Archive Utility|App Store|Alfred|Activity Monitor)$" manage=off
-      # Apps: General
 
-      # Space: Primary
-      # yabai -m rule --add title="^Alacritty" space=1
+      ### Apps: General
+      yabai -m rule --add app="^zoom*" manage=off
 
-      # Space: Secondary
-      yabai -m rule --add title="^1Password" space=2
-      yabai -m rule --add title="^TickTick" space=2
+      ### Space: Primary
+      # yabai -m rule --add app="^Alacritty" space=1
 
-      # Space: ?
-      yabai -m rule --add app="^zoom*" manage=off space=3
-      yabai -m rule --add title="^Obsidian" space=3
+      ### Space: Secondary
+      yabai -m rule --add app="^1Password" space=2 manage=off
+      yabai -m rule --add app="^Obsidian" space=2
 
-      # Space: Social
-      yabai -m rule --add title="^WhatsApp" space=4
+      ### Space: ?
+      yabai -m rule --add app="^TickTick" space=3
+
+      ### Space: Social
+      yabai -m rule --add app="WhatsApp" space=4
+      yabai -m rule --add app="^Discord" space=4
+      yabai -m rule --add app="^Spotify" space=4
 
       ${
         if hasSketchybar
         then ''
-          # Sketchybar
+          ### Sketchybar
           yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
           yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
           yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
