@@ -27,6 +27,7 @@
 
   home.packages = [
     upkgs.raycast
+    upkgs.zoom-us
   ];
 
   home.file.".hushlogin".text = ''

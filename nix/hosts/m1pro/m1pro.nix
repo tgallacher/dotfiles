@@ -55,6 +55,7 @@
     taps = [];
     brews = [
       "libiconv" # rnix-lsp
+      "trash"
     ];
     casks = [
       "ticktick" # todo
