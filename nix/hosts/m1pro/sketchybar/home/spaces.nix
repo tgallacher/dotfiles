@@ -30,26 +30,27 @@
         for idx in "''${!SPACE_SIDS[@]}"; do
           sid=''${SPACE_SIDS[idx]}
 
-          sketchybar                                                      \
-            --add space space.$sid left                                   \
-            --set space.$sid  space=$sid                                  \
-                              icon="$sid"                                 \
-                              icon.padding_right=0                        \
-                              icon.color="''${SPACE_COLORS[idx]}"         \
-                              icon.highlight_color=$COLOR_BAR             \
-                              background.color="''${SPACE_COLORS[idx]}"   \
-                              background.drawing=off                      \
-                              background.border_width=0                   \
-                              background.corner_radius=3                  \
-                              background.height=24                        \
-                              label.font="$SKETCHYAPP_FONT:Regular:12.0"  \
-                              label.highlight_color=$COLOR_BAR            \
-                              label.padding_right=10                      \
-                              label.padding_left=0                        \
-                              label.y_offset=-1                           \
-                              label.color="''${SPACE_COLORS[idx]}"        \
-                              script="$CONFIG_ROOT/spaces/script.sh"      \
-                              click_script="$FOCUS_SPACE_SH"              \
+          sketchybar                                                          \
+            --add space space.$sid left                                       \
+            --set space.$sid  space=$sid                                      \
+                              icon="$sid"                                     \
+                              icon.highlight_color="$COLOR_BAR"               \
+                              icon.background.color="''${SPACE_COLORS[idx]}"  \
+                              icon.background.height=18                       \
+                              icon.background.drawing=off                     \
+                              icon.background.corner_radius=3                 \
+                              icon.y_offset=1                                 \
+                              icon.padding_left=4                             \
+                              icon.padding_right=4                            \
+                                                                              \
+                              label.font="$SKETCHYAPP_FONT:Regular:12.0"      \
+                              label.highlight_color="''${SPACE_COLORS[idx]}"  \
+                              label.padding_right=7                           \
+                              label.padding_left=0                            \
+                              label.y_offset=-1                               \
+                                                                              \
+                              script="$CONFIG_ROOT/spaces/script.sh"          \
+                              click_script="$FOCUS_SPACE_SH"                  \
             --subscribe space.$sid mouse.clicked
         done
 
@@ -58,9 +59,8 @@
           --set      space_separator icon=""                                 \
                                      icon.color=$COLOR_PRIMARY                \
                                      icon.padding_left=3                      \
-                                     icon.font="$NERD_FONT:Regular:14.0"      \
+                                     icon.font="$NERD_FONT:Bold:14.0"         \
                                      label.drawing=off                        \
-                                     background.drawing=off                   \
                                      script="$CONFIG_ROOT/spaces/windows.sh"  \
           --subscribe space_separator space_windows_change
       '';
@@ -79,14 +79,16 @@
 
         if [ $SELECTED = true ]; then
           sketchybar                                    \
-            --set $NAME background.drawing=on           \
-                        label.highlight=on              \
-                        icon.highlight=on
+            --set $NAME label.highlight=on              \
+                        icon.highlight=on               \
+                        icon.background.drawing=on
+
         else
           sketchybar                                    \
-            --set $NAME background.drawing=off          \
-                        label.highlight=off             \
-                        icon.highlight=off
+            --set $NAME label.highlight=off             \
+                        icon.highlight=off              \
+                        icon.background.drawing=off
+
         fi
       '';
     };

@@ -42,7 +42,7 @@ in {
       "jq" # FIXME: Why do we need it twice..?
     ];
     casks = [
-      # "sf-symbols" # [Debug only] View symbols within the Apple "SF Pro" font
+      # "sf-symbols" # Install SF pro symbols + viewer tool
     ];
   };
 
