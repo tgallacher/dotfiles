@@ -1,6 +1,7 @@
 {
   self,
   config,
+  vars,
   ...
 }: {
   xdg.configFile."sketchybar/vars.sh" = {
@@ -8,28 +9,30 @@
     text = ''
       #!/usr/bin/env bash
 
-      # Misc
+      ## Misc ##
       PADDINGS=3
 
-      # FONTS
+      ## FONTS ##
       NERD_FONT="JetBrainsMono Nerd Font" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
       SKETCHYAPP_FONT="sketchybar-app-font"
       SF_FONT="SF Pro"
 
-      # COLORS
-      BG_COLOR=0xff1e1e2e
-      BAR_COLOR=0xff1e1e2e
-      ITEM_BG_COLOR=0xff585b70
-      ACCENT_COLOR=0xffcba6f7
+      ## COLORS ##
+      COLOR_BAR=0xff${config.colorScheme.palette.base00}
+      COLOR_DLABEL=0xff${config.colorScheme.palette.base05} # Default label colour
+      COLOR_DICON=0xff${config.colorScheme.palette.base05} # Default icon colour
 
-      CYAN=0xff94e2d5
-      BLUE=0xff89b4fa
-      GREEN=0xff38ba8f
-      PEACH=0xffab387f
-      RED=0xfff38ba8
-      YELLOW=0xff9e2aff
-      WHITE=0xffffffff
-      TRANSPARENT=0x00000000
+      COLOR_PRIMARY=0xff${config.colorScheme.palette.base0E}
+      COLOR_SECONDARY=0xff${config.colorScheme.palette.base06}
+      COLOR_TERTIARY=0xff${config.colorScheme.palette.base07}
+
+      COLOR_SUCCESS=0xff${config.colorScheme.palette.base0B}
+      COLOR_ERROR=0xff${config.colorScheme.palette.base08}
+      COLOR_WARNING=0xff${config.colorScheme.palette.base0A}
+      COLOR_INFORMATION=0xff${config.colorScheme.palette.base09}
+
+      COLOR_WHITE=0xffffffff
+      COLOR_TRANSPARENT=0x00000000
     '';
   };
 }

@@ -12,9 +12,8 @@
         source $CONFIG_ROOT/vars.sh
 
         memory=(
-          label.color="$WHITE"
           icon="󰘚"
-          icon.color="$ITEM_BG_COLOR"
+          icon.color="$COLOR_WARNING"
           update_freq=15
           script="$CONFIG_ROOT/ram/script.sh"
         )

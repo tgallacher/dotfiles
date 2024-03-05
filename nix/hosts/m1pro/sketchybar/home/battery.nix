@@ -12,7 +12,7 @@
         source $CONFIG_ROOT/vars.sh
 
         battery_details=(
-            background.corner_radius=12
+            background.corner_radius=10
             background.padding_left=5
             background.padding_right=10
             icon.background.height=2
@@ -20,14 +20,14 @@
             )
 
         sketchybar                                                           \
-        --add item battery right                                           \
-        --set battery update_freq=10                                       \
-        icon.font="$NERD_FONT:Bold:16"                       \
-        script="$CONFIG_ROOT/battery/script.sh"              \
-        --subscribe battery mouse.entered mouse.exited mouse.exited.global \
-        \
-        --add item battery.details popup.battery                           \
-        --set battery.details "''${battery_details[@]}"
+          --add item battery right                                           \
+          --set battery update_freq=10                                       \
+                        icon.font="$NERD_FONT:Bold:16"                       \
+                        script="$CONFIG_ROOT/battery/script.sh"              \
+          --subscribe battery mouse.entered mouse.exited mouse.exited.global \
+                                                                             \
+          --add item battery.details popup.battery                           \
+          --set battery.details "''${battery_details[@]}"
       '';
     };
 
@@ -49,31 +49,31 @@
         function render_bar_item() {
           if [ $IS_CHARGING -eq 1 ]; then
             case $BATT_PERCENT in
-            100) ICON="󰂄" COLOR="$GREEN" ;;
-            9[0-9]) ICON="󰂋" COLOR="$GREEN" ;;
-            8[0-9]) ICON="󰂊" COLOR="$GREEN" ;;
-            7[0-9]) ICON="󰢞" COLOR="$GREEN" ;;
-            6[0-9]) ICON="󰂉" COLOR="$YELLOW" ;;
-            5[0-9]) ICON="󰢝" COLOR="$YELLOW" ;;
-            4[0-9]) ICON="󰂈" COLOR="$PEACH" ;;
-            3[0-9]) ICON="󰂇" COLOR="$PEACH" ;;
-            2[0-9]) ICON="󰂆" COLOR="$RED" ;;
-            1[0-9]) ICON="󰢜" COLOR="$RED" ;;
-            *) ICON="󱃍" COLOR="$RED" ;;
+            100) ICON="󰂄" COLOR="$COLOR_SUCCESS" ;;
+            9[0-9]) ICON="󰂋" COLOR="$COLOR_SUCCESS" ;;
+            8[0-9]) ICON="󰂊" COLOR="$COLOR_SUCCESS" ;;
+            7[0-9]) ICON="󰢞" COLOR="$COLOR_SUCCESS" ;;
+            6[0-9]) ICON="󰂉" COLOR="$COLOR_INFORMATION" ;;
+            5[0-9]) ICON="󰢝" COLOR="$COLOR_INFORMATION" ;;
+            4[0-9]) ICON="󰂈" COLOR="$COLOR_WARNING" ;;
+            3[0-9]) ICON="󰂇" COLOR="$COLOR_WARNING" ;;
+            2[0-9]) ICON="󰂆" COLOR="$COLOR_ERROR" ;;
+            1[0-9]) ICON="󰢜" COLOR="$COLOR_ERROR" ;;
+            *) ICON="󱃍" COLOR="$COLOR_ERROR" ;;
             esac
           else
             case $BATT_PERCENT in
-            100) ICON="󰁹" COLOR="$GREEN" ;;
-            9[0-9]) ICON="󰂂" COLOR="$GREEN" ;;
-            8[0-9]) ICON="󰂁" COLOR="$GREEN" ;;
-            7[0-9]) ICON="󰂀" COLOR="$GREEN" ;;
-            6[0-9]) ICON="󰁿" COLOR="$YELLOW" ;;
-            5[0-9]) ICON="󰁾" COLOR="$YELLOW" ;;
-            4[0-9]) ICON="󰁽" COLOR="$PEACH" ;;
-            3[0-9]) ICON="󰁼" COLOR="$PEACH" ;;
-            2[0-9]) ICON="󰁻" COLOR="$RED" ;;
-            1[0-9]) ICON="󰁺" COLOR="$RED" ;;
-            *) ICON="󱃍" COLOR="$RED" ;;
+            100) ICON="󰁹" COLOR="$COLOR_SUCCESS" ;;
+            9[0-9]) ICON="󰂂" COLOR="$COLOR_SUCCESS" ;;
+            8[0-9]) ICON="󰂁" COLOR="$COLOR_SUCCESS" ;;
+            7[0-9]) ICON="󰂀" COLOR="$COLOR_SUCCESS" ;;
+            6[0-9]) ICON="󰁿" COLOR="$COLOR_INFORMATION" ;;
+            5[0-9]) ICON="󰁾" COLOR="$COLOR_INFORMATION" ;;
+            4[0-9]) ICON="󰁽" COLOR="$COLOR_WARNING" ;;
+            3[0-9]) ICON="󰁼" COLOR="$COLOR_WARNING" ;;
+            2[0-9]) ICON="󰁻" COLOR="$COLOR_ERROR" ;;
+            1[0-9]) ICON="󰁺" COLOR="$COLOR_ERROR" ;;
+            *) ICON="󱃍" COLOR="$COLOR_ERROR" ;;
             esac
 
             sketchybar --set "$NAME" label="$BATT_PERCENT%"

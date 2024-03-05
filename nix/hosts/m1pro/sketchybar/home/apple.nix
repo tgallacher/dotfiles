@@ -15,7 +15,6 @@
       apple_logo=(
         icon=󰀵
         icon.font="$NERD_FONT:Black:16.0"
-        icon.color=$ITEM_BG_COLOR
         padding_right=15
         label.drawing=off
         click_script="sketchybar --set \$NAME popup.drawing=toggle"

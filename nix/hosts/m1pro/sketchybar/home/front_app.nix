@@ -15,10 +15,8 @@
 
         sketchybar                                                            \
           --add item front_app  left                                          \
-          --set      front_app  background.color=$ACCENT_COLOR                \
-                                icon.color=$BAR_COLOR                         \
-                                icon.font="$SKETCHYAPP_FONT:Regular:16.0"     \
-                                label.color=$BAR_COLOR                        \
+          --set      front_app  icon.font="$SKETCHYAPP_FONT:Regular:16.0"     \
+                                label.color=$COLOR_SECONDARY                  \
                                 script="$CONFIG_ROOT/front_app/script.sh"     \
           --subscribe front_app front_app_switched
       '';
@@ -44,7 +42,8 @@
         }
 
         if [ "$SENDER" = "front_app_switched" ]; then
-          sketchybar --set $NAME label="$INFO" icon="$(get_icon "$INFO")"
+          sketchybar --set $NAME label="$INFO" icon.drawing=off
+          # sketchybar --set $NAME label="$INFO" icon="$(get_icon "$INFO")"
         fi
       '';
     };

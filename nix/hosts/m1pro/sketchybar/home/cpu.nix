@@ -22,6 +22,8 @@
       executable = true;
       text = ''
         #!/usr/bin/env bash
+        CONFIG_ROOT=${config.xdg.configHome}/sketchybar
+        source $CONFIG_ROOT/vars.sh
 
         CORE_COUNT=$(sysctl -n machdep.cpu.thread_count)
         CPU_INFO=$(ps -eo pcpu,user)
@@ -30,7 +32,13 @@
 
         CPU_PERCENT="$(echo "$CPU_SYS $CPU_USER" | awk '{printf "%.0f\n", ($1 + $2)*100}')"
 
-        sketchybar --set $NAME label="$CPU_PERCENT%"
+        sketchybar --set $NAME label="$CPU_PERCENT%" icon.color="$COLOR_INFORMATION"
+
+        if [ "CPU_PERCENT" -gt "60" ]; then
+          sketchybar --set $NAME icon.color="$COLOR_WARNING"
+        else if [ "$CPU_PERCENT" -gt "80" ]; then
+          sketchybar --set $NAME icon.color="$COLOR_ERROR"
+        fi
       '';
     };
   };
