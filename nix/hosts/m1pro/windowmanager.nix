@@ -93,22 +93,17 @@ in {
         else ""
       }
       # cmd + ctrl - t : yabai -m window --toggle float --grid 4:4:1:1:2:2   # toggle window float
-      cmd + ctrl - t : yabai -m window --toggle float ${ # toggle window float
-        if hasSketchybar
-        then "; ${sketchybarWinFocus}"
-        else ""
-      }
 
       # Resize window
-      cmd + ctrl - j : yabai -m window --resize bottom:150:0
-      cmd + ctrl - k : yabai -m window --resize top:150:0
-      cmd + ctrl - h : yabai -m window --resize left:150:0
-      cmd + ctrl - l : yabai -m window --resize right:150:0
+      cmd - j : yabai -m window --resize bottom:150:0
+      cmd - k : yabai -m window --resize top:150:0
+      cmd - h : yabai -m window --resize left:150:0
+      cmd - l : yabai -m window --resize right:150:0
 
-      cmd + ctrl + shift - j : yabai -m window --resize bottom:-150:0
-      cmd + ctrl + shift - k : yabai -m window --resize top:-150:0
-      cmd + ctrl + shift - h : yabai -m window --resize left:-150:0
-      cmd + ctrl + shift - l : yabai -m window --resize right:-150:0
+      cmd + shift - j : yabai -m window --resize bottom:-150:0
+      cmd + shift - k : yabai -m window --resize top:-150:0
+      cmd + shift - h : yabai -m window --resize left:-150:0
+      cmd + shift - l : yabai -m window --resize right:-150:0
 
       # swap windows
       cmd + alt - j : yabai -m window --swap south
@@ -133,12 +128,12 @@ in {
       cmd + shift - n : yabai -m window --space next;
 
       # move window to space #
-      ctrl + shift - 1 : yabai -m window --space 1;
-      ctrl + shift - 2 : yabai -m window --space 2;
-      ctrl + shift - 3 : yabai -m window --space 3;
-      ctrl + shift - 4 : yabai -m window --space 4;
-      ctrl + shift - 5 : yabai -m window --space 5;
-      ctrl + shift - 6 : yabai -m window --space 6;
+      cmd + ctrl - 1 : yabai -m window --space 1;
+      cmd + ctrl - 2 : yabai -m window --space 2;
+      cmd + ctrl - 3 : yabai -m window --space 3;
+      cmd + ctrl - 4 : yabai -m window --space 4;
+      cmd + ctrl - 5 : yabai -m window --space 5;
+      cmd + ctrl - 6 : yabai -m window --space 6;
 
       ##
       ## Services
