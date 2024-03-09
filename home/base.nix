@@ -23,6 +23,7 @@
       # CLI
 
       ripgrep
+      fd # nvim telescope uses this
       btop # Resource manager
       bat # cat with wings
       curl # Fetch stuff
