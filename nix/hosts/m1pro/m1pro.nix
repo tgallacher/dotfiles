@@ -68,6 +68,9 @@
       "1password"
       "1password-cli"
       "whatsapp"
+      "spacelauncher"
+      "docker"
+      "postman" # nixpkgs version seems to be down; use brew instead
     ];
     masApps = { };
     global.autoUpdate = false;
