@@ -1,25 +1,26 @@
-{
-  self,
-  upkgs,
-  pkgs,
-  config,
-  vars,
-  inputs,
-  lib,
-  ...
-}: let
+{ self
+, upkgs
+, pkgs
+, config
+, vars
+, inputs
+, lib
+, ...
+}:
+let
   icon_map_sh = pkgs.fetchurl {
     url = "https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v${upkgs.sketchybar-app-font.version}/icon_map.sh";
     hash = "sha256-KWWukG9S0RWp534N115eQaaG9wpVUgcTAqAmrEScHmQ=";
   };
-in {
+in
+{
   imports = [
     inputs.home-manager.darwinModules.home-manager
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users.${vars.username} = import ./home;
-      home-manager.extraSpecialArgs = {inherit vars upkgs inputs icon_map_sh;};
+      home-manager.extraSpecialArgs = { inherit vars upkgs inputs icon_map_sh; };
     }
   ];
 

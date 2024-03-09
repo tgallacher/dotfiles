@@ -1,13 +1,12 @@
-{
-  self,
-  config,
-  pkgs,
-  upkgs,
-  inputs,
-  system,
-  vars,
-  lib,
-  ...
+{ self
+, config
+, pkgs
+, upkgs
+, inputs
+, system
+, vars
+, lib
+, ...
 }: {
   imports = [
     # inputs.mac-app-util.homeManagerModules.default
@@ -28,6 +27,7 @@
   home.packages = [
     upkgs.raycast
     upkgs.zoom-us
+    upkgs.dbeaver
   ];
 
   home.file.".hushlogin".text = ''

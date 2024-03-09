@@ -1,11 +1,11 @@
 # TODO: https://github.com/LnL7/nix-darwin/pull/699
-{
-  inputs,
-  pkgs,
-  upkgs,
-  config,
-  vars,
-  ...
+{ inputs
+, pkgs
+, upkgs
+, config
+, vars
+, host
+, ...
 }: {
   imports = [
     ./system.nix
@@ -14,6 +14,8 @@
   ];
 
   # nix.settings.extra-nix-path = nixpkgs=flake:nixpkgs;
+
+  networking.computerName = host.name;
 
   fonts = {
     fontDir.enable = true;
@@ -52,7 +54,7 @@
 
   homebrew = {
     enable = true; # allow nix-darwin to manage brew?
-    taps = [];
+    taps = [ ];
     brews = [
       "libiconv" # rnix-lsp
       "trash"
@@ -67,7 +69,7 @@
       "1password-cli"
       "whatsapp"
     ];
-    masApps = {};
+    masApps = { };
     global.autoUpdate = false;
     global.brewfile = true; # use the brewfile managed by nix-darwin
     onActivation.cleanup = "zap"; # don't use brew directly, let nix-darwin manage it

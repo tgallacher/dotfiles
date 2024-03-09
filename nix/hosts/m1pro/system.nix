@@ -74,7 +74,7 @@
     };
     NSGlobalDomain = {
       "com.apple.keyboard.fnState" = false; # use Fn keys are normal F1, F2, ...
-      "com.apple.mouse.tapBehavior" = 1; # 1, null: trackpad tap to click enablbed when "1"
+      "com.apple.mouse.tapBehavior" = 1; # 1, null: trackpad tap to click enabled when "1"
       "com.apple.swipescrolldirection" = false; # set natural scrolling direction
       "com.apple.trackpad.enableSecondaryClick" = true;
       AppleICUForce24HourTime = true; # 24 hr clock
