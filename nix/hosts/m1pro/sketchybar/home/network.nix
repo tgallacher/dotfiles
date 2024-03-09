@@ -1,7 +1,8 @@
-{
-  self,
-  config,
-  ...
+{ self
+, config
+, upkgs
+, osConfig
+, ...
 }: {
   xdg.configFile = {
     "sketchybar/network/item.sh" = {
@@ -14,7 +15,7 @@
         network_down=(
           y_offset=-7
           icon=""
-          icon.highlight_color="$COLOR_TERTIARY"
+          icon.highlight_color="$COLOR_SECONDARY"
           update_freq=1
           script="$CONFIG_ROOT/network/network.sh"
         )
@@ -23,9 +24,7 @@
           background.padding_right=-86
           y_offset=7
           icon=""
-          icon.highlight_color="$COLOR_TERTIARY"
-          # update_freq=1
-          # script="$CONFIG_ROOT/network/network.sh"
+          icon.highlight_color="$COLOR_SECONDARY"
         )
 
         sketchybar                                  \
@@ -41,30 +40,37 @@
       executable = true;
       text = ''
         #!/usr/bin/env bash
+        IFSTAT="$(${osConfig.homebrew.brewPrefix}/brew --prefix ifstat)/bin/ifstat"
 
         INTERFACE=$(route -n get 0.0.0.0 2>/dev/null | awk '/interface: / {print $2};')
-        UPDOWN=$(ifstat -i "''${INTERFACE}" -b 0.1 1 | tail -n1)
+        UPDOWN=$($IFSTAT -i "$INTERFACE" -b 0.1 1 | tail -n1)
         DOWN=$(echo "$UPDOWN" | awk "{ print \$1 };" | cut -f1 -d ".")
         UP=$(echo "$UPDOWN" | awk "{ print \$2 };" | cut -f1 -d ".")
 
-        DOWN_FORMAT=""
+        DOWN_LABEL=""
         if [ "$DOWN" -gt "999" ]; then
-          DOWN_FORMAT=$(echo "$DOWN" | awk '{ printf "%03.0f Mbps", $1 / 1000};')
+          DOWN_LABEL=$(echo "$DOWN" | awk '{ printf "%03.0f Mbps", $1 / 1000};')
         else
-          DOWN_FORMAT=$(echo "$DOWN" | awk '{ printf "%03.0f kbps", $1};')
+          DOWN_LABEL=$(echo "$DOWN" | awk '{ printf "%03.0f kbps", $1};')
         fi
 
-        UP_FORMAT=""
+        UP_LABEL=""
         if [ "$UP" -gt "999" ]; then
-          UP_FORMAT=$(echo "$UP" | awk '{ printf "%03.0f Mbps", $1 / 1000};')
+          UP_LABEL=$(echo "$UP" | awk '{ printf "%03.0f Mbps", $1 / 1000};')
         else
-          UP_FORMAT=$(echo "$UP" | awk '{ printf "%03.0f kbps", $1};')
+          UP_LABEL=$(echo "$UP" | awk '{ printf "%03.0f kbps", $1};')
         fi
 
-        sketchybar                                  \
-          --set network.down label="$DOWN_FORMAT"   \
-          --set network.up label="$UP_FORMAT"
+        UP_TRAFFIC="off"
+        if [ "$UP" -gt 0 ]; then UP_TRAFFIC="on"; fi
+        DOWN_TRAFFIC="off"
+        if [ "DOWN" -gt 0 ]; then DOWN_TRAFFIC="on"; fi
+
+        sketchybar                                                                    \
+          --set network.down label="''${DOWN_LABEL}" icon.highlight="''${DOWN_TRAFFIC}"   \
+          --set network.up   label="''${UP_LABEL}"   icon.highlight="''${UP_TRAFFIC}"
       '';
     };
   };
 }
+
