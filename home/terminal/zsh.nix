@@ -1,9 +1,13 @@
-{
-  self,
-  upkgs,
-  pkgs,
-  ...
+{ self
+, upkgs
+, pkgs
+, ...
 }: {
+  programs.zoxide = {
+    enable = true;
+    package = upkgs.zoxide;
+  };
+
   programs.zsh = {
     enable = true;
     package = upkgs.zsh;
@@ -66,6 +70,8 @@
       egrep = "egrep --color=auto";
       sudo = "sudo "; # enable aliases to be sudo'd
       cl = "clear"; # TODO: move to keybind
+      v = "nvim";
+      sb = "z $HOME/Code/tgallacher/obsidian"; # requires zoxide
       l = "ls -lF ${
         if pkgs.stdenv.isDarwin
         then "-G"
