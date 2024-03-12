@@ -10,7 +10,7 @@
         grey = "#${config.colorScheme.palette.base03}";
         text = "#${config.colorScheme.palette.base04}";
         primary = "#${config.colorScheme.palette.base07}";
-        accent = "#${config.colorScheme.palette.base0A}";
+        accent = "#${config.colorScheme.palette.base06}";
       };
     in
     {
