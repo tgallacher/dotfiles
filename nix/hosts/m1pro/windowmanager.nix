@@ -1,6 +1,7 @@
 { self
 , upkgs
 , config
+, vars
 , ...
 }:
 let
@@ -36,10 +37,12 @@ in
 
       ### Space: Secondary
       yabai -m rule --add app="^1Password" space=2 manage=off
-      yabai -m rule --add app="^Obsidian" space=2
+      yabai -m rule --add app="^DBeaver" space=2
+      yabai -m rule --add app="^Postman" space=2
 
-      ### Space: ?
-      yabai -m rule --add app="^TickTick" space=2
+      ### Space: Notes
+      yabai -m rule --add app="^Obsidian" space=3
+      yabai -m rule --add app="^TickTick" space=3
 
       ### Space: Social
       yabai -m rule --add app="WhatsApp" space=4
@@ -58,6 +61,11 @@ in
         ''
         else ""
       }
+
+      $(${config.homebrew.brewPrefix}/brew --prefix borders)/bin/borders \
+        active_color=0xff${config.home-manager.users.${vars.username}.colorScheme.palette.base0E} \
+        inactive_color=0x00ffffff \
+        width=10.0 &
     '';
   };
 

@@ -54,10 +54,13 @@
 
   homebrew = {
     enable = true; # allow nix-darwin to manage brew?
-    taps = [ ];
+    taps = [
+      "FelixKratz/formulae" # jankyBorders
+    ];
     brews = [
       "libiconv" # rnix-lsp
       "trash"
+      "borders"
     ];
     casks = [
       "ticktick" # todo
