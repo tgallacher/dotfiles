@@ -20,6 +20,7 @@
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
+      noto-fonts-color-emoji # see "michaelrommel/nvim-silicon"
       font-awesome
       (nerdfonts.override {
         fonts = [
@@ -59,8 +60,9 @@
     ];
     brews = [
       "libiconv" # rnix-lsp
-      "trash"
-      "borders"
+      "trash" # nvim-tree
+      "borders" # jankyBorders
+      "silicon" # see "michaelrommel/nvim-silicon"; barage of errors if installed from nixpkgs
     ];
     casks = [
       "ticktick" # todo
