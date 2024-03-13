@@ -19,7 +19,7 @@ in
       bottom_padding = 15;
       left_padding = 15;
       window_gap = 15;
-      mouse_follows_focus = "on";
+      mouse_follows_focus = "off";
       mouse_drop_action = "swap";
     };
     extraConfig = ''
