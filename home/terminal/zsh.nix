@@ -48,12 +48,6 @@
       # see: https://github.com/ohmyzsh/ohmyzsh/issues/11817#issuecomment-1655430206
       zstyle ':omz:plugins:docker' legacy-completion yes
     '';
-    # add to .zshrc, top of file, env vars, e.g. POWERLINE_9K, etc
-    localVariables = {
-      CASE_SENSITIVE = "true";
-      HIST_STAMPS = "yyyy-mm-dd";
-      BROWSER = "brave";
-    };
     # add to .zprofile
     profileExtra = ''
       ${
@@ -62,6 +56,13 @@
         else ""
       }
     '';
+    # add to .zshrc, top of file, env vars, e.g. POWERLINE_9K, etc
+    localVariables = {
+      CASE_SENSITIVE = "true";
+      HIST_STAMPS = "yyyy-mm-dd";
+      BROWSER = "brave";
+    };
+    dirHashes = { };
     # # env vars set for each session
     # sessionVariables = { };
     shellAliases = {
