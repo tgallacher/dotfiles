@@ -1,9 +1,10 @@
 {
-  self,
   upkgs,
+  pkgs,
   config,
   ...
 }: let
+  # TODO: Better way to get flake location?
   nvimConfigLocation = "${config.home.homeDirectory}/Code/tgallacher/dotfiles/home/nvim/nvim";
 in {
   imports = [
@@ -16,11 +17,14 @@ in {
   #   package = upkgs.neovim;
   #   vimAlias = true;
   # };
-  home.packages = [upkgs.neovim];
+  home.packages = [
+    upkgs.neovim
+    upkgs.pngpaste # obsidian.nvim
+    pkgs.alejandra # nix formatter. Not available on Mason yet..
+  ];
   home.sessionVariables = {
     EDITOR = "nvim";
   };
 
-  # TODO: Better way to get flake location?
-  home.file.".config/nvim/".source = config.lib.file.mkOutOfStoreSymlink nvimConfigLocation;
+  # home.file.".config/nvim/".source = config.lib.file.mkOutOfStoreSymlink nvimConfigLocation;
 }
