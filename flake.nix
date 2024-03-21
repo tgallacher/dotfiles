@@ -38,7 +38,7 @@
         pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
 
         modules = [
-          ./nix/hosts/pn50/home
+          ./hosts/pn50/home
         ];
 
         extraSpecialArgs = {
@@ -54,7 +54,7 @@
         };
 
         modules = [
-          ./nix/hosts/m1pro/home
+          ./hosts/m1pro/home
         ];
 
         extraSpecialArgs = {
@@ -68,13 +68,13 @@
     };
 
     nixosConfigurations = (
-      import ./nix/hosts {
+      import ./hosts {
         inherit inputs vars;
       }
     );
 
     darwinConfigurations = (
-      import ./nix/hosts {
+      import ./hosts {
         inherit inputs vars;
       }
     );
