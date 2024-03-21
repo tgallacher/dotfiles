@@ -3,10 +3,19 @@
 , pkgs
 , ...
 }: {
+  # FIXME: Can't uses this version, need to install this AFTER starship prompt and this doesn't
+  # see: github.com/ajeetdsouza/zoxide/issues/74
   programs.zoxide = {
     enable = true;
     package = upkgs.zoxide;
+    options = [
+      "--cmd cd" # remap to cd and introduce cdi
+    ];
   };
+
+  # home.packages = [
+  #   upkgs.zoxide
+  # ];
 
   programs.zsh = {
     enable = true;
@@ -25,10 +34,10 @@
       ${
         if pkgs.stdenv.isDarwin
         then "
-            print_pid_cwd() {
-              local pid=$1;
-              lsof -a -p $pid -d cwd -Fn
-            }
+      print_pid_cwd() {
+        local pid=$1;
+        lsof -a -p $pid -d cwd -Fn
+      }
           "
         else ""
       }
