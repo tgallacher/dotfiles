@@ -26,5 +26,5 @@ in {
     EDITOR = "nvim";
   };
 
-  # home.file.".config/nvim/".source = config.lib.file.mkOutOfStoreSymlink nvimConfigLocation;
+  home.file.".config/nvim/".source = config.lib.file.mkOutOfStoreSymlink nvimConfigLocation;
 }
