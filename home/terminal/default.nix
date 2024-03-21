@@ -1,17 +1,11 @@
 # Home Manager TERMINAL setup
-# Note: Required input params (via `extraSpecialArgs`)
-#
-# vars, pkgs, upkgs
-{
-  self,
-  vars,
-  ...
-}: {
+{vars, ...}: {
   imports = [
     ./alacritty.nix
     ./git.nix
     ./prompt.nix
     ./tmux.nix
+    ./wget.nix
     ./zsh.nix
   ];
 
