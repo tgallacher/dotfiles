@@ -43,7 +43,7 @@ in
       "jq" # FIXME: Why do we need it twice..?
     ];
     casks = [
-      # "sf-symbols" # Install SF pro symbols + viewer tool
+      "sf-symbols" # Install SF pro symbols + viewer tool
     ];
   };
 

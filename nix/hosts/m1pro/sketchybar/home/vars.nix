@@ -28,7 +28,7 @@
       COLOR_SUCCESS=0xff${config.colorScheme.palette.base0B}
       COLOR_ERROR=0xff${config.colorScheme.palette.base08}
       COLOR_WARNING=0xff${config.colorScheme.palette.base0A}
-      COLOR_INFORMATION=0xff${config.colorScheme.palette.base09}
+      COLOR_INFORMATION=0xff${config.colorScheme.palette.base0C}
 
       COLOR_WHITE=0xffffffff
       COLOR_TRANSPARENT=0x00000000

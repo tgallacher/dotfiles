@@ -63,9 +63,9 @@ in
       }
 
       $(${config.homebrew.brewPrefix}/brew --prefix borders)/bin/borders \
-        active_color=0xff${config.home-manager.users.${vars.username}.colorScheme.palette.base0E} \
+        active_color=0xff${config.home-manager.users.${vars.username}.colorScheme.palette.base0F} \
         inactive_color=0x00ffffff \
-        width=10.0 &
+        width=7.0 &
     '';
   };
 
