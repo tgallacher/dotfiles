@@ -1,16 +1,16 @@
-require "user.config.settings"
-require "user.config.lazy"
+require("user.options")
+require("user.lazy")
 
 if vim.fn.argc(-1) == 0 then
   vim.api.nvim_create_autocmd("User", {
-    group = vim.api.nvim_create_augroup("tfg", { clear = true }),
+    group = vim.api.nvim_create_augroup("usr", { clear = true }),
     pattern = "VeryLazy",
     callback = function()
-      require "user.config.keymaps"
-      require "user.config.autocmds"
+      require("user.keymaps")
+      require("user.autocmds")
     end,
   })
 else
-  require "user.config.keymaps"
-  require "user.config.autocmds"
+  require("user.keymaps")
+  require("user.autocmds")
 end
