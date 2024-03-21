@@ -34,7 +34,7 @@ return {
       },
       templates = {
         subdir = "999-files/templates",
-        date_format = "%Y%m%d%H%M%S",
+        date_format = "%Y-%m-%d",
         time_format = "%H:%M:%s",
         substitutions = {
           -- NOTE: nvim uses C strfmt not momentjs like Obsidian. So we replicate here
@@ -46,8 +46,19 @@ return {
       -- Optional, customize how note IDs are generated given an optional title.
       -- @param title string|?
       -- @return string
-      note_id_func = function()
-        return os.date("%Y%m%d%H%M%S")
+      note_id_func = function(title)
+        local name = ""
+        if title ~= nil then
+          -- If title is given, transform it into valid file name.
+          name = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+        else
+          -- If title is nil, just add 4 random uppercase letters to the suffix.
+          for _ = 1, 4 do
+            name = name .. string.char(math.random(65, 90))
+          end
+        end
+        return name
+        -- return os.date("%Y%m%d%H%M%S")
       end,
       -- Optional, customize how note file names are generated given the ID, target directory, and title.
       -- @param spec { id: string, dir: obsidian.Path, title: string|? }
