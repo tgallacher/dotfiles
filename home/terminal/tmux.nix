@@ -1,7 +1,7 @@
 {
-  self,
   upkgs,
   config,
+  lib,
   ...
 }: {
   programs.tmux = let
@@ -16,6 +16,8 @@
     enable = true;
     package = upkgs.tmux;
     baseIndex = 1;
+    newSession = true; # spawn session if attach and none exist
+    sensibleOnTop = false; # disable due to github.com/nix-community/home-manager/issues/2541
     clock24 = true;
     disableConfirmationPrompt = false;
     keyMode = "vi";
@@ -72,24 +74,28 @@
       set -g mode-style fg=${theme.accent},bg=terminal
       set -gp window-style bg=terminal
     '';
-    plugins = with upkgs; [
-      tmuxPlugins.yank
-      tmuxPlugins.sessionist
-      tmuxPlugins.vim-tmux-navigator
-      {
-        plugin = tmuxPlugins.resurrect;
-        extraConfig = ''
-          set -g @resurrect-capture-pane-contents 'on'
+    plugins = lib.mkMerge [
+      (lib.mkBefore [upkgs.tmuxPlugins.sensible])
+      [
+        upkgs.tmuxPlugins.yank
+        upkgs.tmuxPlugins.sessionist
+        upkgs.tmuxPlugins.vim-tmux-navigator
+        {
+          plugin = upkgs.tmuxPlugins.resurrect;
+          extraConfig = ''
+            set -g @resurrect-capture-pane-contents 'on'
 
-          # Hack: `extraConfig` is inserted after plugins, but continuum plugin needs to come after anything that edits `status-right`
-          set -g status-right "#[fg=${theme.grey},bg=${theme.trans}]|#[fg=${theme.primary},bg=${theme.trans}] %Y-%m-%d "
-        '';
-      }
-      # Note: must come after catpuccin, or anything that edits the right status bar
-      {
-        plugin = tmuxPlugins.continuum;
-        extraConfig = "set -g @continuum-restore 'on'";
-      }
+            # Hack: `extraConfig` is inserted after plugins, but continuum plugin needs to come after anything that edits `status-right`
+            # see: https://github.com/nix-community/home-manager/issues/3555
+            set -g status-right "#[fg=${theme.grey},bg=${theme.trans}]|#[fg=${theme.primary},bg=${theme.trans}] %Y-%m-%d "
+          '';
+        }
+        # Note: must come after catpuccin, or anything that edits the right status bar
+        {
+          plugin = upkgs.tmuxPlugins.continuum;
+          extraConfig = "set -g @continuum-restore 'on'";
+        }
+      ]
     ];
   };
 }
