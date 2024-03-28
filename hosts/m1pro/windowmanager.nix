@@ -1,13 +1,12 @@
-{ self
-, upkgs
-, config
-, vars
-, ...
-}:
-let
-  hasSketchybar = config.services.sketchybar.enable;
-in
 {
+  self,
+  upkgs,
+  config,
+  vars,
+  ...
+}: let
+  hasSketchybar = config.services.sketchybar.enable;
+in {
   services.yabai = {
     enable = true;
     package = upkgs.yabai;
@@ -62,6 +61,7 @@ in
         else ""
       }
 
+      # run JankyBoarders
       $(${config.homebrew.brewPrefix}/brew --prefix borders)/bin/borders \
         active_color=0xff${config.home-manager.users.${vars.username}.colorScheme.palette.base0F} \
         inactive_color=0x00ffffff \
@@ -69,97 +69,103 @@ in
     '';
   };
 
-  services.skhd =
-    let
-      sketchybarWinFocus = "sketchybar --trigger window_focus";
-    in
-    {
-      enable = true;
-      package = upkgs.skhd;
-      skhdConfig = ''
-        ##
-        ## Focus
-        ##################################################
+  services.skhd = {
+    enable = true;
+    package = upkgs.skhd;
+    skhdConfig = ''
+      ##
+      ## Focus
+      ##################################################
 
-        # focus within space
-        cmd + ctrl - j : yabai -m window --focus south
-        cmd + ctrl - k : yabai -m window --focus north
-        cmd + ctrl - h : yabai -m window --focus west
-        cmd + ctrl - l : yabai -m window --focus east
+      # focus within space
+      cmd + ctrl - j : yabai -m window --focus south
+      cmd + ctrl - k : yabai -m window --focus north
+      cmd + ctrl - h : yabai -m window --focus west
+      cmd + ctrl - l : yabai -m window --focus east
 
-        # change focus between external displays (left, right)
-        cmd + ctrl - s : yabai -m display --focus west
-        cmd + ctrl - g : yabai -m display --focus east
+      # change focus between external displays (left, right)
+      cmd + ctrl - s : yabai -m display --focus west
+      cmd + ctrl - g : yabai -m display --focus east
 
-        ##
-        ## Windows / Layouts
-        ##################################################
+      ##
+      ## Windows / Layouts
+      ##################################################
 
-        cmd + ctrl - r : yabai -m space --rotate 270                         # rotate layout clockwise
-        cmd + ctrl - y : yabai -m space --mirror y-axis                      # flip along y-axis
-        cmd + ctrl - x : yabai -m space --mirror x-axis                      # flip along x-axis
-        cmd + ctrl - e : yabai -m space --balance                            # rebalance windows on screen
-        cmd + ctrl - m : yabai -m window --toggle zoom-fullscreen            # toggle fullscreen
-        cmd + ctrl - t : yabai -m window --toggle float ${ # toggle window float
-          if hasSketchybar
-          then "; ${sketchybarWinFocus}"
-          else ""
-        }
-        # cmd + ctrl - t : yabai -m window --toggle float --grid 4:4:1:1:2:2   # toggle window float
+      cmd + ctrl          - r : yabai -m space --rotate 270                         # rotate layout clockwise
+      cmd + ctrl          - y : yabai -m space --mirror y-axis                      # flip along y-axis
+      cmd + ctrl          - x : yabai -m space --mirror x-axis                      # flip along x-axis
+      cmd + ctrl          - e : yabai -m space --balance                            # rebalance windows on screen
+      cmd + ctrl          - m : yabai -m window --toggle zoom-fullscreen            # toggle fullscreen
+      cmd + ctrl          - t : yabai -m window --toggle float ${ # toggle window float
+        if hasSketchybar
+        then "; sketchybar --trigger window_focus"
+        else ""
+      }
+      # cmd + ctrl - t : yabai -m window --toggle float --grid 4:4:1:1:2:2   # toggle window float
 
-        # Resize window
-        ctrl + alt         - j : yabai -m window --resize top:-150:0
-        ctrl + alt         - k : yabai -m window --resize top:150:0
-        ctrl + alt + shift - j : yabai -m window --resize bottom:150:0
-        ctrl + alt + shift - k : yabai -m window --resize bottom:-150:0
-        ctrl + alt         - h : yabai -m window --resize right:-150:0
-        ctrl + alt         - l : yabai -m window --resize right:150:0
-        ctrl + alt + shift - h : yabai -m window --resize left:150:0
-        ctrl + alt + shift - l : yabai -m window --resize left:-150:0
+      # Resize window
+      alt + ctrl         - j : yabai -m window --resize top:-150:0
+      alt + ctrl         - k : yabai -m window --resize top:150:0
+      alt + ctrl + shift - j : yabai -m window --resize bottom:150:0
+      alt + ctrl + shift - k : yabai -m window --resize bottom:-150:0
+      alt + ctrl         - h : yabai -m window --resize right:-150:0
+      alt + ctrl         - l : yabai -m window --resize right:150:0
+      alt + ctrl + shift - h : yabai -m window --resize left:150:0
+      alt + ctrl + shift - l : yabai -m window --resize left:-150:0
 
-        # swap windows
-        cmd + alt - j : yabai -m window --swap south
-        cmd + alt - k : yabai -m window --swap north
-        cmd + alt - h : yabai -m window --swap west
-        cmd + alt - l : yabai -m window --swap east
+      # swap windows
+      cmd + alt          - j : yabai -m window --swap south
+      cmd + alt          - k : yabai -m window --swap north
+      cmd + alt          - h : yabai -m window --swap west
+      cmd + alt          - l : yabai -m window --swap east
 
-        # move window and split
-        cmd + alt + shift - j : yabai -m window --warp south
-        cmd + alt + shift - k : yabai -m window --warp north
-        cmd + alt + shift - h : yabai -m window --warp west
-        cmd + alt + shift - l : yabai -m window --warp east
+      # move window and split
+      cmd + alt + shift  - j : yabai -m window --warp south
+      cmd + alt + shift  - k : yabai -m window --warp north
+      cmd + alt + shift  - h : yabai -m window --warp west
+      cmd + alt + shift  - l : yabai -m window --warp east
 
-        # move window to separate display
-        cmd + shift - s : yabai -m window --display west; yabai -m display --focus west;
-        cmd + shift - g : yabai -m window --display east; yabai -m display --focus east;
-        cmd + shift - d : yabai -m window --display north; yabai -m display --focus north;
-        cmd + shift - f : yabai -m window --display south; yabai -m display --focus south;
+      # move window to separate display
+      cmd + shift        - s : yabai -m window --display west; yabai -m display --focus west;
+      cmd + shift        - g : yabai -m window --display east; yabai -m display --focus east;
+      cmd + shift        - d : yabai -m window --display north; yabai -m display --focus north;
+      cmd + shift        - f : yabai -m window --display south; yabai -m display --focus south;
 
-        # move window to prev and next space
-        cmd + shift - p : yabai -m window --space prev;
-        cmd + shift - n : yabai -m window --space next;
+      # move window to prev and next space
+      cmd + shift        - p : yabai -m window --space prev
+      cmd + shift        - n : yabai -m window --space next
 
-        # move window to space #
-        cmd + ctrl - 1 : yabai -m window --space 1;
-        cmd + ctrl - 2 : yabai -m window --space 2;
-        cmd + ctrl - 3 : yabai -m window --space 3;
-        cmd + ctrl - 4 : yabai -m window --space 4;
-        cmd + ctrl - 5 : yabai -m window --space 5;
-        cmd + ctrl - 6 : yabai -m window --space 6;
+      # move window to space #
+      cmd + ctrl         - 1 : yabai -m window --space 1
+      cmd + ctrl         - 2 : yabai -m window --space 2
+      cmd + ctrl         - 3 : yabai -m window --space 3
+      cmd + ctrl         - 4 : yabai -m window --space 4
+      cmd + ctrl         - 5 : yabai -m window --space 5
+      cmd + ctrl         - 6 : yabai -m window --space 6
 
-        ##
-        ## Services
-        ##################################################
+      ##
+      ## Key remaps
+      ##################################################
 
-        cmd + alt - q : yabai --stop-service
-        cmd + alt - s : yabai --start-service
-        cmd + alt - r : yabai --restart-service
+      # survive Apple's 65% keyboard
+      fn                 - h : ${upkgs.skhd}/bin/skhd -k "left"
+      fn                 - j : ${upkgs.skhd}/bin/skhd -k "down"
+      fn                 - k : ${upkgs.skhd}/bin/skhd -k "up"
+      fn                 - l : ${upkgs.skhd}/bin/skhd -k "right"
 
-        cmd + alt + shift - q : skhd --stop-service
-        cmd + alt + shift - s : skhd --start-service
-        cmd + alt + shift - r : skhd --restart-service
-      '';
-    };
+      ##
+      ## Services
+      ##################################################
+
+      cmd + alt - q : yabai --stop-service
+      cmd + alt - s : yabai --start-service
+      cmd + alt - r : yabai --restart-service
+
+      cmd + alt + shift - q : ${upkgs.skhd}/bin/skhd --stop-service
+      cmd + alt + shift - s : ${upkgs.skhd}/bin/skhd --start-service
+      cmd + alt + shift - r : ${upkgs.skhd}/bin/skhd --restart-service
+    '';
+  };
 
   system.defaults.CustomUserPreferences = {
     "com.apple.spaces".spans-displays = 0; # 0 means enabled
