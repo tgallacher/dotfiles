@@ -9,24 +9,24 @@
 # @see: http://secrets.blacktree.com/?showapp=com.apple.finder
 # @see: https://github.com/herrbischoff/awesome-macos-command-line
 {
-  self,
-  pkgs,
   config,
+  vars,
   ...
-}: {
+}: let
+  homeDir = config.home-manager.users.${vars.username}.home.homeDirectory;
+in {
   system.activationScripts.postUserActivation.text = ''
     # Auto-apply changed system defaults without having to log out/in
     # source: https://medium.com/@zmre/nix-darwin-quick-tip-activate-your-preferences-f69942a93236
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
 
-  system.activationScripts.setWallpaper.text = ''
-    #! ${pkgs.stdenv.shell}
-    set -e
-    set -o pipefail
-    echo "Hello world!"
-    /usr/bin/osascript -e 'tell application "Finder" to set desktop picture to POSIX file "${config.home.homeDirectory}/Code/tgallacher/dotfiles/wallpapers/bg_5.jpg"'
-  '';
+  # FIXME: This doesn't seem to work; need to investigate
+  # # /usr/bin/osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"${homeDir}/Code/tgallacher/dotfiles/wallpapers/bg_5.jpg\" as POSIX file"
+  # system.activationScripts.extraActivation.text = ''
+  #   # Set wallpaper
+  #   /usr/bin/osascript -e 'tell application "Finder" to activate and to set desktop picture to POSIX file "${homeDir}/Code/tgallacher/dotfiles/wallpapers/bg_5.jpg"'
+  # '';
 
   system.defaults = {
     dock = {
@@ -39,6 +39,13 @@
       tilesize = 32;
       magnification = true;
       largesize = 128;
+      # # remove delay for showing dock
+      # autohide-delay = 0.0;
+      # launchanim = false;
+      # showhidden = true;
+      # show-process-indicators = true;
+      # mouse in top right corner will (5) start screensaver
+      wvous-tr-corner = 5;
     };
     finder = {
       ShowStatusBar = true;
@@ -68,7 +75,7 @@
       ShowSeconds = false;
     };
     screencapture = {
-      # location = "${config.home.homeDirectory}/Desktop";
+      location = "${homeDir}/Desktop";
       type = "jpg";
       disable-shadow = true;
     };
