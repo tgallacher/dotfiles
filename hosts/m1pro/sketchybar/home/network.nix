@@ -1,8 +1,7 @@
-{ self
-, config
-, upkgs
-, osConfig
-, ...
+{
+  config,
+  osConfig,
+  ...
 }: {
   xdg.configFile = {
     "sketchybar/network/item.sh" = {
@@ -13,18 +12,20 @@
         source $CONFIG_ROOT/vars.sh
 
         network_down=(
-          y_offset=-7
+          y_offset=-5
           icon=""
-          icon.highlight_color="$COLOR_SECONDARY"
+          icon.highlight_color="$COLOR_INFORMATION"
+          label.font="$NERD_FONT:Regular:11"
           update_freq=1
-          script="$CONFIG_ROOT/network/network.sh"
+          script="$CONFIG_ROOT/network/script.sh"
         )
 
         network_up=(
-          background.padding_right=-86
-          y_offset=7
+          background.padding_right=-77
+          y_offset=5
           icon=""
           icon.highlight_color="$COLOR_SECONDARY"
+          label.font="$NERD_FONT:Regular:11"
         )
 
         sketchybar                                  \
@@ -36,7 +37,7 @@
       '';
     };
 
-    "sketchybar/network/network.sh" = {
+    "sketchybar/network/script.sh" = {
       executable = true;
       text = ''
         #!/usr/bin/env bash
@@ -61,16 +62,15 @@
           UP_LABEL=$(echo "$UP" | awk '{ printf "%03.0f kbps", $1};')
         fi
 
-        UP_TRAFFIC="off"
-        if [ "$UP" -gt 0 ]; then UP_TRAFFIC="on"; fi
-        DOWN_TRAFFIC="off"
-        if [ "DOWN" -gt 0 ]; then DOWN_TRAFFIC="on"; fi
+        HAS_UP_TRAFFIC="off"
+        if [ "$UP" -gt 0 ]; then HAS_UP_TRAFFIC="on"; fi
+        HAS_DOWN_TRAFFIC="off"
+        if [ "$DOWN" -gt 0 ]; then HAS_DOWN_TRAFFIC="on"; fi
 
-        sketchybar                                                                    \
-          --set network.down label="''${DOWN_LABEL}" icon.highlight="''${DOWN_TRAFFIC}"   \
-          --set network.up   label="''${UP_LABEL}"   icon.highlight="''${UP_TRAFFIC}"
+        sketchybar \
+          --set network.down label="''${DOWN_LABEL}" icon.highlight="''${HAS_DOWN_TRAFFIC}" \
+          --set network.up label="''${UP_LABEL}" icon.highlight="''${HAS_UP_TRAFFIC}"
       '';
     };
   };
 }
-

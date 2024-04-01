@@ -9,15 +9,15 @@
       text = ''
         #!/usr/bin/env bash
         CONFIG_ROOT=${config.xdg.configHome}/sketchybar
-        source $CONFIG_ROOT/vars.sh
+        source "$CONFIG_ROOT/vars.sh"
 
         battery_details=(
-            background.corner_radius=10
-            background.padding_left=5
-            background.padding_right=10
-            icon.background.height=2
-            icon.background.y_offset=-12
-            )
+          background.corner_radius=10
+          background.padding_left=5
+          background.padding_right=10
+          icon.background.height=2
+          icon.background.y_offset=-12
+        )
 
         sketchybar                                                           \
           --add item battery right                                           \
@@ -36,7 +36,7 @@
       text = ''
         #!/usr/bin/env bash
         CONFIG_ROOT=${config.xdg.configHome}/sketchybar
-        source $CONFIG_ROOT/vars.sh
+        source "$CONFIG_ROOT/vars.sh"
 
         function low_battery_label() {
           if [[ "$BATT_PERCENT" -lt 50 ]]; then
@@ -47,34 +47,25 @@
         }
 
         function render_bar_item() {
-          if [ $IS_CHARGING -eq 1 ]; then
-            case $BATT_PERCENT in
-            100) ICON="󰂄" COLOR="$COLOR_SUCCESS" ;;
-            9[0-9]) ICON="󰂋" COLOR="$COLOR_SUCCESS" ;;
-            8[0-9]) ICON="󰂊" COLOR="$COLOR_SUCCESS" ;;
-            7[0-9]) ICON="󰢞" COLOR="$COLOR_SUCCESS" ;;
-            6[0-9]) ICON="󰂉" COLOR="$COLOR_INFORMATION" ;;
-            5[0-9]) ICON="󰢝" COLOR="$COLOR_INFORMATION" ;;
-            4[0-9]) ICON="󰂈" COLOR="$COLOR_WARNING" ;;
-            3[0-9]) ICON="󰂇" COLOR="$COLOR_WARNING" ;;
-            2[0-9]) ICON="󰂆" COLOR="$COLOR_ERROR" ;;
-            1[0-9]) ICON="󰢜" COLOR="$COLOR_ERROR" ;;
-            *) ICON="󱃍" COLOR="$COLOR_ERROR" ;;
-            esac
+          COLOR="$COLOR_DICON"
+
+          if [[ "$IS_CHARGING" -eq "1" ]]; then
+            ICON="􀢋"
           else
-            case $BATT_PERCENT in
-            100) ICON="󰁹" COLOR="$COLOR_SUCCESS" ;;
-            9[0-9]) ICON="󰂂" COLOR="$COLOR_SUCCESS" ;;
-            8[0-9]) ICON="󰂁" COLOR="$COLOR_SUCCESS" ;;
-            7[0-9]) ICON="󰂀" COLOR="$COLOR_SUCCESS" ;;
-            6[0-9]) ICON="󰁿" COLOR="$COLOR_INFORMATION" ;;
-            5[0-9]) ICON="󰁾" COLOR="$COLOR_INFORMATION" ;;
-            4[0-9]) ICON="󰁽" COLOR="$COLOR_WARNING" ;;
-            3[0-9]) ICON="󰁼" COLOR="$COLOR_WARNING" ;;
-            2[0-9]) ICON="󰁻" COLOR="$COLOR_ERROR" ;;
-            1[0-9]) ICON="󰁺" COLOR="$COLOR_ERROR" ;;
-            *) ICON="󱃍" COLOR="$COLOR_ERROR" ;;
-            esac
+            if [ "$BATT_PERCENT" -eq "100" ]; then
+              ICON="􀛨"
+            elif [ "$BATT_PERCENT" -ge "75" ]; then
+              ICON="􀛨"
+            elif [ "$BATT_PERCENT" -ge "50" ]; then
+              ICON="􀺶"
+              COLOR="$COLOR_INFORMATION"
+            elif [ "$BATT_PERCENT" -ge "25" ]; then
+              ICON="􀛩"
+              COLOR="$COLOR_WARNING"
+            else
+              ICON="􀛪"
+              COLOR="$COLOR_ERROR"
+            fi
 
             sketchybar --set "$NAME" label="$BATT_PERCENT%"
           fi
@@ -85,7 +76,9 @@
 
         function render_popup() {
           LABEL="$BATT_PERCENT%"
-          if [ $BATT_REMAINING != "" ]; then LABEL="$BATT_PERCENT% / $BATT_REMAINING"; fi
+          if [ $BATT_REMAINING != "" ]; then
+            LABEL="$BATT_PERCENT% / $BATT_REMAINING";
+          fi
 
           battery_details=(
             label="$LABEL"
@@ -101,7 +94,8 @@
         }
 
         function popup() {
-          BATT_PERCENT=$(sketchybar --query battery.details | jq -r '.label.value | sub("%"; "") | head -n1')
+          # TODO: being used?
+          # BATT_PERCENT=$(sketchybar --query battery.details | jq -r '.label.value | sub("%"; "") | head -n1')
 
           sketchybar --set "$NAME" popup.drawing="$1"
         }

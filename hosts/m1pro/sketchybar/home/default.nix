@@ -14,6 +14,8 @@
     ./ram.nix
     ./spaces.nix
     ./vars.nix
+    ./volume.nix
+    ./wifi.nix
   ];
 
   xdg.configFile."sketchybar/sketchybarrc" = {
@@ -26,7 +28,7 @@
       # general bar appearance
       sketchybar --bar \
         height=32 \
-        color=$COLOR_BAR \
+        color="$COLOR_TRANSPARENT" \
         shadow=off \
         position=top \
         sticky=on \
@@ -52,12 +54,12 @@
         padding_left=$PADDINGS \
         \
         background.height=30 \
-        background.corner_radius=5 \
+        background.corner_radius="$RADIUS" \
         \
-        popup.background.border_width=2 \
-        popup.background.corner_radius=5 \
-        popup.background.border_color=$COLOR_PRIMARY \
-        popup.background.color=$COLOR_BAR \
+        popup.background.border_width=1 \
+        popup.background.corner_radius="RADIUS" \
+        popup.background.border_color="$COLOR_PRIMARY" \
+        popup.background.color="$COLOR_BAR" \
         popup.blur_radius=10 \
         popup.background.shadow.drawing=off
 
@@ -70,10 +72,39 @@
 
       # ## RIGHT
       source $CONFIG_ROOT/calendar/item.sh
+      source "$CONFIG_ROOT/wifi/item.sh"
+      source $CONFIG_ROOT/battery/item.sh
+      source $CONFIG_ROOT/volume/item.sh
+
+      sketchybar \
+        --add item spacer right \
+        --set spacer \
+        background.drawing=off \
+        width=8
+
       source $CONFIG_ROOT/cpu/item.sh
       source $CONFIG_ROOT/ram/item.sh
-      source $CONFIG_ROOT/battery/item.sh
       source $CONFIG_ROOT/network/item.sh
+
+      bracket_style=(
+        background.height=24
+        background.drawing=on
+        background.color="$COLOR_BAR"
+        background.border_color="$COLOR_TRANSPARENT"
+        background.border_width=1
+        background.corner_radius="$RADIUS"
+        blur_radius=32
+      )
+
+      sketchybar \
+        --add bracket workspaces_block apple.logo "/space\..*/" space_separator front_app \
+        --set workspaces_block "''${bracket_style[@]}" \
+        \
+        --add bracket status_block "/network\..*/" cpu memory \
+        --set status_block "''${bracket_style[@]}" \
+        \
+        --add bracket osx_basic volume volume_icon battery wifi date clock \
+        --set osx_basic "''${bracket_style[@]}"
 
       # Forcing all item scripts to run (never do this outside of sketchybarrc)
       sketchybar --update
