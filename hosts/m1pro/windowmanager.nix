@@ -28,25 +28,27 @@ in {
       yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
       yabai -m rule --add app="^(Calculator|Software Update|Dictionary|System Preferences|System Settings|Photo Booth|Archive Utility|App Store|Alfred|Activity Monitor)$" manage=off
 
-      ### Apps: General
+      ### General
       yabai -m rule --add app="^zoom*" manage=off
 
-      ### Space: Primary
-      # yabai -m rule --add app="^Alacritty" space=1
+      ### Space 1: Primary
+      # yabai -m rule --add app="^Alacritty" space=^1
 
-      ### Space: Secondary
-      yabai -m rule --add app="^1Password" space=2 manage=off
-      yabai -m rule --add app="^DBeaver" space=2
-      yabai -m rule --add app="^Postman" space=2
+      ### Space 2: Secondary
+      yabai -m rule --add app="^1Password" space=^2 manage=off
+      yabai -m rule --add app="^DBeaver" space=^2
+      yabai -m rule --add app="^Postman" space=^2
 
-      ### Space: Notes
-      yabai -m rule --add app="^Obsidian" space=3
+      ### Space 3: Notes
+      yabai -m rule --add app="^Obsidian" space=^3
       yabai -m rule --add app="^TickTick" space=3
 
-      ### Space: Social
-      yabai -m rule --add app="WhatsApp" space=4
-      yabai -m rule --add app="^Discord" space=4
-      yabai -m rule --add app="^Spotify" space=4
+      ### Space 4: Social
+      yabai -m rule --add app="WhatsApp" space=^4
+      yabai -m rule --add app="^Discord" space=^4
+
+      ### Space 5: Music
+      yabai -m rule --add app="^Spotify" space=^5
 
       ${
         if hasSketchybar
@@ -65,7 +67,7 @@ in {
       $(${config.homebrew.brewPrefix}/brew --prefix borders)/bin/borders \
         active_color=0xff${config.home-manager.users.${vars.username}.colorScheme.palette.base0F} \
         inactive_color=0x00ffffff \
-        width=7.0 &
+        width=5.0 &
     '';
   };
 
