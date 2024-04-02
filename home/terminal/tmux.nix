@@ -16,17 +16,19 @@
     enable = true;
     package = upkgs.tmux;
     baseIndex = 1;
-    newSession = true; # spawn session if attach and none exist
+    newSession = false; # spawn session if attach and none exist
     sensibleOnTop = false; # disable due to github.com/nix-community/home-manager/issues/2541
     clock24 = true;
     disableConfirmationPrompt = false;
     keyMode = "vi";
     mouse = true;
     prefix = "C-b";
-    terminal = "tmux-256color";
+    terminal = "xterm-256color";
     extraConfig = ''
       set-option -g focus-events on
       set-option -sg escape-time 10
+
+      set-option -ga terminal-overrides ",xterm-256color:Tc"
 
       # set-option -g renumber-windows on             # Re-number remaining windows when one is closed
       unbind -T copy-mode-vi MouseDragEnd1Pane        # don't exit copy mode when dragging with mouse
