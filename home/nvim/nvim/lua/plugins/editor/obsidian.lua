@@ -1,14 +1,52 @@
+local function createNoteWithDefaultTemplate()
+  local TEMPLATE_FILENAME = "default-note"
+  local obsidian = require("obsidian").get_client()
+  local utils = require("obsidian.util")
+
+  -- prevent Obsidian.nvim from injecting it's own frontmatter table
+  obsidian.opts.disable_frontmatter = true
+
+  -- prompt for note title
+  -- @see: borrowed from obsidian.command.new
+  local note
+  local title = utils.input("Enter title or path (optional): ")
+  if not title then
+    return
+  elseif title == "" then
+    title = nil
+  end
+
+  note = obsidian:create_note({ title = title, no_write = true })
+
+  if not note then
+    return
+  end
+  -- open new note in a buffer
+  obsidian:open_note(note, { sync = true })
+  -- NOTE: make sure the template folder is configured in Obsidian.nvim opts
+  obsidian:write_note_to_buffer(note, { template = TEMPLATE_FILENAME })
+  -- hack: delete empty lines before frontmatter; template seems to be injected at line 2
+  vim.api.nvim_buf_set_lines(0, 0, 1, false, {})
+end
+
 return {
   {
     "epwalsh/obsidian.nvim",
     version = "*", -- latest release instead of commit
     lazy = true,
     ft = "markdown",
+    -- only load on Obsidian vault
+    event = {
+      "BufReadPre " .. vim.fn.expand("~/Code/tgallacher/obsidian/**.md"),
+      "BufNewFile " .. vim.fn.expand("~/Code/tgallacher/obsidian/**.md"),
+    },
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
     init = function()
       vim.opt.conceallevel = 2
+
+      vim.keymap.set("n", "<leader>nn", createNoteWithDefaultTemplate, { desc = "[N]ew Obsidian [N]ote" })
     end,
     opts = {
       open_app_foreground = true, -- focus app on `:ObsidianOpen`
