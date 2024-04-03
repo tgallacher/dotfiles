@@ -1,10 +1,6 @@
 {
-  self,
-  config,
-  pkgs,
   upkgs,
   inputs,
-  system,
   vars,
   lib,
   ...
@@ -17,7 +13,7 @@
     ../../../home/nvim
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  colorScheme = inputs.nix-colors.colorSchemes.rose-pine;
 
   home = {
     username = vars.username;

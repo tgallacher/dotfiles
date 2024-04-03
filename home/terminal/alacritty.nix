@@ -1,9 +1,7 @@
 {
-  self,
   pkgs,
   upkgs,
   config,
-  osConfig,
   ...
 }: let
   alacrittyFileExtension = version:
@@ -29,7 +27,7 @@ in {
     # see: https://alacritty.org/config-alacritty.html
     settings = {
       import = [
-        "${upkgs.alacritty-theme}/catppuccin_mocha.${alacrittyFileExtension config.programs.alacritty.package.version}"
+        "${upkgs.alacritty-theme}/${config.colorScheme.slug}.${alacrittyFileExtension config.programs.alacritty.package.version}"
       ];
       live_config_reload = true;
       cursor = {

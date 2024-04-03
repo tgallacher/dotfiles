@@ -17,7 +17,7 @@ require("lazy").setup({
     { import = "plugins.pde" },
   },
   install = {
-    colorscheme = { "catppuccin-mocha" },
+    colorscheme = { "rose-pine" },
   },
   checker = {
     enabled = true,

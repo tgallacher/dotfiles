@@ -7,10 +7,9 @@
   programs.tmux = let
     theme = {
       trans = "default";
-      grey = "#${config.colorScheme.palette.base03}";
       text = "#${config.colorScheme.palette.base04}";
-      primary = "#${config.colorScheme.palette.base07}";
-      accent = "#${config.colorScheme.palette.base06}";
+      primary = "#${config.colorScheme.palette.base09}";
+      secondary = "#${config.colorScheme.palette.base0D}";
     };
   in {
     enable = true;
@@ -33,10 +32,6 @@
       # set-option -g renumber-windows on             # Re-number remaining windows when one is closed
       unbind -T copy-mode-vi MouseDragEnd1Pane        # don't exit copy mode when dragging with mouse
 
-      ## vim keys to switch windows
-      bind -n M-h previous-window
-      bind -n M-l next-window
-
       ## Keep zoom when moving up/down panes
       bind-key -n M-k select-pane -U \; resize-pane -Z
       bind-key -n M-j select-pane -D \; resize-pane -Z
@@ -49,6 +44,10 @@
 
       ## Easy config reload
       bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded..."
+
+      ## vim keys to switch windows
+      bind -n M-h previous-window
+      bind -n M-l next-window
 
       # Set copy mode to immitate Vim keybindings.
       # Here we adjust the key bind to the copy-mode-vi table in tmux, eg. does not require prefix
@@ -63,17 +62,16 @@
       set -g status-left-length 200     # increase length (from 10)
       set -g status-style 'bg=default'  # transparent background
 
-      set -g status-left "#[fg=${theme.primary},bg=${theme.trans}]  #S #[fg=${theme.grey},bg=${theme.trans}]|"
+      set -g status-left "#[fg=${theme.text},bg=${theme.trans}]  #S #[fg=${theme.text},bg=${theme.trans}]|"
       set -g window-status-format '#[fg=${theme.text},bg=${theme.trans}] #I.#W #[fg=${theme.text},bg=${theme.trans}]#{?window_zoomed_flag,,}'
-      set -g window-status-current-format '#[fg=${theme.accent},bg=${theme.trans}] #I.#W #[fg=${theme.accent},bg=${theme.trans}]#{?window_zoomed_flag,,}'
+      set -g window-status-current-format '#[fg=${theme.primary},bg=${theme.trans}] #I.#W #[fg=${theme.secondary},bg=${theme.trans}]#{?window_zoomed_flag,,}'
 
-      set -g pane-border-style 'fg=${theme.primary}'
+      set -g pane-border-style 'fg=${theme.text}'
       set -g pane-active-border-style 'fg=${theme.primary}'
       set -g window-status-last-style 'fg=white,bg=${theme.trans}'
-      set -g message-command-style fg=${theme.accent},bg=${theme.trans}
-      set -g message-style fg=${theme.accent},bg=${theme.trans}
-      # set -g mode-style fg=${theme.accent},bg=${theme.trans}
-      set -g mode-style fg=${theme.accent},bg=terminal
+      set -g message-command-style fg=${theme.secondary},bg=${theme.trans}
+      set -g message-style fg=${theme.secondary},bg=${theme.trans}
+      set -g mode-style fg=${theme.secondary},bg=terminal
       set -gp window-style bg=terminal
     '';
     plugins = lib.mkMerge [
@@ -89,7 +87,7 @@
 
             # Hack: `extraConfig` is inserted after plugins, but continuum plugin needs to come after anything that edits `status-right`
             # see: https://github.com/nix-community/home-manager/issues/3555
-            set -g status-right "#[fg=${theme.grey},bg=${theme.trans}]|#[fg=${theme.primary},bg=${theme.trans}] %Y-%m-%d "
+            set -g status-right "#[fg=${theme.text},bg=${theme.trans}]|#[fg=${theme.text},bg=${theme.trans}] %Y-%m-%d "
           '';
         }
         # Note: must come after catpuccin, or anything that edits the right status bar
