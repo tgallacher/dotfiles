@@ -84,7 +84,7 @@ vim.opt.scrolloff = 10
 vim.opt.completeopt = { "menuone", "noselect" }
 
 -- enable 24-bit colors
-vim.opt.termguicolors = false
+vim.opt.termguicolors = true
 
 -- Set fold settings
 -- These options were reccommended by nvim-ufo
