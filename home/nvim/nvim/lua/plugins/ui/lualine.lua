@@ -1,5 +1,5 @@
-local colors = require("catppuccin.palettes.mocha")
-local color_utils = require("catppuccin.utils.colors")
+-- local colors = require("catppuccin.palettes.mocha")
+-- local color_utils = require("catppuccin.utils.colors")
 
 -- display Harpoon details
 -- source: https://github.com/dmmulroy/kickstart.nix
@@ -27,8 +27,7 @@ return {
     opts = function()
       return {
         options = {
-          -- theme = "pywal16-nvim",
-          theme = "catppuccin",
+          theme = "rose-pine",
           icons_enabled = true,
           component_separators = { left = "", right = "" }, -- remove default separators
           section_separators = { left = "", right = "" }, -- remove default separators
@@ -53,50 +52,51 @@ return {
             },
           },
           lualine_b = {
-
-            {
-              "diff",
-              draw_empty = true,
-              separator = { left = "", right = "" },
-              color = { bg = colors.surface0 },
-              diff_colors = {
-                added = colors.green,
-                modified = colors.yellow,
-                removed = colors.red,
-              },
-            },
             harpoon,
             {
               "buffers",
               use_mode_colors = false,
               separator = { left = "", right = "" },
-              buffers_color = {
-                active = { fg = colors.mauve, bg = colors.mantle },
-                inactive = { fg = colors.overlay0, bg = colors.mantle },
-              },
+              -- buffers_color = {
+              --   active = { fg = colors.mauve, bg = colors.mantle },
+              --   inactive = { fg = colors.overlay0, bg = colors.mantle },
+              -- },
             },
           },
           lualine_c = {},
-          lualine_x = {},
-          lualine_y = {
+          lualine_x = {
+            {
+              "diff",
+              draw_empty = true,
+              separator = { left = "", right = "" },
+              -- color = { bg = colors.surface0 },
+              -- diff_colors = {
+              --   added = colors.green,
+              --   modified = colors.yellow,
+              --   removed = colors.red,
+              -- },
+            },
+
             {
               "branch",
               icon = "󰘬",
               separator = { left = "", right = "" },
               color = {
-                -- fg = colors.text,
-                -- bg = color_utils.darken(colors.mauve, 0.55),
-                fg = colors.overlay2,
-                bg = colors.base,
+                -- -- fg = colors.text,
+                -- -- bg = color_utils.darken(colors.mauve, 0.55),
+                -- fg = colors.overlay2,
+                -- bg = colors.base,
               },
             },
+          },
+          lualine_y = {
             {
               "filesize",
               separator = { left = "", right = "" },
-              color = {
-                fg = colors.overlay2,
-                bg = colors.crust,
-              },
+              -- color = {
+              --   fg = colors.overlay2,
+              --   bg = colors.crust,
+              -- },
             },
             {
               "diagnostics",
@@ -104,16 +104,16 @@ return {
               sections = { "error", "warn" },
               separator = { left = "", right = "" },
               symbols = { error = " ", warn = " " },
-              diagnostics_colors = {
-                error = colors.red,
-                warn = colors.yellow,
-              },
+              -- diagnostics_colors = {
+              --   error = colors.red,
+              --   warn = colors.yellow,
+              -- },
               colored = true,
               update_in_insert = false,
               always_visible = true,
-              color = {
-                bg = colors.mantle,
-              },
+              -- color = {
+              --   bg = colors.mantle,
+              -- },
             },
           },
           lualine_z = {
@@ -121,25 +121,25 @@ return {
               "filetype",
               separator = { left = "", right = "" },
               colored = false, -- icon only
-              color = {
-                fg = colors.overlay1,
-                bg = colors.base,
-              },
+              -- color = {
+              --   fg = colors.overlay1,
+              --   bg = colors.base,
+              -- },
             },
             {
               "progress",
               separator = { left = "", right = "" },
-              color = {
-                fg = colors.subtext1,
-                bg = colors.surface0,
-              },
+              -- color = {
+              --   fg = colors.subtext1,
+              --   bg = colors.surface0,
+              -- },
             },
             {
               "location",
-              color = {
-                fg = colors.text,
-                bg = colors.surface1,
-              },
+              -- color = {
+              --   fg = colors.text,
+              --   bg = colors.surface1,
+              -- },
             },
           },
         },
