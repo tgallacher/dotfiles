@@ -69,6 +69,16 @@ return {
         ["<localleader>d"] = { name = "[d]iagnostic", _ = "which_key_ignore" },
       })
 
+      -- this is to fix bug: https://github.com/folke/which-key.nvim/issues/476
+      vim.api.nvim_create_autocmd("FileType", {
+        desc = "Fix which-key trigger on `localleader`",
+        group = vim.api.nvim_create_augroup("whickey_localleader", { clear = true }),
+        pattern = "*",
+        callback = function()
+          -- stylua: ignore
+          -- WARN: magic string here for `localleader`; how to make this dynamic
+          vim.keymap.set("n", "<localleader>", function() whichkey.show("\\") end, { buffer = true })
+        end,
       })
     end,
   },
