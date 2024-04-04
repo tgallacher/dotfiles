@@ -166,4 +166,17 @@ return {
       { "<leader>5", function() require("harpoon.ui").nav_file(5) end, desc = "Open Harpoon File [5]" },
     },
   },
+
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons", "folke/todo-comments.nvim" },
+    keys = {
+      { "<leader>tx", ":TroubleToggle<CR>", desc = "[T]oggle [T]rouble list" },
+      { "<leader>tw", ":TroubleToggle workspace_diagnostics<CR>", desc = "Open [T]rouble [W]orkspace Diagnostics" },
+      { "<leader>td", ":TroubleToggle document_diagnostics<CR>", desc = "Open [T]rouble [D]ocument Diagnostics" },
+      { "<leader>tq", ":TroubleToggle quickfix<CR>", desc = "Open [T]rouble [Q]uickfix List" },
+      { "<leader>tl", ":TroubleToggle loclist<CR>", desc = "Open [T]rouble [L]ocation List" },
+      { "<leader>tt", ":TodoTrouble<CR>", desc = "Open todos in trouble" },
+    },
+  },
 }
