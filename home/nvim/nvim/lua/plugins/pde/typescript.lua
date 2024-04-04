@@ -17,28 +17,41 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
       opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
-        "prettierd",
-        -- "typescript-language-server",
-        "js-debug-adapter",
+        "prettierd", -- formatter
+        "eslint_d", -- linter
+        "js-debug-adapter", -- dap
+        "tsserver", -- lsp
       })
       return opts
     end,
   },
 
   {
-    "pmizio/typescript-tools.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "neovim/nvim-lspconfig",
-    },
-    opts = {},
-    ft = {
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        typescript = { "eslint_d" },
+        javascript = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+      },
     },
   },
+
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "neovim/nvim-lspconfig",
+  --   },
+  --   opts = {},
+  --   ft = {
+  --     "javascript",
+  --     "javascriptreact",
+  --     "typescript",
+  --     "typescriptreact",
+  --   },
+  -- },
 
   { -- Autoformat
     "stevearc/conform.nvim",
