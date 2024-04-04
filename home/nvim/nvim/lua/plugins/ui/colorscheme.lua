@@ -1,6 +1,7 @@
 return {
   {
     "catppuccin/nvim",
+    enabled = false,
     lazy = false,
     name = "catppuccin",
     priority = 1000,
@@ -27,9 +28,9 @@ return {
 
   {
     "rose-pine/neovim",
-    -- lazy = true,
+    lazy = false,
     name = "rose-pine",
-    -- priority = 1000,
+    priority = 1000,
     config = function(_, opts)
       require("rose-pine").setup(opts)
       vim.cmd.colorscheme("rose-pine")
