@@ -9,24 +9,26 @@ return {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
-        cond = function()
-          return vim.fn.executable("make") == 1
-        end,
+        -- stylua: ignore
+        cond = function() return vim.fn.executable("make") == 1 end,
       },
-      { "nvim-telescope/telescope-ui-select.nvim" },
-      { "nvim-tree/nvim-web-devicons" },
+      "nvim-telescope/telescope-ui-select.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "folke/todo-comments.nvim",
     },
     config = function()
-      -- [[ Configure Telescope ]]
-      -- See `:help telescope` and `:help telescope.setup()`
+      local actions = require("telescope.actions")
+
       require("telescope").setup({
         defaults = {
           file_ignore_patterns = { "^.git", "node_modules" },
+          path_display = { "smart" },
           mappings = {
             i = {
               -- stylua: ignore start
               ["<C-k>"] = function(...) return require("telescope.actions").move_selection_previous(...) end,
               ["<C-j>"] = function(...) return require("telescope.actions").move_selection_next(...) end,
+              ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
               -- stylua: ignore end
             },
           },
