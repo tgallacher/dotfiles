@@ -34,6 +34,12 @@ return {
       require("rose-pine").setup(opts)
       vim.cmd.colorscheme("rose-pine")
 
+      -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ea9a97", bg = "#6e6a86" })
+      vim.api.nvim_set_hl(0, "Cursor", { fg = "#ea9a97", bg = "#6e6a86" })
+      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#26233a" })
+      vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ea9a97", bg = "#26233a" })
+      -- vim.api.nvim_set_hl(0, "CursorColumn", { fg = "#ea9a97", bg = "#6e6a86" })
+
       -- You can configure highlights by doing something like
       -- vim.cmd.hi("Comment gui=none")
     end,
