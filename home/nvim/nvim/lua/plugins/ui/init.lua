@@ -36,21 +36,39 @@ return {
         },
       },
     },
+    config = function(_, opts)
+      local todo_comments = require("todo-comments")
+
+      -- stylua: ignore start
+      vim.keymap.set("n", "]t", function() todo_comments.jump_next() end, { desc = "Next [T]odo comment" })
+      vim.keymap.set("n", "[t", function() todo_comments.jump_prev() end, { desc = "Prev [T]odo comment" })
+      -- stylua: ignore end
+
+      todo_comments.setup(opts)
+    end,
   },
 
   { -- Useful plugin to show you pending keybinds.
     "folke/which-key.nvim",
     event = "VeryLazy",
     config = function() -- This is the function that runs, AFTER loading
-      require("which-key").setup()
+      local whichkey = require("which-key")
+
+      whichkey.setup()
 
       -- Document existing key chains
       require("which-key").register({
-        ["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-        ["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-        ["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-        ["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-        ["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
+        ["<leader>f"] = { name = "[f]ind", _ = "which_key_ignore" },
+        ["<leader>w"] = { name = "[w]orkspace", _ = "which_key_ignore" },
+        ["<leader>t"] = { name = "[t]rouble", _ = "which_key_ignore" },
+        ["<leader>h"] = { name = "[h]unk", _ = "which_key_ignore" },
+        ["<leader>e"] = { name = "NvimTre[e]", _ = "which_key_ignore" },
+        ["<leader>b"] = { name = "[b]uffers", _ = "which_key_ignore" },
+        ["<leader>s"] = { name = "[s]plits", _ = "which_key_ignore" },
+        ["<localleader>q"] = { name = "[q]uickfix", _ = "which_key_ignore" },
+        ["<localleader>d"] = { name = "[d]iagnostic", _ = "which_key_ignore" },
+      })
+
       })
     end,
   },

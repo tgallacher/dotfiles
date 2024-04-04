@@ -1,14 +1,13 @@
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "\\", "<Nop>", { noremap = true, silent = true })
+
+--  NOTE: Must happen before plugins/keymaps are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 --  For more options, you can see `:help option-list`
-
--- Disable NetRW: NVim Tree recommendation
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 vim.opt.fileencoding = "utf-8" -- the encoding written to a file
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
@@ -58,8 +57,9 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = "yes"
 
 -- Decrease update time
+vim.opt.timeout = true
 vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 500
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true

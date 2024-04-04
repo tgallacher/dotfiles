@@ -38,48 +38,43 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
           end
 
-          -- Jump to the definition of the word under your cursor.
-          --  This is where a variable was first declared, or where a function is defined, etc.
-          --  To jump back, press <C-T>.
-          map("n", "gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+          local goto_diagnostic = function (dirPrev, severity)
+            local goto = dirPrev and vim.diagnostic.goto_prev or vim.diagnostic.goto_next
+            severity = severity and vim.diagnostic.severity[severity] or nil
 
-          -- Find references for the word under your cursor.
-          map("n", "gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+            goto({ severity = severity, float = { border = "single"}})
+          end
 
-          -- Jump to the implementation of the word under your cursor.
-          --  Useful when your language has ways of declaring types without an actual implementation.
-          map("n", "gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+          -- stylua: ignore start
+          map("n", "[d", function() goto_diagnostic(true) end, "Go to Prev [d]iagnostics")
+          map("n", "]d", function() goto_diagnostic(false) end, "Go to Next [d]iagnostics")
+          map("n", "[e", function() goto_diagnostic({ severity = "ERROR"}) end, "Go to Prev [e]rror")
+          map("n", "]e", function() goto_diagnostic({ severity = "ERROR"}) end, "Go to Next [e]rror")
+          map("n", "[w", function() goto_diagnostic({ severity = "WARNING"}) end, "Go to Prev [w]arning")
+          map("n", "]w", function() goto_diagnostic({ severity = "WARNING"}) end, "Go to Next [w]arning")
 
-          -- Jump to the type of the word under your cursor.
-          --  Useful when you're not sure what type a variable is and you want to see
-          --  the definition of its *type*, not where it was *defined*.
-          map("n", "td", require("telescope.builtin").lsp_type_definitions, "[T]ype [D]efinition")
+          map("n", "gd", require("telescope.builtin").lsp_definitions, "[g]o to [d]efinition")
+          map("n", "gD", vim.lsp.buf.declaration, "[g]o to [D]eclaration")
+          map("n", "gr", require("telescope.builtin").lsp_references, "Show [r]eferences [l]ist")
+          map("n", "gi", require("telescope.builtin").lsp_implementations, "[g]o to [i]implementation")
+          map("n", "gt", require("telescope.builtin").lsp_type_definitions, "[g]o to [t]ype definition")
+          map("n", "gs", require("telescope.builtin").lsp_document_symbols, "Show document [s]ymbols")
+          map("n", "gS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Show workspace [S]ymbols")
+          map("n", "<localleader>rn", vim.lsp.buf.rename, "[r]e[n]ame")
+          map("n", "<localleader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
+          map("n", "K", vim.lsp.buf.hover, "Show Hover Documentation") --  See `:help K` for why this keymap
+          map("n", "<localleader>k", vim.lsp.buf.signature_help, "Signature documentation")
+          map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature documentation")
+          map("n", "<localleader>dd", ":Telescope diagnostics bufnr=0<CR>", "Show [d]ocument [d]iagnostics")
+          map("n", "<localleader>dl", vim.diagnostic.open_float, "Show [d]iagnostic for [l]ine")
+          -- map("n", "<localleader>dq", vim.diagnostic.setloclist, "Send all [d]iagnostics to [q]uickfix list")
+          map("n", "<localleader>qd", vim.diagnostic.setqflist, "Set [q]uickfix list to [d]iagnostics")
+          map("n", "<localleader>qn", ":cnext<cr>zz", "Jump to [q]uickfix [n]ext item")
+          map("n", "<localleader>qp", ":cprevious<cr>zz", "Jump to [q]uickfix [p]rev item")
+          map("n", "<localleader>qo", ":copen<cr>zz", "[q]uickfix [o]pen list")
+          map("n", "<localleader>qc", ":cclose<cr>zz", "[q]uickfix [c]lose list")
+          map("n", "<localleader>fm", vim.lsp.buf.format, "[f]or[m]at the current buffer")
 
-          -- Fuzzy find all the symbols in your current document.
-          --  Symbols are things like variables, functions, types, etc.
-          map("n", "<localleader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-
-          -- Fuzzy find all the symbols in your current workspace
-          --  Similar to document symbols, except searches over your whole project.
-          map("n", "<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-
-          -- Rename the variable under your cursor
-          --  Most Language Servers support renaming across files, etc.
-          map("n", "<localleader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-
-          -- Execute a code action, usually your cursor needs to be on top of an error
-          -- or a suggestion from your LSP for this to activate.
-          map("n", "<localleader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-
-          -- Opens a popup that displays documentation about the word under your cursor
-          --  See `:help K` for why this keymap
-          map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-          map("n", "<localleader>k", vim.lsp.buf.signature_help, "Signature Documentation")
-          map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-
-          -- WARN: This is not Goto Definition, this is Goto Declaration.
-          --  For example, in C this would take you to the header
-          map("n", "gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.

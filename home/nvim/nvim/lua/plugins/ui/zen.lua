@@ -3,7 +3,7 @@ return {
     "folke/twilight.nvim",
     config = true,
     keys = {
-      { "<leader>tw", ":Twilight <CR>", "n", { noremap = true, silent = true } },
+      { "<leader>zt", ":Twilight <CR>", "n", { desc = "Toggle Twilight [Z]en [F]ocus", noremap = true, silent = true } },
     },
   },
 
@@ -11,7 +11,7 @@ return {
     "folke/zen-mode.nvim",
     config = true,
     keys = {
-      { "<leader>zm", ":ZenMode <CR>", "n", { noremap = true, silent = true } },
+      { "<leader>zm", ":ZenMode <CR>", "n", { desc = "Toggle [Z]en [M]ode", noremap = true, silent = true } },
     },
   },
 }

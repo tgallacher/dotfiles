@@ -27,7 +27,7 @@ return {
     },
     keys = {
       -- stylua: ignore
-      { "<leader>o", function() require("oil").toggle_float() end, },
+      { "<leader>o", function() require("oil").toggle_float() end, { desc="Open [o]il.nvim"}},
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
