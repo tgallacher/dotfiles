@@ -18,6 +18,16 @@ return {
       auto_install = true, -- Auto-install languages that are not installed
       highlight = { enable = true },
       indent = { enable = true },
+      autotag = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<C-space>",
+          node_incremental = "<C-space>",
+          scope_incremental = "<C-space>",
+          node_decremental = "<bs>",
+        },
+      },
     },
   },
 }
