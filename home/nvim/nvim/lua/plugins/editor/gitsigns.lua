@@ -1,18 +1,18 @@
 return {
-  -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
     opts = {
-      -- signs = {
-      --   add = { text = "+" },
-      --   change = { text = "~" },
-      --   delete = { text = "_" },
-      --   topdelete = { text = "‾" },
-      --   changedelete = { text = "~" },
-      -- },
+      current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+      current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+        delay = 1000,
+        ignore_whitespace = false,
+      },
+      current_line_blame_formatter_opts = { relative_time = true },
       on_attach = function(bufnr)
-        local gs = require("gitsigns")
+        -- local gs = require("gitsigns")
         local gs = package.loaded.gitsigns
         local function map(mode, l, r, opts)
           opts = opts or {}
@@ -48,16 +48,6 @@ return {
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Gitsigns select [i]n [h]unk" })
         -- stylua: ignore end
       end,
-      current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-      current_line_blame_opts = {
-        virt_text = true,
-        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-        delay = 1000,
-        ignore_whitespace = false,
-      },
-      current_line_blame_formatter_opts = {
-        relative_time = true,
-      },
     },
   },
 }

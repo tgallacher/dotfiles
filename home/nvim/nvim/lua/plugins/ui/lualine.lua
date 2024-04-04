@@ -1,33 +1,30 @@
 local colors = require("catppuccin.palettes.mocha")
 local color_utils = require("catppuccin.utils.colors")
 
+-- display Harpoon details
+-- source: https://github.com/dmmulroy/kickstart.nix
+local function harpoon()
+  local hp = require("harpoon.mark")
+  local total_marks = hp.get_length()
+
+  if total_marks == 0 then
+    return ""
+  end
+
+  local current_mark = "—"
+  local mark_idx = hp.get_current_index()
+  if mark_idx ~= nil then
+    current_mark = tostring(mark_idx)
+  end
+
+  return string.format("󰛢 %s/%d", current_mark, total_marks)
+end
+
 return {
-  -- statusline
-  {
+  { -- statusline
     "nvim-lualine/lualine.nvim",
-    -- dependencies = { "folke/noice.nvim" },
-    -- event = "VimEnter",
     event = "VeryLazy",
     opts = function()
-      -- display Harpoon details
-      -- source:
-      local function harpoon()
-        local hp = require("harpoon.mark")
-        local total_marks = hp.get_length()
-
-        if total_marks == 0 then
-          return ""
-        end
-
-        local current_mark = "—"
-        local mark_idx = hp.get_current_index()
-        if mark_idx ~= nil then
-          current_mark = tostring(mark_idx)
-        end
-
-        return string.format("󰛢 %s/%d", current_mark, total_marks)
-      end
-
       return {
         options = {
           -- theme = "pywal16-nvim",

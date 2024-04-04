@@ -14,6 +14,10 @@ return {
       -- vim.opt.foldmethod=expr
       -- vim.opt.foldexpr=nvim_treesitter#foldexpr()
 
+      -- Recommended: disable netrw
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+
       nvim_tree.setup({
         actions = {
           change_dir = {
@@ -46,6 +50,7 @@ return {
           -- },
           custom = { -- Regex to filter (do not show if match)
             "^.git$",
+            ".DS_Store",
           },
         },
         git = {
@@ -102,10 +107,6 @@ return {
           },
         },
         sync_root_with_cwd = false, -- Changes the tree root directory on `DirChanged` and refreshes the tree
-        update_focused_file = {
-          enable = true,
-          update_root = false,
-        },
         view = {
           adaptive_size = false,
           centralize_selection = true,
@@ -131,7 +132,7 @@ return {
       {
         "<leader>ef",
         function()
-          require("nvim-tree.api").tree.toggle({ find_file = true, focus = false })
+          require("nvim-tree.api").tree.toggle({ find_file = true, focus = true })
         end,
         { noremap = true, silent = true, desc = "Toggle file explorer on current file" },
       },

@@ -25,16 +25,16 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       signs = false,
-      search = {
-        args = {
-          "--color=never",
-          "--no-heading",
-          "--with-filename",
-          "--line-number",
-          "--column",
-          "--ignore-case", -- doesn't work
-        },
-      },
+      -- search = {
+      --   args = {
+      --     "--color=never",
+      --     "--no-heading",
+      --     "--with-filename",
+      --     "--line-number",
+      --     "--column",
+      --     "--ignore-case", -- FIXME: doesn't work
+      --   },
+      -- },
     },
     config = function(_, opts)
       local todo_comments = require("todo-comments")

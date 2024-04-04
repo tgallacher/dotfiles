@@ -12,9 +12,7 @@ return {
           {
             "williamboman/mason.nvim",
             opts = {
-              ui = {
-                border = "single",
-              },
+              ui = { border = "single" },
             },
           },
           "williamboman/mason-lspconfig.nvim",
@@ -155,7 +153,6 @@ return {
       -- 'rafamadriz/friendly-snippets',
     },
     config = function()
-      -- See `:help cmp`
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
