@@ -7,3 +7,6 @@ zsh/.config/zsh/.zsh_plugins.zsh
 nvim/.config/nvim/plugin
 
 .DS_Store
+
+# local playground files
+_scratch
