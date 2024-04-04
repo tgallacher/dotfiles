@@ -135,6 +135,7 @@ return {
     dependencies = {
       { -- Snippet Engine & its associated nvim-cmp source
         "L3MON4D3/LuaSnip",
+        -- version = "v2.*",
         build = (function()
           -- Build Step is needed for regex support in snippets
           -- This step is not supported in many windows environments
@@ -147,16 +148,15 @@ return {
       },
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      -- If you want to add a bunch of pre-configured snippets,
-      --    you can use this plugin to help you. It even has snippets
-      --    for various frameworks/libraries/etc. but you will have to
-      --    set up the ones that are useful for you.
-      -- 'rafamadriz/friendly-snippets',
+      "rafamadriz/friendly-snippets",
     },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
+      -- load friendly-snippets
+      require("luasnip.loaders.from_vscode").lazy_load()
 
       luasnip.config.setup({})
 
@@ -166,7 +166,7 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        completion = { completeopt = "menu,menuone,noinsert" },
+        completion = { completeopt = "menu,menuone,preview,noselect,noinsert" }, -- TODO: what does this do?
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
@@ -199,11 +199,12 @@ return {
             end
           end, { "i", "s" }),
         }),
-        sources = {
+        sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" },
+          { name = "buffer" },
           { name = "path" },
-        },
+        }),
       })
     end,
   },
