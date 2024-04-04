@@ -24,6 +24,8 @@ return {
       },
       -- Useful status updates for LSP.
       { "j-hui/fidget.nvim", opts = {} },
+      -- nvim lua API intellisense
+      { "folke/neodev.nvim", opts = {} },
     },
     opts = {
       servers = {},
