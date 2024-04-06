@@ -22,7 +22,7 @@
     keyMode = "vi";
     mouse = true;
     prefix = "C-b";
-    terminal = "xterm-256color";
+    terminal = "tmux-256color";
     extraConfig = ''
       set-option -g focus-events on
       set-option -sg escape-time 10
