@@ -65,7 +65,7 @@ in {
 
       # run JankyBoarders
       $(${config.homebrew.brewPrefix}/brew --prefix borders)/bin/borders \
-        active_color=0xff${config.home-manager.users.${vars.username}.colorScheme.palette.base0F} \
+        active_color=0xff${config.home-manager.users.${vars.username}.colorScheme.palette.base09} \
         inactive_color=0x00ffffff \
         width=5.0 &
     '';
@@ -133,7 +133,7 @@ in {
       cmd + shift        - d : yabai -m window --display north; yabai -m display --focus north;
       cmd + shift        - f : yabai -m window --display south; yabai -m display --focus south;
 
-      # move window to prev and next space
+      # move window to prev / next space
       cmd + shift        - p : yabai -m window --space prev
       cmd + shift        - n : yabai -m window --space next
 
