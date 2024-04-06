@@ -22,6 +22,10 @@ return {
         harpoon = true,
         mason = true,
         which_key = true,
+        telescope = {
+          enabled = true,
+          style = "nvchad",
+        },
       },
     },
   },

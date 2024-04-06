@@ -32,8 +32,16 @@ return {
               -- stylua: ignore end
             },
           },
+          sorting_strategy = "ascending",
+          layout_strategy = "flex",
+          layout_config = {
+            horizontal = { preview_cutoff = 80, preview_width = 0.55 },
+            vertical = { mirror = true, preview_cutoff = 25 },
+            prompt_position = "top",
+            width = 0.87,
+            height = 0.80,
+          },
         },
-        -- pickers = {}
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown(),
