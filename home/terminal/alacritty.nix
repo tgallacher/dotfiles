@@ -30,10 +30,13 @@ in {
         "${upkgs.alacritty-theme}/${config.colorScheme.slug}.${alacrittyFileExtension config.programs.alacritty.package.version}"
       ];
       live_config_reload = true;
+      # colors = {
+      #   cursor = {cursor = "#${config.colorScheme.palette.base04}";};
+      # };
       cursor = {
         style = {
           shape = "Block";
-          blinking = "On";
+          blinking = "Always";
         };
         # unfocussed_hollow = true;
         vi_mode_style = {shape = "Underline";};
