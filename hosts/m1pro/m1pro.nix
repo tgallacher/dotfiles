@@ -1,11 +1,9 @@
 # TODO: https://github.com/LnL7/nix-darwin/pull/699
-{ inputs
-, pkgs
-, upkgs
-, config
-, vars
-, host
-, ...
+{
+  pkgs,
+  vars,
+  host,
+  ...
 }: {
   imports = [
     ./system.nix
@@ -63,6 +61,7 @@
       "trash" # nvim-tree
       "borders" # jankyBorders
       "silicon" # see "michaelrommel/nvim-silicon"; barage of errors if installed from nixpkgs
+      "gh" # Github CLI
     ];
     casks = [
       "ticktick" # todo
@@ -77,7 +76,7 @@
       "docker"
       "postman" # nixpkgs version seems to be down; use brew instead
     ];
-    masApps = { };
+    masApps = {};
     global.autoUpdate = false;
     global.brewfile = true; # use the brewfile managed by nix-darwin
     onActivation.cleanup = "zap"; # don't use brew directly, let nix-darwin manage it
