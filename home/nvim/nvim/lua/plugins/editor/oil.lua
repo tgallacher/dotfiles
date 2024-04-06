@@ -4,6 +4,16 @@ return {
     lazy = true,
     opts = {
       use_default_keymaps = false,
+      delete_to_trash = true,
+      skip_confirm_for_simple_edits = true, -- see :h oil.skip_confirm_for_simple_edit
+      view_options = { show_hidden = true },
+      constrain_cursor = "name", -- constrain to filename: only required when additional `columns` is spec'd below
+      columns = {
+        "icon",
+        "permissions",
+        "size",
+        "type",
+      },
       keymaps = {
         ["g?"] = "actions.show_help",
         ["<CR>"] = "actions.select",
@@ -20,9 +30,6 @@ return {
         ["gs"] = "actions.change_sort",
         ["gx"] = "actions.open_external",
         ["g."] = "actions.toggle_hidden",
-      },
-      view_options = {
-        show_hidden = true,
       },
     },
     keys = {
