@@ -51,6 +51,7 @@ return {
     opts = {
       open_app_foreground = true, -- focus app on `:ObsidianOpen`
       attachments = { img_folder = "999-files/assets" },
+      wiki_link_func = "prepend_note_id",
       workspaces = {
         {
           name = "personal",
