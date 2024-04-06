@@ -37,7 +37,7 @@ vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", { desc = "", silent = true })
 vim.keymap.set("n", "<localleader>X", ":!chmod +x %<CR>", { desc = "Make file e[X]ecutable" })
 vim.keymap.set("n", "]<Space>", "o<Esc>", { desc = "" }) -- Insert blank line below
 vim.keymap.set("n", "[<Space>", "O<Esc>", { desc = "" }) -- Insert blank line above
-vim.keymap.set("n", "gx", ":sil !open <cWORD><cr>", { silent = true }) -- open the link under the cursor
+vim.keymap.set("n", "gx", ":sil !open <cWORD><cr>", { noremap = true, silent = true }) -- open the link under the cursor
 vim.keymap.set("i", "jk", "<ESC>", { desc = "" }) -- Press jk fast to exit insert mode
 
 -- Stay in indent mode
