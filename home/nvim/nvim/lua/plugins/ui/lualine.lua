@@ -27,7 +27,7 @@ return {
     opts = function()
       return {
         options = {
-          theme = "rose-pine",
+          theme = "catppuccin",
           icons_enabled = true,
           component_separators = { left = "", right = "" }, -- remove default separators
           section_separators = { left = "", right = "" }, -- remove default separators
