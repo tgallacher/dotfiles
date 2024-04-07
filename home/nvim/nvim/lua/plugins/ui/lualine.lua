@@ -23,11 +23,13 @@ end
 return {
   { -- statusline
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
+    -- FIXME: Overwrites startup and injects [no name] buffer, unless we use Alpha plugin
+    -- enabled = false,
+    event = "StdinReadPre",
     opts = function()
       return {
         options = {
-          theme = "catppuccin",
+          theme = "rose-pine",
           icons_enabled = true,
           component_separators = { left = "", right = "" }, -- remove default separators
           section_separators = { left = "", right = "" }, -- remove default separators

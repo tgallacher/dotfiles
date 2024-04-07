@@ -8,7 +8,11 @@ return {
   },
 
   -- Peek buffer when entering line number :<number>
-  { "nacro90/numb.nvim", event = "InsertEnter", config = true },
+  {
+    "nacro90/numb.nvim",
+    event = "InsertEnter",
+    config = true,
+  },
 
   { -- visualise hex codes
     "norcalli/nvim-colorizer.lua",
@@ -21,7 +25,11 @@ return {
 
   { -- Highlight todo, notes, etc in comments
     "folke/todo-comments.nvim",
-    event = "VeryLazy",
+    -- FIXME: Overwrites startup and injects [no name] buffer, unless we use Alpha plugin
+    -- https://github.com/folke/todo-comments.nvim/issues/133
+    enabled = false,
+    event = { "BufNewFile", "BufReadPre" },
+    priority = 0,
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       signs = false,
@@ -50,14 +58,15 @@ return {
 
   { -- Useful plugin to show you pending keybinds.
     "folke/which-key.nvim",
-    event = "VeryLazy",
+    -- prevent https://github.com/folke/todo-comments.nvim/issues/133
+    event = "VimEnter",
     config = function() -- This is the function that runs, AFTER loading
       local whichkey = require("which-key")
 
       whichkey.setup()
 
       -- Document existing key chains
-      require("which-key").register({
+      whichkey.register({
         ["<leader>f"] = { name = "[f]ind", _ = "which_key_ignore" },
         ["<leader>w"] = { name = "[w]orkspace", _ = "which_key_ignore" },
         ["<leader>t"] = { name = "[t]rouble", _ = "which_key_ignore" },
@@ -85,7 +94,8 @@ return {
 
   { -- improve some vim ui elements
     "stevearc/dressing.nvim",
-    event = "VeryLazy",
+    -- prevent https://github.com/folke/todo-comments.nvim/issues/133
+    event = "VimEnter",
     opts = {
       input = {
         -- relative = "editor",
