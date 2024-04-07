@@ -1,7 +1,7 @@
-{ self
-, upkgs
-, pkgs
-, ...
+{
+  upkgs,
+  pkgs,
+  ...
 }: {
   # FIXME: Can't uses this version, need to install this AFTER starship prompt and this doesn't
   # see: github.com/ajeetdsouza/zoxide/issues/74
@@ -71,7 +71,7 @@
       HIST_STAMPS = "yyyy-mm-dd";
       BROWSER = "brave";
     };
-    dirHashes = { };
+    dirHashes = {};
     # # env vars set for each session
     # sessionVariables = { };
     shellAliases = {

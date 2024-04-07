@@ -30,16 +30,12 @@ vim.opt.linebreak = true -- companion to wrap, don't split words
 vim.opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 vim.opt.iskeyword:append("-") -- hyphenated words recognized by searches
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
-
 vim.opt.winminwidth = 10 -- set min window size for `szw/vim-maximizer`
---
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
-
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
-
 -- Don't show the mode, since it's already in status line
 vim.opt.showmode = false
 
@@ -82,7 +78,7 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 
 -- Better completion experience
 vim.opt.completeopt = { "menuone", "noselect" }
