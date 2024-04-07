@@ -114,6 +114,7 @@ return {
 
   { -- autoclose parens, brackets, quotes, etc
     "windwp/nvim-autopairs",
+    enable = false,
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/nvim-cmp",
