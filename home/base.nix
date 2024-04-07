@@ -1,10 +1,15 @@
 {
-  self,
   pkgs,
   upkgs,
-  config,
   ...
 }: {
+  # useful tool; required for telescope
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    tmux.enableShellIntegration = true;
+  };
+
   home.packages = builtins.attrValues {
     inherit
       (pkgs)
@@ -30,12 +35,10 @@
       difftastic # Diff visualiser
       direnv # Dynamic shell configs
       dwdiff # Another diff visualiser
-      fzf # Find stuff (also dep. of Neovim/Telescope)
+
       git # Version control
       glib # require GIO for NvimTree
       iperf # Network performance
-      ranger # File manager
-      w3m # img preview in ranger
       tldr # Man docs helper
 
       # File Management
