@@ -19,6 +19,7 @@ end
 return {
   {
     "catppuccin/nvim",
+    enabled = false,
     lazy = false,
     name = "catppuccin",
     priority = 1000,
@@ -41,10 +42,10 @@ return {
         harpoon = true,
         mason = true,
         which_key = true,
-        telescope = {
-          enabled = true,
-          style = "nvchad",
-        },
+        -- telescope = {
+        --   enabled = true,
+        --   style = "nvchad",
+        -- },
       },
       background = {
         dark = "frappe",
@@ -82,7 +83,6 @@ return {
 
   {
     "rose-pine/neovim",
-    enabled = false,
     lazy = false,
     name = "rose-pine",
     priority = 1000,
@@ -95,9 +95,6 @@ return {
       vim.api.nvim_set_hl(0, "CursorLine", { bg = "#26233a" })
       vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ea9a97", bg = "#26233a" })
       -- vim.api.nvim_set_hl(0, "CursorColumn", { fg = "#ea9a97", bg = "#6e6a86" })
-
-      -- You can configure highlights by doing something like
-      -- vim.cmd.hi("Comment gui=none")
     end,
     opts = {
       variant = "main",
