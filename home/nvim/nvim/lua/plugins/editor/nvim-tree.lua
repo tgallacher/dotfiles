@@ -3,6 +3,7 @@ local icons = require("plugins.icons")
 return {
   { -- file explorer
     "nvim-tree/nvim-tree.lua",
+    enabled = false,
     version = "*",
     lazy = false,
     event = "VimEnter",

@@ -5,6 +5,10 @@ vim.keymap.set({ "n", "v" }, "\\", "<Nop>", { noremap = true, silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+vim.g.netrw_liststyle = 3 -- tree view
+vim.g.netrw_banner = 0 -- hide annoying banner
+vim.g.netrw_preview = 1 -- vsplit
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 --  For more options, you can see `:help option-list`
