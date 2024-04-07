@@ -55,14 +55,10 @@ return {
       workspaces = {
         {
           name = "personal",
-          path = "~/Code/tgallacher/obsidian/obsidian-notes",
+          path = "~/Code/tgallacher/obsidian",
           overrides = {
             notes_subdir = "00-inbox", -- will review notes each week
           },
-        },
-        {
-          name = "beamery",
-          path = "~/Code/tgallacher/obsidian/beamery-notes",
         },
       },
       -- FIXME: Pull this from Obsidian config
