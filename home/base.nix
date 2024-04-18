@@ -3,11 +3,27 @@
   upkgs,
   ...
 }: {
-  # useful tool; required for telescope
+  # versatile cli tool; also required for telescope
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
     tmux.enableShellIntegration = true;
+  };
+
+  programs.yazi = {
+    enable = true;
+    package = upkgs.yazi;
+    enableZshIntegration = true;
+    # see: https://yazi-rs.github.io/docs/configuration/yazi
+    settings = {
+      # flavor.use = "rose-pine";
+      manager = {
+        sort_dir_first = true;
+        sort_by = "modified";
+        sort_sensitive = false;
+        show_symlink = true;
+      };
+    };
   };
 
   home.packages = builtins.attrValues {
