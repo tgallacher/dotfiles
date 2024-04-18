@@ -52,6 +52,7 @@ return {
       open_app_foreground = true, -- focus app on `:ObsidianOpen`
       attachments = { img_folder = "999-files/assets" },
       wiki_link_func = "prepend_note_id",
+      new_notes_loction = "notes_subdir", -- should use `notes_subdir` setting
       workspaces = {
         {
           name = "personal",
@@ -61,11 +62,11 @@ return {
           },
         },
       },
-      -- FIXME: Pull this from Obsidian config
+      -- FIXME: Can we pull this from Obsidian's config?
       daily_notes = {
-        folder = "10-areas/journaling/daily",
         date_format = "%Y-%m-%d",
         template = "journaling-daily-note.md",
+        folder = "10-areas/journaling/daily",
       },
       templates = {
         subdir = "999-files/templates",
@@ -104,7 +105,7 @@ return {
           local title = tostring(spec.title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower())
           path = spec.dir / title
         else
-          -- This is equivalent to the default behavior.
+          -- This is equivalent to the default behaviour.
           path = spec.dir / tostring(spec.id)
         end
         return path:with_suffix(".md")

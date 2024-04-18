@@ -99,9 +99,9 @@ return {
     opts = {
       variant = "main",
       -- dim_inactive_windows = true,
-      -- styles = {
-      --   -- transparency = true,
-      -- },
+      styles = {
+        transparency = true,
+      },
     },
   },
 }

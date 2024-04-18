@@ -3,9 +3,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
-    dependencies = {
-      "windwp/nvim-ts-autotag",
-    },
     main = "nvim-treesitter.configs",
     opts = {
       -- There are additional nvim-treesitter modules that you can use to interact
@@ -18,7 +15,6 @@ return {
       auto_install = true, -- Auto-install languages that are not installed
       highlight = { enable = true },
       indent = { enable = true },
-      autotag = { enable = true },
       incremental_selection = {
         enable = true,
         keymaps = {
