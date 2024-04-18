@@ -4,6 +4,44 @@
   lib,
   ...
 }: {
+  xdg.configFile."tmux/tmux-sessionizer.sh" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      # tmux-sessionizer - https://github.com/ThePrimeagen/.dotfiles
+
+      dirs=(
+        ~/Code/tgallacher
+      )
+
+      selected_name=""
+      tmux_running=$(pgrep tmux)
+
+      if [[ $# -eq 1 ]]; then
+          selected=$1
+      else
+          selected=$(find ''${dirs[@]} -mindepth 1 -maxdepth 2 -type d | fzf)
+      fi
+
+      if [[ -z $selected ]]; then
+          exit 0
+      fi
+
+      selected_name=$(basename "$selected" | tr . _)
+
+      if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+          tmux new-session -s $selected_name -c $selected
+          exit 0
+      fi
+
+      if ! tmux has-session -t=$selected_name 2> /dev/null; then
+          tmux new-session -ds $selected_name -c $selected
+      fi
+
+      tmux switch-client -t $selected_name
+    '';
+  };
+
   programs.tmux = let
     theme = {
       trans = "default";
@@ -29,8 +67,8 @@
 
       set-option -ga terminal-overrides ",xterm-256color:Tc"
 
-      # set-option -g renumber-windows on             # Re-number remaining windows when one is closed
-      unbind -T copy-mode-vi MouseDragEnd1Pane        # don't exit copy mode when dragging with mouse
+      set-option -g renumber-windows on             # Re-number remaining windows when one is closed
+      unbind -T copy-mode-vi MouseDragEnd1Pane      # don't exit copy mode when dragging with mouse
 
       ## Keep zoom when moving up/down panes
       bind-key -n M-k select-pane -U \; resize-pane -Z
@@ -54,6 +92,11 @@
       bind-key -T copy-mode-vi v send-keys -X begin-selection
       bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
       bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+
+      # QUICK Switcher
+      bind-key -r f run-shell "tmux new-window ~/.config/tmux/tmux-sessionizer.sh"
+
+      bind-key -r d run-shell "~/.config/tmux/tmux-sessionizer.sh ~/Code/tgallacher/dotfiles"
 
       ## STATUS BAR customization
       set -g status-position top
@@ -90,10 +133,12 @@
             set -g status-right "#[fg=${theme.text},bg=${theme.trans}]|#[fg=${theme.text},bg=${theme.trans}] %Y-%m-%d "
           '';
         }
-        # Note: must come after catpuccin, or anything that edits the right status bar
+        # Note: must come after anything that edits the right status bar
         {
           plugin = upkgs.tmuxPlugins.continuum;
-          extraConfig = "set -g @continuum-restore 'on'";
+          extraConfig = ''
+            set -g @continuum-restore 'on'
+          '';
         }
       ]
     ];
