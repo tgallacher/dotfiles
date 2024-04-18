@@ -2,6 +2,7 @@
 {vars, ...}: {
   imports = [
     ./alacritty.nix
+    ./wezterm/default.nix
     ./git.nix
     ./prompt.nix
     ./tmux.nix
