@@ -23,17 +23,22 @@
       };
     };
     extraConfig = {
-      core = {editor = "vim";};
-      merge = {conflictstyle = "diff3";};
-      diff = {colorMoved = "default";};
-      rebase = {instructionFormat = "(%an) %s";};
-      init = {defaultBranch = "main";};
-      advice = {skippedCherryPicks = false;};
       # interactive = { diffFilter = "delta --color-only"; };
+      advice.skippedCherryPicks = false;
+      core.editor = "vim";
+      diff = {
+        colorMoved = "default";
+        submodule = "log"; # show submodule changes + commits `<` commits coming in from remote; `>` commits needing pushed to remote
+      };
+      init.defaultBranch = "main";
+      merge.conflictstyle = "diff3";
       push = {
         default = "simple";
         autoSetupRemote = true;
       };
+      rebase.instructionFormat = "(%an) %s";
+      status.submodulesummary = true; # show a short summary of submodule changes
+      submodule.recurse = true; # keep submodule state sync'd across branches
     };
     userEmail = "tgallacher@users.noreply.github.com";
     userName = "Tom Gallacher";
