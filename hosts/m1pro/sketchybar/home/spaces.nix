@@ -23,14 +23,20 @@
           "$COLOR_WARNING"
           "$COLOR_INFORMATION"
         )
+        # SPACE_ICONS=(
+        #   ""
+        #   "󱌢"
+        #   "󰙏"
+        #   ""
+        #   "󰎈"
+        # )
         SPACE_ICONS=(
-          ""
-          "󱌢"
-          "󰙏"
-          ""
-          "󰎈"
+          "1"
+          "2"
+          "3"
+          "4"
+          "5"
         )
-
         for idx in "''${!SPACE_SIDS[@]}"; do
           sid=''${SPACE_SIDS[idx]}
 
@@ -46,6 +52,7 @@
                               icon.y_offset=1                                 \
                               icon.padding_left=4                             \
                               icon.padding_right=4                            \
+                              label.drawing=off                               \
                                                                               \
                               script="$CONFIG_ROOT/spaces/script.sh"          \
             --subscribe       "space.$sid" mouse.clicked
