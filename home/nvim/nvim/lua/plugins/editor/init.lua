@@ -226,6 +226,20 @@ return {
     end,
   },
 
+  -- { -- Copy files to/from remote machine within nvim
+  --   "OscarCreator/rsync.nvim",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   enabled = false,
+  --   build = "make",
+  --   dependencies = "nvim-lua/plenary.nvim",
+  --   opts = {
+  --     project_config_path = "rysnc-nvim.toml",
+  --   },
+  --   -- config = function()
+  --   --   require("rsync").setup()
+  --   -- end,
+  -- },
+
   -- {
   --   "wolffiex/shellbot",
   --   -- name = "chatgpt",
@@ -266,4 +280,3 @@ return {
   --   "dhruvasagar/vim-table-mode",
   -- },
 }
-
