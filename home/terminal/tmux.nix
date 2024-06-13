@@ -93,9 +93,10 @@
       bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
       bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
-      # QUICK Switcher
+      ## QUICK Switcher
+      # Open dir in new Tmux session
       bind-key -r f run-shell "tmux new-window ~/.config/tmux/tmux-sessionizer.sh"
-
+      # Open 'dotfiles' in Tmux session
       bind-key -r d run-shell "~/.config/tmux/tmux-sessionizer.sh ~/Code/tgallacher/dotfiles"
 
       ## STATUS BAR customization
