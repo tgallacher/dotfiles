@@ -13,11 +13,11 @@ in {
     config = {
       layout = "bsp";
       window_placement = "second_child";
-      top_padding = 15;
-      right_padding = 15;
-      bottom_padding = 15;
-      left_padding = 15;
-      window_gap = 15;
+      top_padding = 10;
+      right_padding = 10;
+      bottom_padding = 10;
+      left_padding = 10;
+      window_gap = 10;
       mouse_follows_focus = "off";
       mouse_drop_action = "swap";
     };
@@ -46,6 +46,7 @@ in {
       ### Space 4: Social
       yabai -m rule --add app="WhatsApp" space=^4
       yabai -m rule --add app="^Discord" space=^4
+      yabai -m rule --add app="^Messages" space=^4
 
       ### Space 5: Music
       yabai -m rule --add app="^Spotify" space=^5
@@ -98,22 +99,11 @@ in {
       cmd + ctrl          - x : yabai -m space --mirror x-axis                      # flip along x-axis
       cmd + ctrl          - e : yabai -m space --balance                            # rebalance windows on screen
       cmd + ctrl          - m : yabai -m window --toggle zoom-fullscreen            # toggle fullscreen
-      cmd + ctrl          - t : yabai -m window --toggle float ${ # toggle window float
+      cmd + ctrl          - t : yabai -m window --toggle float --grid 4:4:1:1:2:2 ${ # toggle window float
         if hasSketchybar
         then "; sketchybar --trigger window_focus"
         else ""
       }
-      # cmd + ctrl - t : yabai -m window --toggle float --grid 4:4:1:1:2:2   # toggle window float
-
-      # Resize window
-      alt + ctrl         - j : yabai -m window --resize top:-150:0
-      alt + ctrl         - k : yabai -m window --resize top:150:0
-      alt + ctrl + shift - j : yabai -m window --resize bottom:150:0
-      alt + ctrl + shift - k : yabai -m window --resize bottom:-150:0
-      alt + ctrl         - h : yabai -m window --resize right:-150:0
-      alt + ctrl         - l : yabai -m window --resize right:150:0
-      alt + ctrl + shift - h : yabai -m window --resize left:150:0
-      alt + ctrl + shift - l : yabai -m window --resize left:-150:0
 
       # swap windows
       cmd + alt          - j : yabai -m window --swap south
@@ -144,6 +134,17 @@ in {
       cmd + ctrl         - 4 : yabai -m window --space 4
       cmd + ctrl         - 5 : yabai -m window --space 5
       cmd + ctrl         - 6 : yabai -m window --space 6
+
+      # Resize window
+      alt + ctrl         - j : yabai -m window --resize top:0:-150
+      alt + ctrl         - k : yabai -m window --resize top:0:150
+      alt + ctrl + shift - j : yabai -m window --resize bottom:0:150
+      alt + ctrl + shift - k : yabai -m window --resize bottom:0:-150
+      alt + ctrl         - h : yabai -m window --resize right:-150:0
+      alt + ctrl         - l : yabai -m window --resize right:150:0
+      alt + ctrl + shift - h : yabai -m window --resize left:150:0
+      alt + ctrl + shift - l : yabai -m window --resize left:-150:0
+
 
       ##
       ## Key remaps
