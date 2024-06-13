@@ -25,6 +25,8 @@
     upkgs.raycast
     upkgs.zoom-us
     upkgs.dbeaver
+    upkgs.ansible
+    upkgs.pwgen
   ];
 
   home.file.".hushlogin".text = ''# silence tty start up spam '';
