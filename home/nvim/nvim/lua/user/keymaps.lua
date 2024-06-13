@@ -28,10 +28,10 @@ vim.keymap.set("n", "<S-Left>", ":vertical resize -2<CR>", { desc = "[R]esize bu
 vim.keymap.set("n", "<S-Right>", ":vertical resize +2<CR>", { desc = "[R]esize buffer [R]ight" })
 
 -- == Navigate buffers
-vim.keymap.set("n", "<TAB>", "<Nop>", { desc = "" })
-vim.keymap.set("n", "<TAB>", ":bnext<CR>", { desc = "" })
-vim.keymap.set("n", "<S-TAB>", "<Nop>", { desc = "" })
-vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", { desc = "", silent = true })
+vim.keymap.set("n", "<TAB>", "<Nop>")
+vim.keymap.set("n", "<S-TAB>", "<Nop>")
+vim.keymap.set("n", "<TAB>", ":bnext<CR>", { desc = "[b]uffer: switch to one on right" })
+vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", { desc = "[b]uffer: switch to one on left" })
 
 -- == Misc
 vim.keymap.set("n", "<localleader>X", ":!chmod +x %<CR>", { desc = "Make file e[X]ecutable" })

@@ -64,6 +64,8 @@ return {
       vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[f]ind [d]iagnostics" })
       vim.keymap.set("n", "<leader>rt", builtin.resume, { desc = "[r]esume [t]elescope" })
       vim.keymap.set("n", "<leader>,", builtin.buffers, { desc = "[,] show open buffers" })
+      vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = "[g]it [s]tatus" })
+
       vim.keymap.set("n", "<localleader>fw", builtin.grep_string, { desc = "[f]ind [w]ord under cursor" })
       vim.keymap.set("n", "<localleader>fg", function() builtin.live_grep({ grep_open_files = true, prompt_title = "Live Grep (Open Buffers)" }) end, { desc = "[f]ind by live [g]rep open buffers" })
       -- stylua: ignore end
