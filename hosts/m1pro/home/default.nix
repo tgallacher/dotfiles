@@ -24,7 +24,7 @@
   home.packages = [
     upkgs.raycast
     upkgs.zoom-us
-    upkgs.dbeaver
+    # upkgs.dbeaver-bin FIXME: removed in https://github.com/NixOS/nixpkgs/pull/311888
     upkgs.ansible
     upkgs.pwgen
   ];

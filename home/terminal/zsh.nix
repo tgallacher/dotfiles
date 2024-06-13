@@ -20,7 +20,7 @@
   programs.zsh = {
     enable = true;
     package = upkgs.zsh;
-    enableAutosuggestions = false; # we'll handle this in antidote
+    autosuggestion.enable = false; # we'll handle this in antidote
     enableCompletion = false; # we'll handle this in antidote
     defaultKeymap = "viins"; # Vim INSERT mode; hit ESC to toggle between VI INSERT/VISUAL
     dotDir = ".config/zsh";
