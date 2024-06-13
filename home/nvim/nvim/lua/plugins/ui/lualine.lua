@@ -1,7 +1,8 @@
 -- local colors = require("catppuccin.palettes.mocha")
 -- local color_utils = require("catppuccin.utils.colors")
 
--- display Harpoon details
+-- Display if buffer has been Harpoon'd
+--
 -- source: https://github.com/dmmulroy/kickstart.nix
 local function harpoon()
   local hp = require("harpoon.mark")
@@ -23,9 +24,13 @@ end
 return {
   { -- statusline
     "nvim-lualine/lualine.nvim",
-    -- FIXME: Overwrites startup and injects [no name] buffer, unless we use Alpha plugin
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    -- FIXME: Overwrites default startup dashboard and injects `[no name]` buffer.
+    -- Can use Alpha plugin as a workaround to control custom dashboard.
+    --
     -- enabled = false,
-    event = "StdinReadPre",
+    -- event = "StdinReadPre",
+    -- lazy = true,
     opts = function()
       return {
         options = {
@@ -36,17 +41,13 @@ return {
           disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline", "winbar" },
           gloabalstatus = true,
           always_divide_middle = true,
-          refresh = {
-            statusline = 1000,
-            tabline = 1000,
-            winbar = 1000,
-          },
+          refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
         },
         sections = {
           lualine_a = {
             {
               "mode",
-              separator = { left = "", right = "" },
+              -- separator = { left = "", right = "" },
               -- color = {
               --   fg = colors.base,
               --   bg = colors.mauve,
@@ -58,7 +59,7 @@ return {
             {
               "buffers",
               use_mode_colors = false,
-              separator = { left = "", right = "" },
+              -- separator = { left = "", right = "" },
               -- buffers_color = {
               --   active = { fg = colors.mauve, bg = colors.mantle },
               --   inactive = { fg = colors.overlay0, bg = colors.mantle },
@@ -70,7 +71,7 @@ return {
             {
               "diff",
               draw_empty = true,
-              separator = { left = "", right = "" },
+              -- separator = { left = "", right = "" },
               -- color = { bg = colors.surface0 },
               -- diff_colors = {
               --   added = colors.green,
@@ -82,29 +83,29 @@ return {
             {
               "branch",
               icon = "󰘬",
-              separator = { left = "", right = "" },
-              color = {
-                -- -- fg = colors.text,
-                -- -- bg = color_utils.darken(colors.mauve, 0.55),
-                -- fg = colors.overlay2,
-                -- bg = colors.base,
-              },
+              -- separator = { left = "", right = "" },
+              -- color = {
+              --   -- fg = colors.text,
+              --   -- -- bg = color_utils.darken(colors.mauve, 0.55),
+              --   -- fg = colors.overlay2,
+              --   -- bg = colors.base,
+              -- },
             },
           },
           lualine_y = {
-            {
-              "filesize",
-              separator = { left = "", right = "" },
-              -- color = {
-              --   fg = colors.overlay2,
-              --   bg = colors.crust,
-              -- },
-            },
+            -- {
+            --   "filesize",
+            --   separator = { left = "", right = "" },
+            --   -- color = {
+            --   --   fg = colors.overlay2,
+            --   --   bg = colors.crust,
+            --   -- },
+            -- },
             {
               "diagnostics",
               sources = { "nvim_lsp", "nvim_diagnostic" },
               sections = { "error", "warn" },
-              separator = { left = "", right = "" },
+              -- separator = { left = "", right = "" },
               symbols = { error = " ", warn = " " },
               -- diagnostics_colors = {
               --   error = colors.red,
@@ -121,7 +122,7 @@ return {
           lualine_z = {
             {
               "filetype",
-              separator = { left = "", right = "" },
+              -- separator = { left = "", right = "" },
               colored = false, -- icon only
               -- color = {
               --   fg = colors.overlay1,
@@ -130,7 +131,7 @@ return {
             },
             {
               "progress",
-              separator = { left = "", right = "" },
+              -- separator = { left = "", right = "" },
               -- color = {
               --   fg = colors.subtext1,
               --   bg = colors.surface0,
