@@ -32,8 +32,8 @@ return {
       -- vim.cmd.hi("Comment gui=none")
     end,
     opts = {
-      flavour = "frappe",
-      transparent_background = false,
+      flavour = "mocha",
+      transparent_background = true,
       no_italic = false,
       no_bold = false,
       integrations = {
@@ -83,19 +83,10 @@ return {
 
   {
     "rose-pine/neovim",
-    lazy = false,
+    -- enabled = false,
     name = "rose-pine",
+    lazy = false,
     priority = 1000,
-    config = function(_, opts)
-      require("rose-pine").setup(opts)
-      vim.cmd.colorscheme("rose-pine")
-
-      -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ea9a97", bg = "#6e6a86" })
-      vim.api.nvim_set_hl(0, "Cursor", { fg = "#ea9a97", bg = "#6e6a86" })
-      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#26233a" })
-      vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ea9a97", bg = "#26233a" })
-      -- vim.api.nvim_set_hl(0, "CursorColumn", { fg = "#ea9a97", bg = "#6e6a86" })
-    end,
     opts = {
       variant = "main",
       -- dim_inactive_windows = true,
@@ -103,5 +94,15 @@ return {
         transparency = true,
       },
     },
+    config = function(_, opts)
+      require("rose-pine").setup(opts)
+      vim.cmd.colorscheme("rose-pine")
+
+      -- -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ea9a97", bg = "#6e6a86" })
+      -- vim.api.nvim_set_hl(0, "Cursor", { fg = "#ea9a97", bg = "#6e6a86" })
+      -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#26233a" })
+      -- vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ea9a97", bg = "#26233a" })
+      -- -- vim.api.nvim_set_hl(0, "CursorColumn", { fg = "#ea9a97", bg = "#6e6a86" })
+    end,
   },
 }
