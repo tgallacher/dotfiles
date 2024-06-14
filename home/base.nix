@@ -7,6 +7,11 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+    tmux.enableShellIntegration = false; # we'll use sessionizer manually
+    # NOTE: Requires `fd` to be installed
+    changeDirWidgetCommand = "fd --type=d --hidden --strip-cwd-prefix --exclude .git"; # <M-c> keybind
+    defaultCommand = "fd --hidden --strip-cwd-prefix --exclude .git";
+    fileWidgetCommand = "fd --hidden --strip-cwd-prefix --exclude .git"; # <C-t> keybind
   };
 
   programs.yazi = {
