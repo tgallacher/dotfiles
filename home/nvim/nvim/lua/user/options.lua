@@ -12,7 +12,6 @@ vim.g.netrw_preview = 1 -- vsplit
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 --  For more options, you can see `:help option-list`
-
 vim.g.editorconfig = true
 vim.opt.fileencoding = "utf-8" -- the encoding written to a file
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
@@ -35,10 +34,8 @@ vim.opt.winminwidth = 10 -- set min window size for `szw/vim-maximizer`
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = "a"
--- Don't show the mode, since it's already in status line
-vim.opt.showmode = true
+vim.opt.mouse = "a" -- Enable mouse mode, can be useful for resizing splits for example!
+vim.opt.showmode = false -- control whether current mode is displayed at bottom of window
 
 -- Sync clipboard between OS and Neovim.
 --  See `:help 'clipboard'`
@@ -96,7 +93,7 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 
 -- Place a column line
-vim.opt.colorcolumn = "120"
+-- vim.opt.colorcolumn = "120"
 
 -- spelling
 vim.opt.spelllang = "en_gb"
