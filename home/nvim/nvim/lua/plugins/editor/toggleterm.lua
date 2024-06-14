@@ -15,13 +15,13 @@ vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 return {
   "akinsho/toggleterm.nvim",
   keys = {
-    { [[<C-t>]] },
+    { [[<localleader>t]] },
   },
   cmd = { "ToggleTerm", "TermExec" },
   opts = {
     size = 30,
     hide_numbers = true,
-    open_mapping = [[<C-t>]],
+    open_mapping = [[<localleader>t]],
     shade_filetypes = {},
     shade_terminals = false,
     shading_factor = 0.3,
