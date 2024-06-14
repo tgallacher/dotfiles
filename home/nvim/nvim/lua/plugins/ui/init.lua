@@ -25,9 +25,6 @@ return {
 
   { -- Highlight todo, notes, etc in comments
     "folke/todo-comments.nvim",
-    -- FIXME: Overwrites startup and injects [no name] buffer, unless we use Alpha plugin
-    -- https://github.com/folke/todo-comments.nvim/issues/133
-    enabled = false,
     event = { "BufNewFile", "BufReadPre" },
     priority = 0,
     dependencies = { "nvim-lua/plenary.nvim" },
