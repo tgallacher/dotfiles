@@ -27,6 +27,7 @@
     # upkgs.dbeaver-bin FIXME: removed in https://github.com/NixOS/nixpkgs/pull/311888
     upkgs.ansible
     upkgs.pwgen
+    upkgs.qmk
   ];
 
   home.file.".hushlogin".text = ''# silence tty start up spam '';
