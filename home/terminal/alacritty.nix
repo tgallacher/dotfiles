@@ -118,7 +118,7 @@ in {
         dynamic_title = true;
         opacity =
           if pkgs.stdenv.isDarwin
-          then 0.9
+          then 0.95
           else 0.8;
         option_as_alt =
           if pkgs.stdenv.isDarwin
