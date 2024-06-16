@@ -6,7 +6,12 @@ return {
       use_default_keymaps = false,
       delete_to_trash = true,
       skip_confirm_for_simple_edits = true, -- see :h oil.skip_confirm_for_simple_edit
-      view_options = { show_hidden = true },
+      view_options = {
+        show_hidden = true,
+        is_always_hidden = function(name, _)
+          return name == ".." or name == ".git"
+        end,
+      },
       constrain_cursor = "name", -- constrain to filename: only required when additional `columns` is spec'd below
       columns = {
         "icon",
