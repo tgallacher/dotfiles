@@ -13,6 +13,7 @@
     inherit system;
     config = {allowUnfree = true;};
   };
+  #inputs.vars.username = "tom.gallacher";
 in
   inputs.nix-darwin.lib.darwinSystem {
     specialArgs = {

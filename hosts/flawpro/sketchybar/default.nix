@@ -10,7 +10,7 @@
 }: let
   icon_map_sh = pkgs.fetchurl {
     url = "https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v${upkgs.sketchybar-app-font.version}/icon_map.sh";
-    hash = "sha256-KWWukG9S0RWp534N115eQaaG9wpVUgcTAqAmrEScHmQ=";
+    hash = "sha256-fdKnweYF92zCLVBVXTjLWK9vdzMD8FvOHjEo2vqPbhQ=";
   };
 in {
   imports = [
@@ -31,7 +31,7 @@ in {
     ];
   };
 
-  fonts.fonts = [
+  fonts.packages = [
     upkgs.sketchybar-app-font
   ];
 

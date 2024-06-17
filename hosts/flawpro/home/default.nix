@@ -1,5 +1,6 @@
 {
   upkgs,
+  pkgs,
   inputs,
   vars,
   lib,
@@ -22,7 +23,7 @@
   };
 
   home.packages = [
-    upkgs.raycast
+    pkgs.raycast
     upkgs.zoom-us
     upkgs.pwgen
   ];
