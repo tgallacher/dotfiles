@@ -13,6 +13,17 @@ Install or setup a new SSH key.
 # generate new ssh key -- optionally specify filename
 ssh-keygen -t ed25519 -C "<email>"
 
+# tell ssh agent to use the keychain for the passphrase
+eval "$(ssh-agent -s)"
+touch ~/.ssh/config
+
+cat << EOF >> ~/.ssh/config
+Host github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+EOF
+
 # add file to osx's keychain so we don't need to keep typing the passphrase
 ssh-add --apple-use-keychain ~/.ssh/<filename>
 ```
