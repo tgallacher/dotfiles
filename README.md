@@ -40,6 +40,12 @@ nix shell -p git
 git clone git@github.com:tgallacher/dotfiles.git
 ```
 
+Create new workspaces -- min 5.
+
+Open keyboard shortcuts and under "Misson Control" enable the shortcuts for switching to each workspace using `<C-<number>>`.
+
+Under "Spotlight" disable (or remap) the keyboard shortcuts for Spotlight.
+
 ## Bootstrap using nix
 
 > Note: The following steps require a suitable Nix config to exist (`inputs.nix-darwin.lib.darwinSystem`) for a given host (e.g. `m1pro=import ...`).
@@ -100,8 +106,6 @@ darwin-rebuild switch --flake ".#<hostname>"
 ```
 
 # TODO
-- [ ] Add note about adding new desktops 2-5
-- [ ] Open keyboard shortcuts and enable the Ctrl-<number> to switch to these new desktops
 - [ ] Can we change the default spotlight keyboard shortcuts through nix?
 - [ ] Can we dynamically pull the location where the nix flake is at, to avoid having to hard code the `/Code/tgallacher/dotfiles` path?
 - [ ] Fix Obsidian NVIM plugin loading projects that may not be on the host
