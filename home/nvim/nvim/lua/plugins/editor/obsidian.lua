@@ -34,7 +34,7 @@ return {
     "epwalsh/obsidian.nvim",
     version = "*", -- latest release instead of commit
     lazy = true,
-    ft = "markdown",
+    -- ft = "markdown",
     -- only load on Obsidian vault
     event = {
       "BufReadPre " .. vim.fn.expand("~/Code/tgallacher/obsidian/**.md"),
