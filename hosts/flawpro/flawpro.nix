@@ -67,11 +67,11 @@
       "brave-browser"
       "spotify"
       "obsidian" # notes
-      "1password"
-      "1password-cli"
       "docker"
-      "postman" # nixpkgs version seems to be down; use brew instead
-      "dbeaver-community" # nixpkgs version has been removed; see https://github.com/NixOS/nixpkgs/pull/311888
+      # "postman" # nixpkgs version seems to be down; use brew instead
+      # "dbeaver-community" # nixpkgs version has been removed; see https://github.com/NixOS/nixpkgs/pull/311888
+      "bitwarden"
+      "aws-vpn-client"
     ];
     masApps = {};
     global.autoUpdate = false;

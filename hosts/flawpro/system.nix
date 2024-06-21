@@ -30,7 +30,7 @@ in {
 
   system.defaults = {
     dock = {
-      autohide = false;
+      autohide = true;
       minimize-to-application = false;
       mru-spaces = false;
       orientation = "bottom"; # bottom | left | right
