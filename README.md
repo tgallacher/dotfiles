@@ -96,6 +96,7 @@ This will also mean that when we run Alacritty using Raycast, it spawns the corr
 ### Post install config
 
 - Add [vimium](https://chromewebstore.google.com/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb) extension to Brave Browser
+- Set Brave Browser to the _default browser_
 - Open Nvim and allow all plugins to install. Once complete, run `:UpdateRemotePlugins` to install "wilder" bindings, etc; and run `:checkhealth` if any other errors appear
 
 ### Apply Changes made to nix config
@@ -110,7 +111,7 @@ darwin-rebuild switch --flake ".#<hostname>"
 - [ ] Can we dynamically pull the location where the nix flake is at, to avoid having to hard code the `/Code/tgallacher/dotfiles` path?
 - [ ] Fix Obsidian NVIM plugin loading projects that may not be on the host
 - [ ] fix git email - use direnv for the right folders?
-
+- [ ] Allow configuring username at host level
 
 ## Troubleshoot
 
