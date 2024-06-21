@@ -11,7 +11,7 @@
       # tmux-sessionizer - https://github.com/ThePrimeagen/.dotfiles
 
       dirs=(
-        ~/Code/tgallacher
+        ~/Code
       )
 
       selected_name=""
