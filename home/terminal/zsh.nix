@@ -1,6 +1,7 @@
 {
   upkgs,
   pkgs,
+  host,
   ...
 }: {
   # FIXME: Can't uses this version, need to install this AFTER starship prompt and this doesn't
@@ -28,6 +29,12 @@
     # add to .zshenv
     envExtra = ''
       export LC_ALL=en_GB.UTF-8
+
+      ${
+        if host.name == "tgallacher-flawpro"
+        then "alias assume=\"source assume\""
+        else ""
+      }
     '';
     # add to .zshrc
     initExtra = ''
@@ -56,6 +63,10 @@
 
       # see: https://github.com/ohmyzsh/ohmyzsh/issues/11817#issuecomment-1655430206
       zstyle ':omz:plugins:docker' legacy-completion yes
+
+      # TODO: Move this into "flawpro" config
+      export GRANTED_ALIAS_CONFIGURED=true;
+      export GRANTED_DISABLE_UPDATE_CHECK=true;
     '';
     # add to .zprofile
     profileExtra = ''
@@ -70,6 +81,7 @@
       CASE_SENSITIVE = "true";
       HIST_STAMPS = "yyyy-mm-dd";
       BROWSER = "brave";
+      # GRANTED_ALIAS_CONFIGURED = true;
     };
     dirHashes = {};
     # # env vars set for each session
@@ -93,6 +105,7 @@
         else "--color"
       }";
       git_prune_branches = "git fetch && git remote prune origin && git br -v | grep gone | awk '{print $1;}' | xargs -n 1 git br -d";
+      ecr-login = "aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin $(aws sts get-caller-identity | jq -r '.Account').dkr.ecr.eu-west-1.amazonaws.com";
     };
     history.ignoreAllDups = true;
     antidote = {

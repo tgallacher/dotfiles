@@ -73,7 +73,7 @@
       (upkgs)
       # CLIs
 
-      python3
+      python310
       ;
   };
 }

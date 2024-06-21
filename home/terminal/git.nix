@@ -12,6 +12,7 @@
       plog10 = "plog -10";
       p10 = "plog -10";
       p20 = "plog -20";
+      bls = "branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate";
     };
     delta = {
       enable = true;
@@ -87,6 +88,13 @@
       ".env"
       # next.js build output
       ".next"
+      # Terraform
+      ".terraform/"
+      # IDEs
+      ".vscode/"
+      ".idea/"
+      # Misc
+      "_scratch/"
     ];
   };
 }
