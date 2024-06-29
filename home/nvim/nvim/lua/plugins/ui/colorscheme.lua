@@ -19,7 +19,7 @@ end
 return {
   {
     "catppuccin/nvim",
-    enabled = false,
+    -- enabled = false,
     lazy = false,
     name = "catppuccin",
     priority = 1000,
@@ -27,7 +27,7 @@ return {
       require("catppuccin").setup(opts)
       -- NOTE: must be called after setup()
       vim.cmd.colorscheme("catppuccin")
-
+      --
       -- You can configure highlights by doing something like
       -- vim.cmd.hi("Comment gui=none")
     end,
@@ -42,15 +42,15 @@ return {
         harpoon = true,
         mason = true,
         which_key = true,
-        -- telescope = {
-        --   enabled = true,
-        --   style = "nvchad",
-        -- },
+        telescope = {
+          enabled = true,
+          -- style = "nvchad",
+        },
       },
-      background = {
-        dark = "frappe",
-        light = "latte",
-      },
+      -- background = {
+      --   -- dark = "frappe",
+      --   light = "latte",
+      -- },
       color_overrides = {
         latte = extend_base({
           text = "#202027",
@@ -83,7 +83,7 @@ return {
 
   {
     "rose-pine/neovim",
-    -- enabled = false,
+    enabled = false,
     name = "rose-pine",
     lazy = false,
     priority = 1000,
