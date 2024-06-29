@@ -8,6 +8,7 @@ local servers = {
   pyright = {
     settings = {
       filetypes = { "python" },
+      typeCheckingMode = "off", -- use mypy instead
     },
   },
 }

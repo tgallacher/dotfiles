@@ -3,7 +3,7 @@ local icons = require("plugins.icons")
 return {
   { -- file explorer
     "nvim-tree/nvim-tree.lua",
-    enabled = false,
+    -- enabled = false,
     version = "*",
     lazy = false,
     event = "VimEnter",
@@ -20,6 +20,7 @@ return {
       vim.g.loaded_netrwPlugin = 1
 
       nvim_tree.setup({
+        update_focused_file = { enable = true },
         actions = {
           change_dir = {
             enable = false,
@@ -113,7 +114,7 @@ return {
           centralize_selection = true,
           cursorline = true,
           preserve_window_proportions = true,
-          side = "left",
+          side = "right",
           width = 40,
         },
         ui = {
