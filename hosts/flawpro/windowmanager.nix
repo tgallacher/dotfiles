@@ -36,6 +36,7 @@ in {
 
       ### Space 2: Secondary
       yabai -m rule --add app="^1Password" space=^2 manage=off
+      yabai -m rule --add app="^Bitwarden" space=^2 manage=off
       yabai -m rule --add app="^DBeaver" space=^2
       yabai -m rule --add app="^Postman" space=^2
 
@@ -47,6 +48,7 @@ in {
       yabai -m rule --add app="WhatsApp" space=^4
       yabai -m rule --add app="^Discord" space=^4
       yabai -m rule --add app="^Messages" space=^4
+      yabai -m rule --add app="^Slack" space=^4
 
       ### Space 5: Music
       yabai -m rule --add app="^Spotify" space=^5
