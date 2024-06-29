@@ -44,6 +44,7 @@
     pkgs.poethepoet # task runner for poetry
     upkgs.granted # simplified cloud account switching
     upkgs.awscli2
+    upkgs.temporal-cli
   ];
 
   home.file.".hushlogin".text = ''# silence tty start up spam '';
