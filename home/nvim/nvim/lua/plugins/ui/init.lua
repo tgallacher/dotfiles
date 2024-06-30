@@ -23,6 +23,14 @@ return {
     end,
   },
 
+  -- TODO: This is a todo
+
+  -- TODO(scope): This is a todo
+
+  -- TODO (scope): This is a todo
+
+  -- TODO(): This is a todo
+
   { -- Highlight todo, notes, etc in comments
     "folke/todo-comments.nvim",
     event = { "BufNewFile", "BufReadPre" },
@@ -30,16 +38,20 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       signs = false,
-      -- search = {
-      --   args = {
-      --     "--color=never",
-      --     "--no-heading",
-      --     "--with-filename",
-      --     "--line-number",
-      --     "--column",
-      --     "--ignore-case", -- FIXME: doesn't work
-      --   },
+      -- highlight = {
+      --   pattern = [[\<(KEYWORDS)\s\?(\([-\s[:alnum:]_]*\))\?:]], -- FIXME: Not working; getting E55 unmatch \) when run in cmd mode
       -- },
+      search = {
+        --   args = {
+        --     "--color=never",
+        --     "--no-heading",
+        --     "--with-filename",
+        --     "--line-number",
+        --     "--column",
+        --     "--ignore-case", -- FIXME: doesn't work
+        --   },
+        pattern = [[\b(KEYWORDS)\s*?(\([-\s[:alnum:]_]+\))?:]],
+      },
     },
     config = function(_, opts)
       local todo_comments = require("todo-comments")
