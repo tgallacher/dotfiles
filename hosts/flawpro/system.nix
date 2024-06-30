@@ -66,6 +66,11 @@ in {
       TrackpadRightClick = true;
       TrackpadThreeFingerDrag = true;
     };
+    keyboard = {
+      enableKeyMapping = true; # enable the following remaps
+      remapCapsLockToControl = true;
+      swapLeftCommandAndLeftAlt = false;
+    };
     menuExtraClock = {
       Show24Hour = true;
       ShowAMPM = false;

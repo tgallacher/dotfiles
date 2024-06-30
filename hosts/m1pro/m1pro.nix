@@ -42,11 +42,6 @@
 
   # auto upgrade the daemon service
   services.nix-daemon.enable = true;
-  system.keyboard = {
-    enableKeyMapping = true; # enable the following remaps
-    remapCapsLockToControl = true;
-    swapLeftCommandAndLeftAlt = false;
-  };
 
   # used for backward compatibility. Read the Changelog before editing
   system.stateVersion = 4;
