@@ -30,7 +30,7 @@ return {
         vim.list_extend(vim.tbl_keys(servers), {
           "ruff",
           "mypy",
-          "black",
+          -- "black",
           "debugpy",
         })
       )
@@ -62,7 +62,7 @@ return {
       return vim.tbl_deep_extend("force", opts, {
         formatters_by_ft = {
           j2 = { "djlint" },
-          python = { "black" },
+          python = { "ruff_format" },
         },
       })
     end,
