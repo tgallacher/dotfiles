@@ -53,6 +53,9 @@ vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
+vim.diagnostic.config({
+  float = { border = "rounded" }, -- add border to diagnostic popups
+})
 
 -- Decrease update time
 vim.opt.timeout = true
