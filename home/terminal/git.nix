@@ -37,6 +37,9 @@
         default = "simple";
         autoSetupRemote = true;
       };
+      pull = {
+        rebase = true;
+      };
       rebase.instructionFormat = "(%an) %s";
       status.submodulesummary = true; # show a short summary of submodule changes
       submodule.recurse = true; # keep submodule state sync'd across branches
