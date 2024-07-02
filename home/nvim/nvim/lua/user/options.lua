@@ -88,12 +88,10 @@ vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.termguicolors = true
 
 -- Set fold settings
--- These options were reccommended by nvim-ufo
--- See: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
-vim.opt.foldcolumn = "0"
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
+vim.opt.foldlevel = 20
+vim.opt.foldmethod = "expr"
+vim.foldexpr = "nvim_treesitter#foldexpr()" -- utilize Treesitter folds
 
 -- Place a column line
 -- vim.opt.colorcolumn = "120"

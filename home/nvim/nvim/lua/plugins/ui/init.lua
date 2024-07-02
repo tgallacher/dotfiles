@@ -146,11 +146,17 @@ return {
 
   {
     "kevinhwang91/nvim-ufo",
+    enabled = false,
     event = "BufEnter",
     dependencies = {
       "kevinhwang91/promise-async",
     },
     config = function()
+      vim.opt.foldcolumn = "0"
+      vim.opt.foldlevel = 99
+      vim.opt.foldlevelstart = 99
+      vim.opt.foldenable = true
+
       --- @diagnostic disable: unused-local
       require("ufo").setup({
         provider_selector = function(_bufnr, _filetype, _buftype)
