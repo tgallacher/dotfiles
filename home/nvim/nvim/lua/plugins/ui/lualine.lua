@@ -39,9 +39,15 @@ return {
           },
           lualine_b = {
             harpoon,
+            -- {
+            --   "buffers",
+            --   use_mode_colors = false,
+            -- },
             {
-              "buffers",
-              use_mode_colors = false,
+              "filename",
+              file_status = true,
+              newfile_status = true,
+              path = 4,
             },
           },
           lualine_c = {},
