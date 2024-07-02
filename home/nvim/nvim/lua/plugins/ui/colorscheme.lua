@@ -19,7 +19,7 @@ end
 return {
   {
     "catppuccin/nvim",
-    -- enabled = false,
+    enabled = false,
     lazy = false,
     name = "catppuccin",
     priority = 1000,
@@ -83,13 +83,13 @@ return {
 
   {
     "rose-pine/neovim",
-    enabled = false,
+    enabled = true,
     name = "rose-pine",
     lazy = false,
     priority = 1000,
     opts = {
-      variant = "main",
-      -- dim_inactive_windows = true,
+      variant = "moon",
+      dim_inactive_windows = true,
       styles = {
         transparency = true,
       },
