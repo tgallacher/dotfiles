@@ -22,16 +22,7 @@ return {
       require("telescope").setup({
         defaults = {
           file_ignore_patterns = { "^.git", "node_modules", "__pycache__", ".venv" },
-          path_display = { shorten = { len = 4, exclude = { -2, -1 } } },
-          mappings = {
-            i = {
-              -- stylua: ignore start
-              ["<C-k>"] = function(...) return require("telescope.actions").move_selection_previous(...) end,
-              ["<C-j>"] = function(...) return require("telescope.actions").move_selection_next(...) end,
-              ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-              -- stylua: ignore end
-            },
-          },
+          path_display = { shorten = { len = 5, exclude = { -4, -3, -2, -1 } } },
           sorting_strategy = "ascending",
           layout_strategy = "flex",
           layout_config = {
