@@ -10,9 +10,7 @@ return {
         delay = 1000,
         ignore_whitespace = false,
       },
-      current_line_blame_formatter_opts = { relative_time = true },
       on_attach = function(bufnr)
-        -- local gs = require("gitsigns")
         local gs = package.loaded.gitsigns
         local function map(mode, l, r, opts)
           opts = opts or {}
