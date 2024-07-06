@@ -1,21 +1,35 @@
 -- Display if buffer has been Harpoon'd
---
 -- source: https://github.com/dmmulroy/kickstart.nix
 local function harpoon()
-  local hp = require("harpoon.mark")
-  local total_marks = hp.get_length()
+  local hp = require("harpoon")
 
+  -- format buf to match harpoon2
+  local function _make_buf_path_relative(root_dir)
+    local Path = require("plenary.path")
+    local buf_name = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
+
+    return Path:new(buf_name):make_relative(root_dir)
+  end
+
+  -- find cur buf location in list (if present)
+  local function _get_cur_buf_mark()
+    local cur_buf_rel_name = _make_buf_path_relative(hp.config.default.get_root_dir())
+    local current_mark = "—"
+
+    local _, mark_idx = hp:list():get_by_value(cur_buf_rel_name)
+    if mark_idx ~= nil then
+      current_mark = tostring(mark_idx)
+    end
+
+    return current_mark
+  end
+
+  local total_marks = hp:list():length()
   if total_marks == 0 then
     return ""
   end
 
-  local current_mark = "—"
-  local mark_idx = hp.get_current_index()
-  if mark_idx ~= nil then
-    current_mark = tostring(mark_idx)
-  end
-
-  return string.format("󰛢 %s/%d", current_mark, total_marks)
+  return string.format("󰛢 %s/%d", _get_cur_buf_mark(), total_marks)
 end
 
 return {

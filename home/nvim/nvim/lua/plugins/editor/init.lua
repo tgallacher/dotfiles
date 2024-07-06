@@ -29,6 +29,7 @@ return {
     keys = {
       { "<leader>bc", "<cmd> BufDel<cr>", desc = "Close current buffer" },
       { "<leader>bC", "<cmd> BufDelOthers<cr>", desc = "Close all other buffers" },
+      { "<leader>B", ":e#", desc = "Open last closed [B]uffer" },
     },
   },
 
@@ -173,19 +174,35 @@ return {
 
   {
     "ThePrimeagen/harpoon",
+    -- enabled = false,
+    branch = "harpoon2",
     event = { "BufReadPre", "BufNewFile" },
-    --stylua: ignore
-    keys = {
-      { "<leader>ha", function() require("harpoon.mark").add_file() end, desc = "[H]arpoon [A]dd File" },
-      { "<leader>hr", function() require("harpoon.mark").rm_file() end, desc = "[H]arpoon [R]emove File" },
-      { "<leader>hca", function() require("harpoon.mark").clear_all() end, desc = "[H]arpoon [C]lear [A]ll files" },
-      { "<leader>ho", function() require("harpoon.ui").toggle_quick_menu() end, desc = "[H]arpoon [T]oggle File Menu" },
-      { "<leader>1", function() require("harpoon.ui").nav_file(1) end, desc = "Open Harpoon File [1]" },
-      { "<leader>2", function() require("harpoon.ui").nav_file(2) end, desc = "Open Harpoon File [2]" },
-      { "<leader>3", function() require("harpoon.ui").nav_file(3) end, desc = "Open Harpoon File [3]" },
-      { "<leader>4", function() require("harpoon.ui").nav_file(4) end, desc = "Open Harpoon File [4]" },
-      { "<leader>5", function() require("harpoon.ui").nav_file(5) end, desc = "Open Harpoon File [5]" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      settings = {
+        save_on_toggle = true,
+        sync_on_ui_close = true,
+      },
     },
+    config = function(_, opts)
+      local harpoon = require("harpoon")
+
+      harpoon:setup(opts)
+
+      --stylua: ignore start
+      vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, {desc = "[H]arpoon [A]dd File" })
+      vim.keymap.set("n", "<leader>ht", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, {desc = "[H]arpoon [T]oggle File Menu" })
+
+      vim.keymap.set("n", "<leader>hy", function() harpoon:list():select(1) end, {desc = "Open Harpoon File 1" })
+      vim.keymap.set("n", "<leader>hu", function() harpoon:list():select(2) end, {desc = "Open Harpoon File 2" })
+      vim.keymap.set("n", "<leader>hi", function() harpoon:list():select(3) end, {desc = "Open Harpoon File 3" })
+      vim.keymap.set("n", "<leader>ho", function() harpoon:list():select(4) end, {desc = "Open Harpoon File 4" })
+      vim.keymap.set("n", "<leader>hp", function() harpoon:list():select(5) end, {desc = "Open Harpoon File 5" })
+
+      vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end, {desc = "Harpoon jump to PREV buffer" })
+      vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end, {desc = "Harpoon jump to NEXT buffer" })
+      --stylua: ignore end
+    end,
   },
 
   {
