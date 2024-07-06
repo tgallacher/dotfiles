@@ -28,6 +28,14 @@ in {
   #   /usr/bin/osascript -e 'tell application "Finder" to activate and to set desktop picture to POSIX file "${homeDir}/Code/tgallacher/dotfiles/wallpapers/bg_5.jpg"'
   # '';
 
+  system = {
+    keyboard = {
+      enableKeyMapping = true; # enable the following remaps
+      remapCapsLockToControl = true;
+      swapLeftCommandAndLeftAlt = false;
+    };
+  };
+
   system.defaults = {
     dock = {
       autohide = false;
@@ -65,11 +73,6 @@ in {
       Clicking = true; # tap to clik
       TrackpadRightClick = true;
       TrackpadThreeFingerDrag = true;
-    };
-    keyboard = {
-      enableKeyMapping = true; # enable the following remaps
-      remapCapsLockToControl = true;
-      swapLeftCommandAndLeftAlt = false;
     };
     menuExtraClock = {
       Show24Hour = true;
