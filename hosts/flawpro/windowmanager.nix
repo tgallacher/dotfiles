@@ -68,7 +68,7 @@ in {
 
       # run JankyBoarders
       $(${config.homebrew.brewPrefix}/brew --prefix borders)/bin/borders \
-        active_color=0xff${config.home-manager.users.${vars.username}.colorScheme.palette.base09} \
+        active_color=0xff${config.home-manager.users.${vars.username}.colorScheme.palette.base08} \
         inactive_color=0x00ffffff \
         width=5.0 &
     '';
