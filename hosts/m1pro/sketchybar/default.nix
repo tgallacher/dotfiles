@@ -31,7 +31,7 @@ in {
     ];
   };
 
-  fonts.fonts = [
+  fonts.packages = [
     upkgs.sketchybar-app-font
   ];
 

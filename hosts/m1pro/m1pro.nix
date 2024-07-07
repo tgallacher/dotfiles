@@ -16,8 +16,7 @@
   networking.computerName = host.name;
 
   fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       noto-fonts-color-emoji # see "michaelrommel/nvim-silicon"
       font-awesome
       (nerdfonts.override {

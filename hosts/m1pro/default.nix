@@ -13,14 +13,13 @@
     inherit system;
     config = {allowUnfree = true;};
   };
+  host = {
+    name = "m1pro";
+  };
 in
   inputs.nix-darwin.lib.darwinSystem {
     specialArgs = {
-      inherit inputs vars pkgs upkgs;
-
-      host = {
-        name = "m1pro";
-      };
+      inherit inputs vars pkgs upkgs host;
     };
 
     modules = [
@@ -31,7 +30,7 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.${vars.username} = import ./home;
-        home-manager.extraSpecialArgs = {inherit vars upkgs inputs;};
+        home-manager.extraSpecialArgs = {inherit vars upkgs inputs host;};
       }
     ];
   }
