@@ -3,9 +3,6 @@ local function createNoteWithDefaultTemplate()
   local obsidian = require("obsidian").get_client()
   local utils = require("obsidian.util")
 
-  -- prevent Obsidian.nvim from injecting it's own frontmatter table
-  obsidian.opts.disable_frontmatter = true
-
   -- prompt for note title
   -- @see: borrowed from obsidian.command.new
   local note
@@ -25,8 +22,6 @@ local function createNoteWithDefaultTemplate()
   obsidian:open_note(note, { sync = true })
   -- NOTE: make sure the template folder is configured in Obsidian.nvim opts
   obsidian:write_note_to_buffer(note, { template = TEMPLATE_FILENAME })
-  -- hack: delete empty lines before frontmatter; template seems to be injected at line 2
-  vim.api.nvim_buf_set_lines(0, 0, 1, false, {})
 end
 
 return {
@@ -37,8 +32,8 @@ return {
     -- ft = "markdown",
     -- only load on Obsidian vault
     event = {
-      "BufReadPre " .. vim.fn.expand("~/Code/tgallacher/obsidian/**.md"),
-      "BufNewFile " .. vim.fn.expand("~/Code/tgallacher/obsidian/**.md"),
+      "BufReadPre " .. vim.fn.expand("~/Code/tgallacher/obsidian/**/*.md"),
+      "BufNewFile " .. vim.fn.expand("~/Code/tgallacher/obsidian/**/*.md"),
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
