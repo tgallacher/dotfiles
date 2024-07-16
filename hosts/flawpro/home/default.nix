@@ -38,7 +38,6 @@
 
   home.packages = [
     pkgs.raycast
-    upkgs.zoom-us
     upkgs.pwgen
     pkgs.poetry # python pip replacement
     pkgs.poethepoet # task runner for poetry
