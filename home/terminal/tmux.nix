@@ -70,20 +70,20 @@
       set-option -g renumber-windows on             # Re-number remaining windows when one is closed
       unbind -T copy-mode-vi MouseDragEnd1Pane      # don't exit copy mode when dragging with mouse
 
-      ## Keep zoom when moving up/down panes
+      ### Keep zoom when moving up/down panes
       bind-key -n M-k select-pane -U \; resize-pane -Z
       bind-key -n M-j select-pane -D \; resize-pane -Z
 
-      ## Easier window split + retain cwd
+      ### Easier window split + retain cwd
       unbind '"'
       bind v split-window -v -c "#{pane_current_path}"
       unbind %
       bind h split-window -h -c "#{pane_current_path}"
 
-      ## Easy config reload
+      ### Easy config reload
       bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded..."
 
-      ## vim keys to switch windows
+      ### vim keys to switch windows
       bind -n M-h previous-window
       bind -n M-l next-window
 
@@ -93,13 +93,18 @@
       bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
       bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
 
-      ## QUICK Switcher
+      ### QUICK Switcher
       # Open dir in new Tmux session
       bind-key -r f run-shell "tmux new-window ~/.config/tmux/tmux-sessionizer.sh"
-      # Open 'dotfiles' in Tmux session
-      bind-key -r d run-shell "~/.config/tmux/tmux-sessionizer.sh ~/Code/tgallacher/dotfiles"
 
-      ## STATUS BAR customization
+      # Open 'DOCUMENTATION' in Tmux session
+      bind-key -r y run-shell "~/.config/tmux/tmux-sessionizer.sh ~/Code/tgallacher/obsidian"
+
+      # Open 'DOTFILES' in Tmux session
+      bind-key -r u run-shell "~/.config/tmux/tmux-sessionizer.sh ~/Code/tgallacher/dotfiles"
+
+
+      ### STATUS BAR customization
       set -g status-position top
       set -g status-interval 10         # update the status bar every 10 seconds
       set -g status-justify left
@@ -134,8 +139,8 @@
             set -g status-right "#[fg=${theme.text},bg=${theme.trans}]|#[fg=${theme.text},bg=${theme.trans}] %Y-%m-%d "
           '';
         }
-        # Note: must come after anything that edits the right status bar
         {
+          # Note: must come after anything that edits the right status bar
           plugin = upkgs.tmuxPlugins.continuum;
           extraConfig = ''
             set -g @continuum-restore 'on'
