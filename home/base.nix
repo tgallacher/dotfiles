@@ -3,6 +3,8 @@
   upkgs,
   ...
 }: {
+  programs.direnv.enable = true;
+
   # versatile cli tool; also required for telescope
   programs.fzf = {
     enable = true;
@@ -53,7 +55,7 @@
       bat # cat with wings
       curl # Fetch stuff
       difftastic # Diff visualiser
-      direnv # Dynamic shell configs
+
       dwdiff # Another diff visualiser
 
       git # Version control
