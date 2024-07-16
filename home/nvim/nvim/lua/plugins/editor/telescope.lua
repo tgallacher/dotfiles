@@ -21,7 +21,7 @@ return {
 
       require("telescope").setup({
         defaults = {
-          file_ignore_patterns = { "^.git", "node_modules", "__pycache__", ".venv" },
+          file_ignore_patterns = { "^.git$", "node_modules", "__pycache__", ".venv" },
           path_display = { shorten = { len = 5, exclude = { -4, -3, -2, -1 } } },
           sorting_strategy = "ascending",
           layout_strategy = "flex",
