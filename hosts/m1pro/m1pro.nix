@@ -70,6 +70,7 @@
       "docker"
       "postman" # nixpkgs version seems to be down; use brew instead
       "dbeaver-community" # nixpkgs version has been removed; see https://github.com/NixOS/nixpkgs/pull/311888
+      "bambu-studio"
     ];
     masApps = {};
     global.autoUpdate = false;
