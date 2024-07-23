@@ -24,10 +24,12 @@
   home.packages = [
     upkgs.raycast
     upkgs.zoom-us
-    # upkgs.dbeaver-bin FIXME: removed in https://github.com/NixOS/nixpkgs/pull/311888
+    # FIXME: removed in https://github.com/NixOS/nixpkgs/pull/311888
+    # upkgs.dbeaver-bin
     upkgs.ansible
     upkgs.pwgen
     upkgs.qmk
+    upkgs.utm # VMs
   ];
 
   home.file.".hushlogin".text = ''# silence tty start up spam '';
