@@ -27,14 +27,15 @@ end
 return {
   {
     "epwalsh/obsidian.nvim",
-    version = "*", -- latest release instead of commit
+    version = "*", -- latest release instead of latest commit
     lazy = true,
-    -- ft = "markdown",
+    event = "VeryLazy",
+    ft = "markdown",
     -- only load on Obsidian vault
-    event = {
-      "BufReadPre " .. vim.fn.expand("~/Code/tgallacher/obsidian/**/*.md"),
-      "BufNewFile " .. vim.fn.expand("~/Code/tgallacher/obsidian/**/*.md"),
-    },
+    -- event = {
+    --   "BufReadPre " .. vim.fn.expand("~/Code/tgallacher/obsidian/"),
+    --   "BufNewFile " .. vim.fn.expand("~/Code/tgallacher/obsidian/"),
+    -- },
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
