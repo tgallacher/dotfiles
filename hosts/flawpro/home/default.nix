@@ -41,7 +41,9 @@
     upkgs.pwgen
     pkgs.poetry # python pip replacement
     pkgs.poethepoet # task runner for poetry
-    upkgs.granted # simplified cloud account switching
+    # FIXME: require >0.30 to fix terminal killer bug
+    # Use brew for now...
+    # upkgs.granted # simplified cloud account switching
     upkgs.awscli2
     upkgs.temporal-cli
   ];

@@ -49,6 +49,7 @@
     enable = true; # allow nix-darwin to manage brew?
     taps = [
       "FelixKratz/formulae" # jankyBorders
+      "common-fate/granted" # simplified cloud account switching
     ];
     brews = [
       "libiconv" # rnix-lsp
@@ -56,6 +57,7 @@
       "borders" # jankyBorders
       "silicon" # see "michaelrommel/nvim-silicon"; barage of errors if installed from nixpkgs
       "gh" # Github CLI
+      "common-fate/granted/granted"
     ];
     casks = [
       "ticktick" # todo
