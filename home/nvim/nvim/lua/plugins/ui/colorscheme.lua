@@ -82,13 +82,24 @@ return {
   },
 
   {
-    "rose-pine/neovim",
+    "oahlen/iceberg.nvim",
     enabled = true,
+    lazy = false,
+    name = "iceberg",
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("iceberg")
+    end,
+  },
+
+  {
+    "rose-pine/neovim",
+    enabled = false,
     name = "rose-pine",
     lazy = false,
     priority = 1000,
     opts = {
-      variant = "moon",
+      variant = "main",
       -- dim_inactive_windows = true,
       styles = {
         transparency = true,
@@ -96,6 +107,7 @@ return {
     },
     config = function(_, opts)
       require("rose-pine").setup(opts)
+
       vim.cmd.colorscheme("rose-pine")
 
       -- -- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ea9a97", bg = "#6e6a86" })
@@ -105,4 +117,15 @@ return {
       -- -- vim.api.nvim_set_hl(0, "CursorColumn", { fg = "#ea9a97", bg = "#6e6a86" })
     end,
   },
+
+  -- {
+  --   "kartikp10/noctis.nvim",
+  --   enabled = true,
+  --   dependencies = { "rktjmp/lush.nvim" },
+  --   lazy = false,
+  --   priority = 1000,
+  --   init = function()
+  --     vim.cmd.colorscheme("noctis")
+  --   end,
+  -- },
 }
