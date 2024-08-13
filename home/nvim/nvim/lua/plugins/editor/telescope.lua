@@ -46,6 +46,7 @@ return {
 
       -- See `:help telescope.builtin`
       local builtin = require("telescope.builtin")
+
       -- stylua: ignore start
       vim.keymap.set("n", "<leader>f?", builtin.help_tags, { desc = "[f]ind Help" })
       vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[f]ind [k]eymaps" })
@@ -60,11 +61,14 @@ return {
 
       vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = "[g]it [s]tatus" })
       vim.keymap.set("n", "<leader>gt", builtin.git_stash, { desc = "[g]it s[t]ash" })
-      vim.keymap.set("n", "<leader>gc", builtin.git_bcommits, { desc = "[g]it [c]ommits (buffer)" })
+      vim.keymap.set("n", "<leader>gc",
+        function() builtin.git_bcommits({ git_command = { "git", "log", "--abbrev-commit", "--no-decorate", "--pretty=format:%cs: %h -%d %s (%cr) <%an>" } }) end,
+        { desc = "[g]it [c]ommits (buffer)" })
 
       vim.keymap.set("n", "<localleader>fw", builtin.grep_string, { desc = "[f]ind [w]ord under cursor" })
       vim.keymap.set("n", "<localleader>fg", function() builtin.live_grep({ grep_open_files = true, prompt_title = "Live Grep (Open Buffers)" }) end, { desc = "[f]ind by live [g]rep open buffers" })
       -- stylua: ignore end
+
       vim.keymap.set("n", "<localleader>fs", function()
         builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({ winblend = 10, previewer = false }))
       end, { desc = "[f]uzzily [s]earch in current buffer" })
