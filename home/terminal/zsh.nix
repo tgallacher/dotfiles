@@ -30,7 +30,7 @@
     envExtra = ''
       export LC_ALL=en_GB.UTF-8
 
-      ${
+      ${ # FIXME: magic string
         if host.name == "tgallacher-flawpro"
         then "alias assume=\"source assume\""
         else ""
@@ -51,6 +51,11 @@
       # Fix for brew's `libiconv` formulae, and it not wanting to override OSX's default
       # see: https://stackoverflow.com/a/71895124
       export LIBRARY_PATH=$LIBRARY_PATH:$(brew --prefix)/lib:$(brew --prefix libiconv)/lib
+
+      # load custom config, avoiding the need to commit into git (e.g. secrets, etc)
+      if [ -f $HOME/.custom.zshrc ]; then
+          source $HOME/.custom.zshrc
+      fi
     '';
     # add to .zshrc, top of file
     initExtraFirst = ''
