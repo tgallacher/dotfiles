@@ -51,44 +51,46 @@ return {
       --   -- dark = "frappe",
       --   light = "latte",
       -- },
-      color_overrides = {
-        latte = extend_base({
-          text = "#202027",
-          subtext1 = "#263168",
-          subtext0 = "#4c4f69",
-          overlay2 = "#737994",
-          overlay1 = "#838ba7",
-          base = "#fcfcfa",
-          mantle = "#EAEDF3",
-          crust = "#DCE0E8",
-          pink = "#EA7A95",
-          mauve = "#986794",
-          red = "#EC5E66",
-          peach = "#FF8459",
-          yellow = "#CAA75E",
-          green = "#87A35E",
-        }),
-        frappe = extend_base({
-          text = "#fcfcfa",
-          surface2 = "#535763",
-          surface1 = "#3a3d4b",
-          surface0 = "#30303b",
-          base = "#202027",
-          mantle = "#1c1d22",
-          crust = "#171719",
-        }),
-      },
+      -- color_overrbLides = {
+      --   latte = extend_base({
+      --     text = "#202027",
+      --     subtext1 = "#263168",
+      --     subtext0 = "#4c4f69",
+      --     overlay2 = "#737994",
+      --     overlay1 = "#838ba7",
+      --     base = "#fcfcfa",
+      --     mantle = "#EAEDF3",
+      --     crust = "#DCE0E8",
+      --     pink = "#EA7A95",
+      --     mauve = "#986794",
+      --     red = "#EC5E66",
+      --     peach = "#FF8459",
+      --     yellow = "#CAA75E",
+      --     green = "#87A35E",
+      --   }),
+      --   frappe = extend_base({
+      --     text = "#fcfcfa",
+      --     surface2 = "#535763",
+      --     surface1 = "#3a3d4b",
+      --     surface0 = "#30303b",
+      --     base = "#202027",
+      --     mantle = "#1c1d22",
+      --     crust = "#171719",
+      --   }),
+      -- },
     },
   },
 
   {
     "oahlen/iceberg.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     name = "iceberg",
     priority = 1000,
     config = function()
       vim.cmd.colorscheme("iceberg")
+
+      vim.api.nvim_set_hl(0, "Cursor", { bg = "#c6c8d1" })
     end,
   },
 
@@ -118,14 +120,21 @@ return {
     end,
   },
 
-  -- {
-  --   "kartikp10/noctis.nvim",
-  --   enabled = true,
-  --   dependencies = { "rktjmp/lush.nvim" },
-  --   lazy = false,
-  --   priority = 1000,
-  --   init = function()
-  --     vim.cmd.colorscheme("noctis")
-  --   end,
-  -- },
+  {
+    "EdenEast/nightfox.nvim",
+    opts = {
+      options = {
+        -- transparent = true,
+        styles = {
+          comments = "italic",
+        },
+      },
+    },
+    config = function(_, opts)
+      require("nightfox").setup(opts)
+
+      vim.cmd.colorscheme("carbonfox")
+      -- vim.cmd.colorscheme("terafox")
+    end,
+  },
 }
