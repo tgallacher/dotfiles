@@ -66,7 +66,7 @@
       "obsidian" # notes
       "docker"
       # "postman" # nixpkgs version seems to be down; use brew instead
-      # "dbeaver-community" # nixpkgs version has been removed; see https://github.com/NixOS/nixpkgs/pull/311888
+      "dbeaver-community" # nixpkgs version has been removed; see https://github.com/NixOS/nixpkgs/pull/311888
       "bitwarden"
       "aws-vpn-client"
     ];

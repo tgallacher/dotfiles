@@ -37,7 +37,7 @@
   };
 
   home.packages = [
-    pkgs.raycast
+    upkgs.raycast
     upkgs.pwgen
     pkgs.poetry # python pip replacement
     pkgs.poethepoet # task runner for poetry
@@ -46,6 +46,7 @@
     # upkgs.granted # simplified cloud account switching
     upkgs.awscli2
     upkgs.temporal-cli
+    upkgs.bitwarden-cli # desktop app installed via brew
   ];
 
   home.file.".hushlogin".text = ''# silence tty start up spam '';
