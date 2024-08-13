@@ -82,19 +82,6 @@ return {
   },
 
   {
-    "oahlen/iceberg.nvim",
-    enabled = false,
-    lazy = false,
-    name = "iceberg",
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme("iceberg")
-
-      vim.api.nvim_set_hl(0, "Cursor", { bg = "#c6c8d1" })
-    end,
-  },
-
-  {
     "rose-pine/neovim",
     enabled = false,
     name = "rose-pine",
