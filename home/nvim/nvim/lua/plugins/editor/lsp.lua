@@ -4,18 +4,13 @@ return {
     event = "InsertEnter",
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for neovim
-      -- "williamboman/mason.nvim",
-      -- "williamboman/mason-lspconfig.nvim",
       {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         dependencies = {
-          {
-            "williamboman/mason.nvim",
-            opts = {
-              ui = { border = "single" },
-            },
-          },
           "williamboman/mason-lspconfig.nvim",
+          {
+            "williamboman/mason.nvim", opts = { ui = { border = "single" }, },
+          },
         },
         opts = {
           ensure_installed = {},

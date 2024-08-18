@@ -1,3 +1,9 @@
+local loaded = 0
+if loaded then
+  -- print("Python PDE already loaded; returning")
+  return {}
+end
+loaded = 1
 -- local lsp_util = require("lspconfig.util")
 
 -- @see https://github.com/bellini666/dotfiles/blob/master/vim/lua/utils.lua#L25C3-L30C4
@@ -9,8 +15,9 @@ local function ensure_tables(obj, ...)
 end
 
 -- @see https://github.com/bellini666/dotfiles/blob/master/vim/lua/utils.lua#L108C3-L144C4
--- Note: This assumes the use of "poetry" to manage python dependencies
+-- Cache found path for current session
 local python_path = nil
+-- Note: This assumes the use of "poetry" to manage python dependencies
 local function find_python()
   if python_path ~= nil then
     return python_path
@@ -56,30 +63,33 @@ local servers = {
       max_line_length = 120,
     },
   },
-  ruff = {
-    settings = {
-      indent_width = 4,
-    },
-  },
+  -- ruff = {
+  --   settings = {
+  --     indent_width = 4,
+  --   },
+  -- },
   pyright = {
     settings = {
-      filetypes = { "python" },
-      -- typeCheckingMode = "off", -- use mypy instead
-      -- reportInvalidTypeForm = "error",
-      -- reportMissingImports = "error",
-      -- reportUndefinedVariable = "error",
+      pyright = {
+        filetypes = { "python" },
+        -- from https://github.com/bellini666/dotfiles/blob/master/vim/lua/config/lsp.lua#L137-L141
+        autoSearchPaths = true,
+        diagnosticMode = "workspace",
+        useLibraryCodeForTypes = true,
+        disableOrganizeImports = true, -- use ruff instead
+        -- typeCheckingMode = "off", -- use mypy instead
+        -- reportInvalidTypeForm = "error",
+        -- reportMissingImports = "error",
+        -- reportUndefinedVariable = "error",
+      },
       python = {
         analysis = {
+          ignore = { "*" }, -- use ruff
           typeCheckingMode = "off", -- use mypy instead
           -- from pt web's pyrightconfig.json
           reportInvalidTypeForm = "error",
           reportMissingImports = "error",
           reportUndefinedVariable = "error",
-          -- from https://github.com/bellini666/dotfiles/blob/master/vim/lua/config/lsp.lua#L137-L141
-          autoSearchPaths = true,
-          diagnosticMode = "workspace",
-          useLibraryCodeForTypes = true,
-          disableOrganizeImports = true,
         },
       },
     },
@@ -95,7 +105,7 @@ local servers = {
       --
       -- config.settings.python.pythonPath = p
 
-      local python_path = find_python()
+      python_path = find_python()
 
       config.settings.python.pythonPath = python_path
 
@@ -114,6 +124,8 @@ local servers = {
 --   end,
 -- })
 
+print("Hello python PDE")
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -129,7 +141,7 @@ return {
       opts.ensure_installed = vim.list_extend(
         opts.ensure_installed,
         vim.list_extend(vim.tbl_keys(servers), {
-          -- "ruff",
+          "ruff",
           "mypy",
           -- "black",
           "debugpy",
@@ -140,20 +152,22 @@ return {
   },
 
   {
-    "mfussenegger/nvim-lint",
+    "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, {
-        linters_by_ft = {
-          python = { "ruff", "mypy" },
-        },
-      })
+      return vim.tbl_deep_extend("force", opts, { servers = servers })
     end,
   },
 
   {
-    "neovim/nvim-lspconfig",
+    "mfussenegger/nvim-lint",
     opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, { servers = servers })
+      return vim.tbl_deep_extend("force", opts, {
+        linters_by_ft = {
+          -- don't need ruff here as it'll be pulled in as part of
+          -- `nvim-lspconfig` below (as it's in the `servers` config above)
+          python = { "ruff", "mypy" },
+        },
+      })
     end,
   },
 
@@ -163,7 +177,7 @@ return {
       return vim.tbl_deep_extend("force", opts, {
         formatters_by_ft = {
           j2 = { "djlint" },
-          python = { "ruff_format" },
+          python = { "ruff_organize_imports", "ruff_format" },
         },
       })
     end,
