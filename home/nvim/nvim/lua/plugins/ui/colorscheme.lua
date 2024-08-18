@@ -32,6 +32,7 @@ return {
 
       -- `terafox` also looks really good
       vim.cmd.colorscheme("carbonfox")
+      -- vim.cmd.colorscheme("terafox")
     end,
   },
 }

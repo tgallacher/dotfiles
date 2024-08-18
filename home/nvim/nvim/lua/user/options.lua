@@ -12,7 +12,10 @@ vim.g.netrw_preview = 1 -- vsplit
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 --  For more options, you can see `:help option-list`
+vim.cmd("filetype plugin indent on")
+
 vim.g.editorconfig = true
+
 vim.opt.fileencoding = "utf-8" -- the encoding written to a file
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.swapfile = false -- creates a swapfile
@@ -40,10 +43,7 @@ vim.opt.showmode = false -- control whether current mode is displayed at bottom 
 -- Sync clipboard between OS and Neovim.
 --  See `:help 'clipboard'`
 vim.opt.clipboard = "unnamedplus"
-
--- Enable break indent
 vim.opt.breakindent = true
-
 -- Save undo history
 vim.opt.undofile = true
 
