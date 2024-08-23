@@ -50,6 +50,7 @@
     taps = [
       "FelixKratz/formulae" # jankyBorders
       "common-fate/granted" # simplified cloud account switching
+      "openfga/tap"
     ];
     brews = [
       "libiconv" # rnix-lsp
@@ -58,6 +59,7 @@
       "silicon" # see "michaelrommel/nvim-silicon"; barage of errors if installed from nixpkgs
       "gh" # Github CLI
       "common-fate/granted/granted"
+      "fga" # openfga
     ];
     casks = [
       "ticktick" # todo
