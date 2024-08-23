@@ -28,12 +28,12 @@
       # general bar appearance
       sketchybar --bar \
         height=32 \
-        color="$COLOR_TRANSPARENT" \
+        color="$COLOR_BAR" \
         shadow=off \
         position=top \
         sticky=on \
-        padding_right=15 \
-        padding_left=15 \
+        padding_right=10 \
+        padding_left=10 \
         topmost=window
 
       # Setting up default values
@@ -82,14 +82,14 @@
         background.drawing=off \
         width=8
 
-      source $CONFIG_ROOT/cpu/item.sh
       source $CONFIG_ROOT/ram/item.sh
+      source $CONFIG_ROOT/cpu/item.sh
       source $CONFIG_ROOT/network/item.sh
 
       bracket_style=(
         background.height=24
-        background.drawing=on
-        background.color="$COLOR_BAR"
+        background.drawing=off
+        background.color="$COLOR_TRANSPARENT"
         background.border_color="$COLOR_TRANSPARENT"
         background.border_width=1
         background.corner_radius="$RADIUS"

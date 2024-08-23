@@ -6,7 +6,7 @@
 
       ## Misc ##
       PADDINGS=3
-      RADIUS=4
+      RADIUS=0
 
       ## FONTS ##
       NERD_FONT="JetBrainsMono Nerd Font" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
@@ -36,7 +36,7 @@
         echo "$opacity"
       }
 
-      COLOR_BAR="$(getOpacity 50)${config.colorScheme.palette.base00}"
+      COLOR_BAR="$(getOpacity 75)${config.colorScheme.palette.base00}"
       COLOR_BG=0xff${config.colorScheme.palette.base02}
       COLOR_DLABEL=0xff${config.colorScheme.palette.base05} # Default label colour
       COLOR_DICON=0xff${config.colorScheme.palette.base05} # Default icon colour
