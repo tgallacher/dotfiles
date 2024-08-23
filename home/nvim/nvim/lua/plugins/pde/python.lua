@@ -1,9 +1,8 @@
-local loaded = 0
-if loaded then
-  -- print("Python PDE already loaded; returning")
-  return {}
-end
-loaded = 1
+-- local loaded = 0
+-- if loaded then
+--   return {}
+-- end
+-- loaded = 1
 -- local lsp_util = require("lspconfig.util")
 
 -- @see https://github.com/bellini666/dotfiles/blob/master/vim/lua/utils.lua#L25C3-L30C4
@@ -68,16 +67,61 @@ local servers = {
   --     indent_width = 4,
   --   },
   -- },
-  pyright = {
+  -- pyright = {
+  --   settings = {
+  --     pyright = {
+  --       filetypes = { "python" },
+  --       -- from https://github.com/bellini666/dotfiles/blob/master/vim/lua/config/lsp.lua#L137-L141
+  --       autoSearchPaths = true,
+  --       diagnosticMode = "workspace",
+  --       useLibraryCodeForTypes = true,
+  --       disableOrganizeImports = true, -- use ruff instead
+  --       -- typeCheckingMode = "off", -- use mypy instead
+  --       -- reportInvalidTypeForm = "error",
+  --       -- reportMissingImports = "error",
+  --       -- reportUndefinedVariable = "error",
+  --     },
+  --     python = {
+  --       analysis = {
+  --         ignore = { "*" }, -- use ruff
+  --         typeCheckingMode = "off", -- use mypy instead
+  --         -- from pt web's pyrightconfig.json
+  --         reportInvalidTypeForm = "error",
+  --         reportMissingImports = "error",
+  --         reportUndefinedVariable = "error",
+  --       },
+  --     },
+  --   },
+  --   -- set python interpreter to local virtual env
+  --   before_init = function(initialize_params, config)
+  --     -- @see: https://github.com/neovim/nvim-lspconfig/issues/500#issuecomment-965824580
+  --     -- local p
+  --     -- if vim.env.VIRTUAL_ENV then
+  --     --   p = lsp_util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
+  --     -- else
+  --     --   p = utils.find_cmd("python3", ".venv/bin", config.root_dir)
+  --     -- end
+  --     --
+  --     -- config.settings.python.pythonPath = p
+  --
+  --     python_path = find_python()
+  --
+  --     config.settings.python.pythonPath = python_path
+  --
+  --     ensure_tables(initialize_params.initializationOptions, "settings", "python")
+  --     initialize_params.initializationOptions.settings.python.pythonPath = python_path
+  --   end,
+  -- },
+  basedpyright = {
     settings = {
-      pyright = {
+      basedpyright = {
         filetypes = { "python" },
         -- from https://github.com/bellini666/dotfiles/blob/master/vim/lua/config/lsp.lua#L137-L141
         autoSearchPaths = true,
         diagnosticMode = "workspace",
         useLibraryCodeForTypes = true,
         disableOrganizeImports = true, -- use ruff instead
-        -- typeCheckingMode = "off", -- use mypy instead
+        typeCheckingMode = "off", -- use mypy instead
         -- reportInvalidTypeForm = "error",
         -- reportMissingImports = "error",
         -- reportUndefinedVariable = "error",
@@ -85,11 +129,22 @@ local servers = {
       python = {
         analysis = {
           ignore = { "*" }, -- use ruff
-          typeCheckingMode = "off", -- use mypy instead
-          -- from pt web's pyrightconfig.json
-          reportInvalidTypeForm = "error",
-          reportMissingImports = "error",
-          reportUndefinedVariable = "error",
+          autoImportCompletions = true,
+          stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+          diagnosticSeverityOverrides = {
+            -- from pt web's pyrightconfig.json
+            reportInvalidTypeForm = "error",
+            reportMissingImports = "error",
+            reportUndefinedVariable = "error",
+            -- from astrovim
+            reportUnusedImport = "information",
+            reportUnusedFunction = "information",
+            reportUnusedVariable = "information",
+            reportGeneralTypeIssues = "none",
+            reportOptionalMemberAccess = "none",
+            reportOptionalSubscript = "none",
+            reportPrivateImportUsage = "none",
+          },
         },
       },
     },
@@ -106,25 +161,24 @@ local servers = {
       -- config.settings.python.pythonPath = p
 
       python_path = find_python()
-
+      if not config.settings then
+        config.settings = {}
+      end
+      if not config.settings.python then
+        config.settings.python = {}
+      end
       config.settings.python.pythonPath = python_path
 
       ensure_tables(initialize_params.initializationOptions, "settings", "python")
       initialize_params.initializationOptions.settings.python.pythonPath = python_path
     end,
   },
+  -- mypy = {
+  --   -- settings = {
+  --   mypy_path = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+  --   -- },
+  -- },
 }
-
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "python",
---   callback = function()
---     vim.opt.shiftwidth = 4
---     vim.opt.tabstop = 4
---     vim.opt.softtabstop = 4
---   end,
--- })
-
-print("Hello python PDE")
 
 return {
   {
@@ -181,6 +235,27 @@ return {
         },
       })
     end,
+  },
+
+  { -- WIP type stubs which haven't made it into "typeshed" yet
+    "microsoft/python-type-stubs",
+  },
+
+  { -- Find and switch virtual envs: Use if the auto path search above doesn't work
+    "linux-cultist/venv-selector.nvim",
+    -- lazy = true,
+    branch = "regexp",
+    enabled = vim.fn.executable("fd") == 1 or vim.fn.executable("fdfind") == 1 or vim.fn.executable("fd-find") == 1,
+    dependencies = {
+      { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+    },
+    opts = {},
+    cmd = "VenvSelect",
+    keys = {
+      "<Leader>vs",
+      ":VenvSelect<CR>",
+      desc = "[P]ython [v]irtualEnv [s]elect",
+    },
   },
 
   {

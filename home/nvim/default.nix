@@ -26,5 +26,14 @@ in {
     EDITOR = "nvim";
   };
 
+  xdg.configFile = {
+    "mypy/config" = {
+      text = ''
+        [mypy]
+        mypy_path = "~/.local/share/nvim/lazy/python-type-stubs"
+      '';
+    };
+  };
+
   home.file.".config/nvim/".source = config.lib.file.mkOutOfStoreSymlink nvimConfigLocation;
 }
