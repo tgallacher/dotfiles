@@ -23,13 +23,6 @@
           "$COLOR_WARNING"
           "$COLOR_INFORMATION"
         )
-        # SPACE_ICONS=(
-        #   ""
-        #   "󱌢"
-        #   "󰙏"
-        #   ""
-        #   "󰎈"
-        # )
         SPACE_ICONS=(
           "1"
           "2"
@@ -45,7 +38,7 @@
             --set space.$sid  space="$sid"                                    \
                               icon="''${SPACE_ICONS[idx]}"                    \
                               icon.highlight_color="$COLOR_BAR"               \
-                              icon.background.color="''${SPACE_COLORS[idx]}"  \
+                              icon.background.color="''$COLOR_PRIMARY"        \
                               icon.background.height=18                       \
                               icon.background.drawing=off                     \
                               icon.background.corner_radius="$RADIUS"         \

@@ -31,8 +31,9 @@ return {
       require("nightfox").setup(opts)
 
       -- `terafox` also looks really good
-      vim.cmd.colorscheme("carbonfox")
+      -- vim.cmd.colorscheme("carbonfox")
       -- vim.cmd.colorscheme("terafox")
+      vim.cmd.colorscheme("nightfox")
     end,
   },
 }
