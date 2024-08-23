@@ -39,14 +39,17 @@
   home.packages = [
     upkgs.raycast
     upkgs.pwgen
-    pkgs.poetry # python pip replacement
-    pkgs.poethepoet # task runner for poetry
     # FIXME: require >0.30 to fix terminal killer bug
     # Use brew for now...
     # upkgs.granted # simplified cloud account switching
     upkgs.awscli2
     upkgs.temporal-cli
     upkgs.bitwarden-cli # desktop app installed via brew
+
+    # Python
+    upkgs.uv # pip replacement + more
+    pkgs.poetry # pip replacement
+    pkgs.poethepoet # task runner for poetry
   ];
 
   home.file.".hushlogin".text = ''# silence tty start up spam '';
