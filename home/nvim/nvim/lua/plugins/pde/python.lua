@@ -1,10 +1,3 @@
--- local loaded = 0
--- if loaded then
---   return {}
--- end
--- loaded = 1
--- local lsp_util = require("lspconfig.util")
-
 -- @see https://github.com/bellini666/dotfiles/blob/master/vim/lua/utils.lua#L25C3-L30C4
 local function ensure_tables(obj, ...)
   for _, sub in ipairs({ ... }) do
@@ -34,6 +27,7 @@ local function find_python()
     end
 
     if env_info ~= nil and string.find(env_info, "could not find") == nil then
+      -- FIXME: this doesn't map to a valid python binary
       p = vim.fs.joinpath(env_info:gsub("\n", ""), "bin", "python3")
     else
       local venv_dir = vim.fs.find(".venv", {
@@ -50,6 +44,7 @@ local function find_python()
     end
   end
 
+  -- cache
   python_path = p
 
   return p
@@ -62,56 +57,12 @@ local servers = {
       max_line_length = 120,
     },
   },
-  -- ruff = {
-  --   settings = {
-  --     indent_width = 4,
-  --   },
-  -- },
-  -- pyright = {
-  --   settings = {
-  --     pyright = {
-  --       filetypes = { "python" },
-  --       -- from https://github.com/bellini666/dotfiles/blob/master/vim/lua/config/lsp.lua#L137-L141
-  --       autoSearchPaths = true,
-  --       diagnosticMode = "workspace",
-  --       useLibraryCodeForTypes = true,
-  --       disableOrganizeImports = true, -- use ruff instead
-  --       -- typeCheckingMode = "off", -- use mypy instead
-  --       -- reportInvalidTypeForm = "error",
-  --       -- reportMissingImports = "error",
-  --       -- reportUndefinedVariable = "error",
-  --     },
-  --     python = {
-  --       analysis = {
-  --         ignore = { "*" }, -- use ruff
-  --         typeCheckingMode = "off", -- use mypy instead
-  --         -- from pt web's pyrightconfig.json
-  --         reportInvalidTypeForm = "error",
-  --         reportMissingImports = "error",
-  --         reportUndefinedVariable = "error",
-  --       },
-  --     },
-  --   },
-  --   -- set python interpreter to local virtual env
-  --   before_init = function(initialize_params, config)
-  --     -- @see: https://github.com/neovim/nvim-lspconfig/issues/500#issuecomment-965824580
-  --     -- local p
-  --     -- if vim.env.VIRTUAL_ENV then
-  --     --   p = lsp_util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
-  --     -- else
-  --     --   p = utils.find_cmd("python3", ".venv/bin", config.root_dir)
-  --     -- end
-  --     --
-  --     -- config.settings.python.pythonPath = p
-  --
-  --     python_path = find_python()
-  --
-  --     config.settings.python.pythonPath = python_path
-  --
-  --     ensure_tables(initialize_params.initializationOptions, "settings", "python")
-  --     initialize_params.initializationOptions.settings.python.pythonPath = python_path
-  --   end,
-  -- },
+  ruff = {
+    cmd = { "ruff", "server" },
+    settings = {
+      indent_width = 4,
+    },
+  },
   basedpyright = {
     settings = {
       basedpyright = {
@@ -120,11 +71,8 @@ local servers = {
         autoSearchPaths = true,
         diagnosticMode = "workspace",
         useLibraryCodeForTypes = true,
-        disableOrganizeImports = true, -- use ruff instead
-        typeCheckingMode = "off", -- use mypy instead
-        -- reportInvalidTypeForm = "error",
-        -- reportMissingImports = "error",
-        -- reportUndefinedVariable = "error",
+        disableOrganizeImports = true, -- NOTE: use ruff instead
+        typeCheckingMode = "off", -- NOTE: use mypy instead
       },
       python = {
         analysis = {
@@ -173,11 +121,6 @@ local servers = {
       initialize_params.initializationOptions.settings.python.pythonPath = python_path
     end,
   },
-  -- mypy = {
-  --   -- settings = {
-  --   mypy_path = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
-  --   -- },
-  -- },
 }
 
 return {
@@ -192,15 +135,7 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(
-        opts.ensure_installed,
-        vim.list_extend(vim.tbl_keys(servers), {
-          "ruff",
-          "mypy",
-          -- "black",
-          "debugpy",
-        })
-      )
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed, vim.list_extend(vim.tbl_keys(servers), { "mypy", "debugpy" }))
       return opts
     end,
   },
@@ -217,9 +152,7 @@ return {
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
         linters_by_ft = {
-          -- don't need ruff here as it'll be pulled in as part of
-          -- `nvim-lspconfig` below (as it's in the `servers` config above)
-          python = { "ruff", "mypy" },
+          python = { "mypy" },
         },
       })
     end,
