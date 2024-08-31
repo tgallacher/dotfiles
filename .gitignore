@@ -10,3 +10,5 @@ nvim/.config/nvim/plugin
 
 # local playground files
 _scratch
+
+*.pem

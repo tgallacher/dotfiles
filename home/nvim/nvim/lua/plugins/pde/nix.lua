@@ -2,7 +2,10 @@ local servers = {
   -- WARNING: Large files may experience slow perf
   -- see: https://github.com/oxalica/nil/issues/83
   -- note: this may have been fixed in nvim 0.9.1+
-  nil_ls = {},
+  nil_ls = {
+    filetypes = { "nix" },
+    settings = {},
+  },
 }
 
 return {

@@ -7,9 +7,9 @@ return {
       delete_to_trash = true,
       skip_confirm_for_simple_edits = true, -- see :h oil.skip_confirm_for_simple_edit
       view_options = {
-        show_hidden = true,
+        show_hidden = false,
         is_always_hidden = function(name, _)
-          return name == ".." or name == ".git"
+          return name == ".." or name == ".git" or name == "__pycache__"
         end,
       },
       constrain_cursor = "name", -- constrain to filename: only required when additional `columns` is spec'd below

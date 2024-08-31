@@ -98,7 +98,7 @@ vim.foldexpr = "nvim_treesitter#foldexpr()" -- utilize Treesitter folds
 
 -- spelling
 vim.opt.spelllang = "en_gb"
-vim.opt.spell = true
+vim.opt.spell = false
 
 vim.opt.guicursor = {
   "n-v-c:block", -- Normal, visual, command-line: block cursor
