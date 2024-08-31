@@ -8,7 +8,7 @@
   imports = [
     ./system.nix
     ./windowmanager.nix
-    ./sketchybar
+    ../../libs/sketchybar
   ];
 
   # nix.settings.extra-nix-path = nixpkgs=flake:nixpkgs;
