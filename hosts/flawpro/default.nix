@@ -10,7 +10,7 @@ args: let
   };
 
   inputs = args.inputs;
-  host.name = "tgallacher-flawpro";
+  host.name = "flawpro";
   vars =
     args.vars
     // {
