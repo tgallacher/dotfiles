@@ -7,9 +7,8 @@ local function ensure_tables(obj, ...)
 end
 
 -- @see https://github.com/bellini666/dotfiles/blob/master/vim/lua/utils.lua#L108C3-L144C4
--- Cache found path for current session
+-- -- Cache found path for current session
 local python_path = nil
--- Note: This assumes the use of "poetry" to manage python dependencies
 local function find_python()
   if python_path ~= nil then
     return python_path
@@ -21,27 +20,28 @@ local function find_python()
   else
     local env_info = nil
 
-    local poetry_root = vim.fs.root(0, { "poetry.lock" })
-    if poetry_root then
-      env_info = vim.fn.system({ "poetry", "env", "info", "--path", "-C", poetry_root })
-    end
+    -- local pyproject_root = vim.fs.root(0, { "pyproject.toml" })
+    -- if pyproject_root then
+    --   -- env_info = vim.fn.system({ "poetry", "env", "info", "--path", "-C", poetry_root })
+    --   env_info = vim.fs.joinpath(pyproject_root, ".venv")
+    -- end
 
-    if env_info ~= nil and string.find(env_info, "could not find") == nil then
-      -- FIXME: this doesn't map to a valid python binary
-      p = vim.fs.joinpath(env_info:gsub("\n", ""), "bin", "python3")
+    -- if env_info ~= nil and string.find(env_info, "could not find") == nil then
+    --   -- FIXME: this doesn't map to a valid python binary
+    --   p = vim.fs.joinpath(env_info:gsub("\n", ""), "bin", "python3")
+    -- else
+    local venv_dir = vim.fs.find(".venv", {
+      upward = true,
+      type = "directory",
+      path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
+    })
+
+    if #venv_dir > 0 then
+      p = vim.fs.joinpath(venv_dir[1], "bin", "python3")
     else
-      local venv_dir = vim.fs.find(".venv", {
-        upward = true,
-        type = "directory",
-        path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
-      })
-
-      if #venv_dir > 0 then
-        p = vim.fs.joinpath(venv_dir[1], "bin", "python3")
-      else
-        p = "python3"
-      end
+      p = "python3"
     end
+    -- end
   end
 
   -- cache
