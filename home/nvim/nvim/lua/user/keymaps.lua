@@ -38,7 +38,7 @@ vim.keymap.set("n", "<localleader>X", ":!chmod +x %<CR>", { desc = "Make file e[
 vim.keymap.set("n", "]<Space>", "o<Esc>", { desc = "" }) -- Insert blank line below
 vim.keymap.set("n", "[<Space>", "O<Esc>", { desc = "" }) -- Insert blank line above
 vim.keymap.set("n", "gx", ":sil !open <cWORD><cr>", { noremap = true, silent = true }) -- open the link under the cursor
-vim.keymap.set("i", "jk", "<ESC>", { desc = "" }) -- Press jk fast to exit insert mode
+-- vim.keymap.set("i", "jk", "<ESC>", { desc = "" }) -- Press jk fast to exit insert mode
 
 -- Stay in indent mode
 vim.keymap.set("v", "<", "<gv^", { desc = "" })
@@ -52,4 +52,4 @@ vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", { desc = "" })
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+-- vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
