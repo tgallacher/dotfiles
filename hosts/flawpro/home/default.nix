@@ -52,7 +52,6 @@
     pkgs.poethepoet # task runner for poetry
 
     pkgs.mkcert # self-signed tls certs
-    upkgs.lazygit
   ];
 
   home.file.".hushlogin".text = ''# silence tty start up spam '';

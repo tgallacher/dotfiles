@@ -76,6 +76,7 @@
       # CLIs
 
       python310
+      lazygit
       ;
   };
 }
