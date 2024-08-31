@@ -28,7 +28,7 @@
     }
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.rose-pine;
+  colorScheme = inputs.nix-colors.colorSchemes.porple;
 
   home = {
     username = vars.username;
