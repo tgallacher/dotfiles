@@ -1,9 +1,4 @@
-{
-  # lib,
-  inputs,
-  vars,
-  ...
-}: let
+args: let
   system = "aarch64-darwin";
   pkgs = import inputs.nixpkgs {
     inherit system;
@@ -13,9 +8,14 @@
     inherit system;
     config = {allowUnfree = true;};
   };
-  host = {
-    name = "tgallacher-flawpro";
-  };
+
+  inputs = args.inputs;
+  host.name = "tgallacher-flawpro";
+  vars =
+    args.vars
+    // {
+      username = "tom.gallacher";
+    };
 in
   inputs.nix-darwin.lib.darwinSystem {
     specialArgs = {
