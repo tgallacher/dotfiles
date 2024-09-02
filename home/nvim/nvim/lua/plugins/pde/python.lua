@@ -18,7 +18,7 @@ local function find_python()
   if vim.env.VIRTUAL_ENV then
     p = vim.fs.joinpath(vim.env.VIRTUAL_ENV, "bin", "python3")
   else
-    local env_info = nil
+    -- local env_info = nil
 
     -- local pyproject_root = vim.fs.root(0, { "pyproject.toml" })
     -- if pyproject_root then
@@ -203,10 +203,8 @@ return {
 
       require("dap-python").setup(path)
 
-      vim.keymap.set("n", "<localleader>db", ":DapToggleBreakpoint<CR>", { desc = "Toggle breakpoint" })
-      vim.keymap.set("n", "<localleader>dr", function()
-        require("dap-python").test_method()
-      end, { desc = "Toggle breakpoint" })
-    end,
+      vim.keymap.set("n", "<localleader>db", ":DapToggleBreakpoint<CR>", { desc = "[D]ap toggle [b]reakpoint" })
+      -- stylua: ignore
+      vim.keymap.set("n", "<localleader>dt", function() require("dap-python").test_method() end, { desc = "[D]ap [t]est method" })             end,
   },
 }
