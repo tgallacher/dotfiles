@@ -17,7 +17,7 @@ require("lazy").setup({
     { import = "plugins.pde" },
   },
   install = {
-    colorscheme = { "rose-pine" },
+    colorscheme = { "terafox" },
   },
   checker = {
     enabled = true,
