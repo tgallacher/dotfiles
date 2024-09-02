@@ -10,6 +10,9 @@
         indent_size = 2;
         charset = "utf-8";
       };
+      "*.py" = {
+        indent_size = 4;
+      };
     };
   };
 }
