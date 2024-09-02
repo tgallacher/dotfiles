@@ -139,6 +139,7 @@ return {
 
   {
     "lukas-reineke/indent-blankline.nvim",
+    enabled = false,
     event = { "BufReadPre", "BufNewFile" },
     main = "ibl",
     opts = {},
@@ -152,10 +153,10 @@ return {
       "kevinhwang91/promise-async",
     },
     config = function()
-      vim.opt.foldcolumn = "0"
-      vim.opt.foldlevel = 99
-      vim.opt.foldlevelstart = 99
-      vim.opt.foldenable = true
+      vim.bo.foldcolumn = "0"
+      vim.bo.foldlevel = 99
+      vim.bo.foldlevelstart = 99
+      vim.bo.foldenable = true
 
       --- @diagnostic disable: unused-local
       require("ufo").setup({
