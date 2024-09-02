@@ -76,7 +76,33 @@
       # CLIs
 
       python310
-      lazygit
+      # lazygit
+
       ;
+  };
+
+  programs.lazygit = {
+    enable = true;
+    package = upkgs.lazygit;
+    settings = {
+      gui = {
+        # shortTimeFormat = 3;
+        nerdFontsVersion = "3";
+        selectedLineBgColor = "default";
+        showFileTree = false;
+        showRandomTip = true; # TODO: turn off when comfortable
+        showBranchCommitHash = true;
+        showDivergenceFromBaseBranch = "arrowAndNumber";
+        border = "single";
+        statusPanelView = "allBranchesLog";
+      };
+      git = {
+        # externalDiffCommand = "";
+        parseEmoji = true;
+        merging = {
+          squashMergeMessage = "chore: squash {{selectedRef}} into {{currentBranch}}";
+        };
+      };
+    };
   };
 }

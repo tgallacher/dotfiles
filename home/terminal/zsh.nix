@@ -72,6 +72,12 @@
       # TODO: Move this into "flawpro" config
       export GRANTED_ALIAS_CONFIGURED=true;
       export GRANTED_DISABLE_UPDATE_CHECK=true;
+
+      export CASE_SENSITIVE="true";
+      export HIST_STAMPS="yyyy-mm-dd";
+      export BROWSER="brave";
+      export XDG_CONFIG_HOME="$HOME/.config";
+
     '';
     # add to .zprofile
     profileExtra = ''
@@ -83,10 +89,10 @@
     '';
     # add to .zshrc, top of file, env vars, e.g. POWERLINE_9K, etc
     localVariables = {
-      CASE_SENSITIVE = "true";
-      HIST_STAMPS = "yyyy-mm-dd";
-      BROWSER = "brave";
-      # GRANTED_ALIAS_CONFIGURED = true;
+      # CASE_SENSITIVE = "true";
+      # HIST_STAMPS = "yyyy-mm-dd";
+      # BROWSER = "brave";
+      # XDG_CONFIG_HOME = "$HOME/.config";
     };
     dirHashes = {};
     # # env vars set for each session
