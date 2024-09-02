@@ -1,4 +1,4 @@
--- local palette = require("catppuccin.palettes").get_palette("mocha")
+-- TODO: keep?
 
 return {
   { -- screen capture code

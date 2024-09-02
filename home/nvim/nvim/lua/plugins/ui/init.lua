@@ -7,8 +7,7 @@ return {
     },
   },
 
-  -- Peek buffer when entering line number :<number>
-  {
+  { -- Peek buffer when entering line number :<number>
     "nacro90/numb.nvim",
     event = "InsertEnter",
     config = true,
@@ -126,7 +125,6 @@ return {
 
   {
     "j-hui/fidget.nvim",
-    -- tag = "legacy",
     event = { "BufEnter" },
     opts = {
       notification = {

@@ -98,16 +98,6 @@ local servers = {
     },
     -- set python interpreter to local virtual env
     before_init = function(initialize_params, config)
-      -- @see: https://github.com/neovim/nvim-lspconfig/issues/500#issuecomment-965824580
-      -- local p
-      -- if vim.env.VIRTUAL_ENV then
-      --   p = lsp_util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
-      -- else
-      --   p = utils.find_cmd("python3", ".venv/bin", config.root_dir)
-      -- end
-      --
-      -- config.settings.python.pythonPath = p
-
       python_path = find_python()
       if not config.settings then
         config.settings = {}
@@ -205,6 +195,6 @@ return {
 
       vim.keymap.set("n", "<localleader>db", ":DapToggleBreakpoint<CR>", { desc = "[D]ap toggle [b]reakpoint" })
       -- stylua: ignore
-      vim.keymap.set("n", "<localleader>dt", function() require("dap-python").test_method() end, { desc = "[D]ap [t]est method" })             end,
+      vim.keymap.set("n", "<localleader>dt", function() require("dap-python").test_method() end, { desc = "[D]ap [t]est method" })                 end,
   },
 }

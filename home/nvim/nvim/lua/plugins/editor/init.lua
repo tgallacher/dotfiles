@@ -33,35 +33,7 @@ return {
     },
   },
 
-  -- { -- autoclose html tags
-  --   "windwp/nvim-ts-autotag",
-  --   event = { "InsertEnter" },
-  --   dependencies = { "nvim-treesitter" },
-  --   opts = {
-  --     filetypes = {
-  --       "html",
-  --       "javascript",
-  --       "typescript",
-  --       "javascriptreact",
-  --       "typescriptreact",
-  --       "svelte",
-  --       "vue",
-  --       "tsx",
-  --       "jsx",
-  --       "rescript",
-  --       "xml",
-  --       "php",
-  --       -- "markdown",
-  --       "astro",
-  --       "glimmer",
-  --       "handlebars",
-  --       "hbs",
-  --     },
-  --   },
-  -- },
-
-  -- "gc<motion>" to comment visual regions/lines
-  {
+  { -- "gc<motion>" to comment visual regions/lines
     "numToStr/Comment.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
@@ -133,44 +105,6 @@ return {
       require("illuminate").configure(opts)
     end,
   },
-
-  -- { -- autoclose parens, brackets, quotes, etc
-  --   "windwp/nvim-autopairs",
-  --   event = "InsertEnter",
-  --   dependencies = {
-  --     "hrsh7th/nvim-cmp",
-  --   },
-  --   opts = {
-  --     check_ts = true, -- treesitter not typescript
-  --     ts_config = { -- ignore these treesitter nodes, per filetype
-  --       lua = { "string", "source" },
-  --       javascript = { "string", "template_string" },
-  --       java = false,
-  --     },
-  --     disable_filetype = { "TelescopePrompt", "spectre_panel" },
-  --     fast_wrap = {
-  --       cursor_pos_before = false,
-  --       map = "<M-e>",
-  --       chars = { "{", "[", "(", '"', "'" },
-  --       pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-  --       offset = 0, -- Offset from pattern match
-  --       end_key = "$",
-  --       keys = "qwertyuiopzxcvbnmasdfghjkl",
-  --       check_comma = true,
-  --       highlight = "PmenuSel",
-  --       highlight_grey = "LineNr",
-  --     },
-  --   },
-  --   config = function(_, opts)
-  --     local autopairs = require("nvim-autopairs")
-  --     autopairs.setup(opts)
-  --
-  --     -- insert `(` after select function or method item
-  --     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-  --     local cmp = require("cmp")
-  --     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-  --   end,
-  -- },
 
   {
     "ThePrimeagen/harpoon",
@@ -254,7 +188,7 @@ return {
   --   -- end,
   -- },
 
-  --   -- {
+  -- {
   --   "dhruvasagar/vim-table-mode",
   -- },
 }
