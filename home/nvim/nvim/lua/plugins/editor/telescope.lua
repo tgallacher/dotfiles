@@ -19,7 +19,7 @@ return {
     config = function()
       require("telescope").setup({
         defaults = {
-          file_ignore_patterns = { "^%.git/" },
+          file_ignore_patterns = { "^%.git/", "^.venv/" },
           path_display = { shorten = { len = 5, exclude = { -4, -3, -2, -1 } } },
           sorting_strategy = "ascending",
           layout_strategy = "flex",
