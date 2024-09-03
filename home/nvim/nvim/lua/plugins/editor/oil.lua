@@ -3,7 +3,7 @@ return {
     "stevearc/oil.nvim",
     lazy = true,
     opts = {
-      use_default_keymaps = false,
+      use_default_keymaps = true,
       delete_to_trash = true,
       skip_confirm_for_simple_edits = true, -- see :h oil.skip_confirm_for_simple_edit
       view_options = {
