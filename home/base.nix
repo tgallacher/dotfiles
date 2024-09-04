@@ -84,9 +84,10 @@
   programs.lazygit = {
     enable = true;
     package = upkgs.lazygit;
+    # FIXME: with $XDG_CONFIG being exported this settings file isn't being put in the right place, i.e. XDG_CONFIG/lazygit
+    # This also means that lazy git isn't properly loading any of these changes...
     settings = {
       gui = {
-        # shortTimeFormat = 3;
         nerdFontsVersion = "3";
         selectedLineBgColor = "default";
         showFileTree = false;
@@ -99,6 +100,11 @@
       git = {
         # externalDiffCommand = "";
         parseEmoji = true;
+        paging = {
+          colorArg = "always";
+          pager = "delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format=\"lazygit-edit://{path}:{line}\"";
+          useConfig = false;
+        };
         merging = {
           squashMergeMessage = "chore: squash {{selectedRef}} into {{currentBranch}}";
         };
