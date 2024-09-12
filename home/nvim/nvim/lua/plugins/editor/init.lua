@@ -29,7 +29,7 @@ return {
     keys = {
       { "<leader>bc", "<cmd> BufDel<cr>", desc = "Close current buffer" },
       { "<leader>bC", "<cmd> BufDelOthers<cr>", desc = "Close all other buffers" },
-      { "<leader>B", ":e#", desc = "Open last closed [B]uffer" },
+      { "<leader>B", ":e#<cr>", desc = "Open last closed [B]uffer" },
     },
   },
 
