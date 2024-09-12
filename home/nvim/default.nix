@@ -28,6 +28,7 @@ in {
 
   xdg.configFile = {
     "mypy/config" = {
+      enable = false;
       text = ''
         [mypy]
         mypy_path = "~/.local/share/nvim/lazy/python-type-stubs"

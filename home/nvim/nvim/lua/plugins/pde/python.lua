@@ -59,9 +59,9 @@ local servers = {
   },
   ruff = {
     cmd = { "ruff", "server" },
-    settings = {
-      indent_width = 4,
-    },
+    -- settings = {
+    --   indent_width = 4,
+    -- },
   },
   basedpyright = {
     settings = {
@@ -78,8 +78,9 @@ local servers = {
         analysis = {
           ignore = { "*" }, -- use ruff
           autoImportCompletions = true,
-          stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
+          -- stubPath = vim.fn.stdpath("data") .. "/lazy/python-type-stubs",
           diagnosticSeverityOverrides = {
+            reportUnusedParameter = "off", -- defer to Ruff
             -- from pt web's pyrightconfig.json
             reportInvalidTypeForm = "error",
             reportMissingImports = "error",
@@ -105,6 +106,7 @@ local servers = {
       if not config.settings.python then
         config.settings.python = {}
       end
+
       config.settings.python.pythonPath = python_path
 
       ensure_tables(initialize_params.initializationOptions, "settings", "python")
@@ -195,6 +197,6 @@ return {
 
       vim.keymap.set("n", "<localleader>db", ":DapToggleBreakpoint<CR>", { desc = "[D]ap toggle [b]reakpoint" })
       -- stylua: ignore
-      vim.keymap.set("n", "<localleader>dt", function() require("dap-python").test_method() end, { desc = "[D]ap [t]est method" })                 end,
+      vim.keymap.set("n", "<localleader>dt", function() require("dap-python").test_method() end, { desc = "[D]ap [t]est method" })                                                 end,
   },
 }

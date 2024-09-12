@@ -7,12 +7,12 @@
         insert_final_newline = true;
         indent_style = "space";
         end_of_line = "lf";
-        indent_size = 2;
+        # indent_size = 2;
         charset = "utf-8";
       };
-      "*.py" = {
-        indent_size = 4;
-      };
+      # "*.py" = {
+      #   indent_size = 4;
+      # };
     };
   };
 }
