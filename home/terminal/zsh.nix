@@ -31,7 +31,7 @@
       export LC_ALL=en_GB.UTF-8
 
       ${ # FIXME: magic string
-        if host.name == "tgallacher-flawpro"
+        if host.name == "flawpro"
         then "alias assume=\"source assume\""
         else ""
       }
