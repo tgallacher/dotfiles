@@ -69,7 +69,7 @@
       # see: https://github.com/ohmyzsh/ohmyzsh/issues/11817#issuecomment-1655430206
       zstyle ':omz:plugins:docker' legacy-completion yes
 
-      # TODO: Move this into "flawpro" config
+      # FIXME: Move this into "flawpro" config
       export GRANTED_ALIAS_CONFIGURED=true;
       export GRANTED_DISABLE_UPDATE_CHECK=true;
 

@@ -11,6 +11,7 @@
     ./zsh.nix
   ];
 
+  # NOTE: vars set at user login
   home.sessionVariables = {
     EDITOR = vars.editor;
     TERMINAL = vars.terminal;
