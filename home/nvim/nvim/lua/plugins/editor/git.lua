@@ -1,6 +1,11 @@
 return {
   -- Embedded Git commands inside neovim
-  { "tpope/vim-fugitive" },
+  {
+    "tpope/vim-fugitive",
+    init = function()
+      vim.keymap.set("n", "<leader>gf", ":Git<cr>", { desc = "[g]it [f]ugitive summary" })
+    end,
+  },
 
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
