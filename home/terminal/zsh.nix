@@ -18,6 +18,14 @@
   #   upkgs.zoxide
   # ];
 
+  xdg.dataFile."nvim/get_openai_api_key.sh" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      op item get OpenAI --fields apikey --vault Personal --cache;
+    '';
+  };
+
   programs.zsh = {
     enable = true;
     package = upkgs.zsh;
