@@ -62,9 +62,10 @@ return {
       vim.keymap.set("n", "<leader>rt", builtin.resume, { desc = "[r]esume [t]elescope" })
       vim.keymap.set("n", "<leader>,", builtin.buffers, { desc = "[,] show open buffers" })
 
-      vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = "[g]it [s]tatus" })
-      vim.keymap.set("n", "<leader>gt", builtin.git_stash, { desc = "[g]it s[t]ash" })
-      vim.keymap.set("n", "<leader>gc",
+      -- NOTE: not local command but use localleader to avoid conflict with Vim Fugitive
+      vim.keymap.set("n", "<localleader>gs", builtin.git_status, { desc = "[g]it [s]tatus" })
+      vim.keymap.set("n", "<localleader>gt", builtin.git_stash, { desc = "List [g]it s[t]ash" })
+      vim.keymap.set("n", "<localleader>gc",
         function() builtin.git_bcommits({ git_command = { "git", "log", "--abbrev-commit", "--no-decorate", "--pretty=format:%cs: %h -%d %s (%cr) <%an>" } }) end,
         { desc = "[g]it [c]ommits (buffer)" })
 

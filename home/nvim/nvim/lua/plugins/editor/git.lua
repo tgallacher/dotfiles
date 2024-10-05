@@ -3,8 +3,10 @@ return {
   {
     "tpope/vim-fugitive",
     init = function()
-      vim.keymap.set("n", "<leader>gf", ":Git<cr>", { desc = "[g]it [f]ugitive summary" })
+      vim.keymap.set("n", "<leader>gs", ":Git<cr>", { desc = "[g]it [s]tatus" })
       vim.keymap.set("n", "<leader>gc", ":Git commit<cr>", { desc = "[g]it [c]ommit (open tmp buffer)" })
+      vim.keymap.set("n", "<leader>gp", ":Git push<cr>", { desc = "[g]it [p]ush" })
+      vim.keymap.set("n", "<leader>gP", ":Git pull<cr>", { desc = "[g]it [P]ull" })
     end,
   },
 
