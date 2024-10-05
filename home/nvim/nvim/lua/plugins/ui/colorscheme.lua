@@ -1,7 +1,7 @@
 return {
   {
     "EdenEast/nightfox.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 1000,
     opts = {
@@ -14,8 +14,30 @@ return {
       require("nightfox").setup(opts)
 
       -- vim.cmd.colorscheme("carbonfox")
-      vim.cmd.colorscheme("terafox")
-      -- vim.cmd.colorscheme("nightfox")
+      -- vim.cmd.colorscheme("terafox")
+      vim.cmd.colorscheme("nightfox")
+    end,
+  },
+  {
+    "rose-pine/neovim",
+    enabled = true,
+    lazy = false,
+    priority = 1000,
+    opts = {
+      variant = "main",
+      -- disable_background = true,
+      -- dim_inactive_windows = true,
+      -- styles = {
+      --   -- transparency = true,
+      -- },
+    },
+    config = function(_, opts)
+      require("rose-pine").setup(opts)
+
+      vim.cmd.colorscheme("rose-pine")
+
+      vim.api.nvim_set_hl(0, "Normal", { bg = "#191724" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#191724" })
     end,
   },
 }
