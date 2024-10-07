@@ -22,7 +22,7 @@ return {
   },
   keys = {
     { "<leader>cc", ":ChatGPT<cr>", desc = "[C]hatGPT Open interactive [c]hat" },
-    { "<leader>ce", ":ChatGPTRun explain_code<cr>", mode = "v", desc = "[C]hatGPT [e]xplain highlighted code" },
     { "<leader>ct", ":ChatGPTRun add_tests<cr>", desc = "[C]hatGPT add [t]ests" },
+    { "<localleader>ce", ":ChatGPTRun explain_code<cr>", mode = "v", desc = "[C]hatGPT [e]xplain highlighted code" },
   },
 }
