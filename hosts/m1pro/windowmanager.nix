@@ -35,7 +35,7 @@ in {
       # yabai -m rule --add app="^Alacritty" space=^1
 
       ### Space 2: Secondary
-      yabai -m rule --add app="^1Password" space=^2 manage=off
+      # yabai -m rule --add app="^1Password" space=^2 manage=off
       yabai -m rule --add app="^DBeaver" space=^2
       yabai -m rule --add app="^Postman" space=^2
 
