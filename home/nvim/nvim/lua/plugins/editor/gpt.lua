@@ -3,6 +3,7 @@ return {
   enabled = true,
   event = "VeryLazy",
   opts = {
+    -- see: home/terminal/zsh.nix
     api_key_cmd = vim.fn.stdpath("data") .. "/get_openai_api_key.sh",
     openai_params = {
       model = "gpt-4o-mini",

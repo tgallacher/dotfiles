@@ -68,25 +68,27 @@ return {
     "folke/which-key.nvim",
     -- prevent https://github.com/folke/todo-comments.nvim/issues/133
     event = "VimEnter",
-    config = function() -- This is the function that runs, AFTER loading
+    config = function() -- This function runs AFTER loading
       local whichkey = require("which-key")
 
       whichkey.setup()
+      whichkey.add({
+        { "<leader>f", group = "[f]ind" },
+        { "<leader>w", group = "[w]orkspace" },
+        { "<leader>t", group = "[t]rouble" },
+        { "<leader>h", group = "[h]unk" },
+        { "<leader>e", group = "NvimTre[e]" },
+        { "<leader>b", group = "[b]uffers" },
+        { "<leader>s", group = "[s]plits" },
+        { "<leader>z", group = "[z]en" },
+        { "<leader>c", group = "[c]hatgpt" },
+        { "<leader>g", group = "[g]it" },
 
-      -- Document existing key chains
-      whichkey.register({
-        ["<leader>f"] = { name = "[f]ind", _ = "which_key_ignore" },
-        ["<leader>w"] = { name = "[w]orkspace", _ = "which_key_ignore" },
-        ["<leader>t"] = { name = "[t]rouble", _ = "which_key_ignore" },
-        ["<leader>h"] = { name = "[h]unk", _ = "which_key_ignore" },
-        ["<leader>e"] = { name = "NvimTre[e]", _ = "which_key_ignore" },
-        ["<leader>b"] = { name = "[b]uffers", _ = "which_key_ignore" },
-        ["<leader>s"] = { name = "[s]plits", _ = "which_key_ignore" },
-        ["<localleader>q"] = { name = "[q]uickfix", _ = "which_key_ignore" },
-        ["<localleader>d"] = { name = "[d]iagnostic", _ = "which_key_ignore" },
+        { "<localleader>q", group = "[q]uickfix" },
+        { "<localleader>d", group = "[d]iagnostic" },
       })
 
-      -- this is to fix bug: https://github.com/folke/which-key.nvim/issues/476
+      -- FIXME: fix bug: https://github.com/folke/which-key.nvim/issues/476
       vim.api.nvim_create_autocmd("FileType", {
         desc = "Fix which-key trigger on `localleader`",
         group = vim.api.nvim_create_augroup("whickey_localleader", { clear = true }),
