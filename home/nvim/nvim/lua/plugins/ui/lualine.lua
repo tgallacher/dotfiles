@@ -39,6 +39,7 @@ return {
     opts = function()
       return {
         options = {
+          theme = "tokyonight",
           icons_enabled = true,
           component_separators = { left = "", right = "" }, -- remove default separators
           section_separators = { left = "", right = "" }, -- remove default separators

@@ -20,7 +20,7 @@ return {
   },
   {
     "rose-pine/neovim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 1000,
     opts = {
@@ -38,6 +38,25 @@ return {
 
       vim.api.nvim_set_hl(0, "Normal", { bg = "#191724" })
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#191724" })
+    end,
+  },
+
+  {
+
+    "folke/tokyonight.nvim",
+    enabled = true,
+    lazy = false,
+    priority = 1000,
+    opts = {
+      style = "night",
+      --  on_colors = function(colors)
+      --    -- colors.border = "red"
+      -- end,
+    },
+    config = function(opts)
+      require("tokyonight").setup(opts)
+
+      vim.cmd.colorscheme("tokyonight")
     end,
   },
 }
