@@ -1,12 +1,19 @@
 return {
-  -- Embedded Git commands inside neovim
-  {
+  { -- Embedded Git commands inside neovim
     "tpope/vim-fugitive",
     init = function()
       vim.keymap.set("n", "<leader>gs", ":Git<cr>", { desc = "[g]it [s]tatus" })
       vim.keymap.set("n", "<leader>gc", ":Git commit<cr>", { desc = "[g]it [c]ommit (open tmp buffer)" })
       vim.keymap.set("n", "<leader>gp", ":Git push<cr>", { desc = "[g]it [p]ush" })
       vim.keymap.set("n", "<leader>gP", ":Git pull<cr>", { desc = "[g]it [P]ull" })
+      vim.keymap.set("n", "<localleader>gb", ":Git blame<cr>", { desc = "[g]it [B]lame" })
+      vim.keymap.set("n", "<localleader>gd", ":Gvdiffsplit<cr>", { desc = "[g]it [D]iff" })
+      vim.keymap.set(
+        "n",
+        "<leader>gl",
+        ":Git log -30 --abbrev-commit --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'<cr>",
+        { desc = "[g]it [l]og (30 commits)" }
+      )
     end,
   },
 
