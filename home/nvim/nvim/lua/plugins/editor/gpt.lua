@@ -7,6 +7,7 @@ return {
     api_key_cmd = vim.fn.stdpath("data") .. "/get_openai_api_key.sh",
     openai_params = {
       model = "gpt-4o-mini",
+      max_tokens = 500,
     },
     openai_edit_params = {
       model = "gpt-4o-mini",

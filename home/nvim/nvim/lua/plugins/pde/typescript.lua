@@ -20,7 +20,7 @@ return {
         "prettierd", -- formatter
         "eslint_d", -- linter
         "js-debug-adapter", -- dap
-        "tsserver", -- lsp
+        -- "tsserver", -- lsp
       })
       return opts
     end,

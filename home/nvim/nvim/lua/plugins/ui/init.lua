@@ -15,8 +15,8 @@ return {
 
   { -- visualise hex codes
     "norcalli/nvim-colorizer.lua",
-    -- event = { "BufReadPre", "BufNewFile" },
-    event = "InsertEnter",
+    event = { "BufReadPre", "BufNewFile" },
+    -- event = "InsertEnter",
     config = function()
       require("colorizer").setup()
     end,
