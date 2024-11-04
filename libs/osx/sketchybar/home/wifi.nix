@@ -50,20 +50,22 @@
 
         POPUP_OFF="sketchybar --set wifi popup.drawing=off"
 
-        CURRENT_WIFI="$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I)"
-        IP_ADDRESS="$(ipconfig getifaddr en0)"
-        SSID="$(echo "$CURRENT_WIFI" | grep -o "SSID: .*" | sed 's/^SSID: //')"
-        CURR_TX="$(echo "$CURRENT_WIFI" | grep -o "lastTxRate: .*" | sed 's/^lastTxRate: //')"
+        NIC_INTF="en0"
+
+        CURRENT_WIFI="$(networksetup -getairportnetwork $NIC_INTF)"
+        WIFI_POWER="$(networksetup -getairportpower $NIC_INTF)"
+        IP_ADDRESS="$(ipconfig getifaddr $NIC_INTF)"
+        SSID="$(echo "$CURRENT_WIFI" | cut -d':' -f2 | sed 's/^ //' | sed 's/ $//')"
+        # CURR_TX="$(echo "$CURRENT_WIFI" | grep -o "lastTxRate: .*" | sed 's/^lastTxRate: //')"
+        CURR_TX="0"
 
         ICON_COLOR=$COLOR_DICON
-        if [[ $SSID != "" ]]; then
-          # ICON_COLOR="$COLOR_PRIMARY"
-          ICON=􀙇
-        elif [[ $CURRENT_WIFI = "AirPort: Off" ]]; then
+        if [[ $WIFI_POWER == *"Off"* ]]; then
           ICON=􀙈
-        else
-          # ICON_COLOR=$COLOR_PRIMARY
+        elif [[ $SSID != "" ]]; then
           ICON=􀙇
+        else
+          ICON=󰤯
         fi
 
         render_bar_item() {
