@@ -55,9 +55,9 @@ Open keyboard shortcuts and under "_Mission Control_" enable the shortcuts for s
 Under "Spotlight" disable (or remap) the keyboard shortcuts for Spotlight.
 
 #### Bootstrap using nix
-Ensure the target host has a suitable Nix config within [hosts/](./hosts) and is added to the entrypoint within [hosts/default.nix](./hosts/default.nix); This means ensuring there is a valid nix system config block defined (e.g. `inputs.nix-darwin.lib.darwinSystem` for a `nix-darwin` set up).
+Ensure the target host has a suitable Nix config within [hosts/](./hosts) and this is added to the hosts entrypoint within [hosts/default.nix](./hosts/default.nix); This means ensuring there is a valid nix system config block defined (e.g. `inputs.nix-darwin.lib.darwinSystem` for a `nix-darwin` set up).
 
-This will bootstrap [nix-darwin](https://github.com/LnL7/nix-darwin), [home-manager](https://github.com/nix-community/home-manager), and the config specified in the flake files for the target host within the `hosts/` directory mentioned above:
+The following will bootstrap [nix-darwin](https://github.com/LnL7/nix-darwin), [home-manager](https://github.com/nix-community/home-manager), and the config specified in the flake files for the target host within the `hosts/`:
 > Note: This is only run once
 
 ```sh
@@ -66,9 +66,7 @@ nix run nix-darwin -- switch --flake ".#<hostname>"
 ```
 
 #### Setup Raycast (OSX hosts only)
-Once complete, we will have installed [Raycast](https://www.raycast.com/) on OSX systems which is a Spotlight and Alfred alternative. However, GUI applications installed via HomeManager and/or Nix are not accessible via Spotlight, as Spotlight does not follow symlinks (_to the Nix store in this case_). Raycast does.
-
-But, Raycast is a GUI app, so we need to find it manually in the nix store and run it once so we can configure it to auto load for us in the future (as we can't open it using Spotlight :facepalm).
+Once complete, we will have installed [Raycast](https://www.raycast.com/) on OSX systems which is a Spotlight and Alfred alternative. However, GUI applications installed via HomeManager and/or Nix are not accessible via Spotlight, as Spotlight does not follow symlinks (_to the Nix store in this case_). Raycast does. But, Raycast is a GUI app, so we need to find it manually in the nix store so we can run and configure it for easier access later.
 
 We can easily find the location of the Raycast binary using something like:
 
@@ -76,13 +74,13 @@ We can easily find the location of the Raycast binary using something like:
 find /nix/store -type d -name "*-raycast-*" -print
 ```
 
-We can then manually invoke the raycast binary, e.g.
+We can then manually invoke the Raycast binary, e.g.
 ```sh
 /nix/store/y5vlpzm7f1km0247bgl50lc89m3hp5nf-raycast-1.76.0/Applications/Raycast.app/Contents/MacOS/Raycast
 ```
-This will run the app from the terminal, consuming the terminal. This is enough to complete the 1st time setup; set the hotkey; and crucially, enable "_start at login_".
+This will run the app in the terminal (will consume the terminal window). This is enough to complete the 1st time setup; set the hotkey; and (crucially) enable "_start at login_".
 
-With that set, we can then close the Raycast in the terminal (`<C-c>`). At this point we can logout and back in. This will also reset and correctly load our shell environment with all the necessary nix set up within out PATH variable.
+With that configured, we can now close Raycast in the terminal (`<C-c>`). At this point we need to logout and back in for our new settings to take effect. This will also reset and correctly load our shell environment with all the necessary nix set up within out PATH variable.
 
 #### Post Install: Manual steps
 
