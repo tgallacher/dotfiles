@@ -17,4 +17,9 @@
   flawpro = import ./flawpro {
     inherit inputs vars;
   };
+   
+  # Work: OSX M3 laptop
+  sbasepro = import ./sbasepro {
+    inherit inputs vars;
+  };
 }
