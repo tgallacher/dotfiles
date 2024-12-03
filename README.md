@@ -41,6 +41,14 @@ ssh-add --apple-use-keychain ~/.ssh/<filename>
 
 This will install Xcode tools and ensure we have `git` installed, etc.
 
+
+#### Install Nix
+We'll use [Determinate Systems Nix installer](https://determinate.systems/posts/determinate-nix-installer/) to install and configure the nix CLI and tooling onto our machine:
+
+```sh
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+```
+
 #### Clone repo
 > FIXME: The Nix setup is currently hard wired to this specific folder structure
 
