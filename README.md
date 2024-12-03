@@ -62,7 +62,7 @@ The following will bootstrap [nix-darwin](https://github.com/LnL7/nix-darwin), [
 
 ```sh
 # "<hostname>" should match a system config within the above host entrypoint file
-nix run nix-darwin -- switch --flake ".#<hostname>"
+nix --experimental-features 'nix-command flakes' run nix-darwin -- switch --flake ".#<hostname>"
 ```
 
 #### Setup Raycast (OSX hosts only)
@@ -103,6 +103,8 @@ darwin-rebuild switch --flake ".#<hostname>"
 - [ ] Allow configuring username at host level
 
 ## Troubleshoot
+### "cannot write to nix.conf unrecognised values"
+When installing Nix using the Determinate system install, it pre-configures a `nix.conf` file, and the `nix-darwin` bootstrapper doesn't seem to like it. To workaround this, manually move the file `mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin` and then run the bootstrap command above. Once done, you can manually copy over the contents of the original file to the config file created by the `nix-darwin` bootstrapper process.
 
 ### "mismatch in fixed-output derivation"
 This is because a file is fetched and we define the expected SHA sum for it, and it has changed. The offending fetch will be in the error. Update the shasum.
