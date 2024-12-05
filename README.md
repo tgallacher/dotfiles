@@ -112,7 +112,7 @@ darwin-rebuild switch --flake ".#<hostname>"
 
 ## Troubleshoot
 ### "cannot write to nix.conf unrecognised values"
-When installing Nix using the Determinate system install, it pre-configures a `nix.conf` file, and the `nix-darwin` bootstrapper doesn't seem to like it. To workaround this, manually move the file `mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin` and then run the bootstrap command above. Once done, you can manually copy over the contents of the original file to the config file created by the `nix-darwin` bootstrapper process.
+When installing Nix using the Determinate system install, it pre-configures a `nix.conf` file, and the `nix-darwin` bootstrapper doesn't seem to like it. To workaround this, manually move the file `mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin` and then run the bootstrap command above. These settings have already been captured in the shared nix config generator (see `lib/nix.nix`).
 
 ### "mismatch in fixed-output derivation"
 This is because a file is fetched and we define the expected SHA sum for it, and it has changed. The offending fetch will be in the error. Update the shasum.
