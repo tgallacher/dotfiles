@@ -169,6 +169,13 @@ in {
       cmd + alt + shift - q : ${upkgs.skhd}/bin/skhd --stop-service
       cmd + alt + shift - s : ${upkgs.skhd}/bin/skhd --start-service
       cmd + alt + shift - r : ${upkgs.skhd}/bin/skhd --restart-service
+
+      ##
+      ## Apps
+      ##################################################
+      hyper - t : open -a kitty
+      hyper - b : open -a "Brave Browser.app"
+      hyper - d : open -a "Notion.app"
     '';
   };
 
