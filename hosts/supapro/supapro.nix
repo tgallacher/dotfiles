@@ -11,8 +11,6 @@
     ../../libs/osx/sketchybar
   ];
 
-  # nix.settings.extra-nix-path = nixpkgs=flake:nixpkgs;
-
   networking.computerName = host.name;
 
   fonts = {

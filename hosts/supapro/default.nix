@@ -10,7 +10,7 @@ args: let
   };
 
   inputs = args.inputs;
-  host.name = "sbasepro";
+  host.name = "supapro";
   vars =
     args.vars
     // {
@@ -24,7 +24,7 @@ in
 
     modules = [
       ../base.nix
-      ./sbasepro.nix
+      ./supapro.nix
       inputs.home-manager.darwinModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
