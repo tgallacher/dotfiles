@@ -51,6 +51,7 @@
       "FelixKratz/formulae" # jankyBorders
       "common-fate/granted" # simplified cloud account switching
       "openfga/tap"
+      "supabase/tap" # CLI
     ];
     brews = [
       "libiconv" # rnix-lsp
@@ -58,19 +59,25 @@
       "borders" # jankyBorders
       "silicon" # see "michaelrommel/nvim-silicon"; barage of errors if installed from nixpkgs
       "gh" # Github CLI
+      "supabase" # CLI Note: nixpkgs has not been updated to v2 yet
+      "dbmate" # database migration tool / cli
+      "awscli"
+      "ykman" # yubikey manager
       # "common-fate/granted/granted"
     ];
     casks = [
-      "brave-browser"
-      "spotify"
-      "obsidian" # notes
-      "docker"
-      # "postman" # NOTE: nixpkgs version seems to be down; use brew instead
-      "dbeaver-community" # nixpkgs version has been removed; see https://github.com/NixOS/nixpkgs/pull/311888
+      "aws-vault" # dev secrets management
       "bitwarden"
-      "yubico-authenticator" # authenticator app; NOTE: nixpkgs is linux only
-      "slack"
+      "brave-browser"
+      "dbeaver-community" # nixpkgs version has been removed; see https://github.com/NixOS/nixpkgs/pull/311888
       "notion"
+      "obsidian"
+      "orbstack" # Docker desktop alternative
+      "slack"
+      "spotify"
+      "yubico-authenticator" # authenticator app; NOTE: nixpkgs is linux only
+      # "docker"
+      # "postman" # NOTE: nixpkgs version seems to be down; use brew instead
     ];
     masApps = {};
     global.autoUpdate = false;
