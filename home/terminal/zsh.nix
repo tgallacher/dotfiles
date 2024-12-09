@@ -22,7 +22,18 @@
     executable = true;
     text = ''
       #!/usr/bin/env bash
-      op item get OpenAI --fields apikey --vault Personal --cache;
+      ${
+        if host.name == "m1pro"
+        then "op item get OpenAI --fields apikey --vault Personal --cache"
+        else if host.name == "supapro"
+        then ''
+          # FIXME: remove nodejs deprection supression
+          export BW_SESSION=$(NODE_OPTIONS="--no-deprecation" bw unlock --passwordfile ~/.bwclipwd --raw)
+          NODE_OPTIONS="--no-deprecation" bw get item 03b6d062-448e-4135-97ac-b24100965193 | jq -r '.fields[] | select(.name == "apikey") | .value'
+        ''
+        else ""
+      }
+
     '';
   };
 

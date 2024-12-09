@@ -54,6 +54,7 @@
     brews = [
       "libiconv" # rnix-lsp
       "trash" # nvim-tree
+      "bitwarden-cli"
       "borders" # jankyBorders
       "silicon" # see "michaelrommel/nvim-silicon"; barage of errors if installed from nixpkgs
       "gh" # Github CLI

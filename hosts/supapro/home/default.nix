@@ -43,7 +43,6 @@
     # Use brew for now...
     # upkgs.granted # simplified cloud account switching
     upkgs.awscli2
-    upkgs.bitwarden-cli # desktop app installed via brew
     # pkgs.mkcert # self-signed tls certs
 
     # Python
