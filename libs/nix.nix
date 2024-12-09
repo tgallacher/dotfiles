@@ -4,14 +4,14 @@
   ...
 }: {
   nix = {
+    optimise.automatic = true; # safer alternative to `nix.settings.auto-optimise-store`
     # FIXME: see https://github.com/nix-community/home-manager/issues/4692
     # package = upkgs.nixVersions.unstable;
     # package = pkgs.nixVersions.stable;
     settings = {
       # TODO: need to move .profile. See `man 5 nix.conf`
       # use-xdg-base-directories = true;
-      auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes" "repl-flake"];
+      experimental-features = ["nix-command" "flakes"];
       ## Determinate System Installer settings
       extra-nix-path = "nixpkgs=flake:nixpkgs";
       # FIXME: Unknown options?
