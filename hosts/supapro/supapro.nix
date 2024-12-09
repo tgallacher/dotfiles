@@ -52,15 +52,15 @@
       "supabase/tap" # CLI
     ];
     brews = [
-      "libiconv" # rnix-lsp
-      "trash" # nvim-tree
+      "awscli"
       "bitwarden-cli"
       "borders" # jankyBorders
-      "silicon" # see "michaelrommel/nvim-silicon"; barage of errors if installed from nixpkgs
-      "gh" # Github CLI
-      "supabase" # CLI Note: nixpkgs has not been updated to v2 yet
       "dbmate" # database migration tool / cli
-      "awscli"
+      "gh" # Github CLI
+      "libiconv" # rnix-lsp
+      "silicon" # see "michaelrommel/nvim-silicon"; barage of errors if installed from nixpkgs
+      "supabase" # CLI Note: nixpkgs has not been updated to v2 yet
+      "trash" # nvim-tree
       "ykman" # yubikey manager
       # "common-fate/granted/granted"
     ];
@@ -72,6 +72,7 @@
       "notion"
       "obsidian"
       "orbstack" # Docker desktop alternative
+      "raycast"
       "slack"
       "spotify"
       "yubico-authenticator" # authenticator app; NOTE: nixpkgs is linux only

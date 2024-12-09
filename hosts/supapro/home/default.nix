@@ -37,7 +37,7 @@
   };
 
   home.packages = [
-    upkgs.raycast
+    # upkgs.raycast # NOTE: updates are behind Brew, and some extension require latest version
     upkgs.pwgen
     # FIXME: require >0.30 to fix terminal killer bug
     # Use brew for now...
