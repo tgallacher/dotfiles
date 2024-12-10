@@ -43,10 +43,10 @@ return {
           -- stylua: ignore start
           map("n", "[d", function() goto_diagnostic(true) end, "Go to Prev [d]iagnostics")
           map("n", "]d", function() goto_diagnostic(false) end, "Go to Next [d]iagnostics")
-          map("n", "[e", function() goto_diagnostic({ severity = "ERROR"}) end, "Go to Prev [e]rror")
-          map("n", "]e", function() goto_diagnostic({ severity = "ERROR"}) end, "Go to Next [e]rror")
-          map("n", "[w", function() goto_diagnostic({ severity = "WARNING"}) end, "Go to Prev [w]arning")
-          map("n", "]w", function() goto_diagnostic({ severity = "WARNING"}) end, "Go to Next [w]arning")
+          map("n", "[e", function() goto_diagnostic(true, "ERROR") end, "Go to Prev [e]rror")
+          map("n", "]e", function() goto_diagnostic(false, "ERROR") end, "Go to Next [e]rror")
+          map("n", "[w", function() goto_diagnostic(true, "WARNING") end, "Go to Prev [w]arning")
+          map("n", "]w", function() goto_diagnostic(false, "WARNING") end, "Go to Next [w]arning")
 
           map("n", "gd", require("telescope.builtin").lsp_definitions, "[g]o to [d]efinition")
           map("n", "gD", vim.lsp.buf.declaration, "[g]o to [D]eclaration")
