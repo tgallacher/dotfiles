@@ -29,29 +29,13 @@ in {
       yabai -m rule --add app="^(Calculator|Software Update|Dictionary|System Preferences|System Settings|Photo Booth|Archive Utility|App Store|Alfred|Activity Monitor)$" manage=off
 
       ### General
-      yabai -m rule --add app="^zoom*" manage=off
+      yabai -m rule --add title=".* update .*" manage=off  # don't manage update version notifications
 
       ### Space 1: Primary
-      # yabai -m rule --add app="^Alacritty" space=^1
+      yabai -m rule --add app="kitty" manage=off
 
       ### Space 2: Secondary
-      yabai -m rule --add app="^1Password" space=^2 manage=off
-      yabai -m rule --add app="^Bitwarden" space=^2 manage=off
-      yabai -m rule --add app="^DBeaver" space=^2
-      yabai -m rule --add app="^Postman" space=^2
-
-      ### Space 3: Notes
-      yabai -m rule --add app="^Obsidian" space=^3
-      yabai -m rule --add app="^TickTick" space=3
-
-      ### Space 4: Social
-      yabai -m rule --add app="WhatsApp" space=^4
-      yabai -m rule --add app="^Discord" space=^4
-      yabai -m rule --add app="^Messages" space=^4
-      yabai -m rule --add app="^Slack" space=^4
-
-      ### Space 5: Music
-      yabai -m rule --add app="^Spotify" space=^5
+      yabai -m rule --add app="Bitwarden" manage=off
 
       ${
         if hasSketchybar
