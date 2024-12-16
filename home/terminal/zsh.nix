@@ -67,6 +67,13 @@
           "
         else ""
       }
+
+      ## NVM config
+      mkdir -p "$HOME/.nvm" # ensure nvm dir exists
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
+      [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
       # Fix for brew's `libiconv` formulae, and it not wanting to override OSX's default
       # see: https://stackoverflow.com/a/71895124
       export LIBRARY_PATH=$LIBRARY_PATH:$(brew --prefix)/lib:$(brew --prefix libiconv)/lib
