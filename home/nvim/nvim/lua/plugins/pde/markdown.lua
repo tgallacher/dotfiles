@@ -27,6 +27,7 @@ return {
   },
 
   {
+    -- FIXME: https://github.com/iamcco/markdown-preview.nvim/issues/148
     "iamcco/markdown-preview.nvim",
     -- main = "markdown-preview",
     ft = "markdown",
