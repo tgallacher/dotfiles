@@ -48,27 +48,39 @@
     taps = [
       "FelixKratz/formulae" # jankyBorders
       "common-fate/granted" # simplified cloud account switching
+      "mike-engel/jwt-cli"
       "openfga/tap"
+      "pulumi/tap" # IaC
       "supabase/tap" # CLI
     ];
     brews = [
+      "kubectl"
+      "kubectx"
       "awscli"
       "bitwarden-cli"
       "borders" # jankyBorders
+      "common-fate/granted/granted" # aws profile switcher
       "dbmate" # database migration tool / cli
+      "docker" # cli / deamen only
       "gh" # Github CLI
+      "jwt-cli"
       "libiconv" # rnix-lsp
+      "nvm" # nodejs version manager
+      "pulumi"
       "silicon" # see "michaelrommel/nvim-silicon"; barage of errors if installed from nixpkgs
       "supabase" # CLI Note: nixpkgs has not been updated to v2 yet
+      "tmuxp" # sesion loader for tmux
       "trash" # nvim-tree
       "ykman" # yubikey manager
-      # "common-fate/granted/granted"
     ];
     casks = [
       "aws-vault" # dev secrets management
       "bitwarden"
       "brave-browser"
       "dbeaver-community" # nixpkgs version has been removed; see https://github.com/NixOS/nixpkgs/pull/311888
+      "discord"
+      "linear-linear" # project management
+      "ngrok"
       "notion"
       "obsidian"
       "orbstack" # Docker desktop alternative
@@ -76,7 +88,6 @@
       "slack"
       "spotify"
       "yubico-authenticator" # authenticator app; NOTE: nixpkgs is linux only
-      # "docker"
       # "postman" # NOTE: nixpkgs version seems to be down; use brew instead
     ];
     masApps = {};

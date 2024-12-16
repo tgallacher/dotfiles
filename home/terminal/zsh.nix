@@ -45,12 +45,12 @@
     defaultKeymap = "viins"; # Vim INSERT mode; hit ESC to toggle between VI INSERT/VISUAL
     dotDir = ".config/zsh";
     autocd = true;
-    # add to .zshenv
+    ## add to .zshenv
     envExtra = ''
       export LC_ALL=en_GB.UTF-8
 
       ${ # FIXME: magic string
-        if host.name == "flawpro"
+        if (host.name == "flawpro") || (host.name == "supapro")
         then "alias assume=\"source assume\""
         else ""
       }
