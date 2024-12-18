@@ -54,16 +54,18 @@
       "supabase/tap" # CLI
     ];
     brews = [
-      "kubectl"
-      "kubectx"
       "awscli"
       "bitwarden-cli"
       "borders" # jankyBorders
       "common-fate/granted/granted" # aws profile switcher
       "dbmate" # database migration tool / cli
       "docker" # cli / deamen only
+      "eksctl"
       "gh" # Github CLI
       "jwt-cli"
+      "k9s"
+      "kubectl"
+      "kubectx"
       "libiconv" # rnix-lsp
       "nvm" # nodejs version manager
       "pulumi"
