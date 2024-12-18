@@ -45,6 +45,13 @@
     defaultKeymap = "viins"; # Vim INSERT mode; hit ESC to toggle between VI INSERT/VISUAL
     dotDir = ".config/zsh";
     autocd = true;
+    ## add to .zlogout
+    logoutExtra = ''
+      ## Ensure keychain is logged at logout
+      if [ command -v aws-vault >/dev/null 2>&1 ]; then
+        security lock-keychain aws-vault.keychain.db
+      fi
+    '';
     ## add to .zshenv
     envExtra = ''
       export LC_ALL=en_GB.UTF-8
@@ -55,7 +62,7 @@
         else ""
       }
     '';
-    # add to .zshrc
+    ## add to .zshrc
     initExtra = ''
       ${
         if pkgs.stdenv.isDarwin
@@ -83,7 +90,7 @@
           source $HOME/.custom.zshrc
       fi
     '';
-    # add to .zshrc, top of file
+    ## add to .zshrc, top of file
     initExtraFirst = ''
       # TODO: This needs to come before `antidote load` to avoid "compdef not found" error
       autoload -Uz compinit && compinit
@@ -105,7 +112,7 @@
       export XDG_CONFIG_HOME="$HOME/.config";
 
     '';
-    # add to .zprofile
+    ## add to .zprofile
     profileExtra = ''
       ${
         if pkgs.stdenv.isDarwin
@@ -113,7 +120,7 @@
         else ""
       }
     '';
-    # add to .zshrc, top of file, env vars, e.g. POWERLINE_9K, etc
+    ## add to .zshrc, top of file, env vars, e.g. POWERLINE_9K, etc
     localVariables = {
       # CASE_SENSITIVE = "true";
       # HIST_STAMPS = "yyyy-mm-dd";
@@ -121,7 +128,7 @@
       # XDG_CONFIG_HOME = "$HOME/.config";
     };
     dirHashes = {};
-    # # env vars set for each session
+    ## env vars set for each session
     # sessionVariables = { };
     shellAliases = {
       grep = "grep --color=auto";
