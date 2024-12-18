@@ -46,6 +46,9 @@ vim.keymap.set("v", ">", ">gv^", { desc = "" })
 vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv", { desc = "" })
 vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", { desc = "" })
 
+-- FIXME: stops at copy
+vim.keymap.set("n", "<localleader>ctl", "yiWysiW]%a()<ESC>P<ESC>", { desc = "[c]onvert [t]o [l]ink (markdown)" })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
