@@ -6,7 +6,7 @@ local function createNoteWithDefaultTemplate()
   -- prompt for note title
   -- @see: borrowed from obsidian.command.new
   local note
-  local title = utils.input("Enter title or path (optional): ")
+  local title = utils.input("[optional] Enter title (no extension): ")
   if not title then
     return
   elseif title == "" then
@@ -42,7 +42,10 @@ return {
     init = function()
       vim.opt.conceallevel = 2
 
-      vim.keymap.set("n", "<leader>nn", createNoteWithDefaultTemplate, { desc = "[N]ew Obsidian [N]ote" })
+      vim.keymap.set("n", "<leader>nn", createNoteWithDefaultTemplate, { desc = "[n]ew [n]ote" })
+      vim.keymap.set("n", "<leader>nt", ":ObsidianToday<CR>", { desc = "Open journal [n]ote for [t]oday" })
+      vim.keymap.set("n", "<leader>ny", ":ObsidianYesterday<CR>", { desc = "Open journal [n]ote for [y]esterday" })
+      vim.keymap.set("n", "<leader>nd", ":ObsidianDailies<CR>", { desc = "Open journal [n]ote [d]aily selector" })
     end,
     opts = {
       ui = { enable = false }, -- use `MeanderingProgrammer/render-markdown.nvim` instead
