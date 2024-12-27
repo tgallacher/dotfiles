@@ -62,3 +62,5 @@ k8s
 Pulumi
 config
 k8s
+kubeconfig
+cli
