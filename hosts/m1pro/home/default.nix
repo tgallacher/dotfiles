@@ -3,6 +3,7 @@
   inputs,
   vars,
   lib,
+  config,
   ...
 }: {
   imports = [
@@ -34,6 +35,9 @@
   ];
 
   home.file.".hushlogin".text = ''# silence tty start up spam '';
+
+  # FIXME: This is too implicit on file layout
+  xdg.configFile."aerospace/aerospace.toml".source = config.lib.file.mkOutOfStoreSymlink ../../../home/files/aerospace.toml;
 
   # Let Home Manager manage itself (standalone use)
   programs.home-manager.enable = true;

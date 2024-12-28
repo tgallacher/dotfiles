@@ -49,6 +49,7 @@
     enable = true; # allow nix-darwin to manage brew?
     taps = [
       "FelixKratz/formulae" # jankyBorders
+      # "nikitabobko/tap" # tiling window manager
     ];
     brews = [
       "libiconv" # rnix-lsp
@@ -58,6 +59,7 @@
       "gh" # Github CLI
     ];
     casks = [
+      # "aerospace" # tiling window manager
       "ticktick" # todo
       "brave-browser"
       "spotify"

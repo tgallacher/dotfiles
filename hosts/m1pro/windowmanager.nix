@@ -8,7 +8,7 @@
   hasSketchybar = config.services.sketchybar.enable;
 in {
   services.yabai = {
-    enable = true;
+    enable = false;
     package = upkgs.yabai;
     config = {
       layout = "bsp";
@@ -73,7 +73,7 @@ in {
   };
 
   services.skhd = {
-    enable = true;
+    enable = false;
     package = upkgs.skhd;
     skhdConfig = ''
       ##
@@ -175,5 +175,12 @@ in {
     "com.apple.dock".mru-spaces = 0;
     "com.apple.WindowManager".StandardHideDesktopIcons = 0;
     "com.apple.WindowManager".EnableStandardClickToShowDesktop = 0;
+  };
+
+  # aerospace
+  system.defaults = {
+    "com.apple.dock" = {
+      expose-group-apps = true;
+    };
   };
 }
