@@ -48,7 +48,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      style = "night",
+      -- style = "night", -- FIXME: doesn't seem to work
       --  on_colors = function(colors)
       --    -- colors.border = "red"
       -- end,
@@ -56,7 +56,7 @@ return {
     config = function(opts)
       require("tokyonight").setup(opts)
 
-      vim.cmd.colorscheme("tokyonight")
+      vim.cmd.colorscheme("tokyonight-night")
     end,
   },
 }
