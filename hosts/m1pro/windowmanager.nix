@@ -136,14 +136,14 @@ in {
       cmd + ctrl         - 6 : yabai -m window --space 6
 
       # Resize window
-      alt + ctrl         - j : yabai -m window --resize top:0:-150
-      alt + ctrl         - k : yabai -m window --resize top:0:150
-      alt + ctrl + shift - j : yabai -m window --resize bottom:0:150
-      alt + ctrl + shift - k : yabai -m window --resize bottom:0:-150
-      alt + ctrl         - h : yabai -m window --resize right:-150:0
-      alt + ctrl         - l : yabai -m window --resize right:150:0
-      alt + ctrl + shift - h : yabai -m window --resize left:150:0
-      alt + ctrl + shift - l : yabai -m window --resize left:-150:0
+      ctrl + alt +        - k : yabai -m window --resize top:0:-150
+      ctrl + alt +        - j : yabai -m window --resize top:0:150
+      ctrl + alt +  shift - j : yabai -m window --resize bottom:0:150
+      ctrl + alt +  shift - k : yabai -m window --resize bottom:0:-150
+      ctrl + alt +        - h : yabai -m window --resize right:-150:0
+      ctrl + alt +        - l : yabai -m window --resize right:150:0
+      ctrl + alt +  shift - l : yabai -m window --resize left:150:0
+      ctrl + alt +  shift - h : yabai -m window --resize left:-150:0
 
 
       ##
