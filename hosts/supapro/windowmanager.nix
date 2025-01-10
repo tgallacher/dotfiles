@@ -29,11 +29,12 @@ in {
       yabai -m rule --add app="^(Calculator|Software Update|Dictionary|System Preferences|System Settings|Photo Booth|Archive Utility|App Store|Alfred|Activity Monitor)$" manage=off
 
       ### General
-      yabai -m rule --add title=".* update .*" manage=off  # don't manage update version notifications
+      yabai -m rule --add title=".*update.*" manage=off  # don't manage update version notifications
 
       yabai -m rule --add app="^kitty" manage=off
       yabai -m rule --add app="^Bitwarden" manage=off
       yabai -m rule --add app="^OrbStack" manage=off
+      yabai -m rule --add app="^Spotify" manage=off
 
       ${
         if hasSketchybar
