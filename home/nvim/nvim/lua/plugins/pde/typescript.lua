@@ -61,7 +61,7 @@ return {
       return vim.tbl_deep_extend("force", {
         formatters_by_ft = {
           javascript = { { "prettierd", "prettier" } },
-          typescript = { { "prettierd", "prettier" } },
+          typescript = { { "prettierd" } },
         },
       }, opts)
     end,

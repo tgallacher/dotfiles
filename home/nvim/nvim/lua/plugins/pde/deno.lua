@@ -28,27 +28,27 @@ return {
     end,
   },
 
-  { -- Lint
-    "mfussenegger/nvim-lint",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, {
-        linters_by_ft = {
-          typescript = { "biomejs" },
-          javascript = { "biomejs" },
-        },
-      })
-    end,
-  },
+  -- { -- Lint
+  --   "mfussenegger/nvim-lint",
+  --   opts = function(_, opts)
+  --     return vim.tbl_deep_extend("force", opts, {
+  --       linters_by_ft = {
+  --         typescript = { "biomejs" },
+  --         -- javascript = { "biomejs" },
+  --       },
+  --     })
+  --   end,
+  -- },
 
-  { -- Autoformat
-    "stevearc/conform.nvim",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", {
-        formatters_by_ft = {
-          javascript = { "biome" },
-          typescript = { "biome" },
-        },
-      }, opts)
-    end,
-  },
+  -- { -- Autoformat
+  --   "stevearc/conform.nvim",
+  --   opts = function(_, opts)
+  --     return vim.tbl_deep_extend("force", {
+  --       formatters_by_ft = {
+  --         javascript = { "biome" },
+  --         typescript = { "biome" },
+  --       },
+  --     }, opts)
+  --   end,
+  -- },
 }
