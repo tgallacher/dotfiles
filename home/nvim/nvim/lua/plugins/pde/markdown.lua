@@ -26,19 +26,29 @@ return {
     end,
   },
 
-  {
-    -- FIXME: https://github.com/iamcco/markdown-preview.nvim/issues/148
-    "iamcco/markdown-preview.nvim",
-    -- main = "markdown-preview",
-    ft = "markdown",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end,
-    keys = {
-      { "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle markdown preview" },
-    },
-  },
+  -- {
+  --   -- FIXME: https://github.com/iamcco/markdown-preview.nvim/issues/148
+  --   "iamcco/markdown-preview.nvim",
+  --   -- main = "markdown-preview",
+  --   ft = "markdown",
+  --   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+  --   build = function()
+  --     vim.fn["mkdp#util#install"]()
+  --   end,
+  --   keys = {
+  --     { "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle markdown preview" },
+  --   },
+  -- },
+  -- {
+  --   "OXY2DEV/markview.nvim",
+  --   lazy = false, -- Recommended
+  --   -- ft = "markdown" -- If you decide to lazy-load anyway
+  --
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "nvim-tree/nvim-web-devicons",
+  --   },
+  -- },
 
   { -- Autoformat
     "stevearc/conform.nvim",
