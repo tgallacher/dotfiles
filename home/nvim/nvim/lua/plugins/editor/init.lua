@@ -57,7 +57,7 @@ return {
       notify_on_error = false,
       format_on_save = {
         timeout_ms = 500,
-        lsp_fallback = true,
+        lsp_fallback = "fallback",
       },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
@@ -66,6 +66,9 @@ return {
       -- is found.
       -- formatters_by_ft = { },
     },
+    -- init = function()
+    --   require("").formatters.prettierd = {}
+    -- end,
   },
 
   { -- Better Around/Inside textobjects
