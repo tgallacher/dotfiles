@@ -1,6 +1,6 @@
 -- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
 
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set({ "n", "v" }, "s", "<Nop>", { silent = true })
 vim.keymap.set("n", "x", '"_x') -- delete character without adding to register
 
