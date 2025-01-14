@@ -138,6 +138,7 @@
       cl = "clear"; # TODO: move to keybind
       v = "nvim";
       sb = "z $HOME/Code/tgallacher/obsidian"; # requires zoxide
+      p = "pulumi";
       l = "ls -lF ${
         if pkgs.stdenv.isDarwin
         then "-G"
@@ -169,8 +170,11 @@
         # "ohmyzsh/ohmyzsh   path:git-extras"
         # "ohmyzsh/ohmyzsh   path:direnv"
         # "ohmyzsh/ohmyzsh   path:node"
-        # # completions and/or aliases for various cli tools
-        # "ohmyzsh/ohmyzsh   path:plugins/kubectl"
+
+        ## Completions/Aliases for various cli tools
+        "ohmyzsh/ohmyzsh   path:plugins/kubectl"
+        # "ohmyzsh/ohmyzsh   path:plugins/k9s"
+        "ohmyzsh/ohmyzsh   path:plugins/helm"
         # "ohmyzsh/ohmyzsh   path:plugins/npm"
         # "ohmyzsh/ohmyzsh   path:plugins/yarn"
         "ohmyzsh/ohmyzsh   path:plugins/git"
@@ -178,14 +182,18 @@
         # "ohmyzsh/ohmyzsh   path:plugins/terraform"
         # "romkatv/zsh-bench kind:path"
         "djui/alias-tips"
+
         ### Prompts
         ### Framework: zsh-utils
         "belak/zsh-utils  path:history"
+
         ### Deferred plugins
         "zdharma-continuum/fast-syntax-highlighting     kind:defer"
+
         ### completions
         "zsh-users/zsh-completions                      path:src kind:fpath"
         "belak/zsh-utils                                path:completion"
+
         ### Final Plugins
         "zsh-users/zsh-autosuggestions                  kind:defer"
         "zsh-users/zsh-history-substring-search"
