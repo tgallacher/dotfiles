@@ -44,7 +44,7 @@ return {
   {
 
     "folke/tokyonight.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 1000,
     opts = {
@@ -56,7 +56,14 @@ return {
     config = function(opts)
       require("tokyonight").setup(opts)
 
-      vim.cmd.colorscheme("tokyonight-night")
+      -- vim.cmd.colorscheme("tokyonight-night")
+    end,
+  },
+
+  {
+    "sekke276/dark_flat.nvim",
+    init = function()
+      vim.cmd.colorscheme("dark_flat")
     end,
   },
 }
