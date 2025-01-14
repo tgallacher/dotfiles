@@ -36,7 +36,6 @@
     inherit
       (pkgs)
       # Neovim/Mason dep.
-
       nodejs_20 # Also req. for Neovim/Mason
       cargo # (rnix)
       terraform # (terraform-fmt)
@@ -46,9 +45,7 @@
       pyenv
       alejandra # Nix formatter
       # stylua # Nix formatter
-
       # CLI
-
       ripgrep
       fd # nvim telescope uses this
       btop # Resource manager
@@ -64,7 +61,6 @@
       tldr # Man docs helper
 
       # File Management
-
       rsync # File transfer
       unzip # Zip files
       unrar # Rar files
@@ -74,10 +70,9 @@
     inherit
       (upkgs)
       # CLIs
-
+      tree
       python310
       # lazygit
-
       ;
   };
 
