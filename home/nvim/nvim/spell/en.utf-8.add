@@ -64,3 +64,4 @@ config
 k8s
 kubeconfig
 cli
+supabase
