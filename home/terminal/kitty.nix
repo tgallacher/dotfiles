@@ -7,10 +7,11 @@
   programs.kitty = {
     enable = true;
     package = upkgs.kitty;
-    theme = "Nightfox";
+    # themeFile = "Gnome-ish_gray-on-black";
+    themeFile = "kanagawa_dragon"; # see https://github.com/kovidgoyal/kitty-themes/tree/master/themes
     shellIntegration.enableZshIntegration = true;
     font = {
-      name = "JetBrainsMono Nerd Font";
+      name = "JetBrainsMono";
       size = 13;
     };
     extraConfig = ''

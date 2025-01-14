@@ -62,8 +62,25 @@ return {
 
   {
     "sekke276/dark_flat.nvim",
+    enabled = false,
     init = function()
       vim.cmd.colorscheme("dark_flat")
+    end,
+  },
+
+  {
+    "rebelot/kanagawa.nvim",
+    opts = {
+      dimInactive = true,
+      background = {
+        dark = "dragon",
+      },
+    },
+    config = function(_, opts)
+      require("kanagawa").setup(opts)
+      -- require("kanagawa").load()
+
+      vim.cmd.colorscheme("kanagawa-dragon")
     end,
   },
 }
