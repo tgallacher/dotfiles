@@ -23,6 +23,7 @@ return {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
     opts = {
+      numhl = true,
       current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
       current_line_blame_opts = {
         virt_text = true,
@@ -59,8 +60,8 @@ return {
         map("n", "<localleader>hB", gs.toggle_current_line_blame, { desc = "Toggle [h]unk virtual line [B]lame" })
 
         map("n", "<localleader>hd", gs.diffthis, { desc = "[h]unk [d]iff this" })
-        -- FIXME: wtf does this do?
-        map("n", "<localleader>hD", function() gs.diffthis("~") end, { desc = "[h]unk [D]iff this ~" })
+        -- split diff view
+        map("n", "<localleader>hD", function() gs.diffthis() end, { desc = "[h]unk [D]iff this ~" })
 
         -- Text object
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Gitsigns select [i]n [h]unk" })
@@ -69,3 +70,4 @@ return {
     },
   },
 }
+
