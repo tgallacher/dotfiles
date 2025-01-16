@@ -17,8 +17,16 @@ return {
         { desc = "[g]it [l]og (30 commits)" }
       )
 
-      vim.keymap.set("n", "<localleader>gb", ":Git blame<cr>", { desc = "[g]it [B]lame" })
+      vim.keymap.set("n", "<localleader>gb", ":Git blame<cr>", { desc = "[g]it [b][b]lame" })
       vim.keymap.set("n", "<localleader>gd", ":Gvdiffsplit<cr>", { desc = "[g]it [D]iff" })
+      -- vim.keymap.set("n", "<localleader>gcb", function()
+      --   local filepath = vim.api.nvim_buf_get_name(0)
+      --   local handle = io.popen("git log --abbrev-commit --no-decorate --pretty='format:%cs: %h -%d %s (%cr) <%an>' " .. filepath)
+      --   if not handle then; return end
+      --
+      --   local result = handle:read("*a") -- Read all output
+      --   handle:close()
+      -- end, { desc = "[g]it [c]ommits [b]uffer" })
     end,
   },
 
