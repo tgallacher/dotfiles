@@ -1,3 +1,7 @@
+local servers = {
+  ts_ls = {},
+}
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -20,7 +24,7 @@ return {
         "prettierd", -- formatter
         "eslint_d", -- linter
         "js-debug-adapter", -- dap
-        -- "tsserver", -- lsp
+        "typescript-language-server", -- lsp
       })
       return opts
     end,
@@ -61,7 +65,7 @@ return {
       return vim.tbl_deep_extend("force", {
         formatters_by_ft = {
           javascript = { { "prettierd", "prettier" } },
-          typescript = { { "prettierd" } },
+          typescript = { { "prettierd", "prettier" } },
         },
       }, opts)
     end,
