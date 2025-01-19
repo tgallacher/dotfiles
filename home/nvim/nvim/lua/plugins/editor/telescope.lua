@@ -18,7 +18,12 @@ return {
     config = function()
       require("telescope").setup({
         defaults = {
-          borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+          borderchars = {
+            prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+            results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+            preview = { "─", "│", "─", "", "", "┐", "┘", "" },
+          },
+          prompt_title = false,
           file_ignore_patterns = { "^%.git/", "^.venv/" },
           path_display = { shorten = { len = 5, exclude = { -4, -3, -2, -1 } } },
           sorting_strategy = "ascending",
@@ -51,7 +56,12 @@ return {
       local builtin = require("telescope.builtin")
 
       local ivy = require("telescope.themes").get_ivy({
-        borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        borderchars = {
+          prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+          results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+          preview = { "─", "│", "─", "", "", "┐", "┘", "" },
+        },
+        prompt_title = false,
         layout_config = {
           height = 0.8,
         },
