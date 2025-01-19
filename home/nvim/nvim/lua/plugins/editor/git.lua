@@ -6,10 +6,10 @@ return {
       vim.keymap.set("n", "<leader>gp", ":Git push<cr>", { desc = "[g]it [p]ush" })
       vim.keymap.set("n", "<leader>gP", ":Git pull<cr>", { desc = "[g]it [P]ull" })
       vim.keymap.set("n", "<leader>gf", ":Git fetch<cr>", { desc = "[g]it [f]etch" })
-      vim.keymap.set("n", "<leader>gcb", ":Git checkout -b ", { desc = "[g]it [c]reate [b]ranch" })
+      vim.keymap.set("n", "<leader>gcb", ":Git checkout -b ", { desc = "[g]it [c]heckout [b]ranch" })
       vim.keymap.set("n", "<leader>gco", ":Git checkout ", { desc = "[g]it [c]heck[o]ut" })
       vim.keymap.set("n", "<leader>grbi", ":G rebase --interactive ", { desc = "[g]it [r]e[b]ase [i]nteractive" })
-      vim.keymap.set("n", "<leader>grbn", ":G rebase ", { desc = "[g]it [r]e[b]ase (non interactive)" })
+      vim.keymap.set("n", "<leader>grbn", ":G rebase ", { desc = "[g]it [r]e[b]ase [n]on-interactive" })
       vim.keymap.set(
         "n",
         "<leader>gl",
