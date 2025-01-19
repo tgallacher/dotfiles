@@ -67,6 +67,10 @@
       "kubectl"
       "kubectx"
       "libiconv" # rnix-lsp
+      {
+        name = "libpq"; # pqsl cli
+        link = true;
+      }
       "nvm" # nodejs version manager
       "pulumi"
       "silicon" # see "michaelrommel/nvim-silicon"; barage of errors if installed from nixpkgs
