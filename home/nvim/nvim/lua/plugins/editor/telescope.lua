@@ -18,16 +18,17 @@ return {
     config = function()
       require("telescope").setup({
         defaults = {
+          borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
           file_ignore_patterns = { "^%.git/", "^.venv/" },
           path_display = { shorten = { len = 5, exclude = { -4, -3, -2, -1 } } },
           sorting_strategy = "ascending",
           layout_strategy = "flex",
           layout_config = {
-            horizontal = { preview_cutoff = 80, preview_width = 0.45 },
-            vertical = { mirror = true, preview_cutoff = 25 },
+            horizontal = { preview_cutoff = 80, preview_width = 0.40 },
+            vertical = { preview_cutoff = 25, mirror = true },
             prompt_position = "top",
-            width = 0.87,
-            height = 0.80,
+            width = 0.95,
+            height = 0.75,
           },
         },
         extensions = {
@@ -47,17 +48,23 @@ return {
       pcall(require("telescope").load_extension, "fzf")
       pcall(require("telescope").load_extension, "ui-select")
 
-      -- See `:help telescope.builtin`
       local builtin = require("telescope.builtin")
 
+      local ivy = require("telescope.themes").get_ivy({
+        borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        layout_config = {
+          height = 0.8,
+        },
+      })
+
       -- stylua: ignore start
-      vim.keymap.set("n", "<leader>f?", builtin.help_tags, { desc = "[f]ind Help" })
-      vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[f]ind [k]eymaps" })
-      vim.keymap.set("n", "<leader>ff", function() builtin.find_files({ hidden = true, no_ignore = false }) end, { desc = "[f]ind [f]iles" })
-      vim.keymap.set("n", "<leader>fi", function() builtin.find_files({ hidden = true, no_ignore = true }) end, { desc = "[f]ind [i]gnored files" })
-      vim.keymap.set("n", "<leader>fr", function() builtin.oldfiles({ only_cwd = true }) end, { desc = "[f]ind [r]ecent Files" })
-      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[f]ind by live [g]rep" })
-      vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[f]ind [d]iagnostics" })
+      vim.keymap.set("n", "<leader>f?", function() builtin.help_tags(ivy) end, { desc = "[f]ind Help" })
+      vim.keymap.set("n", "<leader>fk", function() builtin.keymaps(ivy) end, { desc = "[f]ind [k]eymaps" })
+      vim.keymap.set("n", "<leader>ff", function() builtin.find_files(vim.tbl_deep_extend("force", { hidden = true, no_ignore = false }, ivy)) end, { desc = "[f]ind [f]iles" })
+      vim.keymap.set("n", "<leader>fi", function() builtin.find_files(vim.tbl_deep_extend("force", { hidden = true, no_ignore = true }, ivy)) end, { desc = "[f]ind [i]gnored files" })
+      vim.keymap.set("n", "<leader>fr", function() builtin.oldfiles(vim.tbl_deep_extend("force", { only_cwd = true }, ivy)) end, { desc = "[f]ind [r]ecent Files" })
+      vim.keymap.set("n", "<leader>fg", function() builtin.live_grep(ivy) end, { desc = "[f]ind by live [g]rep" })
+      vim.keymap.set("n", "<leader>fd", function() builtin.diagnostics(ivy) end, { desc = "[f]ind [d]iagnostics" })
 
       vim.keymap.set("n", "<leader>rt", builtin.resume, { desc = "[r]esume [t]elescope" })
       vim.keymap.set("n", "<leader>,", builtin.buffers, { desc = "[,] show open buffers" })
@@ -69,12 +76,14 @@ return {
         function() builtin.git_bcommits({ git_command = { "git", "log", "--abbrev-commit", "--no-decorate", "--pretty=format:%cs: %h -%d %s (%cr) <%an>" } }) end,
         { desc = "[g]it [c]ommits (buffer)" })
 
-      vim.keymap.set("n", "<localleader>fw", builtin.grep_string, { desc = "[f]ind [w]ord under cursor" })
-      vim.keymap.set("n", "<localleader>fg", function() builtin.live_grep({ grep_open_files = true, prompt_title = "Live Grep (Open Buffers)" }) end, { desc = "[f]ind by live [g]rep open buffers" })
+      vim.keymap.set("n", "<localleader>fw", function() builtin.grep_string(ivy) end, { desc = "[f]ind [w]ord under cursor" })
+      vim.keymap.set("n", "<localleader>fg", function() builtin.live_grep(vim.tbl_deep_extend("force",{ grep_open_files = true, prompt_title = "Live Grep (Open Buffers)" }, ivy)) end, { desc = "[f]ind by live [g]rep open buffers" })
       -- stylua: ignore end
 
       vim.keymap.set("n", "<localleader>fs", function()
-        builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({ winblend = 10, previewer = false }))
+        builtin.current_buffer_fuzzy_find(
+          require("telescope.themes").get_dropdown({ winblend = 10, previewer = false, layout_config = { width = 0.6, height = 0.75 } })
+        )
       end, { desc = "[f]uzzily [s]earch in current buffer" })
 
       -- Shortcut for searching your neovim configuration files
