@@ -24,8 +24,8 @@ vim.keymap.set("n", "<leader>sr", ":RotateWindows<cr>", { desc = "[r]otate [s]pl
 -- == Resize windows with arrows
 vim.keymap.set("n", "<S-Up>", ":resize +2<CR>", { desc = "[R]esize buffer [U]p" })
 vim.keymap.set("n", "<S-Down>", ":resize -2<CR>", { desc = "[R]esize buffer [D]own" })
-vim.keymap.set("n", "<S-Left>", ":vertical resize -2<CR>", { desc = "[R]esize buffer [L]eft" })
-vim.keymap.set("n", "<S-Right>", ":vertical resize +2<CR>", { desc = "[R]esize buffer [R]ight" })
+vim.keymap.set("n", "<S-Left>", ":vertical resize +2<CR>", { desc = "[R]esize buffer [L]eft" })
+vim.keymap.set("n", "<S-Right>", ":vertical resize -2<CR>", { desc = "[R]esize buffer [R]ight" })
 
 -- == Navigate buffers
 vim.keymap.set("n", "<TAB>", "<Nop>")
