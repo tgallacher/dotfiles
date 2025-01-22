@@ -1,5 +1,6 @@
 {
   upkgs,
+  pkgs,
   config,
   lib,
   ...
@@ -51,7 +52,7 @@
     };
   in {
     enable = true;
-    package = upkgs.tmux;
+    package = pkgs.tmux;
     baseIndex = 1;
     newSession = false; # spawn session if attach and none exist
     sensibleOnTop = false; # disable due to github.com/nix-community/home-manager/issues/2541
@@ -65,6 +66,10 @@
     extraConfig = ''
       set-option -g focus-events on
       set-option -sg escape-time 10
+
+      set-option -g default-shell /bin/zsh
+
+      set-option -g extended-keys always                # see: https://github.com/tmux/tmux/issues/2705
 
       set-option -ga terminal-overrides ",xterm-256color:Tc"
 

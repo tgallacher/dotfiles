@@ -12,7 +12,7 @@
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-colors.url = "github:misterio77/nix-colors";
@@ -20,8 +20,8 @@
     # see: https://github.com/nix-community/home-manager/issues/1341#issuecomment-1821526984
     # mac-app-util.url = "github:hraban/mac-app-util"; # Fix Application link / spotlight, etc
     nix-darwin = {
-      url = "github:LnL7/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
