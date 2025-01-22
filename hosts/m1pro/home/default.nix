@@ -31,6 +31,8 @@
     upkgs.pwgen
     upkgs.qmk
     upkgs.utm # VMs
+
+    upkgs.uv # python pkg manager
   ];
 
   home.file.".hushlogin".text = ''# silence tty start up spam '';
