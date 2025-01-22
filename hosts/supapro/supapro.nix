@@ -15,7 +15,6 @@
 
   fonts = {
     packages = with pkgs; [
-      noto-fonts-color-emoji # see "michaelrommel/nvim-silicon"
       font-awesome
       (nerdfonts.override {
         fonts = [
@@ -73,7 +72,6 @@
       }
       "nvm" # nodejs version manager
       "pulumi"
-      "silicon" # see "michaelrommel/nvim-silicon"; barage of errors if installed from nixpkgs
       "supabase" # CLI Note: nixpkgs has not been updated to v2 yet
       "tmuxp" # sesion loader for tmux
       "trash" # nvim-tree

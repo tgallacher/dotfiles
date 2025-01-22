@@ -17,7 +17,6 @@
 
   fonts = {
     packages = with pkgs; [
-      noto-fonts-color-emoji # see "michaelrommel/nvim-silicon"
       font-awesome
       (nerdfonts.override {
         fonts = [
@@ -55,7 +54,6 @@
       "libiconv" # rnix-lsp
       "trash" # nvim-tree
       "borders" # jankyBorders
-      "silicon" # see "michaelrommel/nvim-silicon"; barage of errors if installed from nixpkgs
       "gh" # Github CLI
     ];
     casks = [
