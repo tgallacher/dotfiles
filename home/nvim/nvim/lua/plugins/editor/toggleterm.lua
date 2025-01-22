@@ -27,8 +27,8 @@ return {
     start_in_insert = true,
     insert_mappings = true,
     persist_size = true,
-    -- direction = "horizontal",
-    direction = "float",
+    direction = "horizontal",
+    -- direction = "float",
     winbar = { enabled = false },
   },
 }
