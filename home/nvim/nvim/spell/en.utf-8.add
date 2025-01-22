@@ -65,3 +65,5 @@ k8s
 kubeconfig
 cli
 supabase
+JSON
+kube
