@@ -72,6 +72,10 @@ in {
     '';
   };
 
+  # NOTE: To reload this config:
+  # ```sh
+  #  pkill -HUP skhd
+  # ```
   services.skhd = {
     enable = true;
     package = upkgs.skhd;
