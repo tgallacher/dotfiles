@@ -59,6 +59,7 @@
     disableConfirmationPrompt = false;
     keyMode = "vi";
     mouse = true;
+    historyLimit = 10000;
     prefix = "C-b";
     terminal = "tmux-256color";
     extraConfig = ''
