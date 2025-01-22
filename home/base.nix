@@ -59,7 +59,8 @@
       glib # require GIO for NvimTree
       iperf # Network performance
       tldr # Man docs helper
-
+      rustc
+      go
       # File Management
       rsync # File transfer
       unzip # Zip files
@@ -72,7 +73,6 @@
       # CLIs
       tree
       python310
-      # lazygit
       ;
   };
 

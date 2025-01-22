@@ -43,7 +43,6 @@
     # Use brew for now...
     # upkgs.granted # simplified cloud account switching
     upkgs.awscli2
-    pkgs.go
     # pkgs.mkcert # self-signed tls certs
     upkgs.jqp # TUI for navigating jq
 
