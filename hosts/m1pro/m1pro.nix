@@ -49,6 +49,7 @@
     enable = true; # allow nix-darwin to manage brew?
     taps = [
       "FelixKratz/formulae" # jankyBorders
+      # "nikitabobko/tap"
     ];
     brews = [
       "libiconv" # rnix-lsp
@@ -72,6 +73,7 @@
       "postman" # nixpkgs version seems to be down; use brew instead
       "dbeaver-community" # nixpkgs version has been removed; see https://github.com/NixOS/nixpkgs/pull/311888
       "bambu-studio"
+      # "nikitabobko/aerospace/aerospace"
     ];
     masApps = {};
     global.autoUpdate = false;
