@@ -24,7 +24,7 @@
       #!/usr/bin/env bash
       ${
         if host.name == "m1pro"
-        then "op item get OpenAI --fields apikey --vault Personal --cache"
+        then "op item get OpenAI --fields personal-apikey --vault Personal --cache"
         else if host.name == "supapro"
         then ''
           # FIXME: remove nodejs deprection supression
