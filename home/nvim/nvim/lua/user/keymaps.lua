@@ -30,8 +30,8 @@ vim.keymap.set("n", "<S-Right>", ":vertical resize -2<CR>", { desc = "[R]esize b
 -- == Navigate buffers
 vim.keymap.set("n", "<TAB>", "<Nop>")
 vim.keymap.set("n", "<S-TAB>", "<Nop>")
-vim.keymap.set("n", "<TAB>", ":bnext<CR>", { desc = "[b]uffer: switch to one on right" })
-vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", { desc = "[b]uffer: switch to one on left" })
+-- vim.keymap.set("n", "<TAB>", ":bnext<CR>", { desc = "[b]uffer: switch to one on right" })
+-- vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", { desc = "[b]uffer: switch to one on left" })
 
 -- == Misc
 vim.keymap.set("n", "<localleader>X", ":!chmod +x %<CR>", { desc = "Make file e[X]ecutable" })
