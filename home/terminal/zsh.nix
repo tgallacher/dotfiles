@@ -42,7 +42,7 @@
     package = upkgs.zsh;
     autosuggestion.enable = false; # we'll handle this in antidote
     enableCompletion = false; # we'll handle this in antidote
-    defaultKeymap = "viins"; # Vim INSERT mode; hit ESC to toggle between VI INSERT/VISUAL
+    # defaultKeymap = "viins"; # Vim INSERT mode; hit ESC to toggle between VI INSERT/VISUAL
     dotDir = ".config/zsh";
     autocd = true;
     ## add to .zlogout
@@ -160,39 +160,36 @@
       plugins = [
         ### Regular plugins
         ### Utilities
-        "ohmyzsh/ohmyzsh   path:lib"
-        # "ohmyzsh/ohmyzsh   path:copybuffer"
-        # "ohmyzsh/ohmyzsh   path:copyfile"
-        # "ohmyzsh/ohmyzsh   path:copypath"
-        # "ohmyzsh/ohmyzsh   path:extract"
-        # "ohmyzsh/ohmyzsh   path:fancy-ctrl-z"
-        # "ohmyzsh/ohmyzsh   path:colored-man-pages"
-        # "ohmyzsh/ohmyzsh   path:git-extras"
-        # "ohmyzsh/ohmyzsh   path:direnv"
-        # "ohmyzsh/ohmyzsh   path:node"
+        "ohmyzsh/ohmyzsh                path:lib"
+        "ohmyzsh/ohmyzsh                path:plugins/copybuffer" # copy current command line into system clipboard using `ctrl+o`
+        "ohmyzsh/ohmyzsh                path:plugins/extract" # wrapper to extract file archives without knowing which command to use
+        # "ohmyzsh/ohmyzsh                path:plugins/fancy-ctrl-z" # bring latest background job to foreground; essentiall running `fg`
+        "ohmyzsh/ohmyzsh                path:plugins/colored-man-pages"
+        # "ohmyzsh/ohmyzsh                path:plugins/gnu-utils" # ensure gnu utils are bound, save having to type "g" prefix. TODO: enable this
+        # "ohmyzsh/ohmyzsh                path:plugins/direnv"
+        # "ohmyzsh/ohmyzsh                path:plugins/node"
 
         ## Completions/Aliases for various cli tools
-        "ohmyzsh/ohmyzsh   path:plugins/kubectl"
-        # "ohmyzsh/ohmyzsh   path:plugins/k9s"
-        "ohmyzsh/ohmyzsh   path:plugins/helm"
-        # "ohmyzsh/ohmyzsh   path:plugins/npm"
-        # "ohmyzsh/ohmyzsh   path:plugins/yarn"
-        "ohmyzsh/ohmyzsh   path:plugins/git"
-        # "ohmyzsh/ohmyzsh   path:plugins/docker"
-        # "ohmyzsh/ohmyzsh   path:plugins/terraform"
-        # "romkatv/zsh-bench kind:path"
+        # "ohmyzsh/ohmyzsh               path:plugins/gh" # completsion for github cli
+        "ohmyzsh/ohmyzsh               path:plugins/kubectl"
+        # "ohmyzsh/ohmyzsh               path:plugins/k9s"
+        "ohmyzsh/ohmyzsh               path:plugins/helm"
+        # "ohmyzsh/ohmyzsh               path:plugins/npm"
+        # "ohmyzsh/ohmyzsh               path:plugins/yarn"
+        "ohmyzsh/ohmyzsh               path:plugins/git"
+        # "ohmyzsh/ohmyzsh               path:plugins/docker"
+        # "ohmyzsh/ohmyzsh               path:plugins/terraform"
+        # "romkatv/zsh-bench             kind:path"
         "djui/alias-tips"
+        "zsh-users/zsh-completions     path:src kind:fpath"
+        "belak/zsh-utils               path:completion"
 
         ### Prompts
         ### Framework: zsh-utils
-        "belak/zsh-utils  path:history"
+        "belak/zsh-utils               path:history"
 
         ### Deferred plugins
         "zdharma-continuum/fast-syntax-highlighting     kind:defer"
-
-        ### completions
-        "zsh-users/zsh-completions                      path:src kind:fpath"
-        "belak/zsh-utils                                path:completion"
 
         ### Final Plugins
         "zsh-users/zsh-autosuggestions                  kind:defer"
