@@ -28,8 +28,8 @@ vim.keymap.set("n", "<S-Left>", ":vertical resize +2<CR>", { desc = "[R]esize bu
 vim.keymap.set("n", "<S-Right>", ":vertical resize -2<CR>", { desc = "[R]esize buffer [R]ight" })
 
 -- == Navigate buffers
-vim.keymap.set("n", "<TAB>", "<Nop>")
-vim.keymap.set("n", "<S-TAB>", "<Nop>")
+-- vim.keymap.set("n", "<TAB>", "<Nop>")
+-- vim.keymap.set("n", "<S-TAB>", "<Nop>")
 -- vim.keymap.set("n", "<TAB>", ":bnext<CR>", { desc = "[b]uffer: switch to one on right" })
 -- vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", { desc = "[b]uffer: switch to one on left" })
 
