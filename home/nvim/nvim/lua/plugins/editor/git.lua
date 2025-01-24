@@ -10,6 +10,7 @@ return {
         vim.g.conflict_marker_begin = "^<<<<<<< .*$"
         vim.g.conflict_marker_end = "^>>>>>>> .*$"
         -- FIXME: adjust the colours so they match the current colorscheme
+        -- see https://github.com/rhysd/conflict-marker.vim/issues/17
         -- Highlight settings
         vim.cmd([[
         highlight ConflictMarkerBegin guifg=#e06c75
