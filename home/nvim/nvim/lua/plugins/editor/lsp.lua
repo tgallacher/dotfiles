@@ -155,6 +155,7 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "rafamadriz/friendly-snippets",
+      "onsails/lspkind.nvim",
     },
     config = function()
       local cmp = require("cmp")
@@ -164,10 +165,33 @@ return {
 
       luasnip.config.setup({})
 
+      local kind_formatter = require("lspkind").cmp_format {
+        mode = "symbol_text",
+        menu = {
+          buffer = "[buf]",
+          nvim_lsp = "[LSP]",
+          nvim_lua = "[api]",
+          path = "[path]",
+          luasnip = "[snip]",
+          gh_issues = "[issues]",
+        },
+      }
+
       cmp.setup({
         snippet = {
+          -- Enable luasnip to handle snippet expansion for nvim-cmp
           expand = function(args)
             luasnip.lsp_expand(args.body)
+          end,
+        },
+        formatting = {
+          fields = { "abbr", "kind", "menu" },
+          expandable_indicator = true,
+          format = function(entry, vim_item)
+            -- Lspkind setup for icons
+            vim_item = kind_formatter(entry, vim_item)
+
+            return vim_item
           end,
         },
         completion = { completeopt = "menu,menuone,preview,noselect,noinsert" }, -- TODO: what does this do?
