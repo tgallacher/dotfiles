@@ -22,7 +22,8 @@ return {
     opts = function(_, opts)
       opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
         "prettierd", -- formatter
-        "eslint_d", -- linter
+        -- { "eslint_d", version = "14.3.0" }, -- linter
+        "eslint",
         "js-debug-adapter", -- dap
         "typescript-language-server", -- lsp
       })
@@ -33,12 +34,13 @@ return {
   {
     "mfussenegger/nvim-lint",
     opts = function(_, opts)
+      vim.env.ESLINT_D_PPID = vim.fn.getpid()
       return vim.tbl_deep_extend("force", opts, {
         linters_by_ft = {
-          typescript = { "eslint_d" },
-          javascript = { "eslint_d" },
-          typescriptreact = { "eslint_d" },
-          javascriptreact = { "eslint_d" },
+          typescript = { "eslint" },
+          javascript = { "eslint" },
+          typescriptreact = { "eslint" },
+          javascriptreact = { "eslint" },
         },
       })
     end,
