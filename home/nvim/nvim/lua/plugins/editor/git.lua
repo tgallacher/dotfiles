@@ -1,28 +1,26 @@
 return {
-  {
-    -- highlight git merge conflict marker sections
-    {
-      "rhysd/conflict-marker.vim",
-      init = function()
-        -- Set the conflict marker highlight group to an empty string
-        vim.g.conflict_marker_highlight_group = ""
-        -- Include text after begin and end markers
-        vim.g.conflict_marker_begin = "^<<<<<<< .*$"
-        vim.g.conflict_marker_end = "^>>>>>>> .*$"
-        -- FIXME: adjust the colours so they match the current colorscheme
-        -- see https://github.com/rhysd/conflict-marker.vim/issues/17
-        -- Highlight settings
-        vim.cmd([[
+  { -- highlight git merge conflict marker sections
+    "rhysd/conflict-marker.vim",
+    init = function()
+      -- Set the conflict marker highlight group to an empty string
+      vim.g.conflict_marker_highlight_group = ""
+      -- Include text after begin and end markers
+      vim.g.conflict_marker_begin = "^<<<<<<< .*$"
+      vim.g.conflict_marker_end = "^>>>>>>> .*$"
+      -- FIXME: adjust the colours so they match the current colorscheme
+      -- see https://github.com/rhysd/conflict-marker.vim/issues/17
+      -- Highlight settings
+      vim.cmd([[
         highlight ConflictMarkerBegin guifg=#e06c75
         highlight ConflictMarkerOurs guibg=#2e5049
         highlight ConflictMarkerSeparator guifg=#e06c75
         highlight ConflictMarkerTheirs guibg=#344f69
         highlight ConflictMarkerEnd guifg=#e06c75
         ]])
-      end,
-    },
+    end,
+  },
 
-    -- Embedded Git commands inside neovim
+  { -- Embedded Git commands inside neovim
     "tpope/vim-fugitive",
     init = function()
       vim.keymap.set("n", "<leader>gs", ":Git<cr>", { desc = "[g]it [s]tatus" })
