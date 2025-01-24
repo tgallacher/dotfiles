@@ -53,6 +53,8 @@
       "supabase/tap" # CLI
     ];
     brews = [
+      "showkey"
+      "minikube"
       "awscli"
       "bitwarden-cli"
       "borders" # jankyBorders
@@ -66,18 +68,20 @@
       "kubectl"
       "kubectx"
       "libiconv" # rnix-lsp
-      {
-        name = "libpq"; # pqsl cli
-        link = true;
-      }
       "nvm" # nodejs version manager
       "pulumi"
       "supabase" # CLI Note: nixpkgs has not been updated to v2 yet
       "tmuxp" # sesion loader for tmux
       "trash" # nvim-tree
       "ykman" # yubikey manager
+      {
+        # pqsl cli
+        name = "libpq";
+        link = true;
+      }
     ];
     casks = [
+      "aptakube"
       "aws-vault" # dev secrets management
       "bitwarden"
       "brave-browser"
