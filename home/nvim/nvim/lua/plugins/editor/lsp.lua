@@ -234,6 +234,15 @@ return {
           { name = "path" },
         }),
       })
+
+      -- Setup up vim-dadbod
+      -- TODO: can make this specific to a custom filetype for dadbod, but should be fine on all sql files
+      cmp.setup.filetype({ "sql" }, {
+        sources = {
+          { name = "vim-dadbod-completion" },
+          { name = "buffer" },
+        },
+      })
     end,
   },
 }
