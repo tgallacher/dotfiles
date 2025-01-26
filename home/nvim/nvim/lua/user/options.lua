@@ -86,6 +86,6 @@ vim.opt.guicursor = {
   -- "sm:block-blinkwait175-blinkoff250-blinkon175", -- Showmatch: block cursor with specific blinking settings
 }
 
-vim.diagnostic.config({
-  float = { border = "rounded" }, -- add border to diagnostic popups
-})
+-- vim.diagnostic.config({
+--   float = { border = "rounded" }, -- add border to diagnostic popups
+-- })

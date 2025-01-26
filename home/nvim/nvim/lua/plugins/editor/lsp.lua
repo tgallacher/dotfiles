@@ -3,14 +3,11 @@ return {
     "neovim/nvim-lspconfig",
     event = "InsertEnter",
     dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for neovim
-      {
+      {-- Automatically install LSPs and related tools to stdpath for neovim
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         dependencies = {
           "williamboman/mason-lspconfig.nvim",
-          {
-            "williamboman/mason.nvim", opts = { ui = { border = "single" }, },
-          },
+          { "williamboman/mason.nvim", opts = { ui = { border = "single" }, }, },
         },
         opts = {
           ensure_installed = {},
@@ -19,11 +16,9 @@ return {
       },
       -- Useful status updates for LSP.
       { "j-hui/fidget.nvim", opts = {} },
-      -- nvim lua API intellisense
-      { "folke/neodev.nvim", opts = {} },
     },
     opts = {
-      servers = {},
+      servers = {}, -- INFO: PDE lang files will populate this separately
     },
     config = function(_, opts)
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -48,6 +43,7 @@ return {
           map("n", "[w", function() goto_diagnostic(true, "WARNING") end, "Go to Prev [w]arning")
           map("n", "]w", function() goto_diagnostic(false, "WARNING") end, "Go to Next [w]arning")
 
+          -- TODO: Adjust after nvim 0.11 has been released
           map("n", "gd", require("telescope.builtin").lsp_definitions, "[g]o to [d]efinition")
           map("n", "gD", vim.lsp.buf.declaration, "[g]o to [D]eclaration")
           map("n", "gr", function() require("telescope.builtin").lsp_references({ trim_text = true, fname_width = 50 }) end, "Show LSP [r]eferences")
@@ -55,20 +51,20 @@ return {
           map("n", "gt", require("telescope.builtin").lsp_type_definitions, "[g]o to [t]ype definition")
           map("n", "gs", require("telescope.builtin").lsp_document_symbols, "Show document [s]ymbols")
           map("n", "gS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Show workspace [S]ymbols")
-          map("n", "<localleader>rn", vim.lsp.buf.rename, "[r]e[n]ame")
-          map("n", "<localleader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
+          map("n", "grr", vim.lsp.buf.rename, "[r]e[n]ame")
+          map("n", "gra", vim.lsp.buf.code_action, "[c]ode [a]ction")
           map("n", "K", vim.lsp.buf.hover, "Show Hover Documentation") --  See `:help K` for why this keymap
-          map("n", "<localleader>k", vim.lsp.buf.signature_help, "Signature documentation")
-          map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature documentation")
+          map({ "n", "i" }, "<C-K>", vim.lsp.buf.signature_help, "Signature documentation")
           map("n", "<localleader>dd", ":Telescope diagnostics bufnr=0<CR>", "Show [d]ocument [d]iagnostics")
           map("n", "<localleader>dl", function() vim.diagnostic.open_float({ source = true }) end, "Show [d]iagnostic for [l]ine")
-          -- map("n", "<localleader>dq", vim.diagnostic.setloclist, "Send all [d]iagnostics to [q]uickfix list")
+          map("n", "<localleader>dq", vim.diagnostic.setloclist, "Send all [d]iagnostics to [q]uickfix list")
           map("n", "<localleader>qd", vim.diagnostic.setqflist, "Set [q]uickfix list to [d]iagnostics")
+          map("n", "<localleader>fm", vim.lsp.buf.format, "[f]or[m]at the current buffer")
+
           map("n", "<localleader>qn", ":cnext<cr>zz", "Jump to [q]uickfix [n]ext item")
           map("n", "<localleader>qp", ":cprevious<cr>zz", "Jump to [q]uickfix [p]rev item")
           map("n", "<localleader>qo", ":copen<cr>zz", "[q]uickfix [o]pen list")
           map("n", "<localleader>qc", ":cclose<cr>zz", "[q]uickfix [c]lose list")
-          map("n", "<localleader>fm", vim.lsp.buf.format, "[f]or[m]at the current buffer")
 
 
           -- The following two autocommands are used to highlight references of the
@@ -110,6 +106,9 @@ return {
 
       require("mason").setup()
       require("mason-lspconfig").setup({
+        -- INFO: this will be auto populated within each lang pde file
+        ensure_installed = {  },
+        automatic_installation = true,
         handlers = {
           function(server_name)
             local server = opts.servers[server_name] or {}
@@ -122,14 +121,15 @@ return {
         },
       })
 
-    -- Globally configure all LSP floating preview popups (like hover, signature help, etc)
-    local open_floating_preview = vim.lsp.util.open_floating_preview
-    function vim.lsp.util.open_floating_preview(contents, syntax, _opts, ...)
-      opts = _opts or {}
-      opts.border = opts.border or "rounded" -- Set border to rounded
-      return open_floating_preview(contents, syntax, opts, ...)
-    end
 
+      -- Globally configure all LSP floating preview popups (like hover, signature help, etc)
+      local open_floating_preview = vim.lsp.util.open_floating_preview
+      ---@diagnostic disable-next-line: duplicate-set-field
+      function vim.lsp.util.open_floating_preview(contents, syntax, _opts, ...)
+        opts = _opts or {}
+        opts.border = opts.border or "rounded" -- Set border to rounded
+        return open_floating_preview(contents, syntax, opts, ...)
+      end
     end,
   },
 
@@ -137,25 +137,12 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      { -- Snippet Engine & its associated nvim-cmp source
-        "L3MON4D3/LuaSnip",
-        -- version = "v2.*",
-        build = (function()
-          -- Build Step is needed for regex support in snippets
-          -- This step is not supported in many windows environments
-          -- Remove the below condition to re-enable on windows
-          if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-            return
-          end
-          return "make install_jsregexp"
-        end)(),
-      },
+      "L3MON4D3/LuaSnip",-- Snippet Engine & its associated nvim-cmp source
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "rafamadriz/friendly-snippets",
-      "onsails/lspkind.nvim",
     },
     config = function()
       local cmp = require("cmp")
@@ -165,18 +152,6 @@ return {
 
       luasnip.config.setup({})
 
-      local kind_formatter = require("lspkind").cmp_format {
-        mode = "symbol_text",
-        menu = {
-          buffer = "[buf]",
-          nvim_lsp = "[LSP]",
-          nvim_lua = "[api]",
-          path = "[path]",
-          luasnip = "[snip]",
-          gh_issues = "[issues]",
-        },
-      }
-
       cmp.setup({
         snippet = {
           -- Enable luasnip to handle snippet expansion for nvim-cmp
@@ -184,17 +159,7 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        formatting = {
-          fields = { "abbr", "kind", "menu" },
-          expandable_indicator = true,
-          format = function(entry, vim_item)
-            -- Lspkind setup for icons
-            vim_item = kind_formatter(entry, vim_item)
-
-            return vim_item
-          end,
-        },
-        completion = { completeopt = "menu,menuone,preview,noselect,noinsert" }, -- TODO: what does this do?
+        completion = { completeopt = "menu,menuone,noinsert" }, -- TODO: what does this do?
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
@@ -203,8 +168,6 @@ return {
           ["<C-u>"] = cmp.mapping.scroll_docs(-4),
           ["<C-d>"] = cmp.mapping.scroll_docs(4),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<C-j>"] = cmp.mapping.select_next_item(),
-          ["<C-k>"] = cmp.mapping.select_prev_item(),
           ["<C-y>"] = cmp.mapping.confirm({ select = true }),
           -- Manually trigger a completion from nvim-cmp.
           ["<C-Space>"] = cmp.mapping.complete({}),
@@ -216,16 +179,8 @@ return {
           --
           -- <c-l> will move you to the right of each of the expansion locations.
           -- <c-h> is similar, except moving you backwards.
-          ["<C-l>"] = cmp.mapping(function()
-            if luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            end
-          end, { "i", "s" }),
-          ["<C-h>"] = cmp.mapping(function()
-            if luasnip.locally_jumpable(-1) then
-              luasnip.jump(-1)
-            end
-          end, { "i", "s" }),
+          ["<C-l>"] = cmp.mapping(function() if luasnip.expand_or_locally_jumpable() then luasnip.expand_or_jump() end end, { "i", "s" }),
+          ["<C-h>"] = cmp.mapping(function() if luasnip.locally_jumpable(-1) then luasnip.jump(-1) end end, { "i", "s" }),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
@@ -233,15 +188,6 @@ return {
           { name = "buffer" },
           { name = "path" },
         }),
-      })
-
-      -- Setup up vim-dadbod
-      -- TODO: can make this specific to a custom filetype for dadbod, but should be fine on all sql files
-      cmp.setup.filetype({ "sql" }, {
-        sources = {
-          { name = "vim-dadbod-completion" },
-          { name = "buffer" },
-        },
       })
     end,
   },
