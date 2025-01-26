@@ -1,5 +1,5 @@
 return {
-  { -- highlight git merge conflict marker sections
+  { -- highlight+give keymaps for git merge conflict marker sections
     "rhysd/conflict-marker.vim",
     init = function()
       -- Set the conflict marker highlight group to an empty string
@@ -11,12 +11,12 @@ return {
       -- see https://github.com/rhysd/conflict-marker.vim/issues/17
       -- Highlight settings
       vim.cmd([[
-        highlight ConflictMarkerBegin guifg=#e06c75
-        highlight ConflictMarkerOurs guibg=#2e5049
-        highlight ConflictMarkerSeparator guifg=#e06c75
-        highlight ConflictMarkerTheirs guibg=#344f69
-        highlight ConflictMarkerEnd guifg=#e06c75
-        ]])
+        highlight ConflictMarkerBegin guifg=#957FB8
+        highlight ConflictMarkerOurs guibg=#76946A
+        highlight ConflictMarkerSeparator guifg=#957FB8
+        highlight ConflictMarkerTheirs guibg=#E6C384
+        highlight ConflictMarkerEnd guifg=#957FB8
+      ]])
     end,
   },
 
