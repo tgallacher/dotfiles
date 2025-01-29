@@ -23,7 +23,6 @@ vim.opt.autoindent = true -- convert tab to spaces
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2 -- insert 2 spaces for a tab
 vim.opt.softtabstop = 2
-vim.opt.foldenable = true -- disable folds
 vim.opt.background = "dark" -- ensure dark version of colourschemes are auto selected
 vim.opt.numberwidth = 4 -- set number column width {default 4}
 vim.opt.wrap = false -- display lines as one long line

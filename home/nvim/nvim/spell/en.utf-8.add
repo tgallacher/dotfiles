@@ -67,3 +67,7 @@ cli
 supabase
 JSON
 kube
+auth
+k8
+s3
+minikube
