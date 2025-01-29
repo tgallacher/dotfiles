@@ -71,6 +71,7 @@
       "nvm" # nodejs version manager
       "pulumi"
       "supabase" # CLI Note: nixpkgs has not been updated to v2 yet
+      "supabase/homebrew-packages/supa-admin-cli"
       "tmuxp" # sesion loader for tmux
       "trash" # nvim-tree
       "ykman" # yubikey manager

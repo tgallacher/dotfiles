@@ -43,6 +43,11 @@
       rebase.instructionFormat = "(%an) %s";
       status.submodulesummary = true; # show a short summary of submodule changes
       submodule.recurse = true; # keep submodule state sync'd across branches
+      credential = {
+        "https://github.com" = {
+          helper = "store";
+        };
+      };
     };
     userEmail = "tgallacher@users.noreply.github.com";
     userName = "Tom Gallacher";
