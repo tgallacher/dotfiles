@@ -39,14 +39,16 @@ return {
   { -- Embedded Git commands inside neovim
     "tpope/vim-fugitive",
     init = function()
-      vim.keymap.set("n", "<leader>gs", ":Git<cr>", { desc = "[g]it [s]tatus" })
-      vim.keymap.set("n", "<leader>gp", ":Git push<cr>", { desc = "[g]it [p]ush" })
-      vim.keymap.set("n", "<leader>gP", ":Git pull<cr>", { desc = "[g]it [P]ull" })
-      vim.keymap.set("n", "<leader>gf", ":Git fetch<cr>", { desc = "[g]it [f]etch" })
+      vim.keymap.set("n", "<leader>gs", ":Git<CR>", { desc = "[g]it [s]tatus" })
+      vim.keymap.set("n", "<leader>gp", ":Git push<CR>", { desc = "[g]it [p]ush" })
+      vim.keymap.set("n", "<leader>gP", ":Git pull<CR>", { desc = "[g]it [P]ull" })
+      vim.keymap.set("n", "<leader>gf", ":Git fetch<CR>", { desc = "[g]it [f]etch" })
       vim.keymap.set("n", "<leader>gcb", ":Git checkout -b ", { desc = "[g]it [c]heckout [b]ranch" })
       vim.keymap.set("n", "<leader>gco", ":Git checkout ", { desc = "[g]it [c]heck[o]ut" })
-      vim.keymap.set("n", "<leader>grbi", ":G rebase --interactive ", { desc = "[g]it [r]e[b]ase [i]nteractive" })
-      vim.keymap.set("n", "<leader>grbn", ":G rebase ", { desc = "[g]it [r]e[b]ase [n]on-interactive" })
+      vim.keymap.set("n", "<leader>grbi", ":Git rebase --interactive ", { desc = "[g]it [r]e[b]ase [i]nteractive" })
+      vim.keymap.set("n", "<leader>grbn", ":Git rebase ", { desc = "[g]it [r]e[b]ase [n]on-interactive" })
+      vim.keymap.set("n", "<leader>grbc", ":Git rebase --continue<CR>", { desc = "[g]it [r]e[b]ase [c]ontinue" })
+      vim.keymap.set("n", "<leader>grba", ":Git rebase --abort<CR>", { desc = "[g]it [r]e[b]ase [a]bort" })
       vim.keymap.set(
         "n",
         "<leader>gl",
@@ -54,8 +56,8 @@ return {
         { desc = "[g]it [l]og (30 commits)" }
       )
 
-      vim.keymap.set("n", "<localleader>gb", ":Git blame<cr>", { desc = "[g]it [b][b]lame" })
-      vim.keymap.set("n", "<localleader>gd", ":Gvdiffsplit<cr>", { desc = "[g]it [D]iff" })
+      vim.keymap.set("n", "<localleader>gb", ":Git blame<CR>", { desc = "[g]it [b][b]lame" })
+      vim.keymap.set("n", "<localleader>gd", ":Gvdiffsplit<CR>", { desc = "[g]it [D]iff" })
       -- vim.keymap.set("n", "<localleader>gcb", function()
       --   local filepath = vim.api.nvim_buf_get_name(0)
       --   local handle = io.popen("git log --abbrev-commit --no-decorate --pretty='format:%cs: %h -%d %s (%cr) <%an>' " .. filepath)
