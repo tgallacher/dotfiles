@@ -4,7 +4,6 @@ local servers = {
   -- note: this may have been fixed in nvim 0.9.1+
   nil_ls = {
     filetypes = { "nix" },
-    settings = {},
   },
 }
 
