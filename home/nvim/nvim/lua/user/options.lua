@@ -72,7 +72,7 @@ vim.foldexpr = "nvim_treesitter#foldexpr()" -- utilize Treesitter folds
 -- vim.opt.colorcolumn = "120"
 -- spelling
 vim.opt.spelllang = "en_gb"
-vim.opt.spell = false
+vim.opt.spell = false -- enable on specific filetypes; see `pde/*.lua` files
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.incsearch = true
 vim.opt.hlsearch = true

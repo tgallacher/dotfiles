@@ -2,6 +2,14 @@ local servers = {
   marksman = {},
 }
 
+vim.api.nvim_create_augroup("MarkdownSettings", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.textwidth = 120
+  end,
+})
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
