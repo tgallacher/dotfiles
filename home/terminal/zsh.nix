@@ -67,10 +67,10 @@
       ${
         if pkgs.stdenv.isDarwin
         then "
-      print_pid_cwd() {
-        local pid=$1;
-        lsof -a -p $pid -d cwd -Fn
-      }
+print_pid_cwd() {
+  local pid=$1;
+  lsof -a -p $pid -d cwd -Fn
+}
           "
         else ""
       }
