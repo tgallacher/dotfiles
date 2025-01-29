@@ -1,5 +1,21 @@
 return {
   { -- highlight+give keymaps for git merge conflict marker sections
+    -- Format of merge:
+    -- ```
+    -- <<<<<<< HEAD
+    -- ours
+    -- =======
+    -- theirs
+    -- >>>>>>> deadbeef0123
+    -- ```
+    --
+    -- Which map to the following acceptance keymaps
+    --  ct - accept "theirs"
+    --  co - accept "ours"
+    --  cb - accept "both"
+    --  cB - accept "both" but reverse order
+    --  cn - discard both changes
+    --
     "rhysd/conflict-marker.vim",
     init = function()
       -- Set the conflict marker highlight group to an empty string
@@ -11,11 +27,11 @@ return {
       -- see https://github.com/rhysd/conflict-marker.vim/issues/17
       -- Highlight settings
       vim.cmd([[
-        highlight ConflictMarkerBegin guifg=#957FB8
-        highlight ConflictMarkerOurs guibg=#76946A
-        highlight ConflictMarkerSeparator guifg=#957FB8
-        highlight ConflictMarkerTheirs guibg=#E6C384
-        highlight ConflictMarkerEnd guifg=#957FB8
+        highlight ConflictMarkerBegin guifg=#54546D
+        highlight ConflictMarkerOurs guibg=#363646
+        highlight ConflictMarkerSeparator guifg=#54546D
+        highlight ConflictMarkerTheirs guibg=#2B3328
+        highlight ConflictMarkerEnd guifg=#54546D
       ]])
     end,
   },
