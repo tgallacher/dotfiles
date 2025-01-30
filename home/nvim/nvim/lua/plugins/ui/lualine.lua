@@ -36,17 +36,29 @@ return {
   { -- statusline
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    init = function()
+      vim.g.lualine_laststatus = vim.o.laststatus
+      if vim.fn.argc(-1) > 0 then
+        -- set an empty statusline till lualine loads
+        vim.o.statusline = " "
+      else
+        -- hide the statusline on the starter page
+        vim.o.laststatus = 0
+      end
+    end,
     opts = function()
+      vim.o.laststatus = vim.g.lualine_laststatus
+
       return {
         options = {
-          -- theme = "tokyonight",
+          theme = "auto",
           icons_enabled = true,
           component_separators = { left = "", right = "" }, -- remove default separators
           section_separators = { left = "", right = "" }, -- remove default separators
           disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline", "winbar" },
-          gloabalstatus = false,
           always_divide_middle = true,
           refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
+          globalstatus = vim.o.laststatus == 3,
         },
         sections = {
           lualine_a = {
@@ -67,9 +79,25 @@ return {
           },
           lualine_c = {},
           lualine_x = {
+            -- stylua: ignore
+            {
+              function() return "  " .. require("dap").status() end,
+              cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
+              -- color = function() return { fg = Snacks.util.color("Debug") } end,
+            },
             {
               "diff",
               draw_empty = true,
+              source = function()
+                local gitsigns = vim.b.gitsigns_status_dict
+                if gitsigns then
+                  return {
+                    added = gitsigns.added,
+                    modified = gitsigns.changed,
+                    removed = gitsigns.removed,
+                  }
+                end
+              end,
               -- diff_colors = {
               --   added = colors.green,
               --   modified = colors.yellow,

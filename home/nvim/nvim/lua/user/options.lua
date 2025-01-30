@@ -9,13 +9,12 @@ vim.g.netrw_liststyle = 3 -- tree view
 vim.g.netrw_banner = 0 -- hide annoying banner
 vim.g.netrw_preview = 1 -- vsplit
 
--- [[ Setting options ]]
 vim.cmd("filetype plugin indent on")
 
 vim.g.editorconfig = true
 
 vim.opt.fileencoding = "utf-8" -- the encoding written to a file
-vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
+vim.opt.conceallevel = 2 -- so that `` is visible in markdown files
 vim.opt.swapfile = false -- creates a swapfile
 vim.opt.hidden = true -- navigate buffers without losing unsaved work
 vim.opt.expandtab = true -- convert tabs to spaces
@@ -25,7 +24,7 @@ vim.opt.tabstop = 2 -- insert 2 spaces for a tab
 vim.opt.softtabstop = 2
 vim.opt.background = "dark" -- ensure dark version of colourschemes are auto selected
 vim.opt.numberwidth = 4 -- set number column width {default 4}
-vim.opt.wrap = false -- display lines as one long line
+vim.opt.wrap = false -- break long lines to the next line
 vim.opt.linebreak = true -- companion to wrap, don't split words
 vim.opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 vim.opt.iskeyword:append("-") -- hyphenated words recognized by searches
@@ -35,6 +34,14 @@ vim.opt.number = true -- Make line numbers default
 vim.opt.relativenumber = true
 vim.opt.mouse = "a" -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.showmode = false -- control whether current mode is displayed at bottom of window
+vim.opt.grepformat = "%f:%l:%c:%m"
+vim.opt.grepprg = "rg --vimgrep"
+vim.opt.jumpoptions = "view" -- jumplist
+vim.opt.laststatus = 3
+
+vim.opt.pumheight = 10 -- max num items in pop up menu
+vim.opt.ruler = false
+vim.opt.shiftround = true
 
 vim.opt.clipboard = "unnamedplus" -- Sync clipboard between OS and Neovim.
 vim.opt.breakindent = true
@@ -60,12 +67,19 @@ vim.opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
 vim.opt.cursorline = true -- Show which line your cursor is on
 vim.opt.scrolloff = 5 -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.sidescrolloff = 8
 vim.opt.completeopt = { "menuone", "noselect" } -- Better completion experience
 vim.opt.termguicolors = true -- enable 24-bit colors
+vim.opt.splitkeep = "screen" -- keep text on same line as splits are resized
+
+vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
+vim.opt.smoothscroll = true
+
 -- Set fold settings
 vim.opt.foldenable = true
-vim.opt.foldlevel = 20
+vim.opt.foldlevel = 99
 vim.opt.foldmethod = "expr"
+vim.opt.foldtext = ""
 vim.foldexpr = "nvim_treesitter#foldexpr()" -- utilize Treesitter folds
 -- Place a column line
 -- vim.opt.colorcolumn = "120"

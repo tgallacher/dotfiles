@@ -93,11 +93,14 @@ return {
         -- Navigation
         map("n", "]h", gs.next_hunk, { desc = "Next Hunk" })
         map("n", "[h", gs.prev_hunk, { desc = "Prev Hunk" })
+        map("n", "]H", function() gs.nav_hunk("last") end, { desc = "Last Hunk" })
+        map("n", "[H", function() gs.nav_hunk("first") end, { desc = "First Hunk" })
 
         -- Actions
         map("n", "<localleader>hs", gs.stage_hunk, { desc = "[h]unk [s]tage" })
-        map("n", "<localleader>hr", gs.reset_hunk, { desc = "[h]unk [r]eset" })
         map("v", "<localleader>hs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "[h]unk [s]tage" })
+
+        map("n", "<localleader>hr", gs.reset_hunk, { desc = "[h]unk [r]eset" })
         map("v", "<localleader>hr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, { desc = "[h]unk [r]eset" })
 
         map("n", "<localleader>hS", gs.stage_buffer, { desc = "[h]unk [S]tage Buffer" })

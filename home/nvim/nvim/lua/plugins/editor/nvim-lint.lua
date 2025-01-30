@@ -4,6 +4,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       linters_by_ft = {}, -- added in individual PDE files
+      events = { "BufWritePost", "BufReadPost", "InsertLeave" },
     },
     config = function(_, opts)
       local lint = require("lint")

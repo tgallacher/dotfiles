@@ -92,11 +92,20 @@ vim.api.nvim_create_autocmd("FileType", {
 -- see: github.com/dmmulroy/kickstart.nix
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = augroup("edit_text"),
-  pattern = { "gitcommit", "markdown", "txt" },
+  pattern = { "gitcommit", "markdown", "txt", "plaintext" },
   desc = "Enable spell checking and text wrapping for certain filetypes",
   callback = function()
     vim.opt_local.wrap = true
     -- vim.opt_local.textwidth = 120
     vim.opt_local.spell = true
+  end,
+})
+
+-- Fix conceallevel for json files
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = augroup("json_conceal"),
+  pattern = { "json", "jsonc", "json5" },
+  callback = function()
+    vim.opt_local.conceallevel = 0
   end,
 })

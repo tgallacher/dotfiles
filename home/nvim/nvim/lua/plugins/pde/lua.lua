@@ -1,28 +1,38 @@
 local servers = {
-  -- lua_ls = {
-  --   settings = {
-  --     Lua = {
-  --       diagnostics = {
-  --         globals = { "vim" },
-  --       },
-  --       runtime = { version = "LuaJIT" },
-  --       workspace = {
-  --         checkThirdParty = false,
-  --         -- Tells lua_ls where to find all the Lua files that you have loaded
-  --         -- for your neovim configuration.
-  --         library = {
-  --           "${3rd}/luv/library",
-  --           vim.env.VIMRUNTIME,
-  --           -- note: this is slower than the `env.VIMRUNTIME` above
-  --           -- unpack(vim.api.nvim_get_runtime_file("", true)),
-  --         },
-  --       },
-  --       completion = {
-  --         callSnippet = "Replace",
-  --       },
-  --     },
-  --   },
-  -- },
+  lua_ls = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim" },
+        },
+        runtime = { version = "LuaJIT" },
+        workspace = {
+          checkThirdParty = false,
+          -- Tells lua_ls where to find all the Lua files that you have loaded
+          -- for your neovim configuration.
+          library = {
+            "${3rd}/luv/library",
+            vim.env.VIMRUNTIME,
+            -- note: this is slower than the `env.VIMRUNTIME` above
+            -- unpack(vim.api.nvim_get_runtime_file("", true)),
+          },
+        },
+        completion = {
+          callSnippet = "Replace",
+        },
+        codeLens = { enable = true },
+        doc = { privateName = { "^_" } },
+        hint = {
+          enable = true,
+          setType = false,
+          paramType = true,
+          paramName = "Disable",
+          semicolon = "Disable",
+          arrayIndex = "Disable",
+        },
+      },
+    },
+  },
 }
 
 return {

@@ -18,6 +18,12 @@ return {
       { "j-hui/fidget.nvim", opts = {} },
     },
     opts = {
+      diagnostics = {
+        underline = true,
+        severity_sort = true,
+        inlay_hints = { enable = true },
+        codelens = { enable = true },
+      },
       servers = {}, -- INFO: PDE lang files will populate this separately
     },
     config = function(_, opts)
