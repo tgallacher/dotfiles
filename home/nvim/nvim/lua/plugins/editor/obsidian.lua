@@ -40,7 +40,7 @@ return {
       "nvim-lua/plenary.nvim",
     },
     init = function()
-      vim.opt.conceallevel = 2
+      -- vim.opt.conceallevel = 2
 
       vim.keymap.set("n", "<leader>nn", createNoteWithDefaultTemplate, { desc = "[n]ew [n]ote" })
       vim.keymap.set("n", "<leader>nt", ":ObsidianToday<CR>", { desc = "Open journal [n]ote for [t]oday" })
@@ -48,7 +48,7 @@ return {
       vim.keymap.set("n", "<leader>nd", ":ObsidianDailies<CR>", { desc = "Open journal [n]ote [d]aily selector" })
     end,
     opts = {
-      ui = { enable = false }, -- use `MeanderingProgrammer/render-markdown.nvim` instead
+      ui = { enable = false }, -- use a separate markdown render plugin
       open_app_foreground = true, -- focus app on `:ObsidianOpen`
       attachments = { img_folder = "999-files/assets" },
       wiki_link_func = "prepend_note_id",

@@ -14,7 +14,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "markdown_inline" })
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "markdown", "markdown_inline" })
       return opts
     end,
   },
@@ -34,29 +34,28 @@ return {
     end,
   },
 
-  -- {
-  --   -- FIXME: https://github.com/iamcco/markdown-preview.nvim/issues/148
-  --   "iamcco/markdown-preview.nvim",
-  --   -- main = "markdown-preview",
-  --   ft = "markdown",
-  --   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-  --   build = function()
-  --     vim.fn["mkdp#util#install"]()
-  --   end,
-  --   keys = {
-  --     { "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle markdown preview" },
-  --   },
-  -- },
-  -- {
-  --   "OXY2DEV/markview.nvim",
-  --   lazy = false, -- Recommended
-  --   -- ft = "markdown" -- If you decide to lazy-load anyway
-  --
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "nvim-tree/nvim-web-devicons",
-  --   },
-  -- },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false, -- Recommended; already lazy-loaded inside plugin
+    -- ft = "markdown", -- If you decide to lazy-load anyway
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = function()
+      local presets = require("markview.presets")
+
+      return {
+        markdown = {
+          headings = presets.headings.marker,
+          horizontal_rules = presets.horizontal_rules.thick,
+        },
+        preview = {
+          icon_provider = "devicons",
+        },
+      }
+    end,
+  },
 
   { -- Autoformat
     "stevearc/conform.nvim",
@@ -68,12 +67,5 @@ return {
         },
       })
     end,
-  },
-
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    ft = "markdown",
-    opts = {},
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
   },
 }
