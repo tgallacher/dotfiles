@@ -52,7 +52,7 @@
       bat # cat with wings
       curl # Fetch stuff
       difftastic # Diff visualiser
-
+      tmux
       dwdiff # Another diff visualiser
 
       git # Version control
