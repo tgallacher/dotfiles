@@ -172,6 +172,7 @@ return {
       { "<leader>tq", ":TodoQuickFix<CR>", desc = "Open [T]rouble [Q]uickfix List" },
       { "<leader>tl", ":TodoLocList<CR>", desc = "Open [T]rouble [L]ocation List" },
       { "<leader>tt", ":TodoTelescope<CR>", desc = "Open todos in trouble" },
+      { "<leader>tb", ":Trouble diagnostics toggle filter.buf=0<CR>", desc = "[T]rouble [b]uffer" },
     },
   },
 
