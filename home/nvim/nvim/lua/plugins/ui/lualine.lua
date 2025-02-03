@@ -74,10 +74,16 @@ return {
               "filename",
               file_status = true,
               newfile_status = true,
-              path = 4,
+              path = 1,
             },
           },
-          lualine_c = {},
+          lualine_c = {
+            -- stylua: ignore
+            {
+              function() return "  " .. require("dap").status() end,
+              cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
+            },
+          },
           lualine_x = {
             -- stylua: ignore
             {
@@ -104,23 +110,17 @@ return {
               --   removed = colors.red,
               -- },
             },
-
             {
               "branch",
               icon = "󰘬",
             },
           },
           lualine_y = {
-            -- { "filesize", },
             {
               "diagnostics",
               sources = { "nvim_lsp", "nvim_diagnostic" },
               sections = { "error", "warn" },
               symbols = { error = " ", warn = " " },
-              -- diagnostics_colors = {
-              --   error = colors.red,
-              --   warn = colors.yellow,
-              -- },
               colored = true,
               update_in_insert = false,
               always_visible = true,
