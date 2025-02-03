@@ -19,17 +19,17 @@ return {
     end,
   },
 
-  {
-    "mfussenegger/nvim-lint",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, {
-        linters_by_ft = {
-          sh = { "shellcheck" },
-        },
-      })
-    end,
-  },
-
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   opts = function(_, opts)
+  --     return vim.tbl_deep_extend("force", opts, {
+  --       linters_by_ft = {
+  --         sh = { "shellcheck" },
+  --       },
+  --     })
+  --   end,
+  -- },
+  --
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
