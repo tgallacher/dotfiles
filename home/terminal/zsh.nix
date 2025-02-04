@@ -85,6 +85,10 @@ print_pid_cwd() {
       # see: https://stackoverflow.com/a/71895124
       export LIBRARY_PATH=$LIBRARY_PATH:$(brew --prefix)/lib:$(brew --prefix libiconv)/lib
 
+      # NOTE: Tied to external (installed separately) binary, `kubectl`
+      # Load the kubectl completion code for zsh[1] into the current shell
+      source <(kubectl completion zsh)
+
       # load custom config, avoiding the need to commit into git (e.g. secrets, etc)
       if [ -f $HOME/.custom.zshrc ]; then
           source $HOME/.custom.zshrc
