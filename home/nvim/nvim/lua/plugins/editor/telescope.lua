@@ -23,8 +23,8 @@ return {
             results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
             preview = { "─", "│", "─", "", "", "┐", "┘", "" },
           },
-          prompt_title = false,
-          file_ignore_patterns = { "^%.git/", "^.venv/" },
+          -- prompt_title = false,
+          file_ignore_patterns = { "^%.git/", "^.venv/", "node_modules" },
           path_display = { shorten = { len = 5, exclude = { -4, -3, -2, -1 } } },
           sorting_strategy = "ascending",
           layout_strategy = "flex",
@@ -55,12 +55,12 @@ return {
 
       local builtin = require("telescope.builtin")
 
-      local ivy = require("telescope.themes").get_ivy({
-        borderchars = {
-          prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-          results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-          preview = { "─", "│", "─", "", "", "┐", "┘", "" },
-        },
+      local dops = require("telescope.themes").get_ivy({
+        -- borderchars = {
+        --   prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        --   results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        --   preview = { "─", "│", "─", "", "", "┐", "┘", "" },
+        -- },
         prompt_title = false,
         layout_config = {
           height = 0.8,
@@ -68,13 +68,13 @@ return {
       })
 
       -- stylua: ignore start
-      vim.keymap.set("n", "<leader>f?", function() builtin.help_tags(ivy) end, { desc = "[f]ind Help" })
-      vim.keymap.set("n", "<leader>fk", function() builtin.keymaps(ivy) end, { desc = "[f]ind [k]eymaps" })
-      vim.keymap.set("n", "<leader>ff", function() builtin.find_files(vim.tbl_deep_extend("force", { hidden = true, no_ignore = false }, ivy)) end, { desc = "[f]ind [f]iles" })
-      vim.keymap.set("n", "<leader>fi", function() builtin.find_files(vim.tbl_deep_extend("force", { hidden = true, no_ignore = true }, ivy)) end, { desc = "[f]ind [i]gnored files" })
-      vim.keymap.set("n", "<leader>fr", function() builtin.oldfiles(vim.tbl_deep_extend("force", { only_cwd = true }, ivy)) end, { desc = "[f]ind [r]ecent Files" })
-      vim.keymap.set("n", "<leader>fg", function() builtin.live_grep(ivy) end, { desc = "[f]ind by live [g]rep" })
-      vim.keymap.set("n", "<leader>fd", function() builtin.diagnostics(ivy) end, { desc = "[f]ind [d]iagnostics" })
+      vim.keymap.set("n", "<leader>f?", function() builtin.help_tags(dops) end, { desc = "[f]ind Help" })
+      vim.keymap.set("n", "<leader>fk", function() builtin.keymaps(dops) end, { desc = "[f]ind [k]eymaps" })
+      vim.keymap.set("n", "<leader>ff", function() builtin.find_files(vim.tbl_deep_extend("force", { hidden = true, no_ignore = false }, dops)) end, { desc = "[f]ind [f]iles" })
+      vim.keymap.set("n", "<leader>fi", function() builtin.find_files(vim.tbl_deep_extend("force", { hidden = true, no_ignore = true }, dops)) end, { desc = "[f]ind [i]gnored files" })
+      vim.keymap.set("n", "<leader>fr", function() builtin.oldfiles(vim.tbl_deep_extend("force", { only_cwd = true }, dops)) end, { desc = "[f]ind [r]ecent Files" })
+      vim.keymap.set("n", "<leader>fg", function() builtin.live_grep(dops) end, { desc = "[f]ind by live [g]rep" })
+      vim.keymap.set("n", "<leader>fd", function() builtin.diagnostics(dops) end, { desc = "[f]ind [d]iagnostics" })
 
       vim.keymap.set("n", "<leader>rt", builtin.resume, { desc = "[r]esume [t]elescope" })
       vim.keymap.set("n", "<leader>,", builtin.buffers, { desc = "[,] show open buffers" })
@@ -86,8 +86,8 @@ return {
         function() builtin.git_bcommits({ git_command = { "git", "log", "--abbrev-commit", "--no-decorate", "--pretty=format:%cs: %h -%d %s (%cr) <%an>" } }) end,
         { desc = "[g]it [c]ommits (buffer)" })
 
-      vim.keymap.set("n", "<localleader>fw", function() builtin.grep_string(ivy) end, { desc = "[f]ind [w]ord under cursor" })
-      vim.keymap.set("n", "<localleader>fg", function() builtin.live_grep(vim.tbl_deep_extend("force",{ grep_open_files = true, prompt_title = "Live Grep (Open Buffers)" }, ivy)) end, { desc = "[f]ind by live [g]rep open buffers" })
+      vim.keymap.set("n", "<localleader>fw", function() builtin.grep_string(dops) end, { desc = "[f]ind [w]ord under cursor" })
+      vim.keymap.set("n", "<localleader>fg", function() builtin.live_grep(vim.tbl_deep_extend("force",{ grep_open_files = true, prompt_title = "Live Grep (Open Buffers)" }, dops)) end, { desc = "[f]ind by live [g]rep open buffers" })
       -- stylua: ignore end
 
       vim.keymap.set("n", "<localleader>fs", function()
