@@ -60,7 +60,7 @@ return {
           map("n", "grr", vim.lsp.buf.rename, "[r]e[n]ame")
           map("n", "gra", vim.lsp.buf.code_action, "[c]ode [a]ction")
           map("n", "K", vim.lsp.buf.hover, "Show Hover Documentation") --  See `:help K` for why this keymap
-          map({ "n", "i" }, "<C-K>", vim.lsp.buf.signature_help, "Signature documentation")
+          map({ "n", "i" }, "<C-S-K>", vim.lsp.buf.signature_help, "Signature documentation")
           map("n", "<localleader>dd", ":Telescope diagnostics bufnr=0<CR>", "Show [d]ocument [d]iagnostics")
           map("n", "<localleader>dl", function() vim.diagnostic.open_float({ source = true }) end, "Show [d]iagnostic for [l]ine")
           map("n", "<localleader>dq", vim.diagnostic.setloclist, "Send all [d]iagnostics to [q]uickfix list")
