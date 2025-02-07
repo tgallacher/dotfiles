@@ -1,8 +1,11 @@
+-- NOTE: this file is auto-reloaded on save
 local wezterm = require("wezterm")
 
 -- see: https://wezterm.org/config/lua/wezterm
 return {
   color_scheme = "Kanagawa Dragon (Gogh)",
+  disable_default_key_bindings = true, -- lets us use alternative file keymap, etc
+  enable_kitty_keyboard = false,
   check_for_updates = false,
   cursor_blink_rate = 500,
   enable_tab_bar = false,
