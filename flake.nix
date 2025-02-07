@@ -28,7 +28,7 @@
   outputs = {self, ...} @ inputs: let
     vars = {
       username = "tgallacher";
-      terminal = "kitty";
+      terminal = "wezterm";
       editor = "nvim";
     };
   in {
