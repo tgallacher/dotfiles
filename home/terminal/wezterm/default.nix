@@ -4,7 +4,7 @@
   ...
 }: {
   programs.wezterm = {
-    enable = false;
+    enable = true;
     package = upkgs.wezterm;
     extraConfig = ''
       -- load external config file so we can get syntax highlighting
