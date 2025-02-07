@@ -20,7 +20,6 @@
       font-awesome
       (nerdfonts.override {
         fonts = [
-          "FiraCode"
           "JetBrainsMono"
         ];
       })
