@@ -25,7 +25,7 @@ return {
   -- Appearance
   hide_tab_bar_if_only_one_tab = true,
   window_background_opacity = 1,
-  sjnd_composed_key_when_left_alt_is_pressed = false,
+  send_composed_key_when_left_alt_is_pressed = false,
   -- Key binds
   keys = {
     -- Turn off the default CMD-m Hide action, allowing CMD-m to
