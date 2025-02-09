@@ -1,5 +1,5 @@
 {
-  self,
+  pkgs,
   upkgs,
   config,
   vars,
@@ -76,10 +76,14 @@ in {
   # ```sh
   #  pkill -HUP skhd
   # ```
+  #
+  # if breaks, follow this https://github.com/koekeishiya/skhd/issues/371#issuecomment-2571458556
   services.skhd = {
     enable = true;
-    package = upkgs.skhd;
+    package = pkgs.skhd;
     skhdConfig = ''
+      default < 7 : open 'https://google.com'
+
       ##
       ## Focus
       ##################################################
@@ -140,12 +144,12 @@ in {
       cmd + ctrl         - 6 : yabai -m window --space 6
 
       # Resize window
-      ctrl + alt +        - k : yabai -m window --resize top:0:-150
-      ctrl + alt +        - j : yabai -m window --resize top:0:150
+      ctrl + alt          - k : yabai -m window --resize top:0:-150
+      ctrl + alt          - j : yabai -m window --resize top:0:150
       ctrl + alt +  shift - j : yabai -m window --resize bottom:0:150
       ctrl + alt +  shift - k : yabai -m window --resize bottom:0:-150
-      ctrl + alt +        - h : yabai -m window --resize right:-150:0
-      ctrl + alt +        - l : yabai -m window --resize right:150:0
+      ctrl + alt          - h : yabai -m window --resize right:-150:0
+      ctrl + alt          - l : yabai -m window --resize right:150:0
       ctrl + alt +  shift - l : yabai -m window --resize left:150:0
       ctrl + alt +  shift - h : yabai -m window --resize left:-150:0
 
