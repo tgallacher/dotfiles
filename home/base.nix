@@ -36,7 +36,7 @@
     inherit
       (pkgs)
       # Neovim/Mason dep.
-      nodejs_20 # Also req. for Neovim/Mason
+      nodejs_22 # Also req. for Neovim/Mason
       cargo # (rnix)
       terraform # (terraform-fmt)
       coreutils # (C utils)
