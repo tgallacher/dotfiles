@@ -160,7 +160,7 @@ in {
       ##
       ## Apps
       ##################################################
-      hyper - t : open -a kitty
+      hyper - t : open -a ${vars.terminal}
       hyper - b : open -a "Brave Browser.app"
       hyper - d : open -a "Notion.app"
     '';

@@ -12,10 +12,6 @@
   ];
 
   # NOTE: vars set at user login
-  home.sessionVariables = {
-    EDITOR = vars.editor;
-    TERMINAL = vars.terminal;
-    PAGER = "less";
-    VISUAL = vars.terminal;
-  };
+  # need to log out and in if changed
+  home.sessionVariables = {};
 }

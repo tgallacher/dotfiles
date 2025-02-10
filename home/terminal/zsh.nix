@@ -2,6 +2,7 @@
   upkgs,
   pkgs,
   host,
+  vars,
   ...
 }: {
   # FIXME: Can't uses this version, need to install this AFTER starship prompt and this doesn't
@@ -126,10 +127,10 @@ print_pid_cwd() {
     '';
     ## add to .zshrc, top of file, env vars, e.g. POWERLINE_9K, etc
     localVariables = {
-      # CASE_SENSITIVE = "true";
-      # HIST_STAMPS = "yyyy-mm-dd";
-      # BROWSER = "brave";
-      # XDG_CONFIG_HOME = "$HOME/.config";
+      EDITOR = vars.editor;
+      TERMINAL = vars.terminal;
+      PAGER = "less";
+      VISUAL = vars.terminal;
     };
     dirHashes = {};
     ## env vars set for each session
