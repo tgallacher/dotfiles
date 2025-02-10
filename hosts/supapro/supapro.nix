@@ -53,8 +53,7 @@
       "supabase/tap" # CLI
     ];
     brews = [
-      "showkey"
-      "minikube"
+      # "pnpm" # don't go through corepack
       "awscli"
       "bitwarden-cli"
       "borders" # jankyBorders
@@ -62,14 +61,17 @@
       "dbmate" # database migration tool / cli
       "docker" # cli / deamen only
       "eksctl"
+      "flock" # file locking
       "gh" # Github CLI
       "jwt-cli"
       "k9s"
       "kubectl"
       "kubectx"
       "libiconv" # rnix-lsp
+      "minikube"
       "nvm" # nodejs version manager
       "pulumi"
+      "showkey"
       "supabase" # CLI Note: nixpkgs has not been updated to v2 yet
       "supabase/homebrew-packages/supa-admin-cli"
       "tmuxp" # sesion loader for tmux
