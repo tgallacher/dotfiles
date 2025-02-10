@@ -34,26 +34,43 @@ return {
     end,
   },
 
+  -- {
+  --   "OXY2DEV/markview.nvim",
+  --   lazy = false, -- Recommended; already lazy-loaded inside plugin
+  --   -- ft = "markdown", -- If you decide to lazy-load anyway
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "nvim-tree/nvim-web-devicons",
+  --   },
+  --   opts = function()
+  --     local presets = require("markview.presets")
+  --
+  --     return {
+  --       markdown = {
+  --         headings = presets.headings.marker,
+  --         horizontal_rules = presets.horizontal_rules.thick,
+  --       },
+  --       preview = {
+  --         icon_provider = "devicons",
+  --       },
+  --     }
+  --   end,
+  -- },
   {
-    "OXY2DEV/markview.nvim",
-    lazy = false, -- Recommended; already lazy-loaded inside plugin
-    -- ft = "markdown", -- If you decide to lazy-load anyway
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-    opts = function()
-      local presets = require("markview.presets")
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+    config = function(_, opts)
+      local md = require("render-markdown")
+      local cmp = require("cmp")
 
-      return {
-        markdown = {
-          headings = presets.headings.marker,
-          horizontal_rules = presets.horizontal_rules.thick,
-        },
-        preview = {
-          icon_provider = "devicons",
-        },
-      }
+      md.setup(opts)
+
+      -- cmp.setup.buffer({
+      --   sources = { name = "render-markdown" },
+      -- })
     end,
   },
 
