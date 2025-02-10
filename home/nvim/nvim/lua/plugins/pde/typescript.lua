@@ -37,10 +37,10 @@ return {
       vim.env.ESLINT_D_PPID = vim.fn.getpid()
       return vim.tbl_deep_extend("force", opts, {
         linters_by_ft = {
-          typescript = { "eslint" },
-          javascript = { "eslint" },
-          typescriptreact = { "eslint" },
-          javascriptreact = { "eslint" },
+          -- typescript = { "eslint" },
+          -- javascript = { "eslint" },
+          -- typescriptreact = { "eslint" },
+          -- javascriptreact = { "eslint" },
         },
       })
     end,
