@@ -151,16 +151,16 @@ return {
 
       --stylua: ignore start
       vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, {desc = "[H]arpoon [A]dd File" })
-      vim.keymap.set("n", "<leader>ht", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, {desc = "[H]arpoon [T]oggle File Menu" })
+      vim.keymap.set("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, {desc = "[H]arpoon [T]oggle File Menu" })
 
-      vim.keymap.set("n", "<leader>hy", function() harpoon:list():select(1) end, {desc = "Open Harpoon File 1" })
-      vim.keymap.set("n", "<leader>hu", function() harpoon:list():select(2) end, {desc = "Open Harpoon File 2" })
-      vim.keymap.set("n", "<leader>hi", function() harpoon:list():select(3) end, {desc = "Open Harpoon File 3" })
-      vim.keymap.set("n", "<leader>ho", function() harpoon:list():select(4) end, {desc = "Open Harpoon File 4" })
-      vim.keymap.set("n", "<leader>hp", function() harpoon:list():select(5) end, {desc = "Open Harpoon File 5" })
+      vim.keymap.set("n", "<leader>ht", function() harpoon:list():select(1) end, {desc = "Open Harpoon File 1" })
+      vim.keymap.set("n", "<leader>hr", function() harpoon:list():select(2) end, {desc = "Open Harpoon File 2" })
+      vim.keymap.set("n", "<leader>he", function() harpoon:list():select(3) end, {desc = "Open Harpoon File 3" })
+      vim.keymap.set("n", "<leader>hw", function() harpoon:list():select(4) end, {desc = "Open Harpoon File 4" })
+      vim.keymap.set("n", "<leader>hq", function() harpoon:list():select(5) end, {desc = "Open Harpoon File 5" })
 
-      vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end, {desc = "Harpoon jump to PREV buffer" })
-      vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end, {desc = "Harpoon jump to NEXT buffer" })
+      vim.keymap.set("n", "<C-m>", function() harpoon:list():prev() end, {desc = "Harpoon jump to PREV buffer" })
+      vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end, {desc = "Harpoon jump to NEXT buffer" })
       --stylua: ignore end
     end,
   },
