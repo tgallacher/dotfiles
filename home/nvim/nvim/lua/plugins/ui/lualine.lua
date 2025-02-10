@@ -65,6 +65,16 @@ return {
             { "mode" },
           },
           lualine_b = {
+            {
+              "diagnostics",
+              sources = { "nvim_lsp", "nvim_diagnostic" },
+              sections = { "error", "warn" },
+              symbols = { error = " ", warn = " " },
+              colored = true,
+              update_in_insert = false,
+              always_visible = true,
+            },
+
             harpoon,
             -- {
             --   "buffers",
@@ -115,17 +125,7 @@ return {
               icon = "󰘬",
             },
           },
-          lualine_y = {
-            {
-              "diagnostics",
-              sources = { "nvim_lsp", "nvim_diagnostic" },
-              sections = { "error", "warn" },
-              symbols = { error = " ", warn = " " },
-              colored = true,
-              update_in_insert = false,
-              always_visible = true,
-            },
-          },
+          lualine_y = {},
           lualine_z = {
             {
               "filetype",
