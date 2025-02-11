@@ -23,12 +23,11 @@ return {
   },
 
   -- TODO: This is a todo
-
   -- TODO(scope): This is a todo
-
   -- TODO (scope): This is a todo
-
-  -- TODO(): This is a todo
+  -- WARN(tomg): This is a warning
+  -- FIXME: This is a fixme
+  -- todo: This is a lowercase todo
 
   { -- Highlight todo, notes, etc in comments
     "folke/todo-comments.nvim",
@@ -37,30 +36,33 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       signs = false,
-      -- highlight = {
-      --   pattern = [[\<(KEYWORDS)\s\?(\([-\s[:alnum:]_]*\))\?:]], -- FIXME: Not working; getting E55 unmatch \) when run in cmd mode
-      -- },
+      -- TODO: make case-insensitive, `\c` flag doesn't seem to work below
+      highlight = {
+        -- vimgrep regex, supporting the pattern TODO(name):
+        pattern = [[.*<((KEYWORDS)\s*%(\(.{-1,}\))?):\c]],
+      },
       search = {
-        --   args = {
-        --     "--color=never",
-        --     "--no-heading",
-        --     "--with-filename",
-        --     "--line-number",
-        --     "--column",
-        --     "--ignore-case", -- FIXME: doesn't work
-        --   },
-        pattern = [[\b(KEYWORDS)\s*?(\([-\s[:alnum:]_]+\))?:]],
+        command = "rg",
+        args = {
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--ignore-case",
+        },
+        -- ripgrep regex, supporting the pattern TODO(name):
+        pattern = [[\b(KEYWORDS)(\(\w*\))*:]],
       },
     },
     config = function(_, opts)
       local todo_comments = require("todo-comments")
+      todo_comments.setup(opts)
 
       -- stylua: ignore start
       vim.keymap.set("n", "]t", function() todo_comments.jump_next() end, { desc = "Next [T]odo comment" })
       vim.keymap.set("n", "[t", function() todo_comments.jump_prev() end, { desc = "Prev [T]odo comment" })
       -- stylua: ignore end
-
-      todo_comments.setup(opts)
     end,
   },
 
