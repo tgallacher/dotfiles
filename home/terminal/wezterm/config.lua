@@ -18,9 +18,9 @@ return {
     bottom = 0,
   },
   -- Fonts
-  font = wezterm.font("JetBrains Mono", { weight = "Regular" }),
+  font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Regular" }),
   font_size = 14,
-  line_height = 1.10,
+  line_height = 1.00,
   use_dead_keys = false,
   -- Appearance
   hide_tab_bar_if_only_one_tab = true,
