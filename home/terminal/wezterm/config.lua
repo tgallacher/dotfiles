@@ -20,7 +20,7 @@ return {
   -- Fonts
   font = wezterm.font("JetBrains Mono", { weight = "Regular" }),
   font_size = 14,
-  line_height = 1.00,
+  line_height = 1.10,
   use_dead_keys = false,
   -- Appearance
   hide_tab_bar_if_only_one_tab = true,
@@ -36,9 +36,9 @@ return {
       action = wezterm.action.DisableDefaultAssignment,
     },
     {
-      key = "r",
-      mods = "CMD|SHIFT",
-      action = wezterm.action.ReloadConfiguration,
+      key = "3",
+      mods = "ALT",
+      action = wezterm.action.SendString("#"),
     },
   },
 }
