@@ -40,5 +40,20 @@ return {
       mods = "ALT",
       action = wezterm.action.SendString("#"),
     },
+    {
+      key = "c",
+      mods = "SUPER",
+      action = wezterm.action.CopyTo("Clipboard"),
+    },
+    {
+      key = "v",
+      mods = "SUPER",
+      action = wezterm.action.PasteFrom("Clipboard"),
+    },
+    {
+      key = "x",
+      mods = "SUPER",
+      action = wezterm.action.CloseCurrentTab({ confirm = true }),
+    },
   },
 }
