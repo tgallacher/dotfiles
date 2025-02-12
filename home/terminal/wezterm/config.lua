@@ -12,8 +12,8 @@ return {
   use_ime = false,
   window_decorations = "RESIZE | MACOS_FORCE_DISABLE_SHADOW",
   window_padding = {
-    left = 0,
-    right = 0,
+    left = "0.5cell",
+    right = "0.5cell",
     top = "0.25cell",
     bottom = 0,
   },
