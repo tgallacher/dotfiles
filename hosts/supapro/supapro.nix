@@ -53,8 +53,6 @@
       "supabase/tap" # CLI
     ];
     brews = [
-      # "pnpm" # don't go through corepack
-      "awscli"
       "bitwarden-cli"
       "borders" # jankyBorders
       "common-fate/granted/granted" # aws profile switcher
@@ -71,10 +69,8 @@
       "minikube"
       "nvm" # nodejs version manager
       "pulumi"
-      "showkey"
       "supabase" # CLI Note: nixpkgs has not been updated to v2 yet
       "supabase/homebrew-packages/supa-admin-cli"
-      "tmuxp" # sesion loader for tmux
       "trash" # nvim-tree
       "ykman" # yubikey manager
       {
