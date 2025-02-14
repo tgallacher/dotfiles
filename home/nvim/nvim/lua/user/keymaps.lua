@@ -33,6 +33,11 @@ vim.keymap.set("n", "<S-Right>", ":vertical resize -2<CR>", { desc = "[R]esize b
 -- vim.keymap.set("n", "<TAB>", ":bnext<CR>", { desc = "[b]uffer: switch to one on right" })
 -- vim.keymap.set("n", "<S-TAB>", ":bprevious<CR>", { desc = "[b]uffer: switch to one on left" })
 
+-- == Navigate tabs
+vim.keymap.set("n", "<leader>tn", ":tabnext<cr>", { desc = "[t]ab [n]ext" })
+vim.keymap.set("n", "<leader>tp", ":tabprevious<cr>", { desc = "[t]ab [p]revious" })
+vim.keymap.set("n", "<leader>tc", ":tabclose<cr>", { desc = "[t]ab [c]revious" })
+
 -- == Misc
 vim.keymap.set("n", "<localleader>X", ":!chmod +x %<CR>", { desc = "Make file e[X]ecutable" })
 vim.keymap.set("n", "]<Space>", "o<Esc>", { desc = "" }) -- Insert blank line below
