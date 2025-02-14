@@ -17,6 +17,7 @@ return {
     --  cn - discard both changes
     --
     "rhysd/conflict-marker.vim",
+    enabled = false,
     init = function()
       -- Set the conflict marker highlight group to an empty string
       vim.g.conflict_marker_highlight_group = ""
@@ -34,6 +35,11 @@ return {
         highlight ConflictMarkerEnd guifg=#54546D
       ]])
     end,
+  },
+
+  {
+    "sindrets/diffview.nvim",
+    event = "VeryLazy",
   },
 
   { -- Embedded Git commands inside neovim
