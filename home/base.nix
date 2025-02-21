@@ -77,7 +77,7 @@
   };
 
   programs.lazygit = {
-    enable = true;
+    enable = false;
     package = upkgs.lazygit;
     # FIXME: with $XDG_CONFIG being exported this settings file isn't being put in the right place, i.e. XDG_CONFIG/lazygit
     # This also means that lazy git isn't properly loading any of these changes...

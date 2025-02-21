@@ -24,6 +24,7 @@ vim.api.nvim_create_autocmd("TermEnter", {
 
 return {
   "kdheepak/lazygit.nvim",
+  enabled = false,
   cmd = {
     "LazyGit",
     "LazyGitConfig",
@@ -34,7 +35,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  config = function()
+  init = function()
     vim.g.lazygit_floating_window_use_plenary = 0
     vim.g.lazygit_floating_window_scaling_factor = 0.90
     vim.g.lazygit_floating_window_border_chars = { "", "", "", "", "", "", "", "" }
