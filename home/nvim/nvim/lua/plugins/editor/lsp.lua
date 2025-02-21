@@ -204,4 +204,17 @@ return {
     opts = {},
     config = function(_, opts) require'lsp_signature'.setup(opts) end
   },
+
+  {
+    "SmiteshP/nvim-navic",
+    opts = {
+      lsp = {
+        auto_attach = true,
+        preference = { "ts_ls" },
+      }
+    },
+    init = function ()
+      vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+    end
+  }
 }
