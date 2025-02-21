@@ -44,6 +44,9 @@ return {
 
   { -- Embedded Git commands inside neovim
     "tpope/vim-fugitive",
+    dependencies = {
+      "tpope/vim-rhubarb", -- enables :GBrowse for opening within github
+    },
     init = function()
       vim.keymap.set("n", "<leader>gs", ":Git<CR>", { desc = "[g]it [s]tatus" })
       vim.keymap.set("n", "<leader>gp", ":Git push<CR>", { desc = "[g]it [p]ush" })
