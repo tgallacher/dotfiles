@@ -9,9 +9,6 @@ return {
       model = "gpt-4o-mini",
       max_tokens = 500,
     },
-    openai_edit_params = {
-      model = "gpt-4o-mini",
-    },
   },
   config = function(_, opts)
     require("chatgpt").setup(opts)

@@ -79,8 +79,8 @@ return {
     --  - ci'  - [C]hange [I]nside [']quote
     "echasnovski/mini.ai",
     event = "VeryLazy",
-    version = false, -- main branch
-    -- source: LazyVim
+    version = false, -- main branch, recommended
+    -- source: https://www.lazyvim.org/plugins/coding
     opts = function()
       local ai = require("mini.ai")
 
@@ -104,6 +104,14 @@ return {
           U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
         },
       }
+    end,
+    config = function(_, opts)
+      require("mini.ai").setup(opts)
+      --   LazyVim.on_load("which-key.nvim", function()
+      --     vim.schedule(function()
+      --       LazyVim.mini.ai_whichkey(opts)
+      --     end)
+      --   end)
     end,
   },
 
