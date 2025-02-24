@@ -49,8 +49,8 @@ return {
     },
     init = function()
       vim.keymap.set("n", "<leader>gs", ":Git<CR>", { desc = "[g]it [s]tatus" })
-      vim.keymap.set("n", "<leader>gp", ":Git push<CR>", { desc = "[g]it [p]ush" })
-      vim.keymap.set("n", "<leader>gP", ":Git pull<CR>", { desc = "[g]it [P]ull" })
+      vim.keymap.set("n", "<leader>gpp", ":Git push<CR>", { desc = "[g]it [p]ush" })
+      vim.keymap.set("n", "<leader>gpl", ":Git pull<CR>", { desc = "[g]it [p]u[l]l" })
       vim.keymap.set("n", "<leader>gf", ":Git fetch<CR>", { desc = "[g]it [f]etch" })
       vim.keymap.set("n", "<leader>gcb", ":Git checkout -b ", { desc = "[g]it [c]heckout [b]ranch" })
       vim.keymap.set("n", "<leader>gco", ":Git checkout ", { desc = "[g]it [c]heck[o]ut" })
@@ -61,20 +61,18 @@ return {
       vim.keymap.set(
         "n",
         "<leader>gl",
-        ":Git log -30 --abbrev-commit --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'<cr>",
-        { desc = "[g]it [l]og (30 commits)" }
+        ":Git log -50 --abbrev-commit --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'<cr>",
+        { desc = "[g]it [l]og (50 commits)" }
       )
 
       vim.keymap.set("n", "<localleader>gb", ":Git blame<CR>", { desc = "[g]it [b][b]lame" })
       vim.keymap.set("n", "<localleader>gd", ":Gvdiffsplit<CR>", { desc = "[g]it [D]iff" })
-      -- vim.keymap.set("n", "<localleader>gcb", function()
-      --   local filepath = vim.api.nvim_buf_get_name(0)
-      --   local handle = io.popen("git log --abbrev-commit --no-decorate --pretty='format:%cs: %h -%d %s (%cr) <%an>' " .. filepath)
-      --   if not handle then; return end
-      --
-      --   local result = handle:read("*a") -- Read all output
-      --   handle:close()
-      -- end, { desc = "[g]it [c]ommits [b]uffer" })
+      vim.keymap.set(
+        "n",
+        "<localleader>glc",
+        ":Git log --abbrev-commit --oneline -100 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' -- %<CR>",
+        { desc = "[g]it [c]ommits for current [b]uffer" }
+      )
     end,
   },
 
