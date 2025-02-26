@@ -159,10 +159,12 @@ in {
 
       ##
       ## Apps
+      ## Note: get these names by `ll /Applications`
       ##################################################
       hyper - t : open -a ${vars.terminal}
       hyper - b : open -a "Brave Browser.app"
       hyper - d : open -a "Notion.app"
+      hyper - s : open -a "Slack.app"
     '';
   };
 
