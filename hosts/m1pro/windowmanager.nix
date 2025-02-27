@@ -82,8 +82,6 @@ in {
     enable = true;
     package = pkgs.skhd;
     skhdConfig = ''
-      default < 7 : open 'https://google.com'
-
       ##
       ## Focus
       ##################################################
