@@ -5,7 +5,7 @@ local servers = {
   },
   -- https://github.com/emmetio/emmet
   emmet_ls = {
-    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
+    filetypes = { "html", "css", "sass", "scss", "less" },
     init_options = {
       html = {
         options = { ["bem.enabled"] = true },
