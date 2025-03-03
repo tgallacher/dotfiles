@@ -1,4 +1,5 @@
 {self, ...}: {
+  # https://blog.gitbutler.com/how-git-core-devs-configure-git/
   programs.git = {
     enable = true;
     aliases = {
@@ -10,15 +11,14 @@
       dwdiff = "!f() { git diff $@ | dwdiff --diff-input -P -c | less -R; }; f";
       plog = "!l() { git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit $@; }; l";
       plog10 = "plog -10";
-      p10 = "plog -10";
-      p20 = "plog -20";
+      p = "plog -";
       bls = "branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate";
     };
     delta = {
       enable = true;
       options = {
         navigate = true; # use n and N to move between diff sections
-        light = false; # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+        light = false; # light mode?
         side-by-side = true;
         line-numbers = true;
       };
@@ -26,23 +26,39 @@
     extraConfig = {
       # interactive = { diffFilter = "delta --color-only"; };
       advice.skippedCherryPicks = false;
+      branch.sort = "-committerdate";
+      # column.ui = "auto";
       core.editor = "vim";
+      commit.verbose = false; # show diff patch in commit message as comment; disable as we use vim-fugitive
+      # re-apply rebase choice if it comes up again
+      rerere = {
+        enables = true;
+        autoupdate = true;
+      };
       diff = {
-        colorMoved = "default";
+        algorithm = "histogram";
+        colorMoved = "plain";
+        mnemonicPrefix = true;
+        renames = true;
         submodule = "log"; # show submodule changes + commits `<` commits coming in from remote; `>` commits needing pushed to remote
       };
+      fetch = {
+        prune = true;
+        pruneTags = true;
+        all = true;
+      };
       init.defaultBranch = "main";
-      merge.conflictstyle = "diff3";
+      merge.conflictstyle = "diff3"; # (just 'diff3' if git version < 2.3)
+      pull.rebase = true;
       push = {
         default = "simple";
         autoSetupRemote = true;
-      };
-      pull = {
-        rebase = true;
+        followTags = false; # auto push tags that are on local but not on remote
       };
       rebase.instructionFormat = "(%an) %s";
       status.submodulesummary = true; # show a short summary of submodule changes
       submodule.recurse = true; # keep submodule state sync'd across branches
+      tag.sort = "version:refname";
       credential = {
         "https://github.com" = {
           helper = "store";
