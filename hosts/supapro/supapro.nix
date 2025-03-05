@@ -53,6 +53,7 @@
       "supabase/tap" # CLI
     ];
     brews = [
+      "eza" # `ls` replacement
       "bitwarden-cli"
       "borders" # jankyBorders
       "common-fate/granted/granted" # aws profile switcher

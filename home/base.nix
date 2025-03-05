@@ -7,13 +7,14 @@
 
   # versatile cli tool; also required for telescope
   programs.fzf = {
+    package = upkgs.fzf;
     enable = true;
     enableZshIntegration = true;
-    tmux.enableShellIntegration = false; # we'll use sessionizer manually
-    # NOTE: Requires `fd` to be installed
-    changeDirWidgetCommand = "fd --type=d --hidden --strip-cwd-prefix --exclude .git"; # <M-c> keybind
-    defaultCommand = "fd --hidden --strip-cwd-prefix --exclude .git";
-    fileWidgetCommand = "fd --hidden --strip-cwd-prefix --exclude .git"; # <C-t> keybind
+    tmux.enableShellIntegration = false; # use fzf-tmux? -- we'll use sessionizer manually
+    defaultCommand = "${pkgs.fd}/bin/fd --hidden --strip-cwd-prefix --exclude .git";
+    changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type=d --hidden --strip-cwd-prefix --exclude .git"; # <M-c> keybind
+    fileWidgetCommand = "${pkgs.fd}/bin/fd --hidden --strip-cwd-prefix --exclude .git"; # <C-t> keybind
+    # historyWidgetOptions = []; # <C-r> keybind
   };
 
   programs.yazi = {
@@ -44,10 +45,11 @@
       gnumake
       pyenv
       alejandra # Nix formatter
-      # stylua # Nix formatter
+      # stylua # Lua formatter
+      rustc
+      go
       # CLI
       ripgrep
-      fd # nvim telescope uses this
       btop # Resource manager
       bat # cat with wings
       curl # Fetch stuff
@@ -59,8 +61,6 @@
       glib # require GIO for NvimTree
       iperf # Network performance
       tldr # Man docs helper
-      rustc
-      go
       # File Management
       rsync # File transfer
       unzip # Zip files
@@ -73,6 +73,7 @@
       # CLIs
       tree
       python310
+      fd # nvim telescope uses this
       ;
   };
 

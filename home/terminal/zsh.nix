@@ -185,9 +185,9 @@ print_pid_cwd() {
         # "ohmyzsh/ohmyzsh               path:plugins/docker"
         # "ohmyzsh/ohmyzsh               path:plugins/terraform"
         # "romkatv/zsh-bench             kind:path"
-        "djui/alias-tips"
         "zsh-users/zsh-completions     path:src kind:fpath"
         "belak/zsh-utils               path:completion"
+        "djui/alias-tips" # annoy me when I forget there is an alias for a command
 
         ### Prompts
         ### Framework: zsh-utils
