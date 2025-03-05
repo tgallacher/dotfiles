@@ -31,8 +31,7 @@ in {
       ### General
       yabai -m rule --add title=".*update.*" manage=off  # don't manage update version notifications
 
-      yabai -m rule --add app="^kitty" manage=off
-      yabai -m rule --add app="^Bitwarden" manage=off
+      yabai -m rule --add title="^Bitwarden" manage=off
       yabai -m rule --add app="^OrbStack" manage=off
       yabai -m rule --add app="^Spotify" manage=off
 
