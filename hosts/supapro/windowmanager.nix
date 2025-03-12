@@ -87,7 +87,7 @@ in {
       cmd + ctrl          - x : yabai -m space --mirror x-axis                      # flip along x-axis
       cmd + ctrl          - e : yabai -m space --balance                            # rebalance windows on screen
       cmd + ctrl          - m : yabai -m window --toggle zoom-fullscreen            # toggle fullscreen
-      cmd + ctrl          - t : yabai -m window --toggle float --grid 4:4:1:1:2:2 ${ # toggle window float
+      cmd + ctrl          - t : yabai -m window --toggle float --grid 10:10:2:1:6:8 ${ # toggle window float
         if hasSketchybar
         then "; sketchybar --trigger window_focus"
         else ""

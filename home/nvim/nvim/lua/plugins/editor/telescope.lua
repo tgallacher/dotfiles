@@ -75,6 +75,7 @@ return {
       vim.keymap.set("n", "<leader>fr", function() builtin.oldfiles(vim.tbl_deep_extend("force", { only_cwd = true }, dops)) end, { desc = "[f]ind [r]ecent Files" })
       vim.keymap.set("n", "<leader>fg", function() builtin.live_grep(dops) end, { desc = "[f]ind by live [g]rep" })
       vim.keymap.set("n", "<leader>fd", function() builtin.diagnostics(dops) end, { desc = "[f]ind [d]iagnostics" })
+      vim.keymap.set("n", "<leader>fq", function() builtin.quickfix() end, { desc = "[f]ind in [q]uickfix list" })
 
       vim.keymap.set("n", "<leader>rt", builtin.resume, { desc = "[r]esume [t]elescope" })
       vim.keymap.set("n", "<leader>,", builtin.buffers, { desc = "[,] show open buffers" })
