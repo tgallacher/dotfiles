@@ -51,7 +51,8 @@ return {
 
       return {
         options = {
-          theme = "auto",
+          -- theme = "auto",
+          theme = "tokyonight",
           icons_enabled = true,
           component_separators = { left = "", right = "" }, -- remove default separators
           section_separators = { left = "", right = "" }, -- remove default separators

@@ -44,11 +44,13 @@ return {
   {
 
     "folke/tokyonight.nvim",
-    enabled = false,
+    enabled = true,
     lazy = false,
     priority = 1000,
     opts = {
-      -- style = "night",
+      style = "night",
+      dim_inactive = true,
+      lualine_bold = true,
       --  on_colors = function(colors)
       --    -- colors.border = "red"
       -- end,
@@ -60,6 +62,7 @@ return {
 
   {
     "rebelot/kanagawa.nvim",
+    enabled = false,
     opts = {
       dimInactive = true,
       background = { dark = "dragon" },
