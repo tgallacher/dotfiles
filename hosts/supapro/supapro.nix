@@ -81,6 +81,7 @@
       }
     ];
     casks = [
+      "mullvadvpn"
       "aptakube"
       "aws-vault" # dev secrets management
       "bitwarden"
