@@ -55,6 +55,7 @@
     brews = [
       "eza" # `ls` replacement
       "bitwarden-cli"
+      "mtr" # traceroute alternative
       "borders" # jankyBorders
       "common-fate/granted/granted" # aws profile switcher
       "dbmate" # database migration tool / cli
