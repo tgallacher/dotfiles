@@ -17,30 +17,29 @@ return {
     --  cn - discard both changes
     --
     "rhysd/conflict-marker.vim",
-    enabled = false,
+    enabled = true,
     init = function()
-      -- Set the conflict marker highlight group to an empty string
-      vim.g.conflict_marker_highlight_group = ""
-      -- Include text after begin and end markers
-      vim.g.conflict_marker_begin = "^<<<<<<< .*$"
-      vim.g.conflict_marker_end = "^>>>>>>> .*$"
+      local colors = require("tokyonight.colors").setup()
+      -- -- Set the conflict marker highlight group to an empty string
+      -- vim.g.conflict_marker_highlight_group = ""
+      -- -- Include text after begin and end markers
+      -- vim.g.conflict_marker_begin = "^<<<<<<< .*$"
+      -- vim.g.conflict_marker_end = "^>>>>>>> .*$"
       -- FIXME: adjust the colours so they match the current colorscheme
       -- see https://github.com/rhysd/conflict-marker.vim/issues/17
-      -- Highlight settings
-      vim.cmd([[
-        highlight ConflictMarkerBegin guifg=#54546D
-        highlight ConflictMarkerOurs guibg=#363646
-        highlight ConflictMarkerSeparator guifg=#54546D
-        highlight ConflictMarkerTheirs guibg=#2B3328
-        highlight ConflictMarkerEnd guifg=#54546D
-      ]])
+      vim.api.nvim_set_hl(0, "ConflictMarkerBegin", { fg = colors.git.change, bg = colors.bg_dark1 })
+      vim.api.nvim_set_hl(0, "ConflictMarkerOurs", { fg = colors.git.delete, bg = colors.bg_dark1 })
+      -- vim.api.nvim_set_hl(0, "ConflictMarkerSeparator", { bg = nil })
+      -- vim.api.nvim_set_hl(0, "ConflictMarkerCommonAncestorsHunk", { bg = colors.blue7 })
+      vim.api.nvim_set_hl(0, "ConflictMarkerTheirs", { fg = colors.git.add, bg = colors.bg_dark1 })
+      vim.api.nvim_set_hl(0, "ConflictMarkerEnd", { fg = colors.git.change, bg = colors.bg_dark1 })
     end,
   },
 
-  {
-    "sindrets/diffview.nvim",
-    event = "VeryLazy",
-  },
+  -- {
+  --   "sindrets/diffview.nvim",
+  --   event = "VeryLazy",
+  -- },
 
   { -- Embedded Git commands inside neovim
     "tpope/vim-fugitive",
