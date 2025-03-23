@@ -2,9 +2,7 @@ local servers = {
   -- WARNING: Large files may experience slow perf
   -- see: https://github.com/oxalica/nil/issues/83
   -- note: this may have been fixed in nvim 0.9.1+
-  nil_ls = {
-    filetypes = { "nix" },
-  },
+  nil_ls = {},
 }
 
 return {
@@ -34,8 +32,7 @@ return {
   { -- Autoformat
     "stevearc/conform.nvim",
     opts = function(_, opts)
-      -- note: `alejandra` installed using nix
-      return vim.tbl_deep_extend("force", opts, { formatters_by_ft = { nix = { "alejandra" } } })
+      return vim.tbl_deep_extend("force", opts, { formatters_by_ft = { nix = { "nixfmt" } } })
     end,
   },
 }
