@@ -1,10 +1,10 @@
--- NOTE: this file is auto-reloaded on save
+-- INFO: this file is auto-reloaded on save
 local wezterm = require("wezterm")
 
 -- see: https://wezterm.org/config/lua/wezterm
 return {
-  color_scheme = "Tokyo Night",
   -- color_scheme = "Kanagawa Dragon (Gogh)",
+  color_scheme = "Tokyo Night",
   disable_default_key_bindings = true, -- lets us use alternative file keymap, etc
   enable_kitty_keyboard = false,
   check_for_updates = false,
