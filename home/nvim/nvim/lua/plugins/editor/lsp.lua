@@ -117,6 +117,7 @@ return {
         automatic_installation = true,
         handlers = {
           function(server_name)
+            opts.servers = opts.servers or {}
             local server = opts.servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
