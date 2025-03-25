@@ -77,11 +77,10 @@ vim.opt.smoothscroll = true
 
 -- Set fold settings
 vim.opt.foldenable = true
-vim.opt.smoothscroll = true
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldtext = ""
-vim.foldexpr = "nvim_treesitter#foldexpr()" -- utilize Treesitter folds
+-- vim.foldexpr = "nvim_treesitter#foldexpr()" -- utilize Treesitter folds
 -- Place a column line
 -- vim.opt.colorcolumn = "120"
 -- spelling

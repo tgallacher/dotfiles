@@ -200,13 +200,14 @@ return {
 
   {
     "ray-x/lsp_signature.nvim",
-    event = "VeryLazy",
+    event = "InsertEnter",
     opts = {},
     config = function(_, opts) require'lsp_signature'.setup(opts) end
   },
 
   {
     "SmiteshP/nvim-navic",
+    event = "InsertEnter",
     opts = {
       lsp = {
         auto_attach = true,

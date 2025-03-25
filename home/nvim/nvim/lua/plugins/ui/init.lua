@@ -3,7 +3,7 @@ return {
     "szw/vim-maximizer",
     event = "InsertEnter",
     keys = {
-      { "<leader>sm", ":MaximizerToggle<cr>", { desc = "[S]plit [M]aximise window toggle" } },
+      { "<leader>sm", ":MaximizerToggle<cr>", { desc = "[s]plit [m]aximise window toggle" } },
     },
   },
 
@@ -16,7 +16,6 @@ return {
   { -- visualise hex codes
     "norcalli/nvim-colorizer.lua",
     event = { "BufReadPre", "BufNewFile" },
-    -- event = "InsertEnter",
     config = function()
       require("colorizer").setup()
     end,
@@ -140,32 +139,55 @@ return {
   },
 
   {
-    "lukas-reineke/indent-blankline.nvim",
-    enabled = false,
-    event = { "BufReadPre", "BufNewFile" },
-    main = "ibl",
-    opts = {},
-  },
-
-  {
     "kevinhwang91/nvim-ufo",
-    enabled = false,
     event = "BufEnter",
     dependencies = {
       "kevinhwang91/promise-async",
     },
     config = function()
-      vim.bo.foldcolumn = "0"
-      vim.bo.foldlevel = 99
-      vim.bo.foldlevelstart = 99
-      vim.bo.foldenable = true
+      local ufo = require("ufo")
 
-      --- @diagnostic disable: unused-local
-      require("ufo").setup({
-        provider_selector = function(_bufnr, _filetype, _buftype)
+      -- vim.o.foldmethod = "manual"
+      vim.o.foldcolumn = "1"
+      vim.o.foldlevel = 99
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+
+      ufo.setup({
+        close_fold_kinds_for_ft = {
+          default = { "imports", "comment", "region" },
+        },
+        open_fold_hl_timeout = 400,
+        enable_get_fold_virt_text = true,
+        preview = {
+          win_config = {
+            border = { "", "─", "", "", "", "─", "", "" },
+            winhighlight = "Normal:Folded",
+            winblend = 0,
+          },
+          mappings = {
+            scrollU = "<C-u>",
+            scrollD = "<C-d>",
+            jumpTop = "[",
+            jumpBot = "]",
+          },
+        },
+        provider_selector = function()
+          -- use treesitter for fold and not lsp
           return { "treesitter", "indent" }
         end,
       })
+
+      vim.keymap.set("n", "zR", ufo.openAllFolds)
+      vim.keymap.set("n", "zM", ufo.closeAllFolds)
+      vim.keymap.set("n", "zr", ufo.openFoldsExceptKinds)
+      vim.keymap.set("n", "zm", ufo.closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+      vim.keymap.set("n", "zk", function()
+        local winid = ufo.peekFoldedLinesUnderCursor()
+        if not winid then
+          vim.lsp.buf.hover()
+        end
+      end)
     end,
   },
 }
