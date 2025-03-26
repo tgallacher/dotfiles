@@ -78,7 +78,10 @@ return {
       vim.keymap.set("n", "<leader>fq", function() builtin.quickfix() end, { desc = "[f]ind in [q]uickfix list" })
 
       vim.keymap.set("n", "<leader>rt", builtin.resume, { desc = "[r]esume [t]elescope" })
-      vim.keymap.set("n", "<leader>,", builtin.buffers, { desc = "[,] show open buffers" })
+      vim.keymap.set("n", "<leader>,", function () builtin.buffers({
+        ignore_current_buffer = true ,
+        sort_lastused = true
+      }) end, { desc = "[,] show open buffers" })
 
       -- NOTE: not local command but use localleader to avoid conflict with Vim Fugitive
       vim.keymap.set("n", "<localleader>gs", builtin.git_status, { desc = "[g]it [s]tatus" })
