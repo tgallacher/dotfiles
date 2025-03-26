@@ -144,6 +144,8 @@ in {
       fn                 - k : ${upkgs.skhd}/bin/skhd -k "up"
       fn                 - l : ${upkgs.skhd}/bin/skhd -k "right"
 
+
+
       ##
       ## Services
       ##################################################
@@ -164,6 +166,14 @@ in {
       hyper - b : open -a "Brave Browser.app"
       hyper - d : open -a "Notion.app"
       hyper - s : open -a "Slack.app"
+      hyper - l : open -a "Linear.app"
+
+      # Survice Apple keyboards...
+      fn - t : open -a ${vars.terminal}
+      fn - b : open -a "Brave Browser.app"
+      fn - d : open -a "Notion.app"
+      fn - s : open -a "Slack.app"
+      fn - l : open -a "Linear.app"
     '';
   };
 
