@@ -148,9 +148,9 @@ return {
       local ufo = require("ufo")
 
       -- vim.o.foldmethod = "manual"
-      vim.o.foldcolumn = "1"
+      vim.o.foldcolumn = "0" -- "0" disable the left most column
       vim.o.foldlevel = 99
-      vim.o.foldlevelstart = 99
+      vim.o.foldlevelstart = -1
       vim.o.foldenable = true
 
       ufo.setup({
