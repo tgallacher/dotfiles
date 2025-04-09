@@ -35,7 +35,7 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       signs = false,
-      -- TODO: make case-insensitive, `\c` flag doesn't seem to work below
+      -- FIXME: make case-insensitive, `\c` flag doesn't seem to work below
       highlight = {
         -- vimgrep regex, supporting the pattern TODO(name):
         pattern = [[.*<((KEYWORDS)\s*%(\(.{-1,}\))?):\c]],

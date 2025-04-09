@@ -1,6 +1,7 @@
 return {
   { -- LSP Configuration & Plugins
     "neovim/nvim-lspconfig",
+    version = "*",
     event = "InsertEnter",
     dependencies = {
       {-- Automatically install LSPs and related tools to stdpath for neovim
@@ -120,12 +121,13 @@ return {
         automatic_installation = true,
         handlers = {
           function(server_name)
-            opts.servers = opts.servers or {}
-            local server = opts.servers[server_name] or {}
+            local servers = opts.servers or {}
+            local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+            -- server.settings = (servers[server_name].settings or {}).settings
             require("lspconfig")[server_name].setup(server)
           end,
         },

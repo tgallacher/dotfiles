@@ -27,9 +27,9 @@ return {
       --
       return vim.tbl_deep_extend("force", opts, {
         linters_by_ft = {
-          sql = "sqlfluff",
-          mysql = "sqlfluff",
-          plsql = "sqlfluff",
+          sql = { "sqlfluff" },
+          mysql = { "sqlfluff" },
+          plsql = { "sqlfluff" },
         },
       })
     end,
@@ -51,9 +51,9 @@ return {
           },
         },
         formatters_by_ft = {
-          sql = "sqlfluff",
-          mysql = "sqlfluff",
-          plsql = "sqlfluff",
+          sql = { "sqlfluff" },
+          mysql = { "sqlfluff" },
+          plsql = { "sqlfluff" },
         },
       })
     end,
