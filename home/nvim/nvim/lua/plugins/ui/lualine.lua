@@ -52,14 +52,15 @@ return {
       return {
         options = {
           -- theme = "auto",
-          theme = "tokyonight",
+          -- theme = "tokyonight",
           icons_enabled = true,
           component_separators = { left = "", right = "" }, -- remove default separators
           section_separators = { left = "", right = "" }, -- remove default separators
           disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline", "winbar" },
           always_divide_middle = true,
           refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
-          globalstatus = vim.o.laststatus == 3,
+          -- globalstatus = vim.o.laststatus == 3,
+          globalstatus = false,
         },
         sections = {
           lualine_a = {

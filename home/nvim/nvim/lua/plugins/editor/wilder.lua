@@ -1,4 +1,4 @@
-local colors = require("tokyonight.colors").setup()
+-- local colors = require("tokyonight.colors").setup()
 
 return {
   {
@@ -64,8 +64,8 @@ return {
           highlighter = wilder.basic_highlighter(),
           highlights = {
             -- accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = "#C34043" } }),
-            accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = colors.blue, background = colors.bg_dark1 } }),
-            default = wilder.make_hl("WilderPmenu", "Pmenu", { { a = 1 }, { a = 1 }, { background = colors.bg_dark1 } }),
+            -- accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = colors.blue, background = colors.bg_dark1 } }),
+            -- default = wilder.make_hl("WilderPmenu", "Pmenu", { { a = 1 }, { a = 1 }, { background = colors.bg_dark1 } }),
           },
         })
       )
