@@ -14,7 +14,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, {  "markdown", "markdown_inline" })
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "markdown", "markdown_inline" })
       return opts
     end,
   },
@@ -22,7 +22,8 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, vim.list_extend(vim.tbl_keys(servers), {  "markdown-toc","markdownlint-cli2","prettierd" }))
+      opts.ensure_installed =
+        vim.list_extend(opts.ensure_installed, vim.list_extend(vim.tbl_keys(servers), { "markdown-toc", "markdownlint-cli2", "prettierd" }))
       return opts
     end,
   },
@@ -32,7 +33,7 @@ return {
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
         linters_by_ft = {
-          markdown = { "markdownlint-cli2" },
+          -- markdown = { "markdownlint-cli2" },
         },
       })
     end,
@@ -75,13 +76,8 @@ return {
     opts = {},
     config = function(_, opts)
       local md = require("render-markdown")
-      local cmp = require("cmp")
 
       md.setup(opts)
-
-      -- cmp.setup.buffer({
-      --   sources = { name = "render-markdown" },
-      -- })
     end,
   },
 
@@ -109,9 +105,7 @@ return {
           },
         },
         formatters_by_ft = {
-          -- md = { "prettierd" },
-          -- mdx = { "prettierd" },
-          ["markdown"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
+          markdown = { "prettier", "markdownlint-cli2", "markdown-toc" },
           ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
         },
       })
