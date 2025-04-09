@@ -61,7 +61,7 @@ return {
         --   results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
         --   preview = { "─", "│", "─", "", "", "┐", "┘", "" },
         -- },
-        prompt_title = false,
+        -- prompt_title = false,
         layout_config = {
           height = 0.8,
         },
@@ -80,7 +80,8 @@ return {
       vim.keymap.set("n", "<leader>rt", builtin.resume, { desc = "[r]esume [t]elescope" })
       vim.keymap.set("n", "<leader>,", function () builtin.buffers({
         ignore_current_buffer = true ,
-        sort_lastused = true
+        -- sort_lastused = true
+        sort_mru = true,
       }) end, { desc = "[,] show open buffers" })
 
       -- NOTE: not local command but use localleader to avoid conflict with Vim Fugitive
@@ -99,6 +100,8 @@ return {
           require("telescope.themes").get_dropdown({ winblend = 10, previewer = false, layout_config = { width = 0.6, height = 0.75 } })
         )
       end, { desc = "[f]uzzily [s]earch in current buffer" })
+
+      vim.keymap.set("n", "<leader>fm", ":Telescope marks", { desc = "[f]ind [m]marks" })
 
       -- Shortcut for searching your neovim configuration files
       vim.keymap.set("n", "<leader>sn", function()
