@@ -51,6 +51,8 @@
     # upkgs.uv # pip replacement + more
     # pkgs.poetry # pip replacement
     # pkgs.poethepoet # task runner for poetry
+
+    pkgs.parallel # utility for running cmds in parallel
   ];
 
   home.file.".hushlogin".text = ''# silence tty start up spam '';
@@ -59,10 +61,10 @@
     executable = true;
     text = ''
       #!/bin/sh
-      pkill -f "single $1"
-      osascript -e 'tell app "System Events" to display alert "AWS CLI" message "Touch your YubiKey" as critical' >/dev/null 2>&1 &
+      # pkill -f "single $1"
+      # osascript -e 'tell app "System Events" to display alert "AWS CLI" message "Touch your YubiKey" as critical' >/dev/null 2>&1 &
       otp=$(ykman oath accounts code --single "$1")
-      osascript -e 'tell app "System Events" to tell process "System Events" to click button "OK" of window 1' >/dev/null 2>&1
+      # osascript -e 'tell app "System Events" to tell process "System Events" to click button "OK" of window 1' >/dev/null 2>&1
       echo "''${otp}"
     '';
   };

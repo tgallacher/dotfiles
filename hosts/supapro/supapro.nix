@@ -82,7 +82,7 @@
       }
     ];
     casks = [
-      "mullvadvpn"
+      "mullvadvpn" # Is this causing keychain issues..
       "aptakube"
       "aws-vault" # dev secrets management
       "bitwarden"

@@ -7,10 +7,18 @@
       add_newline = true;
       git_commit.only_detached = false;
       git_metrics.disabled = false;
+      git_status.disabled = true;
+      hostname.disabled = true;
       # palette = "catppuccin_${flavour}";
       # format = ''$username$hostname$directory$git_branch$git_state$git_status $cmd_duration$line_break$character'';
       # right_format = ''$localip$kubernetes$docker_context$package$golang$lua$nodejs$pulumi$rust$terraform$python$nix_shell$aws$gcloud$direnv$sudo$container'';
-      format = "$all$hostname$directory$git_branch$git_commit$git_state$git_metrics$git_status";
+      format = pkgs.lib.concatStrings [
+        "$all"
+        "$line_break"
+        "$directory$git_branch$git_commit$git_metrics"
+        "$line_break"
+        "$character"
+      ];
       # container.format = "[$symbol \[$name\]]($style) ";
       # directory.style = "blue";
       # character = {
