@@ -13,8 +13,17 @@ local action = setmetatable({}, {
 })
 
 local servers = {
-  ts_ls = { enabled = false },
+  -- eslint = {
+  --   settings = {
+  --     useFlatConfig = false,
+  --     experimental = {
+  --       useFlatConfig = false,
+  --     },
+  --   },
+  -- },
+  ts_ls = { enabled = true },
   vtsls = {
+    enabled = false,
     -- explicitly add default filetypes, so that we can extend
     -- them in related extras
     filetypes = {
@@ -133,8 +142,8 @@ return {
         opts.ensure_installed,
         vim.list_extend(vim.tbl_keys(servers), {
           "prettierd", -- formatter
-          -- { "eslint_d", version = "14.3.0" }, -- linter
-          "eslint",
+          { "eslint_d", version = "14.3.0" }, -- linter
+          -- "eslint",
           "js-debug-adapter", -- dap
           "typescript-language-server", -- lsp
         })
@@ -157,8 +166,8 @@ return {
       vim.env.ESLINT_D_PPID = vim.fn.getpid()
       return vim.tbl_deep_extend("force", opts, {
         linters_by_ft = {
-          -- typescript = { "eslint" },
-          -- javascript = { "eslint" },
+          typescript = { "eslint_d" },
+          javascript = { "eslint_d" },
           -- typescriptreact = { "eslint" },
           -- javascriptreact = { "eslint" },
         },
