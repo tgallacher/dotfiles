@@ -18,23 +18,23 @@ return {
     --
     "rhysd/conflict-marker.vim",
     enabled = true,
-    init = function()
-      -- local colors = require("tokyonight.colors").setup()
-
-      -- -- Set the conflict marker highlight group to an empty string
-      -- vim.g.conflict_marker_highlight_group = ""
-      -- -- Include text after begin and end markers
-      -- vim.g.conflict_marker_begin = "^<<<<<<< .*$"
-      -- vim.g.conflict_marker_end = "^>>>>>>> .*$"
-      -- FIXME: adjust the colours so they match the current colorscheme
-      -- see https://github.com/rhysd/conflict-marker.vim/issues/17
-      -- vim.api.nvim_set_hl(0, "ConflictMarkerBegin", { fg = colors.git.change, bg = colors.bg_dark1 })
-      -- vim.api.nvim_set_hl(0, "ConflictMarkerOurs", { fg = colors.git.delete, bg = colors.bg_dark1 })
-      -- -- vim.api.nvim_set_hl(0, "ConflictMarkerSeparator", { bg = nil })
-      -- -- vim.api.nvim_set_hl(0, "ConflictMarkerCommonAncestorsHunk", { bg = colors.blue7 })
-      -- vim.api.nvim_set_hl(0, "ConflictMarkerTheirs", { fg = colors.git.add, bg = colors.bg_dark1 })
-      -- vim.api.nvim_set_hl(0, "ConflictMarkerEnd", { fg = colors.git.change, bg = colors.bg_dark1 })
-    end,
+    -- init = function()
+    -- local colors = require("tokyonight.colors").setup()
+    --
+    -- -- Set the conflict marker highlight group to an empty string
+    -- vim.g.conflict_marker_highlight_group = ""
+    -- -- Include text after begin and end markers
+    -- vim.g.conflict_marker_begin = "^<<<<<<< .*$"
+    -- vim.g.conflict_marker_end = "^>>>>>>> .*$"
+    -- FIXME: adjust the colours so they match the current colorscheme
+    -- see https://github.com/rhysd/conflict-marker.vim/issues/17
+    -- vim.api.nvim_set_hl(0, "ConflictMarkerBegin", { fg = colors.git.change, bg = colors.bg_dark1 })
+    -- vim.api.nvim_set_hl(0, "ConflictMarkerOurs", { fg = colors.git.delete, bg = colors.bg_dark1 })
+    -- -- vim.api.nvim_set_hl(0, "ConflictMarkerSeparator", { bg = nil })
+    -- -- vim.api.nvim_set_hl(0, "ConflictMarkerCommonAncestorsHunk", { bg = colors.blue7 })
+    -- vim.api.nvim_set_hl(0, "ConflictMarkerTheirs", { fg = colors.git.add, bg = colors.bg_dark1 })
+    -- vim.api.nvim_set_hl(0, "ConflictMarkerEnd", { fg = colors.git.change, bg = colors.bg_dark1 })
+    -- end,
   },
 
   -- {
