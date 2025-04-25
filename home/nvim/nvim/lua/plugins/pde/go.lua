@@ -1,3 +1,15 @@
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "go", "gomod", "gowork" },
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.expandtab = false
+
+    vim.opt_local.colorcolumn = "120"
+  end,
+})
+
 local servers = {
   gopls = {
     settings = {
@@ -50,29 +62,51 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
-      opts.ensure_installed =
-        vim.list_extend(opts.ensure_installed, vim.list_extend(vim.tbl_keys(servers), { "delve", "gomodifytags", "impl", "goimports", "gofumpt" }))
+      opts.ensure_installed = vim.list_extend(
+        opts.ensure_installed,
+        vim.list_extend(vim.tbl_keys(servers), {
+          "delve", -- debugger
+          "gomodifytags", -- binary to automate Go's Struct tags (e.g. json)
+          "impl",
+          "goimports", -- formatter
+          "gofumpt", -- formatter
+          "gotestsum",
+          "golines", -- formatter
+        })
+      )
       return opts
     end,
   },
 
-  {
+  { -- DAP integration
     "leoluz/nvim-dap-go",
     opts = {},
+    config = function()
+      require("dap-go").setup()
+    end,
   },
 
-  { "fredrikaverpil/neotest-golang" },
+  { -- Neotest Adaptor
+    "fredrikaverpil/neotest-golang",
+    version = "*",
+  },
 
   {
     "nvim-neotest/neotest",
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
         adapters = {
-          ["neotest-golang"] = {
-            -- Here we can set options for neotest-golang, e.g.
-            -- go_test_args = { "-v", "-race", "-count=1", "-timeout=60s" },
-            dap_go_enabled = true, -- requires leoluz/nvim-dap-go
-          },
+          require("neotest-golang")({
+            runner = "gotestsum", -- better json parsing for Neotest attach, etc
+            dap_go_enabled = false, -- requires "leoluz/nvim-dap-go"
+            go_test_args = {
+              "-v",
+              "-race",
+              "-count=1",
+              "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out", -- requires "andythigpen/nvim-coverage" to display in neovim
+            },
+            gotestsum_args = { "--format=standard-verbose" },
+          }),
         },
       })
     end,
@@ -110,7 +144,25 @@ return {
   { -- Autoformat
     "stevearc/conform.nvim",
     opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, { formatters_by_ft = { go = { "goimports", "gofumpt" } } })
+      return vim.tbl_deep_extend("force", opts, {
+        formatters_by_ft = {
+          go = { "goimports", "gofumpt", "golines" },
+        },
+      })
+    end,
+  },
+
+  { -- Automate adding Go tags to structs (e.g `json`)
+    "zgs225/gomodifytags.nvim",
+    cmd = { "GoAddTags", "GoRemoveTags", "GoInstallModifyTagsBin" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      transform = "camelcase",
+    },
+    config = function(_, opts)
+      require("gomodifytags").setup(opts)
     end,
   },
 }

@@ -60,6 +60,9 @@
       "common-fate/granted/granted" # aws profile switcher
       "dbmate" # database migration tool / cli
       "docker" # cli / deamen only
+      "devspace" # dev tool for interating on k8s apps
+      "protoc-gen-go" # protobuf tooling
+      "protoc-gen-go-grpc" # protobuf tooling
       "eksctl"
       "flock" # file locking
       "gh" # Github CLI
