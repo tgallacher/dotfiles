@@ -129,4 +129,17 @@ return {
       end,
     },
   },
+
+  { -- Github Integration
+    "pwntester/octo.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    -- opts = {},
+    config = function(_, opts)
+      require("octo").setup(opts)
+    end,
+  },
 }
