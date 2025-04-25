@@ -101,7 +101,7 @@ return {
         )
       end, { desc = "[f]uzzily [s]earch in current buffer" })
 
-      vim.keymap.set("n", "<leader>fm", ":Telescope marks", { desc = "[f]ind [m]marks" })
+      vim.keymap.set("n", "<leader>fm", ":Telescope marks<CR>", { desc = "[f]ind [m]marks" })
 
       -- Shortcut for searching your neovim configuration files
       vim.keymap.set("n", "<leader>sn", function()
