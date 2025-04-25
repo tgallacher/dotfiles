@@ -59,8 +59,7 @@ return {
           disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline", "winbar" },
           always_divide_middle = true,
           refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
-          -- globalstatus = vim.o.laststatus == 3,
-          globalstatus = false,
+          globalstatus = vim.o.laststatus == 3,
         },
         sections = {
           lualine_a = {
