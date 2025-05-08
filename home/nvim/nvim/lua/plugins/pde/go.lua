@@ -81,31 +81,33 @@ return {
   { -- DAP integration
     "leoluz/nvim-dap-go",
     opts = {},
-    config = function()
-      require("dap-go").setup()
+    config = function(_, opts)
+      require("dap-go").setup(opts)
     end,
-  },
-
-  { -- Neotest Adaptor
-    "fredrikaverpil/neotest-golang",
-    version = "*",
   },
 
   {
     "nvim-neotest/neotest",
+    dependencies = {
+      -- see https://github.com/fredrikaverpil/neotest-golang/issues/204
+      { "nvim-contrib/nvim-ginkgo", commit = "5238a35b3e8b0564ff3858ae8b5783d11c03d3ab" }, -- Gingko syntax support
+      -- Neotest Adaptor
+      { "fredrikaverpil/neotest-golang", version = "*" },
+    },
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
         adapters = {
+          require("nvim-ginkgo"),
           require("neotest-golang")({
             runner = "gotestsum", -- better json parsing for Neotest attach, etc
-            dap_go_enabled = false, -- requires "leoluz/nvim-dap-go"
+            dap_go_enabled = true, -- requires "leoluz/nvim-dap-go"
+            gotestsum_args = { "--format=standard-verbose" },
             go_test_args = {
               "-v",
               "-race",
               "-count=1",
               "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out", -- requires "andythigpen/nvim-coverage" to display in neovim
             },
-            gotestsum_args = { "--format=standard-verbose" },
           }),
         },
       })
@@ -145,8 +147,13 @@ return {
     "stevearc/conform.nvim",
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
+        -- formatters = {
+        --   gofumpt = {
+        --     args = { "$FILENAME" },
+        --   },
+        -- },
         formatters_by_ft = {
-          go = { "goimports", "gofumpt", "golines" },
+          go = { "goimports", "gofumpt" },
         },
       })
     end,
