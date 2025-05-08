@@ -53,26 +53,27 @@
       "supabase/tap" # CLI
     ];
     brews = [
-      "eza" # `ls` replacement
       "bitwarden-cli"
-      "mtr" # traceroute alternative
       "borders" # jankyBorders
       "common-fate/granted/granted" # aws profile switcher
       "dbmate" # database migration tool / cli
-      "docker" # cli / deamen only
       "devspace" # dev tool for interating on k8s apps
-      "protoc-gen-go" # protobuf tooling
-      "protoc-gen-go-grpc" # protobuf tooling
+      "docker" # cli / deamen only
       "eksctl"
+      "eza" # `ls` replacement
       "flock" # file locking
       "gh" # Github CLI
       "jwt-cli"
       "k9s"
+      "kind" # local k8s
       "kubectl"
       "kubectx"
       "libiconv" # rnix-lsp
       "minikube"
+      "mtr" # traceroute alternative
       "nvm" # nodejs version manager
+      "protoc-gen-go" # protobuf tooling
+      "protoc-gen-go-grpc" # protobuf tooling
       "pulumi"
       "supabase" # CLI Note: nixpkgs has not been updated to v2 yet
       "supabase/homebrew-packages/supa-admin-cli"
