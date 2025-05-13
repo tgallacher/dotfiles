@@ -137,7 +137,9 @@ return {
       "nvim-telescope/telescope.nvim",
       "nvim-tree/nvim-web-devicons",
     },
-    -- opts = {},
+    opts = {
+      default_remote = { "origin", "upstream" }, -- order to try remotes
+    },
     config = function(_, opts)
       require("octo").setup(opts)
     end,
