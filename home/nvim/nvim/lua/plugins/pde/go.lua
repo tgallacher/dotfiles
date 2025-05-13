@@ -12,6 +12,10 @@ vim.api.nvim_create_autocmd("FileType", {
 
 local servers = {
   gopls = {
+    cmd_env = {
+      -- Limit line length; similar to `golines` formatter
+      GOFUMPT_SPLIT_LONG_LINES = "on",
+    },
     settings = {
       gopls = {
         gofumpt = true,
@@ -67,11 +71,12 @@ return {
         vim.list_extend(vim.tbl_keys(servers), {
           "delve", -- debugger
           "gomodifytags", -- binary to automate Go's Struct tags (e.g. json)
-          "impl",
+          "impl", -- what is this?
           "goimports", -- formatter
           "gofumpt", -- formatter
           "gotestsum",
-          "golines", -- formatter
+          -- "golines", -- formatter (shorten line length)
+          "golangci-lint", -- linter
         })
       )
       return opts
@@ -143,15 +148,21 @@ return {
     end,
   },
 
+  {
+    "mfussenegger/nvim-lint",
+    opts = function(_, opts)
+      return vim.tbl_deep_extend("force", opts, {
+        linters_by_ft = {
+          go = { "golangcilint" },
+        },
+      })
+    end,
+  },
+
   { -- Autoformat
     "stevearc/conform.nvim",
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
-        -- formatters = {
-        --   gofumpt = {
-        --     args = { "$FILENAME" },
-        --   },
-        -- },
         formatters_by_ft = {
           go = { "goimports", "gofumpt" },
         },
@@ -165,9 +176,7 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
-    opts = {
-      transform = "camelcase",
-    },
+    opts = { transform = "camelcase" },
     config = function(_, opts)
       require("gomodifytags").setup(opts)
     end,
