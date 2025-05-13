@@ -1,13 +1,13 @@
 return {
   {
     "rose-pine/neovim",
-    enabled = false,
+    enabled = true,
     lazy = false,
     priority = 1000,
     opts = {
       variant = "main",
       -- disable_background = true,
-      -- dim_inactive_windows = true,
+      dim_inactive_windows = true,
       -- styles = {
       --   -- transparency = true,
       -- },
@@ -22,24 +22,25 @@ return {
     end,
   },
 
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      style = "night",
-      dim_inactive = true,
-      lualine_bold = true,
-      --  on_colors = function(colors)
-      --    -- colors.border = "red"
-      -- end,
-    },
-    config = function(_, opts)
-      require("tokyonight").setup(opts)
-
-      vim.cmd.colorscheme("tokyonight")
-    end,
-  },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   enabled = false,
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {
+  --     style = "night",
+  --     dim_inactive = true,
+  --     lualine_bold = true,
+  --     --  on_colors = function(colors)
+  --     --    -- colors.border = "red"
+  --     -- end,
+  --   },
+  --   config = function(_, opts)
+  --     require("tokyonight").setup(opts)
+  --
+  --     vim.cmd.colorscheme("tokyonight")
+  --   end,
+  -- },
 
   -- {
   --   "rebelot/kanagawa.nvim",

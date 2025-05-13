@@ -1,22 +1,15 @@
--- local colors = require("tokyonight.colors").setup()
+local colors = require("plugins.colors")
 
 return {
   {
+    -- Note: After first install, need to run within Neovim the following cmd::
+    --
+    -- :UpdateRemotePlugins
+    --
     "gelguy/wilder.nvim",
     keys = { ":", "/", "?" },
-    -- dependencies = { "catppuccin/nvim" },
     config = function()
-      -- Note: After first install, need to run within Neovim the following cmd::
-      --
-      -- :UpdateRemotePlugins
-      --
       local wilder = require("wilder")
-      -- local palette = require("catppuccin.palettes").get_palette("mocha")
-      --
-      -- -- Create a highlight group for the popup menu
-      -- local text_highlight = wilder.make_hl("WilderText", { { a = 1 }, { a = 1 }, { foreground = palette.text } })
-      -- local accent_highlight = wilder.make_hl("WilderMauve", { { a = 1 }, { a = 1 }, { foreground = palette.rosewater } })
-
       -- Enable wilder when pressing :, / or ?
       wilder.setup({ modes = { ":", "/", "?" } })
 
@@ -62,11 +55,10 @@ return {
           --   highlighter = highlighters,
           -- }),
           highlighter = wilder.basic_highlighter(),
-          -- highlights = {
-          --   accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = "#C34043" } }),
-          --   accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = colors.blue, background = colors.bg_dark1 } }),
-          --   default = wilder.make_hl("WilderPmenu", "Pmenu", { { a = 1 }, { a = 1 }, { background = colors.bg_dark1 } }),
-          -- },
+          highlights = {
+            accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = colors.accent, background = colors.bg } }),
+            default = wilder.make_hl("WilderPmenu", "Pmenu", { { a = 1 }, { a = 1 }, { background = colors.bg } }),
+          },
         })
       )
 
