@@ -1,20 +1,33 @@
 return {
+  {-- Automatically install LSPs and related tools to stdpath for neovim
+    "williamboman/mason.nvim",
+    dependencies = {
+      {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        opts = {
+          ensure_installed = {},
+          run_on_start = true,
+        },
+      }
+    },
+    opts = {
+      ui = {
+        border = "single",
+        icons = {
+          package_pending = "➜",
+          package_installed = "✓",
+          package_uninstalled = "✗",
+        },
+      },
+    },
+  },
+
   { -- LSP Configuration & Plugins
     "neovim/nvim-lspconfig",
     version = "*",
     event = "InsertEnter",
     dependencies = {
-      {-- Automatically install LSPs and related tools to stdpath for neovim
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        dependencies = {
-          "williamboman/mason-lspconfig.nvim",
-          { "williamboman/mason.nvim", opts = { ui = { border = "single" }, }, },
-        },
-        opts = {
-          ensure_installed = {},
-          run_on_start = true,
-        },
-      },
+      "williamboman/mason-lspconfig.nvim",
       -- Useful status updates for LSP.
       { "j-hui/fidget.nvim", opts = {} },
     },
@@ -155,6 +168,7 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "rafamadriz/friendly-snippets",
+"petertriho/cmp-git",
     },
     config = function()
       local cmp = require("cmp")
@@ -199,10 +213,12 @@ return {
           { name = "luasnip" },
           { name = "buffer" },
           { name = "path" },
+          { name = "git" },
         }),
       })
     end,
   },
+
 
   {
     "ray-x/lsp_signature.nvim",
