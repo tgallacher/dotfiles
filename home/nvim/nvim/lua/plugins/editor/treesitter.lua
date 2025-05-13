@@ -1,6 +1,10 @@
 return {
   { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-context",
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     main = "nvim-treesitter.configs",
@@ -25,30 +29,76 @@ return {
         },
       },
       textobjects = {
+        lookahead = true,
+        keymaps = {
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ac"] = "@comment.outer",
+          ["ic"] = "@comment.inner",
+          -- You can also use captures from other query groups like `locals.scm`
+          ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
+        },
         move = {
           enable = true,
+          set_jumps = true, -- whether to set jumps in the jumplist
           goto_next_start = {
             ["]f"] = "@function.outer",
-            ["]c"] = "@class.outer",
+            ["]]"] = "@class.outer",
             ["]a"] = "@parameter.inner",
+            ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
+            ["]c"] = "@comment.outer",
           },
           goto_next_end = {
             ["]F"] = "@function.outer",
-            ["]C"] = "@class.outer",
+            ["]["] = "@class.outer",
             ["]A"] = "@parameter.inner",
+            ["]C"] = "@comment.outer",
           },
           goto_previous_start = {
             ["[f"] = "@function.outer",
-            ["[c"] = "@class.outer",
+            ["[["] = "@class.outer",
             ["[a"] = "@parameter.inner",
+            ["[c"] = "@comment.outer",
           },
           goto_previous_end = {
             ["[F"] = "@function.outer",
-            ["[C"] = "@class.outer",
+            ["[]"] = "@class.outer",
             ["[A"] = "@parameter.inner",
+            ["[C"] = "@comment.outer",
+          },
+        },
+        lsp_interop = {
+          enable = true,
+          border = "single",
+          floating_preview_opts = {},
+          peek_definition_code = {
+            ["<localleader>df"] = "@function.outer",
+            ["<localleader>dF"] = "@class.outer",
+          },
+        },
+        swap = {
+          enable = true,
+          swap_next = {
+            ["<localleader>a"] = "@parameter.inner",
+          },
+          swap_previous = {
+            ["<localleader>A"] = "@parameter.inner",
           },
         },
       },
     },
+    init = function()
+      -- see `octo.nvim`: Ensure inline Markdown in Octo.nvim is rendered as markdown
+      vim.treesitter.language.register("markdown", "octo")
+
+      vim.keymap.set("n", "[c", function()
+        require("treesitter-context").go_to_context(vim.v.count1)
+      end, { silent = true })
+
+      local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+      -- ensure ; goes forward and , goes backward regardless of the last direction
+      vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
+      vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
+    end,
   },
 }
