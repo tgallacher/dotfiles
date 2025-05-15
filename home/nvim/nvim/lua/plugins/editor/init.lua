@@ -168,8 +168,11 @@ return {
       vim.keymap.set("n", "<leader>hw", function() harpoon:list():select(4) end, {desc = "Open Harpoon File 4" })
       vim.keymap.set("n", "<leader>hq", function() harpoon:list():select(5) end, {desc = "Open Harpoon File 5" })
 
-      vim.keymap.set("n", "<C-m>", function() harpoon:list():prev() end, {desc = "Harpoon jump to PREV buffer" })
-      vim.keymap.set("n", "<C-n>", function() harpoon:list():next() end, {desc = "Harpoon jump to NEXT buffer" })
+      -- Note: don't use <C-m> as that is mapped to <CR> internally within (neo)vim.
+      -- see :h key-notation
+      -- see https://github.com/ThePrimeagen/harpoon/issues/515#issuecomment-1975077283
+      vim.keymap.set("n", "<C-A-m>", function() harpoon:list():prev() end, {desc = "Harpoon jump to PREV buffer" })
+      vim.keymap.set("n", "<C-A-n>", function() harpoon:list():next() end, {desc = "Harpoon jump to NEXT buffer" })
       --stylua: ignore end
     end,
   },
