@@ -14,11 +14,11 @@ local servers = {
   gopls = {
     cmd_env = {
       -- Limit line length; similar to `golines` formatter
-      GOFUMPT_SPLIT_LONG_LINES = "on",
+      GOFUMPT_SPLIT_LONG_LINES = "on", -- defaults to 100 columns / runes
     },
     settings = {
       gopls = {
-        gofumpt = true,
+        gofumpt = true, -- use gofumt instead of gofmt; gofumpt is a superset of gofmpt with stricter rules
         codelenses = {
           gc_details = false,
           generate = true,
