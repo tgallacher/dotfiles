@@ -1,4 +1,10 @@
+---@alias icontext string
+---@alias numhl string
+---@alias texthl string
+---@alias DAPIcons table<string, icontext | [icontext, texthl] | [icontext, texthl,  numhl]>
+
 local icons = {
+  ---@type DAPIcons
   dap = {
     Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
     Breakpoint = " ",
@@ -67,11 +73,11 @@ return {
       -- require("mason-nvim-dap").setup(LazyVim.opts("mason-nvim-dap.nvim"))
 
       -- -- FIXME: What does this do? Source? Possibly LazyVim?
-      -- vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
-      -- for name, sign in pairs(icons.dap) do
-      --   sign = type(sign) == "table" and sign or { sign }
-      --   vim.fn.sign_define("Dap" .. name, { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] })
-      -- end
+      vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
+      for name, sign in pairs(icons.dap) do
+        sign = type(sign) == "table" and sign or { sign }
+        vim.fn.sign_define("Dap" .. name, { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] })
+      end
 
       -- setup dap config by VsCode launch.json file
       local vscode = require("dap.ext.vscode")
