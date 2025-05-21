@@ -53,13 +53,13 @@ return {
       { "<leader>dj", function() require("dap").down() end, desc = "DAP: Down" },
       { "<leader>dk", function() require("dap").up() end, desc = "DAP: Up" },
       { "<leader>dl", function() require("dap").run_last() end, desc = "DAP: Run Last" },
-      { "<leader>do", function() require("dap").step_out() end, desc = "DAP: Step Out" },
-      { "<leader>dO", function() require("dap").step_over() end, desc = "DAP: Step Over" },
+      { "<leader>dO", function() require("dap").step_out() end, desc = "DAP: Step Out" },
+      { "<leader>do", function() require("dap").step_over() end, desc = "DAP: Step Over" },
       { "<leader>dP", function() require("dap").pause() end, desc = "DAP: Pause" },
       { "<leader>dr", function() require("dap").repl.toggle() end, desc = "DAP: Toggle REPL" },
       { "<leader>ds", function() require("dap").session() end, desc = "DAP: Session" },
       { "<leader>dt", function() require("dap").terminate() end, desc = "DAP: Terminate" },
-      { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "DAP: Widgets" },
+      { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "DAP: UI Widgets" },
       -- stylua: ignore end
     },
     config = function()
