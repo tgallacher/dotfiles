@@ -36,7 +36,7 @@ local servers = {
 }
 
 return {
-  {
+  { -- ?
     "folke/lazydev.nvim",
     ft = "lua",
     opts = {
@@ -86,6 +86,51 @@ return {
     "stevearc/conform.nvim",
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, { formatters_by_ft = { lua = { "stylua" } } })
+    end,
+  },
+
+  {
+    "jbyuki/one-small-step-for-vimkind",
+    config = function()
+      local dap = require("dap")
+      dap.configurations.lua = {
+        {
+          type = "nlua",
+          request = "attach",
+          name = "Attach to running Neovim instance",
+        },
+      }
+
+      dap.adapters.nlua = function(callback, config)
+        callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
+      end
+
+      vim.keymap.set("n", "<leader>dl", function()
+        require("osv").launch({ port = 8086 })
+      end, { noremap = true })
+
+      vim.keymap.set("n", "<leader>dw", function()
+        local widgets = require("dap.ui.widgets")
+        widgets.hover()
+      end)
+
+      vim.keymap.set("n", "<leader>df", function()
+        local widgets = require("dap.ui.widgets")
+        widgets.centered_float(widgets.frames)
+      end)
+      vim.keymap.set("n", "<leader>dl", function()
+        require("osv").launch({ port = 8086 })
+      end, { noremap = true })
+
+      vim.keymap.set("n", "<leader>dw", function()
+        local widgets = require("dap.ui.widgets")
+        widgets.hover()
+      end)
+
+      vim.keymap.set("n", "<leader>df", function()
+        local widgets = require("dap.ui.widgets")
+        widgets.centered_float(widgets.frames)
+      end)
     end,
   },
 }
