@@ -61,6 +61,10 @@ return {
       -- stylua: ignore start
       vim.keymap.set("n", "]t", function() todo_comments.jump_next() end, { desc = "Next [T]odo comment" })
       vim.keymap.set("n", "[t", function() todo_comments.jump_prev() end, { desc = "Prev [T]odo comment" })
+
+      local snacks = require("snacks")
+      vim.keymap.set("n", "<leader>st", function () snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, { desc = "Show TODO/FIX/FIXME" })
+      vim.keymap.set("n", "<leader>sT", function() snacks.picker.todo_comments() end, { desc = "Show all Todo comments" })
       -- stylua: ignore end
     end,
   },

@@ -31,6 +31,7 @@
     upkgs.pwgen
     upkgs.qmk
     upkgs.utm # VMs
+    upkgs.mermaid-cli # diagram generation - for use in Snacks.nvim
 
     upkgs.uv # python pkg manager
   ];

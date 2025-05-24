@@ -1,5 +1,5 @@
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "\\", "<Nop>", { noremap = true, silent = true })
+-- vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { noremap = true, silent = true })
+-- vim.keymap.set({ "n", "v" }, "\\", "<Nop>", { noremap = true, silent = true })
 
 --  NOTE: Must happen before plugins/keymaps are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "

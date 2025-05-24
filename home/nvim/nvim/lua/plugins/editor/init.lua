@@ -22,16 +22,16 @@ return {
     },
   },
 
-  { -- Easier management of buffers
-    "ojroques/nvim-bufdel",
-    event = { "BufReadPre", "BufNewFile" },
-    opts = { quit = false },
-    keys = {
-      { "<leader>bc", "<cmd> BufDel<cr>", desc = "Close current buffer" },
-      { "<leader>bC", "<cmd> BufDelOthers<cr>", desc = "Close all other buffers" },
-      { "<leader>B", ":e#<cr>", desc = "Open last closed [B]uffer" },
-    },
-  },
+  -- { -- Easier management of buffers
+  --   "ojroques/nvim-bufdel",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   opts = { quit = false },
+  --   keys = {
+  --     { "<leader>bc", "<cmd> BufDel<cr>", desc = "Close current buffer" },
+  --     { "<leader>bC", "<cmd> BufDelOthers<cr>", desc = "Close all other buffers" },
+  --     { "<leader>B", ":e#<cr>", desc = "Open last closed [B]uffer" },
+  --   },
+  -- },
 
   { -- "gc<motion>" to comment visual regions/lines
     "numToStr/Comment.nvim",
@@ -161,28 +161,7 @@ return {
     init = function()
       local harpoon = require("harpoon")
 
-      -- basic telescope configuration
-      local conf = require("telescope.config").values
-      local function toggle_telescope(harpoon_files)
-        local file_paths = {}
-        for _, item in ipairs(harpoon_files.items) do
-          table.insert(file_paths, item.value)
-        end
-
-        require("telescope.pickers")
-          .new({}, {
-            prompt_title = "Harpoon",
-            finder = require("telescope.finders").new_table({
-              results = file_paths,
-            }),
-            previewer = conf.file_previewer({}),
-            sorter = conf.generic_sorter({}),
-          })
-          :find()
-      end
-
       --stylua: ignore start
-      vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end, { desc = "Open Harpoon window" })
       vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, {desc = "[H]arpoon [A]dd File" })
       vim.keymap.set("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, {desc = "[H]arpoon [T]oggle File Menu" })
 
@@ -204,10 +183,29 @@ return {
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons", "folke/todo-comments.nvim" },
+    specs = {
+      "folke/snacks.nvim",
+      opts = function(_, opts)
+        return vim.tbl_deep_extend("force", opts or {}, {
+          picker = {
+            actions = require("trouble.sources.snacks").actions,
+            win = {
+              input = {
+                keys = {
+                  ["<c-t>"] = {
+                    "trouble_open",
+                    mode = { "n", "i" },
+                  },
+                },
+              },
+            },
+          },
+        })
+      end,
+    },
     keys = {
       { "<leader>tq", ":TodoQuickFix<CR>", desc = "Open [T]rouble [Q]uickfix List" },
       { "<leader>tl", ":TodoLocList<CR>", desc = "Open [T]rouble [L]ocation List" },
-      { "<leader>tt", ":TodoTelescope<CR>", desc = "Open todos in trouble" },
       { "<leader>tb", ":Trouble diagnostics toggle filter.buf=0<CR>", desc = "[T]rouble [b]uffer" },
     },
   },

@@ -171,15 +171,12 @@ return {
     -- lazy = true,
     branch = "regexp",
     enabled = vim.fn.executable("fd") == 1 or vim.fn.executable("fdfind") == 1 or vim.fn.executable("fd-find") == 1,
-    dependencies = {
-      { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
-    },
     opts = {},
     cmd = "VenvSelect",
     keys = {
-      "<Leader>vs",
-      ":VenvSelect<CR>",
-      desc = "[P]ython [v]irtualEnv [s]elect",
+      -- stylua: ignore start
+      {"<Leader>vs", ":VenvSelect<CR>", desc = "[P]ython [v]irtualEnv [s]elect",},
+      -- stylua: ignore end
     },
   },
 
@@ -197,6 +194,6 @@ return {
 
       vim.keymap.set("n", "<localleader>db", ":DapToggleBreakpoint<CR>", { desc = "[D]ap toggle [b]reakpoint" })
       -- stylua: ignore
-      vim.keymap.set("n", "<localleader>dt", function() require("dap-python").test_method() end, { desc = "[D]ap [t]est method" })                                                 end,
+      vim.keymap.set("n", "<localleader>dt", function() require("dap-python").test_method() end, { desc = "[D]ap [t]est method" })                                                         end,
   },
 }

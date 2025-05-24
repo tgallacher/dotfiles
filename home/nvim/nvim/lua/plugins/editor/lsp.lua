@@ -63,20 +63,12 @@ return {
           map("n", "[w", function() goto_diagnostic(true, "WARNING") end, "Go to Prev [w]arning")
           map("n", "]w", function() goto_diagnostic(false, "WARNING") end, "Go to Next [w]arning")
 
-          -- TODO: Adjust after nvim 0.11 has been released
-          map("n", "gd", require("telescope.builtin").lsp_definitions, "[g]o to [d]efinition")
           map("n", "gD", vim.lsp.buf.declaration, "[g]o to [D]eclaration")
-          map("n", "grr", function() require("telescope.builtin").lsp_references({ trim_text = false, fname_width = 60 }) end, "Show LSP [r]eferences")
-          map("n", "gi", require("telescope.builtin").lsp_implementations, "[g]o to [i]implementation")
-          map("n", "gt", require("telescope.builtin").lsp_type_definitions, "[g]o to [t]ype definition")
-          map("n", "gs", require("telescope.builtin").lsp_document_symbols, "Show document [s]ymbols")
-          map("n", "gS", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Show workspace [S]ymbols")
           map("n", "grn", vim.lsp.buf.rename, "[r]e[n]ame")
           map("n", "gra", vim.lsp.buf.code_action, "[c]ode [a]ction")
           map("n", "K", vim.lsp.buf.hover, "Show Hover Documentation") --  See `:help K` for why this keymap
           map({ "n", "i" }, "<C-S-K>", vim.lsp.buf.signature_help, "Signature documentation")
 
-          map("n", "<localleader>dd", ":Telescope diagnostics bufnr=0<CR>", "Show [d]ocument [d]iagnostics")
           map("n", "<localleader>dl", function() vim.diagnostic.open_float({ source = true }) end, "Show [d]iagnostic for [l]ine")
           map("n", "<localleader>dq", vim.diagnostic.setloclist, "Send all [d]iagnostics to [q]uickfix list")
           map("n", "<localleader>qd", vim.diagnostic.setqflist, "Set [q]uickfix list to [d]iagnostics")
