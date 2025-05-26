@@ -229,5 +229,13 @@ return {
   --   "dhruvasagar/vim-table-mode",
   -- },
   --
+  { -- automate breaking/joining args across multiple lines / single line
+    "echasnovski/mini.splitjoin",
+    version = "*", -- stable release
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      mappings = { toggle = "<localleader>s" },
+    },
+    keys = {},
   },
 }
