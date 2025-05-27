@@ -88,8 +88,6 @@ return {
       },
     },
     init = function()
-      -- see `octo.nvim`: Ensure inline Markdown in Octo.nvim is rendered as markdown
-      vim.treesitter.language.register("markdown", "octo")
 
       vim.keymap.set("n", "[c", function()
         require("treesitter-context").go_to_context(vim.v.count1)

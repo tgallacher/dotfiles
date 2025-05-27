@@ -7,7 +7,7 @@ local icons = {
   ---@type DAPIcons
   dap = {
     Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
-    Breakpoint = " ",
+    Breakpoint = { " ", "DiagnosticError" },
     BreakpointCondition = " ",
     BreakpointRejected = { " ", "DiagnosticError" },
     LogPoint = ".>",

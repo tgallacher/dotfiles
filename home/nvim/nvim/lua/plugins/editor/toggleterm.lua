@@ -18,7 +18,7 @@ return {
   },
   cmd = { "ToggleTerm", "TermExec" },
   opts = {
-    size = 30,
+    size = 45,
     hide_numbers = true,
     open_mapping = [[<localleader>;]],
     shade_filetypes = {},

@@ -142,6 +142,9 @@ return {
     },
     config = function(_, opts)
       require("octo").setup(opts)
+
+      -- see `octo.nvim`: Ensure inline Markdown in Octo.nvim is rendered as markdown
+      vim.treesitter.language.register("markdown", "octo")
     end,
   },
 }

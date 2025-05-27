@@ -28,16 +28,16 @@ return {
     end,
   },
 
-  {
-    "mfussenegger/nvim-lint",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, {
-        linters_by_ft = {
-          -- markdown = { "markdownlint-cli2" },
-        },
-      })
-    end,
-  },
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   opts = function(_, opts)
+  --     return vim.tbl_deep_extend("force", opts, {
+  --       linters_by_ft = {
+  --         -- markdown = { "markdownlint-cli2" },
+  --       },
+  --     })
+  --   end,
+  -- },
 
   {
     "neovim/nvim-lspconfig",
