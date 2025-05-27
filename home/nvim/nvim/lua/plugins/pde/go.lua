@@ -85,6 +85,7 @@ return {
 
   { -- DAP integration
     "leoluz/nvim-dap-go",
+    ft = "go",
     opts = {},
     config = function(_, opts)
       require("dap-go").setup(opts)
@@ -94,8 +95,10 @@ return {
   {
     "nvim-neotest/neotest",
     dependencies = {
+      -- Neotest Gingko (syntax) Adaptor
       -- see https://github.com/fredrikaverpil/neotest-golang/issues/204
-      { "nvim-contrib/nvim-ginkgo", commit = "5238a35b3e8b0564ff3858ae8b5783d11c03d3ab" }, -- Gingko syntax support
+      -- see https://github.com/nvim-contrib/nvim-ginkgo/pull/8
+      { "nvim-contrib/nvim-ginkgo", commit = "5238a35b3e8b0564ff3858ae8b5783d11c03d3ab" },
       -- Neotest Adaptor
       { "fredrikaverpil/neotest-golang", version = "*" },
     },
@@ -172,6 +175,7 @@ return {
 
   { -- Automate adding Go tags to structs (e.g `json`)
     "zgs225/gomodifytags.nvim",
+    ft = "go",
     cmd = { "GoAddTags", "GoRemoveTags", "GoInstallModifyTagsBin" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
@@ -180,5 +184,13 @@ return {
     config = function(_, opts)
       require("gomodifytags").setup(opts)
     end,
+  },
+
+  {
+    -- Acces to `impl` cli tool to stub out struct method stubs
+    -- Note: requires `impl` binary (see mason)
+    "rhysd/vim-go-impl",
+    ft = "go",
+    cmd = { "GoImpl" },
   },
 }
