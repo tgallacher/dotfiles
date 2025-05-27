@@ -167,18 +167,20 @@ in {
       hyper - d : open -a "Notion.app"
       hyper - s : open -a "Slack.app"
       hyper - l : open -a "Linear.app"
+      hyper - w : open -a "WhatsApp.app"
 
-      # Survice Apple keyboards...
+      # Survive Apple keyboards...
       fn - t : open -a ${vars.terminal}
       fn - b : open -a "Brave Browser.app"
       fn - d : open -a "Notion.app"
       fn - s : open -a "Slack.app"
       fn - l : open -a "Linear.app"
+      fn - w : open -a "WhatsApp.app"
     '';
   };
 
   system.defaults.CustomUserPreferences = {
-    "com.apple.spaces".spans-displays = 0; # 0 means enabled
+    "com.apple.spaces".spans-displays = 0; # 0 means enabled :shrug:
     "com.apple.dock".mru-spaces = 0;
     "com.apple.WindowManager".StandardHideDesktopIcons = 0;
     "com.apple.WindowManager".EnableStandardClickToShowDesktop = 0;

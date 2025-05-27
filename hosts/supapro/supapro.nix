@@ -101,8 +101,8 @@
       "raycast"
       "slack"
       "spotify"
+      "whatsapp"
       "yubico-authenticator" # authenticator app; NOTE: nixpkgs is linux only
-      # "postman" # NOTE: nixpkgs version seems to be down; use brew instead
     ];
     masApps = {};
     global.autoUpdate = false;
