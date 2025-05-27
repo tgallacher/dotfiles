@@ -1,3 +1,5 @@
+local colors = require("plugins.colors")
+
 -- Display if buffer has been Harpoon'd
 -- source: https://github.com/dmmulroy/kickstart.nix
 local function harpoon()
@@ -111,11 +113,11 @@ return {
                   }
                 end
               end,
-              -- diff_colors = {
-              --   added = colors.green,
-              --   modified = colors.yellow,
-              --   removed = colors.red,
-              -- },
+              diff_colors = {
+                added = colors.git.add,
+                modified = colors.git.change,
+                removed = colors.git.delete,
+              },
             },
             {
               "branch",
