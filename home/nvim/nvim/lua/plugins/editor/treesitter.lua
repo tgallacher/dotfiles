@@ -88,15 +88,14 @@ return {
       },
     },
     init = function()
+      -- stylua: ignore
+      vim.keymap.set("n", "[c", function() require("treesitter-context").go_to_context(vim.v.count1) end, { silent = true })
 
-      vim.keymap.set("n", "[c", function()
-        require("treesitter-context").go_to_context(vim.v.count1)
-      end, { silent = true })
-
-      local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
-      -- ensure ; goes forward and , goes backward regardless of the last direction
-      vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
-      vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
+      -- FIXME: this breaks normal ; and ,
+      -- local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+      -- -- ensure ; goes forward and , goes backward regardless of the last direction
+      -- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
+      -- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
     end,
   },
 }
