@@ -68,6 +68,7 @@
     userEmail = "tgallacher@users.noreply.github.com";
     userName = "Tom Gallacher";
     ignores = [
+      "_local" # local dumping ground
       ".DS_Store"
       # Logs
       "logs"
