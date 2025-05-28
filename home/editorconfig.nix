@@ -1,4 +1,4 @@
-{self, ...}: {
+{...}: {
   editorconfig = {
     enable = true;
     settings = {
@@ -9,10 +9,11 @@
         end_of_line = "lf";
         indent_size = 2;
         charset = "utf-8";
+        indent_with_tabs = false;
       };
       "*.sh" = {
-        # like -i=4
         indent_style = "space";
+        # like -i=4
         indent_size = 2;
         # --language-variant
         shell_variant = "bash";
@@ -24,9 +25,12 @@
         # --func-next-line
         function_next_line = true;
       };
-      # "*.py" = {
-      #   indent_size = 4;
-      # };
+      "Makefile" = {
+        indent_style = "tab";
+        indent_size = 2;
+        tab_width = 2;
+        indent_with_tabs = true;
+      };
     };
   };
 }
