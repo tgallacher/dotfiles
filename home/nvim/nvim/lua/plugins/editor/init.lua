@@ -2,6 +2,7 @@ return {
   -- TODO: remove?
   { -- Detect tabstop and shiftwidth automatically
     "tpope/vim-sleuth",
+    enabled = false,
     event = { "BufReadPre", "BufNewFile" },
   },
 

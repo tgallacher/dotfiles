@@ -135,6 +135,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
+      "folke/snacks.nvim",
     },
     opts = {
       default_remote = { "origin", "upstream" }, -- order to try remotes
