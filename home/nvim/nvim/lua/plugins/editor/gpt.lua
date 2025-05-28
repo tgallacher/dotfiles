@@ -31,9 +31,11 @@ return {
     require("gp").setup(opts)
   end,
   keys = {
-    { "<leader>cc", ":GpChatToggle popup<CR>", desc = "[C]hatGPT Open interactive [c]hat" },
-    { "<leader>cf", ":GpChatToggle popup<CR>", desc = "[C]hatGPT [f]ind chats" },
-    { "<leader>cp", ":GpChatPaste popup<CR>", desc = "[C]hatGPT [p]aste chats" },
-    { "<leader>cr", ":GpChatRewrite popup<CR>", desc = "[C]hatGPT [r]ewrite" },
+    -- FIXME: `popup` buffers have a weird interaction with <C-y> to confirm autocomplete
+    { "<leader>cc", ":GpChatToggle vsplit<CR>", desc = "[c]hatGPT Open interactive [c]hat" },
+    { "<leader>cn", ":GpChatNew vsplit<CR>", desc = "[c]hatGPT Open [n]ew interactive chat" },
+    { "<leader>cf", ":GpChatFinder popup<CR>", desc = "[c]hatGPT [f]ind chats" },
+    { "<leader>cp", ":GpChatPaste vsplit<CR>", desc = "[c]hatGPT [p]aste chats", mode = { "v" } },
+    { "<leader>cr", ":GpChatRewrite vsplit<CR>", desc = "[c]hatGPT [r]ewrite" },
   },
 }

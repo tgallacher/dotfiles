@@ -15,7 +15,7 @@ vim.keymap.set("n", "g;", "g;zvzz")
 -- split windows
 vim.keymap.set("n", "<leader>sv", "<C-w>s", { desc = "Create [s]plit [v]ertically" })
 vim.keymap.set("n", "<leader>sh", "<C-w>v", { desc = "Create [s]plit [h]orizontally" })
--- vim.keymap.set("n", "<leader>s^", "<C-w>^", { desc = "Create [s]plit using the [^] alternate file" })
+vim.keymap.set("n", "<leader>s^", "<C-w>^", { desc = "Create [s]plit using the [^] alternate file" })
 -- vim.keymap.set("n", "<leader>sn", "<C-w>n", { desc = "Create [s]plit with a [n]ew file" })
 vim.keymap.set("n", "<leader>s=", "<C-w>=", { desc = "[s]plit windows [e]qually" })
 vim.keymap.set("n", "<leader>sx", ":close<CR>", { desc = "Close [s]plit window under cursor [x]" })
