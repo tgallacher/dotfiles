@@ -9,6 +9,7 @@
       git_metrics.disabled = false;
       git_status.disabled = true;
       hostname.disabled = true;
+      kubernetes.disabled = false;
       # palette = "catppuccin_${flavour}";
       # format = ''$username$hostname$directory$git_branch$git_state$git_status $cmd_duration$line_break$character'';
       # right_format = ''$localip$kubernetes$docker_context$package$golang$lua$nodejs$pulumi$rust$terraform$python$nix_shell$aws$gcloud$direnv$sudo$container'';
