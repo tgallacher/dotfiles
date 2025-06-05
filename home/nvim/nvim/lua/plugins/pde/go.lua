@@ -97,15 +97,15 @@ return {
     dependencies = {
       -- Neotest Gingko (syntax) Adaptor
       -- see https://github.com/fredrikaverpil/neotest-golang/issues/204
-      -- see https://github.com/nvim-contrib/nvim-ginkgo/pull/8
-      { "nvim-contrib/nvim-ginkgo", commit = "5238a35b3e8b0564ff3858ae8b5783d11c03d3ab" },
+      { "nvim-contrib/nvim-ginkgo" },
+      -- see https://github.com/nvim-contrib/nvim-ginkgo/pull/6
+      -- { "cenk1cenk2/nvim-ginkgo", commit = "5238a35b3e8b0564ff3858ae8b5783d11c03d3ab" },
       -- Neotest Adaptor
       { "fredrikaverpil/neotest-golang", version = "*" },
     },
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
         adapters = {
-          require("nvim-ginkgo"),
           require("neotest-golang")({
             runner = "gotestsum", -- better json parsing for Neotest attach, etc
             dap_go_enabled = true, -- requires "leoluz/nvim-dap-go"
@@ -117,6 +117,7 @@ return {
               "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out", -- requires "andythigpen/nvim-coverage" to display in neovim
             },
           }),
+          require("nvim-ginkgo"),
         },
       })
     end,
@@ -151,16 +152,16 @@ return {
     end,
   },
 
-  {
-    "mfussenegger/nvim-lint",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, {
-        linters_by_ft = {
-          go = { "golangcilint" },
-        },
-      })
-    end,
-  },
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   opts = function(_, opts)
+  --     return vim.tbl_deep_extend("force", opts, {
+  --       linters_by_ft = {
+  --         go = { "golangcilint" },
+  --       },
+  --     })
+  --   end,
+  -- },
 
   { -- Autoformat
     "stevearc/conform.nvim",
