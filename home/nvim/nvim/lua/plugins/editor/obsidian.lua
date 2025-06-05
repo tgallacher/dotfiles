@@ -86,7 +86,7 @@ return {
         local name = ""
         if title ~= nil then
           -- If title is given, transform it into valid file name.
-          name = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+          name = title:gsub(" ", "-"):gsub("[^A-Za-z0-9_-]", ""):lower()
         else
           -- If title is nil, just add 4 random uppercase letters to the suffix.
           for _ = 1, 4 do
@@ -102,7 +102,7 @@ return {
       note_path_func = function(spec)
         local path
         if spec.title ~= nil then
-          local title = tostring(spec.title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower())
+          local title = tostring(spec.title:gsub(" ", "-"):gsub("[^A-Za-z0-9_-]", ""):lower())
           path = spec.dir / title
         else
           -- This is equivalent to the default behaviour.
