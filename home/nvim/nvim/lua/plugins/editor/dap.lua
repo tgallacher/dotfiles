@@ -44,8 +44,8 @@ return {
     event = "VeryLazy",
     dependencies = {
       "rcarriga/nvim-dap-ui",
-      -- virtual text for the debugger
-      { "theHamsta/nvim-dap-virtual-text", opts = {} },
+      -- -- virtual text for the debugger
+      -- { "theHamsta/nvim-dap-virtual-text", opts = {} },
     },
     keys = {
       -- stylua: ignore start
@@ -68,11 +68,10 @@ return {
       { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "DAP: UI Widgets" },
       -- stylua: ignore end
     },
-    config = function()
+    init = function()
       -- load mason-nvim-dap here, after all adapters have been setup
       -- require("mason-nvim-dap").setup(LazyVim.opts("mason-nvim-dap.nvim"))
 
-      -- -- FIXME: What does this do? Source? Possibly LazyVim?
       vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
       for name, sign in pairs(icons.dap) do
         sign = type(sign) == "table" and sign or { sign }
@@ -80,6 +79,8 @@ return {
       end
 
       -- setup dap config by VsCode launch.json file
+      -- this overrides the default json parser so we get more json features
+      -- e.g. commas, comments,etc
       local vscode = require("dap.ext.vscode")
       local json = require("plenary.json")
 

@@ -143,9 +143,18 @@ return {
     },
     config = function(_, opts)
       require("octo").setup(opts)
-
+    end,
+    init = function()
       -- see `octo.nvim`: Ensure inline Markdown in Octo.nvim is rendered as markdown
       vim.treesitter.language.register("markdown", "octo")
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "octo" },
+        callback = function()
+          vim.opt_local.colorcolumn = "80"
+          vim.opt_local.textwidth = 80
+        end,
+      })
     end,
   },
 }
