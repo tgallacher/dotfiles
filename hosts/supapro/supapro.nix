@@ -86,7 +86,7 @@
       }
     ];
     casks = [
-      "mullvadvpn" # Is this causing keychain issues..
+      "mullvad-vpn" # Is this causing keychain issues..
       "aptakube"
       "aws-vault" # dev secrets management
       "bitwarden"
@@ -103,6 +103,7 @@
       "spotify"
       "whatsapp"
       "yubico-authenticator" # authenticator app; NOTE: nixpkgs is linux only
+      "front" # support tickets
     ];
     masApps = {};
     global.autoUpdate = false;
