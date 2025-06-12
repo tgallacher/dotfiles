@@ -143,9 +143,8 @@ return {
         vim.list_extend(vim.tbl_keys(servers), {
           "prettierd", -- formatter
           { "eslint_d", version = "14.3.0" }, -- linter
-          -- "eslint",
+          "eslint",
           "js-debug-adapter", -- dap
-          "typescript-language-server", -- lsp
         })
       )
 
@@ -163,7 +162,8 @@ return {
   {
     "mfussenegger/nvim-lint",
     opts = function(_, opts)
-      vim.env.ESLINT_D_PPID = vim.fn.getpid()
+      vim.env.ESLINT_D_PPID = vim.fn.getpid() -- which parent process to monitor; kill deamon if this closes
+      vim.env.ESLINT_D_MISS = "ignore" -- how to behave if local eslint is missing
       return vim.tbl_deep_extend("force", opts, {
         linters_by_ft = {
           typescript = { "eslint_d" },
