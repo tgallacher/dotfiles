@@ -37,6 +37,7 @@ return {
     --   "BufNewFile " .. vim.fn.expand("~/Code/tgallacher/obsidian/"),
     -- },
     dependencies = {
+      "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim",
     },
     init = function()
