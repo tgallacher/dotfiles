@@ -86,14 +86,15 @@
       }
     ];
     casks = [
-      "mullvad-vpn" # Is this causing keychain issues..
-      "aptakube"
       "aws-vault" # dev secrets management
       "bitwarden"
       "brave-browser"
+      "cloudflare-warp"
       "dbeaver-community" # nixpkgs version has been removed; see https://github.com/NixOS/nixpkgs/pull/311888
       "discord"
+      "front" # support tickets
       "linear-linear" # project management
+      "mullvad-vpn"
       "ngrok"
       "notion"
       "obsidian"
@@ -102,8 +103,7 @@
       "slack"
       "spotify"
       "whatsapp"
-      "yubico-authenticator" # authenticator app; NOTE: nixpkgs is linux only
-      "front" # support tickets
+      "yubico-authenticator" # authenticator app; INFO: nixpkgs is linux only
     ];
     masApps = {};
     global.autoUpdate = false;
