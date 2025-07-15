@@ -116,6 +116,12 @@ print_pid_cwd() {
       export BROWSER="brave";
       export XDG_CONFIG_HOME="$HOME/.config";
 
+      export EDITOR=${vars.editor};
+      export TERMINAL=${vars.terminal};
+      export PAGER="less";
+      export VISUAL=${vars.terminal};
+      export LEFTHOOK=0; # Disable Git pre-commit hooks that might be configured in some projects
+
     '';
     ## add to .zprofile
     profileExtra = ''
@@ -126,12 +132,7 @@ print_pid_cwd() {
       }
     '';
     ## add to .zshrc, top of file, env vars, e.g. POWERLINE_9K, etc
-    localVariables = {
-      EDITOR = vars.editor;
-      TERMINAL = vars.terminal;
-      PAGER = "less";
-      VISUAL = vars.terminal;
-    };
+    localVariables = { };
     dirHashes = {};
     ## env vars set for each session
     # sessionVariables = { };
