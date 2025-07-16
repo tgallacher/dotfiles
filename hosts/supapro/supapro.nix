@@ -70,6 +70,7 @@
       "kubectx"
       "libiconv" # rnix-lsp
       "minikube"
+      "mise" # devtool manager
       "mtr" # traceroute alternative
       "nvm" # nodejs version manager
       "protoc-gen-go" # protobuf tooling
