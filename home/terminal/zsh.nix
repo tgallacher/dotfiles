@@ -90,6 +90,16 @@ print_pid_cwd() {
       # Load the kubectl completion code for zsh[1] into the current shell
       source <(kubectl completion zsh)
 
+      if command -v switcher >/dev/null 2>&1; then
+        source <(switcher init zsh)
+
+        # optionally use alias `s` instead of `switch`
+        alias s=switch
+
+        # optionally use command completion
+        source <(switch completion zsh)
+      fi
+
       # load custom config, avoiding the need to commit into git (e.g. secrets, etc)
       if [ -f $HOME/.custom.zshrc ]; then
           source $HOME/.custom.zshrc

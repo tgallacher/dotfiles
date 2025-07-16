@@ -51,6 +51,7 @@
       "openfga/tap"
       "pulumi/tap" # IaC
       "supabase/tap" # CLI
+      "danielfoehrkn/switch" # kubectx for large scale k8s installations
     ];
     brews = [
       "bitwarden-cli"
@@ -78,6 +79,7 @@
       "pulumi"
       "supabase" # CLI Note: nixpkgs has not been updated to v2 yet
       "supabase/homebrew-packages/supa-admin-cli"
+      "switch" # see danielfoehrkn/switch tap
       "trash" # nvim-tree
       "ykman" # yubikey manager
       {
