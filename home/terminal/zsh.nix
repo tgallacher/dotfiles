@@ -167,6 +167,7 @@ print_pid_cwd() {
       }";
       git_prune_branches = "git fetch && git remote prune origin && git br -v | grep gone | awk '{print $1;}' | xargs -n 1 git br -d";
       ecr-login = "aws ecr get-login-password --region eu-east-1 | docker login --username AWS --password-stdin $(aws sts get-caller-identity | jq -r '.Account').dkr.ecr.eu-east-1.amazonaws.com";
+      ghd = "gh dash";
     };
     history.ignoreAllDups = true;
     antidote = {

@@ -120,6 +120,8 @@
       ".idea/"
       # Misc
       "_scratch/"
+      # dlvhdr/gh-dash
+      ".gh-dash.yml"
     ];
   };
 }
