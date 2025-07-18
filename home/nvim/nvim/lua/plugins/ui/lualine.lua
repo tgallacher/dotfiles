@@ -70,7 +70,8 @@ return {
           lualine_b = {
             {
               "diagnostics",
-              sources = { "nvim_lsp", "nvim_diagnostic" },
+              sources = { "nvim_diagnostic" },
+              -- sources = { "nvim_lsp", "nvim_diagnostic" },
               sections = { "error", "warn" },
               symbols = { error = " ", warn = " " },
               colored = true,
