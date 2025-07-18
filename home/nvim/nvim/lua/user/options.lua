@@ -1,6 +1,3 @@
--- vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { noremap = true, silent = true })
--- vim.keymap.set({ "n", "v" }, "\\", "<Nop>", { noremap = true, silent = true })
-
 --  NOTE: Must happen before plugins/keymaps are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
@@ -30,6 +27,7 @@ vim.opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line
 vim.opt.iskeyword:append("-") -- hyphenated words recognized by searches
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
 vim.opt.winminwidth = 10 -- set min window size for `szw/vim-maximizer`
+vim.opt.winborder = "single" -- defualt float window
 vim.opt.number = true -- Make line numbers default
 vim.opt.relativenumber = true
 vim.opt.mouse = "a" -- Enable mouse mode, can be useful for resizing splits for example!
@@ -62,14 +60,13 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 -- Sets how neovim will display certain whitespace in the editor.
 vim.opt.list = true
--- vim.opt.listchars = { tab = "▷ ", space = "·", trail = "·", nbsp = "␣" }
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
 vim.opt.cursorline = true -- Show which line your cursor is on
 vim.opt.scrolloff = 5 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.sidescrolloff = 8
-vim.opt.completeopt = { "menuone", "noselect" } -- Better completion experience
+vim.opt.completeopt = { "fuzzy", "menuone", "noselect", "preview" } -- Better ins-completion experience
 vim.opt.termguicolors = true -- enable 24-bit colors
 vim.opt.splitkeep = "screen" -- keep text on same line as splits are resized
 
@@ -100,6 +97,13 @@ vim.opt.guicursor = {
   -- "sm:block-blinkwait175-blinkoff250-blinkon175", -- Showmatch: block cursor with specific blinking settings
 }
 
--- vim.diagnostic.config({
---   float = { border = "rounded" }, -- add border to diagnostic popups
--- })
+-- == Diagnostics
+vim.diagnostic.config({
+  -- virtual_text = true,
+  -- OR
+  -- virtual_text = { current_line = true },
+  -- OR
+  virtual_lines = true,
+  -- OR
+  -- virtual_lines = { current_line = true },
+})
