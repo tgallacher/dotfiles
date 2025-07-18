@@ -107,29 +107,6 @@ return {
     end,
   },
 
-  { -- improve some vim ui elements
-    "stevearc/dressing.nvim",
-    -- prevent https://github.com/folke/todo-comments.nvim/issues/133
-    event = "VimEnter",
-    opts = {
-      input = {
-        -- relative = "editor",
-        mappings = {
-          n = {
-            ["<Esc>"] = "Close",
-            ["<CR>"] = "Confirm",
-          },
-          i = {
-            ["<C-c>"] = "Close",
-            ["<CR>"] = "Confirm",
-            ["<C-k>"] = "HistoryPrev",
-            ["<C-j>"] = "HistoryNext",
-          },
-        },
-      },
-    },
-  },
-
   {
     "j-hui/fidget.nvim",
     event = { "BufEnter" },
