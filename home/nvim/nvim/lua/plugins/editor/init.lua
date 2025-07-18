@@ -129,9 +129,9 @@ return {
 
   {
     "RRethy/vim-illuminate",
+    enabled = false, -- no longer required in 0.11?
     event = "InsertEnter",
     dependencies = {
-      "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {

@@ -152,15 +152,16 @@ return {
 
   { -- Autocompletion
     "hrsh7th/nvim-cmp",
+    enabled = false,
     event = "InsertEnter",
     dependencies = {
-      "L3MON4D3/LuaSnip",-- Snippet Engine & its associated nvim-cmp source
+      "L3MON4D3/LuaSnip", -- Snippet Engine & its associated nvim-cmp source
+      "rafamadriz/friendly-snippets",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "rafamadriz/friendly-snippets",
-"petertriho/cmp-git",
+      "petertriho/cmp-git",
     },
     config = function()
       local cmp = require("cmp")
@@ -211,12 +212,14 @@ return {
     end,
   },
 
-
   {
     "ray-x/lsp_signature.nvim",
+    enabled = false,
     event = "InsertEnter",
     opts = {},
-    config = function(_, opts) require'lsp_signature'.setup(opts) end
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
+    end,
   },
 
   {
