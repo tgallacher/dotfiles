@@ -1,3 +1,5 @@
+-- FIXME: Update to nvim 0.11 setup when this LSP is required
+
 -- @see https://github.com/bellini666/dotfiles/blob/master/vim/lua/utils.lua#L25C3-L30C4
 local function ensure_tables(obj, ...)
   for _, sub in ipairs({ ... }) do
@@ -115,85 +117,79 @@ local servers = {
   },
 }
 
-return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "python", "htmldjango" })
-      return opts
-    end,
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, vim.list_extend(vim.tbl_keys(servers), { "mypy", "debugpy" }))
-      return opts
-    end,
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, { servers = servers })
-    end,
-  },
-
-  {
-    "mfussenegger/nvim-lint",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, {
-        linters_by_ft = {
-          python = { "mypy" },
-        },
-      })
-    end,
-  },
-
-  { -- Autoformat
-    "stevearc/conform.nvim",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, {
-        formatters_by_ft = {
-          j2 = { "djlint" },
-          python = { "ruff_organize_imports", "ruff_format" },
-        },
-      })
-    end,
-  },
-
-  { -- WIP type stubs which haven't made it into "typeshed" yet
-    "microsoft/python-type-stubs",
-  },
-
-  { -- Find and switch virtual envs: Use if the auto path search above doesn't work
-    "linux-cultist/venv-selector.nvim",
-    -- lazy = true,
-    branch = "regexp",
-    enabled = vim.fn.executable("fd") == 1 or vim.fn.executable("fdfind") == 1 or vim.fn.executable("fd-find") == 1,
-    opts = {},
-    cmd = "VenvSelect",
-    keys = {
-      -- stylua: ignore start
-      {"<Leader>vs", ":VenvSelect<CR>", desc = "[P]ython [v]irtualEnv [s]elect",},
-      -- stylua: ignore end
-    },
-  },
-
-  {
-    "mfussenegger/nvim-dap-python",
-    ft = "python",
-    dependencies = {
-      "mfussenegger/nvim-dap",
-      "rcarriga/nvim-dap-ui",
-    },
-    config = function()
-      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-
-      require("dap-python").setup(path)
-
-      vim.keymap.set("n", "<localleader>db", ":DapToggleBreakpoint<CR>", { desc = "[D]ap toggle [b]reakpoint" })
-      -- stylua: ignore
-      vim.keymap.set("n", "<localleader>dt", function() require("dap-python").test_method() end, { desc = "[D]ap [t]est method" })                                                         end,
-  },
-}
+return {} -- tmp disable
+-- return {
+--   {
+--     "nvim-treesitter/nvim-treesitter",
+--     opts = function(_, opts)
+--       opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "python", "htmldjango" })
+--       return opts
+--     end,
+--   },
+--
+--   {
+--     "WhoIsSethDaniel/mason-tool-installer.nvim",
+--     opts = function(_, opts)
+--       opts.ensure_installed = vim.list_extend(opts.ensure_installed, vim.list_extend(vim.tbl_keys(servers), { "mypy", "debugpy" }))
+--       return opts
+--     end,
+--   },
+--
+--   {
+--     "mfussenegger/nvim-lint",
+--     opts = function(_, opts)
+--       return vim.tbl_deep_extend("force", opts, {
+--         linters_by_ft = {
+--           python = { "mypy" },
+--         },
+--       })
+--     end,
+--   },
+--
+--   { -- Autoformat
+--     "stevearc/conform.nvim",
+--     opts = function(_, opts)
+--       return vim.tbl_deep_extend("force", opts, {
+--         formatters_by_ft = {
+--           j2 = { "djlint" },
+--           python = { "ruff_organize_imports", "ruff_format" },
+--         },
+--       })
+--     end,
+--   },
+--
+--   { -- WIP type stubs which haven't made it into "typeshed" yet
+--     "microsoft/python-type-stubs",
+--   },
+--
+--   { -- Find and switch virtual envs: Use if the auto path search above doesn't work
+--     "linux-cultist/venv-selector.nvim",
+--     -- lazy = true,
+--     branch = "regexp",
+--     enabled = vim.fn.executable("fd") == 1 or vim.fn.executable("fdfind") == 1 or vim.fn.executable("fd-find") == 1,
+--     opts = {},
+--     cmd = "VenvSelect",
+--     keys = {
+--       -- stylua: ignore start
+--       {"<Leader>vs", ":VenvSelect<CR>", desc = "[P]ython [v]irtualEnv [s]elect",},
+--       -- stylua: ignore end
+--     },
+--   },
+--
+--   {
+--     "mfussenegger/nvim-dap-python",
+--     ft = "python",
+--     dependencies = {
+--       "mfussenegger/nvim-dap",
+--       "rcarriga/nvim-dap-ui",
+--     },
+--     config = function()
+--       local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+--
+--       require("dap-python").setup(path)
+--
+--       vim.keymap.set("n", "<localleader>db", ":DapToggleBreakpoint<CR>", { desc = "[D]ap toggle [b]reakpoint" })
+--       -- stylua: ignore
+--       vim.keymap.set("n", "<localleader>dt", function() require("dap-python").test_method() end, { desc = "[D]ap [t]est method" })                                                             end,
+--   },
+-- }

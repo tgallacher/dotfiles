@@ -109,3 +109,68 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.conceallevel = 0
   end,
 })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(event)
+    -- Enable builtin-LSP autocompletion
+    -- Note: requires 0.11+
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    if client and client:supports_method("textDocument/completion") then
+      vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+    end
+
+    -- LSP setup?
+    local map = function(mode, keys, func, desc)
+      vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+    end
+
+    local goto_diagnostic = function(dirPrev, severity)
+      local _goto = dirPrev and vim.diagnostic.jump({ count = -1, float = true }) or vim.diagnostic.jump({ count = 1, float = true })
+      severity = severity and vim.diagnostic.severity[severity] or nil
+
+      if _goto then
+        _goto({ severity = severity, float = { border = "single" } })
+      end
+    end
+
+    -- stylua: ignore start
+    map("n", "[e", function() goto_diagnostic(true, "ERROR") end, "Go to Prev [e]rror")
+    map("n", "]e", function() goto_diagnostic(false, "ERROR") end, "Go to Next [e]rror")
+    map("n", "[w", function() goto_diagnostic(true, "WARNING") end, "Go to Prev [w]arning")
+    map("n", "]w", function() goto_diagnostic(false, "WARNING") end, "Go to Next [w]arning")
+
+    map("n", "gD", vim.lsp.buf.declaration, "[g]o to [D]eclaration")
+    map("n", "K", vim.lsp.buf.hover, "Show Hover Documentation") --  See `:help K` for why this keymap
+    map({ "n", "i" }, "<C-S-K>", vim.lsp.buf.signature_help, "Signature documentation")
+
+    map("n", "<localleader>dl", function() vim.diagnostic.open_float({ source = true }) end, "Show [d]iagnostic for [l]ine")
+    map("n", "<localleader>dq", vim.diagnostic.setloclist, "Send all [d]iagnostics to [q]uickfix list")
+    map("n", "<localleader>qd", vim.diagnostic.setqflist, "Set [q]uickfix list to [d]iagnostics")
+
+    map("n", "<localleader>fm", vim.lsp.buf.format, "[f]or[m]at the current buffer")
+
+    -- quickfix list shortcuts
+    map("n", "<localleader>qn", ":cnext<cr>zz", "Jump to [q]uickfix [n]ext item")
+    map("n", "<localleader>qp", ":cprevious<cr>zz", "Jump to [q]uickfix [p]rev item")
+    map("n", "<localleader>qo", ":copen<cr>zz", "[q]uickfix [o]pen list")
+    map("n", "<localleader>qc", ":cclose<cr>zz", "[q]uickfix [c]lose list")
+    -- stylua: ignore end
+
+    -- The following two autocommands are used to highlight references of the
+    -- word under your cursor when your cursor rests there for a little while.
+    --    See `:help CursorHold` for information about when this is executed
+    --
+    -- When you move your cursor, the highlights will be cleared (the second autocommand).
+    if client and client.server_capabilities.documentHighlightProvider then
+      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        buffer = event.buf,
+        callback = vim.lsp.buf.document_highlight,
+      })
+
+      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+        buffer = event.buf,
+        callback = vim.lsp.buf.clear_references,
+      })
+    end
+  end,
+})

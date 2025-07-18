@@ -1,3 +1,4 @@
+-- FIXME: Update to nvim 0.11 setup when this LSP is required
 local servers = {
   yamlls = {
     -- Have to add this for yamlls to understand that we support line folding
@@ -37,40 +38,34 @@ if isOk then
   servers.yamlls.settings.yaml.schemas = schemastore.yaml.schemas()
 end
 
-return {
-  {
-    "b0o/SchemaStore.nvim",
-    lazy = true,
-    version = false, -- last release is way too old
-  },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "yaml" })
-      return opts
-    end,
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, vim.list_extend(vim.tbl_keys(servers), { "prettierd" }))
-      return opts
-    end,
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, { servers = servers })
-    end,
-  },
-
-  { -- Autoformat
-    "stevearc/conform.nvim",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, { formatters_by_ft = { yaml = { "prettierd" } } })
-    end,
-  },
-}
+return {} -- tmp disable
+-- return {
+--   {
+--     "b0o/SchemaStore.nvim",
+--     lazy = true,
+--     version = false, -- last release is way too old
+--   },
+--
+--   {
+--     "nvim-treesitter/nvim-treesitter",
+--     opts = function(_, opts)
+--       opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "yaml" })
+--       return opts
+--     end,
+--   },
+--
+--   {
+--     "WhoIsSethDaniel/mason-tool-installer.nvim",
+--     opts = function(_, opts)
+--       opts.ensure_installed = vim.list_extend(opts.ensure_installed, vim.list_extend(vim.tbl_keys(servers), { "prettierd" }))
+--       return opts
+--     end,
+--   },
+--
+--   { -- Autoformat
+--     "stevearc/conform.nvim",
+--     opts = function(_, opts)
+--       return vim.tbl_deep_extend("force", opts, { formatters_by_ft = { yaml = { "prettierd" } } })
+--     end,
+--   },
+-- }

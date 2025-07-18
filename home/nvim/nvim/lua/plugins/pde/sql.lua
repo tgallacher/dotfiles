@@ -1,3 +1,4 @@
+-- FIXME: Update to nvim 0.11 setup when this LSP is required
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -18,13 +19,6 @@ return {
   {
     "mfussenegger/nvim-lint",
     opts = function(_, opts)
-      -- local linters_by_ft = { sql = {}}
-      -- for _, ft in ipairs(sql_ft) do
-      --   print(ft)
-      --   opts.linters_by_ft[ft] = {}
-      --   table.insert(linters_by_ft[ft], "sqlfluff")
-      -- end
-      --
       return vim.tbl_deep_extend("force", opts, {
         linters_by_ft = {
           sql = { "sqlfluff" },
@@ -38,12 +32,6 @@ return {
   { -- Autoformat
     "stevearc/conform.nvim",
     opts = function(_, opts)
-      -- local formatters_by_ft = {sql = {}}
-      -- for _, ft in ipairs(sql_ft) do
-      --   opts.formatters_by_ft[ft] = {}
-      --   table.insert(formatters_by_ft[ft], "sqlfluff")
-      -- end
-
       return vim.tbl_deep_extend("force", opts, {
         formatters = {
           sqlfluff = {

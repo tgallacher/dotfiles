@@ -1,58 +1,11 @@
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "go", "gomod", "gowork" },
   callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.softtabstop = 2
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.expandtab = false
-
     vim.opt_local.colorcolumn = "120"
   end,
 })
 
-local servers = {
-  gopls = {
-    cmd_env = {
-      -- Limit line length; similar to `golines` formatter
-      GOFUMPT_SPLIT_LONG_LINES = "on", -- defaults to 100 columns / runes
-    },
-    settings = {
-      gopls = {
-        gofumpt = true, -- use gofumt instead of gofmt; gofumpt is a superset of gofmpt with stricter rules
-        codelenses = {
-          gc_details = false,
-          generate = true,
-          regenerate_cgo = true,
-          run_govulncheck = true,
-          test = true,
-          tidy = true,
-          upgrade_dependency = true,
-          vendor = true,
-        },
-        hints = {
-          assignVariableTypes = true,
-          compositeLiteralFields = true,
-          compositeLiteralTypes = true,
-          constantValues = true,
-          functionTypeParameters = true,
-          parameterNames = true,
-          rangeVariableTypes = true,
-        },
-        analyses = {
-          nilness = true,
-          unusedparams = true,
-          unusedwrite = true,
-          useany = true,
-        },
-        usePlaceholders = true,
-        completeUnimported = true,
-        staticcheck = true,
-        directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
-        semanticTokens = true,
-      },
-    },
-  },
-}
+vim.lsp.enable({ "gopls" })
 
 return {
   {
@@ -66,19 +19,16 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(
-        opts.ensure_installed,
-        vim.list_extend(vim.tbl_keys(servers), {
-          "delve", -- debugger
-          "gomodifytags", -- binary to automate Go's Struct tags (e.g. json)
-          "impl", -- what is this?
-          "goimports", -- formatter
-          "gofumpt", -- formatter
-          "gotestsum",
-          -- "golines", -- formatter (shorten line length)
-          "golangci-lint", -- linter
-        })
-      )
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
+        "gopls",
+        "delve", -- debugger
+        "gomodifytags", -- binary to automate Go's Struct tags (e.g. json)
+        "impl", -- TODO: what is this?
+        "goimports", -- formatter
+        "gofumpt", -- formatter
+        "gotestsum",
+        "golangci-lint", -- linter
+      })
       return opts
     end,
   },
@@ -119,35 +69,6 @@ return {
           }),
           require("nvim-ginkgo"),
         },
-      })
-    end,
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, {
-        servers = servers,
-        -- setup = {
-        --   gopls = function()
-        --     -- workaround for gopls not supporting semanticTokensProvider
-        --     -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
-        --     LazyVim.lsp.on_attach(function(client, _)
-        --       if not client.server_capabilities.semanticTokensProvider then
-        --         local semantic = client.config.capabilities.textDocument.semanticTokens
-        --         client.server_capabilities.semanticTokensProvider = {
-        --           full = true,
-        --           legend = {
-        --             tokenTypes = semantic.tokenTypes,
-        --             tokenModifiers = semantic.tokenModifiers,
-        --           },
-        --           range = true,
-        --         }
-        --       end
-        --     end, "gopls")
-        --     -- end workaround
-        --   end,
-        -- },
       })
     end,
   },

@@ -1,3 +1,4 @@
+-- FIXME: Update to nvim 0.11 setup when this LSP is required
 local servers = {
   -- linter / formatter, etc
   biome = {},

@@ -1,3 +1,4 @@
+-- FIXME: Update to nvim 0.11 setup when this LSP is required
 local action = setmetatable({}, {
   __index = function(_, action)
     return function()
@@ -122,83 +123,76 @@ local servers = {
   },
 }
 
-return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "javascript",
-        "typescript",
-        "tsx",
-        "jsdoc",
-      })
-    end,
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(
-        opts.ensure_installed,
-        vim.list_extend(vim.tbl_keys(servers), {
-          "prettierd", -- formatter
-          { "eslint_d", version = "14.3.0" }, -- linter
-          "eslint",
-          "js-debug-adapter", -- dap
-        })
-      )
-
-      return opts
-    end,
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", opts, { servers = servers })
-    end,
-  },
-
-  {
-    "mfussenegger/nvim-lint",
-    opts = function(_, opts)
-      vim.env.ESLINT_D_PPID = vim.fn.getpid() -- which parent process to monitor; kill deamon if this closes
-      vim.env.ESLINT_D_MISS = "ignore" -- how to behave if local eslint is missing
-      return vim.tbl_deep_extend("force", opts, {
-        linters_by_ft = {
-          typescript = { "eslint_d" },
-          javascript = { "eslint_d" },
-          -- typescriptreact = { "eslint" },
-          -- javascriptreact = { "eslint" },
-        },
-      })
-    end,
-  },
-
-  -- {
-  --   "pmizio/typescript-tools.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "neovim/nvim-lspconfig",
-  --   },
-  --   opts = {},
-  --   ft = {
-  --     "javascript",
-  --     "javascriptreact",
-  --     "typescript",
-  --     "typescriptreact",
-  --   },
-  -- },
-
-  { -- Autoformat
-    "stevearc/conform.nvim",
-    opts = function(_, opts)
-      return vim.tbl_deep_extend("force", {
-        formatters_by_ft = {
-          javascript = { "prettierd", "prettier", stop_after_first = true },
-          typescript = { "prettierd", "prettier", stop_after_first = true },
-        },
-      }, opts)
-    end,
-  },
-}
+return {} -- tmp disable
+-- return {
+--   {
+--     "nvim-treesitter/nvim-treesitter",
+--     opts = function(_, opts)
+--       vim.list_extend(opts.ensure_installed, {
+--         "javascript",
+--         "typescript",
+--         "tsx",
+--         "jsdoc",
+--       })
+--     end,
+--   },
+--
+--   {
+--     "WhoIsSethDaniel/mason-tool-installer.nvim",
+--     opts = function(_, opts)
+--       opts.ensure_installed = vim.list_extend(
+--         opts.ensure_installed,
+--         vim.list_extend(vim.tbl_keys(servers), {
+--           "prettierd", -- formatter
+--           { "eslint_d", version = "14.3.0" }, -- linter
+--           "eslint",
+--           "js-debug-adapter", -- dap
+--         })
+--       )
+--
+--       return opts
+--     end,
+--   },
+--
+--   {
+--     "mfussenegger/nvim-lint",
+--     opts = function(_, opts)
+--       vim.env.ESLINT_D_PPID = vim.fn.getpid() -- which parent process to monitor; kill deamon if this closes
+--       vim.env.ESLINT_D_MISS = "ignore" -- how to behave if local eslint is missing
+--       return vim.tbl_deep_extend("force", opts, {
+--         linters_by_ft = {
+--           typescript = { "eslint_d" },
+--           javascript = { "eslint_d" },
+--           -- typescriptreact = { "eslint" },
+--           -- javascriptreact = { "eslint" },
+--         },
+--       })
+--     end,
+--   },
+--
+--   -- {
+--   --   "pmizio/typescript-tools.nvim",
+--   --   dependencies = {
+--   --     "nvim-lua/plenary.nvim",
+--   --   },
+--   --   opts = {},
+--   --   ft = {
+--   --     "javascript",
+--   --     "javascriptreact",
+--   --     "typescript",
+--   --     "typescriptreact",
+--   --   },
+--   -- },
+--
+--   { -- Autoformat
+--     "stevearc/conform.nvim",
+--     opts = function(_, opts)
+--       return vim.tbl_deep_extend("force", {
+--         formatters_by_ft = {
+--           javascript = { "prettierd", "prettier", stop_after_first = true },
+--           typescript = { "prettierd", "prettier", stop_after_first = true },
+--         },
+--       }, opts)
+--     end,
+--   },
+-- }
