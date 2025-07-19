@@ -3,7 +3,7 @@ vim.lsp.enable({ "yamlls" })
 -- account for first time bootup, and the schemastore plugin hasn't been installed yet
 local isOk, schemastore = pcall(require, "schemastore")
 if isOk then
-  vim.lsp.yamlls.settings.yaml.schemas = schemastore.yaml.schemas()
+  vim.lsp.config.yamlls.settings.yaml.schemas = schemastore.yaml.schemas()
 end
 
 return {
@@ -24,7 +24,7 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "yamlls", "prettierd" })
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "yaml-language-server", "prettierd" })
       return opts
     end,
   },

@@ -24,7 +24,7 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "jsonls", "prettierd" })
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "json-lsp", "prettierd" })
       return opts
     end,
   },

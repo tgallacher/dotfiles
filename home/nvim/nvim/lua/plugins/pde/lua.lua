@@ -1,5 +1,4 @@
--- FIXME: Update to nvim 0.11 setup when this LSP is required
-vim.lsp.enable({ "lua-language-server" })
+vim.lsp.enable({ "lua_ls" })
 
 return {
   { -- ?
