@@ -14,7 +14,7 @@ in {
   ];
 
   programs.alacritty = {
-    enable = true;
+    enable = false;
     package = upkgs.alacritty;
     # package = upkgs.emptyFile;
     # package =

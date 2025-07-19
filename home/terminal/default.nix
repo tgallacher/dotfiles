@@ -9,6 +9,7 @@
     ./tmux.nix
     ./wget.nix
     ./zsh.nix
+    ./ghostty.nix
   ];
 
   # NOTE: vars set at user login
