@@ -55,7 +55,43 @@ return {
         --   -- layout = { position = "top", height = 0.4, border = "double" },
         --   -- { win = "input", border = "single" },
         -- },
+        previewers = {
+          diff = {
+            builtin = false,
+            cmd = { "delta" },
+          },
+        },
         sources = {
+          git_files = {
+            layout = {
+              preset = "ivy",
+              position = "bottom",
+              hidden = { "preview" },
+              layout = { position = "bottom" },
+            },
+            matcher = { frecency = true },
+            formatters = { truncate = 80 },
+          },
+          files = {
+            layout = {
+              preset = "ivy",
+              position = "bottom",
+              hidden = { "preview" },
+              layout = { position = "bottom" },
+            },
+            matcher = { frecency = true },
+            formatters = { truncate = 80 },
+          },
+          recent = {
+            layout = {
+              preset = "ivy",
+              position = "bottom",
+              hidden = { "preview" },
+              layout = { position = "bottom" },
+            },
+            matcher = { frecency = true },
+            formatters = { truncate = 80 },
+          },
           explorer = {
             layout = {
               preset = "sidebar",
