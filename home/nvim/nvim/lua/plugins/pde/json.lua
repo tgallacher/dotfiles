@@ -3,7 +3,7 @@ vim.lsp.enable({ "jsonls" })
 -- account for first time bootup, and the schemastore plugin hasn't been installed yet
 local isOk, schemastore = pcall(require, "schemastore")
 if isOk then
-  vim.lsp.jsonls.settings.json.schemas = schemastore.json.schemas()
+  vim.lsp.json_lsp.settings.json.schemas = schemastore.json.schemas()
 end
 
 return {
