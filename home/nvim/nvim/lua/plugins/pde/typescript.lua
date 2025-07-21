@@ -1,4 +1,5 @@
-vim.lsp.enable("ts_ls")
+-- vim.lsp.enable("ts_ls")
+vim.lsp.enable("vtsls")
 
 return {
   {
@@ -21,6 +22,8 @@ return {
         "eslint_d", -- linter
         "biome", -- linter
         "js-debug-adapter", -- dap
+        -- "ts_ls", -- lsp
+        "vtsls", -- lsp
       })
 
       return opts
