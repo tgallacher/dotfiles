@@ -114,8 +114,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
     -- Enable builtin-LSP autocompletion
     -- Note: requires 0.11+
-    local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client:supports_method("textDocument/completion") then
+    local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
+    if client:supports_method("textDocument/completion") then
       vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
     end
 
@@ -171,6 +171,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
         buffer = event.buf,
         callback = vim.lsp.buf.clear_references,
       })
+
+      -- FIXME: Disable native LSP auto-completion so that we can see Blink's
+      -- plugin: blink.cmp
+      if client:supports_method("textDocument/completion") then
+        vim.lsp.completion.enable(false, client.id, event.buf, { autotrigger = false })
+      end
     end
   end,
 })
