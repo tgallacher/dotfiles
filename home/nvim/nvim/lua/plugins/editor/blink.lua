@@ -16,7 +16,12 @@ return {
     -- C-k: Toggle signature help (if signature.enabled = true)
     --
     -- See :h blink-cmp-config-keymap for defining your own keymap
-    keymap = { preset = "default" },
+    keymap = {
+      preset = "default",
+
+      -- ["<C-e>"] = { "cancel" },
+      -- ["<C-y>"] = { "accept", "hide" },
+    },
 
     appearance = {
       -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -24,13 +29,48 @@ return {
       nerd_font_variant = "mono",
     },
 
-    -- (Default) Only show the documentation popup when manually triggered
-    completion = { documentation = { auto_show = false } },
+    cmdline = {
+      -- auto_insert = true,
+      -- keymap = { preset = "inherit" },
+      completion = { menu = { auto_show = true } },
+    },
+
+    completion = {
+      -- (Default) Only show the documentation popup when manually triggered
+      documentation = { auto_show = false },
+      list = {
+        selection = {
+          preselect = true,
+          auto_insert = true,
+        },
+      },
+      menu = {
+        -- nvim-cmp style menu
+        -- draw = {
+        --   columns = {
+        --     { "label", "label_description", gap = 1 },
+        --     { "kind_icon", "kind" },
+        --   },
+        -- },
+      },
+      -- ghost_text = { enabled = true, show_with_menu = true, show_without_menu = true },
+    },
 
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
+      providers = {
+        -- ensure path completion is always from where nvim was run, e.g. repo root
+        -- info: can change with `:cwd`
+        path = {
+          opts = {
+            get_cwd = function(_)
+              return vim.fn.getcwd()
+            end,
+          },
+        },
+      },
     },
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -38,7 +78,16 @@ return {
     -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
     --
     -- See the fuzzy documentation for more information
-    fuzzy = { implementation = "prefer_rust_with_warning" },
+    fuzzy = {
+      implementation = "prefer_rust_with_warning",
+      sorts = {
+        "exact",
+        "score",
+        "sort_text",
+      },
+    },
+    -- Experimental signature help support
+    signature = { enabled = true },
   },
   opts_extend = { "sources.default" },
 }
