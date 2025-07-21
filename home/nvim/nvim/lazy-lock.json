@@ -1,5 +1,6 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "98543263f95dd191fd6d3b08500680d18bebe214" },
   "auto-session": { "branch": "main", "commit": "317412742990371f8e4709074da5c378456a27ff" },
   "blink.cmp": { "branch": "main", "commit": "586ee87534f5bf65f1c8dea2d1da2a57e8cddd36" },
   "conflict-marker.vim": { "branch": "master", "commit": "62742b2ffe7a433988759c67b5c5a22eff74a14b" },
