@@ -84,11 +84,10 @@ return {
         { "<leader>h", group = "[h]unk" },
         { "<leader>e", group = "NvimTre[e]" },
         { "<leader>b", group = "[b]uffers" },
-        { "<leader>s", group = "[s]plits" },
+        { "<leader>s", group = "[s]nacks" },
         { "<leader>z", group = "[z]en" },
         { "<leader>c", group = "[c]hatgpt" },
         { "<leader>g", group = "[g]it" },
-
         { "<localleader>q", group = "[q]uickfix" },
         { "<localleader>d", group = "[d]iagnostic" },
       })
