@@ -139,7 +139,8 @@ return {
       vim.keymap.set("n","<leader>ss", function() snacks.scratch.select() end, { desc = "Snacks: select scratch buffer" })
       -- Pickers + Explorers
       vim.keymap.set("n","<leader>ee", function() snacks.explorer() end, { desc = "Snacks: Fil[e] [e]xplorer" })
-      vim.keymap.set("n","<leader>,", function() snacks.picker.buffers({ current = true }) end, { desc = "Snacks: buffers" })
+      -- FIXME: default value of sort_lastused results in re-ordering of list when closing buffer via Snacks keymap <C-x>
+      vim.keymap.set("n","<leader>,", function() snacks.picker.buffers({ current = true, sort_lastused = false }) end, { desc = "Snacks: buffers" })
       vim.keymap.set("n","<leader>fg", function() snacks.picker.grep() end, { desc = "Snacks: grep" })
       vim.keymap.set("n","<leader>f:", function() snacks.picker.command_history() end, { desc = "Snacks: [f]ind [c]ommand history" })
       -- Find
