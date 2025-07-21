@@ -26,10 +26,13 @@ end
 
 return {
   {
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
+    -- FIXME: concatenate local path issue in note.lua:5xx (forget line numebr).
+    -- This pops up every time something changes in the buffer, rendering the plugin unusable
+    enabled = false,
     version = "*", -- latest release instead of latest commit
     lazy = true,
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     ft = "markdown",
     -- only load on Obsidian vault
     -- event = {
@@ -37,20 +40,21 @@ return {
     --   "BufNewFile " .. vim.fn.expand("~/Code/tgallacher/obsidian/"),
     -- },
     dependencies = {
-      "nvim-telescope/telescope.nvim",
+      -- "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim",
     },
     init = function()
       -- vim.opt.conceallevel = 2
 
-      vim.keymap.set("n", "<leader>nn", createNoteWithDefaultTemplate, { desc = "[n]ew [n]ote" })
-      vim.keymap.set("n", "<leader>nt", ":ObsidianToday<CR>", { desc = "Open journal [n]ote for [t]oday" })
-      vim.keymap.set("n", "<leader>ny", ":ObsidianYesterday<CR>", { desc = "Open journal [n]ote for [y]esterday" })
-      vim.keymap.set("n", "<leader>nd", ":ObsidianDailies<CR>", { desc = "Open journal [n]ote [d]aily selector" })
+      -- vim.keymap.set("n", "<leader>nn", createNoteWithDefaultTemplate, { desc = "[n]ew [n]ote" })
+      vim.keymap.set("n", "<leader>nn", ":Obsidian new_from_template", { desc = "[n]ew [n]ote" })
+      vim.keymap.set("n", "<leader>nt", ":Obsidian today<CR>", { desc = "Open journal [n]ote for [t]oday" })
+      vim.keymap.set("n", "<leader>ny", ":Obsidian yesterday<CR>", { desc = "Open journal [n]ote for [y]esterday" })
+      vim.keymap.set("n", "<leader>nd", ":Obsidian dailies<CR>", { desc = "Open journal [n]ote [d]aily selector" })
     end,
     opts = {
       ui = { enable = false }, -- use a separate markdown render plugin
-      open_app_foreground = true, -- focus app on `:ObsidianOpen`
+      -- open_app_foreground = true, -- focus app on `:ObsidianOpen`
       attachments = { img_folder = "999-files/assets" },
       wiki_link_func = "prepend_note_id",
       new_notes_loction = "notes_subdir", -- should use `notes_subdir` setting
@@ -111,6 +115,9 @@ return {
         end
         return path:with_suffix(".md")
       end,
+    },
+    cmd = {
+      "Obsidian",
     },
   },
 }
