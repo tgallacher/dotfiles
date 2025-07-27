@@ -92,7 +92,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- see: github.com/dmmulroy/kickstart.nix
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = augroup("edit_text"),
-  pattern = { "gitcommit", "markdown", "txt", "plaintext" },
+  pattern = { "markdown", "txt", "plaintext" },
   desc = "Enable spell checking and text wrapping for certain filetypes",
   callback = function()
     vim.opt_local.wrap = true

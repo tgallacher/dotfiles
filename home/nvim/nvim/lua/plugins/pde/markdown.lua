@@ -2,7 +2,7 @@ vim.lsp.enable("marksman")
 
 vim.api.nvim_create_augroup("MarkdownSettings", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown", "gitcommit" },
+  pattern = { "markdown" },
   callback = function()
     vim.opt_local.textwidth = 120
     vim.opt_local.colorcolumn = "120"

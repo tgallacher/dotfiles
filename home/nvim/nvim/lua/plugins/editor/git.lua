@@ -149,8 +149,9 @@ return {
       vim.treesitter.language.register("markdown", "octo")
 
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "octo" },
+        pattern = { "octo", "gitcommit" },
         callback = function()
+          vim.opt_local.wrap = true
           vim.opt_local.colorcolumn = "80"
           vim.opt_local.textwidth = 80
         end,
