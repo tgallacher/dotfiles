@@ -1,36 +1,37 @@
-local function createNoteWithDefaultTemplate()
-  local TEMPLATE_FILENAME = "default-note"
-  local obsidian = require("obsidian").get_client()
-  local utils = require("obsidian.util")
-
-  -- prompt for note title
-  -- @see: borrowed from obsidian.command.new
-  local note
-  local title = utils.input("[optional] Enter title (no extension): ")
-  if not title then
-    return
-  elseif title == "" then
-    title = nil
-  end
-
-  note = obsidian:create_note({ title = title, no_write = true })
-
-  if not note then
-    return
-  end
-  -- open new note in a buffer
-  obsidian:open_note(note, { sync = true })
-  -- NOTE: make sure the template folder is configured in Obsidian.nvim opts
-  obsidian:write_note_to_buffer(note, { template = TEMPLATE_FILENAME })
-end
+-- local function createNoteWithDefaultTemplate()
+--   local TEMPLATE_FILENAME = "default-note"
+--   local obsidian = require("obsidian").get_client()
+--   local utils = require("obsidian.util")
+--
+--   -- prompt for note title
+--   -- @see: borrowed from obsidian.command.new
+--   local note
+--   local title = utils.input("[optional] Enter title (no extension): ")
+--   if not title then
+--     return
+--   elseif title == "" then
+--     title = nil
+--   end
+--
+--   note = obsidian:create_note({ title = title, no_write = true })
+--
+--   if not note then
+--     return
+--   end
+--   -- open new note in a buffer
+--   obsidian:open_note(note, { sync = true })
+--   -- NOTE: make sure the template folder is configured in Obsidian.nvim opts
+--   obsidian:write_note_to_buffer(note, { template = TEMPLATE_FILENAME })
+-- end
 
 return {
   {
     "obsidian-nvim/obsidian.nvim",
-    -- FIXME: concatenate local path issue in note.lua:5xx (forget line numebr).
+    -- FIXME: concatenate local path issue in obsidian/note.lua:529
+    -- @see: https://github.com/obsidian-nvim/obsidian.nvim/issues/160:w
     -- This pops up every time something changes in the buffer, rendering the plugin unusable
     enabled = false,
-    version = "*", -- latest release instead of latest commit
+    version = "3.11.0", -- latest release instead of latest commit
     lazy = true,
     -- event = "VeryLazy",
     ft = "markdown",
@@ -58,6 +59,10 @@ return {
       attachments = { img_folder = "999-files/assets" },
       wiki_link_func = "prepend_note_id",
       new_notes_loction = "notes_subdir", -- should use `notes_subdir` setting
+      completion = {
+        nvim_cmp = false,
+        blink = true,
+      },
       workspaces = {
         {
           name = "personal",
@@ -67,11 +72,15 @@ return {
           },
         },
       },
+      picker = {
+        name = "snacks.pick",
+      },
       -- FIXME: Can we pull this from Obsidian's config?
       daily_notes = {
         date_format = "%Y-%m-%d",
         template = "journaling-daily-note.md",
         folder = "10-areas/journaling/daily",
+        workdays_only = true,
       },
       templates = {
         subdir = "999-files/templates",
