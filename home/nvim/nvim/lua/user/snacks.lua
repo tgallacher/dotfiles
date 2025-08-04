@@ -55,6 +55,11 @@ return {
         --   -- layout = { position = "top", height = 0.4, border = "double" },
         --   -- { win = "input", border = "single" },
         -- },
+        formatters = {
+          file = {
+            truncate = 200,
+          },
+        },
         previewers = {
           diff = {
             builtin = false,
@@ -70,7 +75,6 @@ return {
               layout = { position = "bottom" },
             },
             matcher = { frecency = true },
-            formatters = { truncate = 80 },
           },
           files = {
             layout = {
@@ -80,7 +84,6 @@ return {
               layout = { position = "bottom" },
             },
             matcher = { frecency = true },
-            formatters = { truncate = 80 },
           },
           recent = {
             layout = {
@@ -90,7 +93,6 @@ return {
               layout = { position = "bottom" },
             },
             matcher = { frecency = true },
-            formatters = { truncate = 80 },
           },
           explorer = {
             layout = {
