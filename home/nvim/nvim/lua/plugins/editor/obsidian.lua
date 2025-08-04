@@ -30,10 +30,9 @@ return {
     -- FIXME: concatenate local path issue in obsidian/note.lua:529
     -- @see: https://github.com/obsidian-nvim/obsidian.nvim/issues/160:w
     -- This pops up every time something changes in the buffer, rendering the plugin unusable
-    enabled = false,
-    version = "3.11.0", -- latest release instead of latest commit
+    -- enabled = false,
+    version = "*", -- latest release instead of latest commit
     lazy = true,
-    -- event = "VeryLazy",
     ft = "markdown",
     -- only load on Obsidian vault
     -- event = {
@@ -41,13 +40,10 @@ return {
     --   "BufNewFile " .. vim.fn.expand("~/Code/tgallacher/obsidian/"),
     -- },
     dependencies = {
-      -- "nvim-telescope/telescope.nvim",
+      "folke/snacks.nvim",
       "nvim-lua/plenary.nvim",
     },
     init = function()
-      -- vim.opt.conceallevel = 2
-
-      -- vim.keymap.set("n", "<leader>nn", createNoteWithDefaultTemplate, { desc = "[n]ew [n]ote" })
       vim.keymap.set("n", "<leader>nn", ":Obsidian new_from_template", { desc = "[n]ew [n]ote" })
       vim.keymap.set("n", "<leader>nt", ":Obsidian today<CR>", { desc = "Open journal [n]ote for [t]oday" })
       vim.keymap.set("n", "<leader>ny", ":Obsidian yesterday<CR>", { desc = "Open journal [n]ote for [y]esterday" })
