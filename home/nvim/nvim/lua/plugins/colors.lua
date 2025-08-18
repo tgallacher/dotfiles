@@ -1,5 +1,6 @@
 -- local colors = require("tokyonight.colors").setup()
-local colors = require("rose-pine.palette")
+-- local colors = require("rose-pine.palette")
+local colors = {}
 
 -- local c = {
 --   _nc = "#16141f",

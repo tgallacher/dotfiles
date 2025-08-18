@@ -125,12 +125,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     local goto_diagnostic = function(dirPrev, severity)
-      local _goto = dirPrev and vim.diagnostic.jump({ count = -1, float = true }) or vim.diagnostic.jump({ count = 1, float = true })
       severity = severity and vim.diagnostic.severity[severity] or nil
 
-      if _goto then
-        _goto({ severity = severity, float = { border = "single" } })
+      local dir = 1
+      if dirPrev then
+        dir = 1
       end
+
+      vim.diagnostic.jump({
+        count = dir,
+        float = { border = "single" },
+        severity = severity,
+      })
     end
 
     -- stylua: ignore start

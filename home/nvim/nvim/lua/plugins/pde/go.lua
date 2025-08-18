@@ -36,7 +36,17 @@ return {
   { -- DAP integration
     "leoluz/nvim-dap-go",
     ft = "go",
-    opts = {},
+    opts = {
+      dap_configurations = {
+        -- @see https://github.com/leoluz/nvim-dap-go?tab=readme-ov-file#debugging-with-dlv-in-headless-mode
+        {
+          type = "go",
+          name = "Attach remote",
+          mode = "remote",
+          request = "attach",
+        },
+      },
+    },
     config = function(_, opts)
       require("dap-go").setup(opts)
     end,

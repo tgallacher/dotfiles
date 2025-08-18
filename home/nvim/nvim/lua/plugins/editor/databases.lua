@@ -21,19 +21,19 @@ return {
     init = function()
       vim.g.db_ui_use_nerd_fonts = 1
 
-      vim.api.nvim_create_autocmd("FileType", {
-        group = vim.api.nvim_create_augroup("dadbod_filtype_cmp", { clear = true }),
-        pattern = sql_ft,
-        callback = function()
-          local cmp = require("cmp")
-          cmp.setup.buffer({
-            sources = {
-              { name = "vim-dadbod-completion" },
-              { name = "buffer" },
-            },
-          })
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("FileType", {
+      --   group = vim.api.nvim_create_augroup("dadbod_filtype_cmp", { clear = true }),
+      --   pattern = sql_ft,
+      --   callback = function()
+      --     local cmp = require("cmp")
+      --     cmp.setup.buffer({
+      --       sources = {
+      --         { name = "vim-dadbod-completion" },
+      --         { name = "buffer" },
+      --       },
+      --     })
+      --   end,
+      -- })
     end,
   },
 }
