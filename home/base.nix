@@ -24,9 +24,9 @@
     # see: https://yazi-rs.github.io/docs/configuration/yazi
     settings = {
       # flavor.use = "rose-pine";
-      manager = {
+      mgr = {
         sort_dir_first = true;
-        sort_by = "modified";
+        # sort_by = "modified";
         sort_sensitive = false;
         show_symlink = true;
       };
