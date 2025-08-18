@@ -78,9 +78,12 @@ vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldtext = ""
--- vim.foldexpr = "nvim_treesitter#foldexpr()" -- utilize Treesitter folds
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
 -- Place a column line
 -- vim.opt.colorcolumn = "120"
+
 -- spelling
 vim.opt.spelllang = "en_gb"
 vim.opt.spell = false -- enable on specific filetypes; see `pde/*.lua` files

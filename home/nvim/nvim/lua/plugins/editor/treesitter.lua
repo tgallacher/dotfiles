@@ -1,18 +1,20 @@
 return {
   { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      {
-        "nvim-treesitter/nvim-treesitter-context",
-        opts = {
-          multiline_threshold = 10,
-        },
-      },
-      "nvim-treesitter/nvim-treesitter-textobjects",
-    },
+    -- dependencies = {
+    --   {
+    --     "nvim-treesitter/nvim-treesitter-context",
+    --     opts = {
+    --       multiline_threshold = 10,
+    --     },
+    --   },
+    --   "nvim-treesitter/nvim-treesitter-textobjects",
+    -- },
+    lazy = false,
+    branch = "master",
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
-    main = "nvim-treesitter.configs",
+    -- event = { "BufReadPost", "BufNewFile" },
+    -- main = "nvim-treesitter.configs",
     opts = {
       -- There are additional nvim-treesitter modules that you can use to interact
       -- with nvim-treesitter. You should go explore a few and see what interests you:
@@ -101,6 +103,13 @@ return {
       -- -- ensure ; goes forward and , goes backward regardless of the last direction
       -- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
       -- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "<filetype>" },
+        callback = function()
+          vim.treesitter.start()
+        end,
+      })
     end,
   },
 }

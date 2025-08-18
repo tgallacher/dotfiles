@@ -1,6 +1,13 @@
 -- vim.lsp.enable("ts_ls")
 vim.lsp.enable("vtsls")
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "typescript", "javascript" },
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
