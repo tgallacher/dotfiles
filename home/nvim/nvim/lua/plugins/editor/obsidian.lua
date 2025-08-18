@@ -50,6 +50,7 @@ return {
       vim.keymap.set("n", "<leader>nd", ":Obsidian dailies<CR>", { desc = "Open journal [n]ote [d]aily selector" })
     end,
     opts = {
+      legacy_commands = false, -- stop bugging me about internals which haven't adopted the new command structure
       ui = { enable = false }, -- use a separate markdown render plugin
       -- open_app_foreground = true, -- focus app on `:ObsidianOpen`
       attachments = { img_folder = "999-files/assets" },

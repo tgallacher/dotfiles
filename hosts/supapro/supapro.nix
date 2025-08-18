@@ -72,6 +72,7 @@
       "libiconv" # rnix-lsp
       "minikube"
       "mise" # devtool manager
+      "pngpaste" # required for Obsidian.nvim
       "mtr" # traceroute alternative
       "nvm" # nodejs version manager
       "protoc-gen-go" # protobuf tooling

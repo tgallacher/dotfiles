@@ -19,8 +19,9 @@
       options = {
         navigate = true; # use n and N to move between diff sections
         light = false; # light mode?
-        side-by-side = true;
+        side-by-side = false;
         line-numbers = true;
+        diff-highlight = true;
       };
     };
     extraConfig = {
@@ -37,7 +38,7 @@
       };
       diff = {
         algorithm = "histogram";
-        colorMoved = "plain";
+        colorMoved = "default";
         mnemonicPrefix = true;
         renames = true;
         submodule = "log"; # show submodule changes + commits `<` commits coming in from remote; `>` commits needing pushed to remote
@@ -48,7 +49,7 @@
         all = true;
       };
       init.defaultBranch = "main";
-      merge.conflictstyle = "diff3"; # (just 'diff3' if git version < 2.3)
+      merge.conflictstyle = "zdiff3"; # (just 'diff3' if git version < 2.3)
       pull.rebase = true;
       push = {
         default = "simple";
