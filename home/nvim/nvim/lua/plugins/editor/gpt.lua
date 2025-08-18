@@ -4,9 +4,17 @@ return {
   opts = {
     -- openai_api_key = os.execute(vim.fn.stdpath("data") .. "/get_openai_api_key.sh"),
     -- FIXME: make generic
-    openai_api_key = { "/Users/tgallacher/.local/share/nvim/get_openai_api_key.sh" },
+    -- openai_api_key = { "/Users/tgallacher/.local/share/nvim/get_openai_api_key.sh" },
     curl_params = {},
-    default_chat_agent = "ChatGPT4o-mini",
+    -- default_chat_agent = "ChatGPT4o-mini",
+    default_chat_agent = "ChatClaude-3-7-Sonnet",
+    providers = {
+      anthropic = {
+        disable = false,
+        endpoint = "https://api.anthropic.com/v1/messages",
+        secret = os.getenv("ANTHROPIC_API_KEY"),
+      },
+    },
     hooks = {
       -- example of adding command which writes unit tests for the selected code
       UnitTests = function(gp, params)
