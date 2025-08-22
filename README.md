@@ -2,7 +2,7 @@
 
 System wide config files.
 
-Powering consistency, self documentation and saving some keystrokes.
+Saving some keystrokes, and time (_I wish_)
 
 ## Installation
 
@@ -56,7 +56,7 @@ Create the required local folder structure: `mkdir -p ~/Code/tgallacher && cd $_
 
 > TODO: The following steps need to be completed manually, once.
 
-Create new OSX workspaces -- min 5.
+Create 2 new OSX workspaces.
 
 Open keyboard shortcuts and under "_Mission Control_" enable the shortcuts for switching to each workspace using `<C-<number>>`.
 

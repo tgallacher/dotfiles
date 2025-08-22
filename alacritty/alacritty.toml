@@ -1,0 +1,64 @@
+live_config_reload = true
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[cursor.style]
+blinking = "Always"
+shape = "Block"
+
+[cursor.vi_mode_style]
+shape = "Underline"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 14
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[[keyboard.bindings]]
+chars = "#"
+key = "Key3"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Super|Shift"
+
+[mouse]
+hide_when_typing = true
+
+[window]
+decorations = "Buttonless"
+dynamic_title = true
+opacity = 0.95
+option_as_alt = "Both"
+startup_mode = "Windowed"
+
+[window.dimensions]
+columns = 160
+lines = 30
+
+[window.padding]
+x = 0
+y = 0
+

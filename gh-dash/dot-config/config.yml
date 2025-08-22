@@ -1,0 +1,186 @@
+# yaml-language-server: $schema=https://dlvhdr.github.io/gh-dash/configuration/gh-dash/schema.json
+prSections:
+  - title: Authored
+    filters: >-
+      is:open
+      author:@me
+      user:supabase
+  - title: Involved
+    filters: >-
+      is:open
+      involves:@me
+      -author:@me
+      updated:>={{ nowModify "-1Y" }}
+  - title: Infra v3
+    filters: >-
+      repo:supabase/infrastructure
+      label:infra-v3
+      is:open
+      -author:app/dependabot
+      -author:app/renovate
+      -author:@me
+  # TODO: Github Team names can't be used in author queries
+  - title: By Infra v3 Team
+    filters: >-
+      is:open
+      author:darora
+      author:cioban
+      author:thebengeu
+      author:dragarcia
+      author:delgado3d
+      author:kangmingtay
+      -label:infra-v3
+      updated:>={{ nowModify "-1M" }}
+  # TODO: Github Team names can't be used in author queries
+  - title: By Infra Team
+    filters: >-
+      is:open
+      author:tomashley
+      author:cynicaljoy
+      author:valigula
+      author:JGjorgji
+      author:Crispy1975
+      author:pcnc
+      author:srcCraftsman
+      author:jose-ledesma
+      author:jchancojr
+      author:bn-nz
+      -label:infra-v3
+      updated:>={{ nowModify "-1M" }}
+  - title: Infra (backend)
+    filters: >-
+      is:open
+      -author:app/dependabot
+      -author:app/renovate
+      -author:@me
+      -author:tomashley
+      -author:cynicaljoy
+      -author:darora
+      -author:valigula
+      -author:cioban
+      -author:thebengeu
+      -author:JGjorgji
+      -author:Crispy1975
+      -author:dragarcia
+      -author:delgado3d
+      -author:kangmingtay
+      -author:pcnc
+      -author:srcCraftsman
+      -author:jose-ledesma
+      -author:jchancojr
+      -author:bn-nz
+      label:backend
+      -label:infra-v3
+      review-requested:@me
+      repo:supabase/infrastructure
+      updated:>={{ nowModify "-1M" }}
+  # - title: Infra (..rest)
+  #   filters: >-
+  #     is:open
+  #     review-requested:@me
+  #     -author:app/dependabot
+  #     -author:app/renovate
+  #     -author:@me
+  #     draft:false
+  #     -label:backend
+  #     -label:infra-v3
+  #     repo:supabase/infrastructure
+  - title: Review
+    filters: >-
+      is:open
+      review-requested:@me
+      -author:app/dependabot
+      -author:app/renovate
+      -author:@me
+      draft:false
+  - title: Closed
+    filters: >-
+      is:closed
+      author:@me
+  # - title: Dependencies
+  #   filters: >-
+  #     is:open
+  #     review-requested:@me
+  #     author:app/dependabot
+  #     author:app/renovate
+issuesSections:
+  - title: Opened
+    filters: is:open author:@me
+  - title: Closed
+    filters: is:closed author:@me
+  - title: Assigned
+    filters: is:open assignee:@me
+  - title: Involved
+    filters: is:open involves:@me -author:@me
+defaults:
+  view: prs
+  preview:
+    open: true
+    width: 75
+  prsLimit: 20
+  issuesLimit: 20
+  layout:
+    prs:
+      updatedAt:
+        width: 7
+      repo:
+        width: 15
+      author:
+        width: 15
+      assignees:
+        hidden: true
+      base:
+        hidden: true
+      lines:
+        width: 16
+    issues:
+      updatedAt:
+        width: 7
+      repo:
+        width: 15
+      creator:
+        width: 10
+      assignees:
+        width: 20
+        hidden: true
+  refetchIntervalMinutes: 15
+keybindings:
+  issues: []
+  prs:
+    # - key: p
+    #   command: >
+    #     gh pr review {{.PrNumber}} --approve --repo {{.RepoName}}
+    - key: V
+      name: Approve (no comment)
+      command: >
+        gh pr review {{.PrNumber}} --repo {{.RepoName}} --approve
+    - key: D
+      name: Open in Nvim
+      # nvim -c ":DiffviewOpen origin/$(gh api repos/{{.RepoName}}/pulls/{{.PrNumber}} --jq .base.ref)...origin/{{.HeadRefName}}"
+      command: >
+        nvim -c ":Octo https://github.com/{{.RepoName}}/pull/{{.PrNumber}}"
+repoPaths:
+  supabase/*: ~/Code/supabase/*
+theme:
+  # colors:
+  #   text:
+  #     primary: "#e0def4"
+  #     secondary: "#908caa"
+  #     inverted: "#242347"
+  #     faint: "#6e6a86"
+  #     warning: "#f6c177"
+  #     success: "#31748f"
+  #   background:
+  #     selected: "#21202e"
+  #   border:
+  #     primary: "#524f67"
+  #     secondary: "#39386B"
+  #     faint: "#2B2B40"
+  ui:
+    table:
+      showSeparator: true
+      compact: false
+pager:
+  diff: delta --pager 'env LESS=--RAW-CONTROL-CHARS less'
+showAuthorIcons: true
+smartFilteringAtLaunch: false

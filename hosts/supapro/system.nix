@@ -13,11 +13,11 @@
   vars,
   ...
 }: let
-  homeDir = config.home-manager.users.${vars.username}.home.homeDirectory;
+  homeDir = builtins.getEnv "HOME";
 in {
+  # Auto-apply changed system defaults without having to log out/in
+  # source: https://medium.com/@zmre/nix-darwin-quick-tip-activate-your-preferences-f69942a93236
   system.activationScripts.postUserActivation.text = ''
-    # Auto-apply changed system defaults without having to log out/in
-    # source: https://medium.com/@zmre/nix-darwin-quick-tip-activate-your-preferences-f69942a93236
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
 
@@ -89,6 +89,7 @@ in {
       disable-shadow = true;
     };
     NSGlobalDomain = {
+      _HIHideMenuBar = true; # hide OSX menubar
       "com.apple.keyboard.fnState" = false; # use Fn keys are normal F1, F2, ...
       "com.apple.mouse.tapBehavior" = 1; # 1, null: trackpad tap to click enabled when "1"
       "com.apple.swipescrolldirection" = false; # set natural scrolling direction

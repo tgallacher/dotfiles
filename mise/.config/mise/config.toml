@@ -1,0 +1,31 @@
+[tools]
+node = "22.18.0"
+go = "1.24"
+python = "3.13.6"
+
+bat = "0.25.0" # cat with wings
+bitwarden = "2025.8.0"
+dbmate =              "2.28.0"    # database migration tool / cli
+eksctl =              "0.212.0"
+eza =                 "0.23.0"  # `ls` replacement
+fzf =                 "0.65.1"
+gh =                  "2.76.2"    # Github CLI
+granted =             "0.38.0"
+jqp =                 "0.7.0"
+jwt =                 "6.2.0"
+k9s =                 "0.50.9"
+kubectl =             "1.33.4"
+kubectx =             "0.9.5"
+neovim =              "0.11.3"
+protoc-gen-go =       "1.36.8"    # protobuf tooling
+protoc-gen-go-grpc =  "1.5.1"     # protobuf tooling
+pulumi =              "3.190.0"
+ripgrep =             "14.1.1"
+yazi =                "25.5.31"   # tui filemanager
+yq =                  "4.46.1"
+zoxide = "0.9.8"
+starship = "1.23.0"
+
+[settings]
+lockfile = true
+

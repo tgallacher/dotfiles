@@ -14,6 +14,7 @@ args: let
   vars =
     args.vars
     // {
+      # override
       username = "tomgallacher";
     };
 in
@@ -25,12 +26,5 @@ in
     modules = [
       ../base.nix
       ./supapro.nix
-      inputs.home-manager.darwinModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.users.${vars.username} = import ./home;
-        home-manager.extraSpecialArgs = {inherit vars upkgs inputs host;};
-      }
     ];
   }
