@@ -21,10 +21,11 @@ protoc-gen-go =       "1.36.8"    # protobuf tooling
 protoc-gen-go-grpc =  "1.5.1"     # protobuf tooling
 pulumi =              "3.190.0"
 ripgrep =             "14.1.1"
+starship = "1.23.0"
 yazi =                "25.5.31"   # tui filemanager
 yq =                  "4.46.1"
 zoxide = "0.9.8"
-starship = "1.23.0"
+tmux = "3.5a"
 tree-sitter = "latest"
 
 [settings]
