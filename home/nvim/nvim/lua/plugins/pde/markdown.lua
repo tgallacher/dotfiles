@@ -6,18 +6,14 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt_local.textwidth = 120
     vim.opt_local.colorcolumn = "120"
+
+    vim.treesitter.start()
   end,
 })
 
-return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "markdown", "markdown_inline" })
-      return opts
-    end,
-  },
+require("nvim-treesitter").install({ "markdown", "markdown_inline" })
 
+return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)

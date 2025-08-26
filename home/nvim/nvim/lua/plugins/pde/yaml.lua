@@ -13,13 +13,13 @@ return {
     version = false, -- last release is way too old
   },
 
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "yaml" })
-      return opts
-    end,
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   opts = function(_, opts)
+  --     opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "yaml" })
+  --     return opts
+  --   end,
+  -- },
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",

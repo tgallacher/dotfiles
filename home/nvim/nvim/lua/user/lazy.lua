@@ -17,9 +17,6 @@ require("lazy").setup({
     { import = "plugins.pde" },
     { import = "user.snacks" },
   },
-  -- install = {
-  --   colorscheme = { "terafox" },
-  -- },
   checker = {
     enabled = true,
     notify = false,

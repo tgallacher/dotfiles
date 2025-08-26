@@ -13,13 +13,14 @@ return {
     version = false, -- last release too old
   },
 
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "json", "json5", "jsonc" })
-      return opts
-    end,
-  },
+  -- TODO: move to new nvim-treesitter approach
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   opts = function(_, opts)
+  --     opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "json", "json5", "jsonc" })
+  --     return opts
+  --   end,
+  -- },
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",

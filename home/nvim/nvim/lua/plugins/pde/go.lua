@@ -8,13 +8,14 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.lsp.enable({ "gopls" })
 
 return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "go", "gomod", "gowork", "gosum" })
-      return opts
-    end,
-  },
+  -- TODO: move to new nvim-treesitter approach
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   opts = function(_, opts)
+  --     opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "go", "gomod", "gowork", "gosum" })
+  --     return opts
+  --   end,
+  -- },
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
