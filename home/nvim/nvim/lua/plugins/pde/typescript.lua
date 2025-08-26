@@ -8,18 +8,20 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+require("nvim-treesitter").install({ "javascript", "typescript", "tsx", "jsdoc" })
+
 return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "javascript",
-        "typescript",
-        "tsx",
-        "jsdoc",
-      })
-    end,
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   opts = function(_, opts)
+  --     vim.list_extend(opts.ensure_installed, {
+  --       "javascript",
+  --       "typescript",
+  --       "tsx",
+  --       "jsdoc",
+  --     })
+  --   end,
+  -- },
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",

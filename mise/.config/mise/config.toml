@@ -25,6 +25,7 @@ yazi =                "25.5.31"   # tui filemanager
 yq =                  "4.46.1"
 zoxide = "0.9.8"
 starship = "1.23.0"
+tree-sitter = "latest"
 
 [settings]
 lockfile = true

@@ -7,6 +7,8 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+require("nvim-treesitter").install({ "lua", "luadoc", "luap" })
+
 return {
   { -- ?
     "folke/lazydev.nvim",
@@ -32,13 +34,13 @@ return {
     end,
   },
 
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "lua", "luadoc", "luap" })
-      return opts
-    end,
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   opts = function(_, opts)
+  --     opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "lua", "luadoc", "luap" })
+  --     return opts
+  --   end,
+  -- },
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",

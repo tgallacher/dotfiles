@@ -11,7 +11,7 @@ return {
     --   "nvim-treesitter/nvim-treesitter-textobjects",
     -- },
     lazy = false,
-    branch = "master",
+    branch = "main",
     build = ":TSUpdate",
     -- event = { "BufReadPost", "BufNewFile" },
     -- main = "nvim-treesitter.configs",
