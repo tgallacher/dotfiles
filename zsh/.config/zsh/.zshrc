@@ -40,11 +40,6 @@ setopt SHARE_HISTORY
 unsetopt EXTENDED_HISTORY
 setopt autocd
 
-# Fix for brew's `libiconv` formulae, and it not wanting to override OSX's default
-# see: https://stackoverflow.com/a/71895124
-export LIBRARY_PATH=$LIBRARY_PATH:$(brew --prefix)/lib:$(brew --prefix libiconv)/lib
-
-
 eval "$(brew shellenv)"
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
