@@ -57,8 +57,13 @@ return {
 
   {
     "jbyuki/one-small-step-for-vimkind",
-    config = function()
+    dependencies = {
+      "mfussenegger/nvim-dap",
+    },
+    init = function()
       local dap = require("dap")
+      local port = 8086
+
       dap.configurations.lua = {
         {
           type = "nlua",
@@ -68,24 +73,19 @@ return {
       }
 
       dap.adapters.nlua = function(callback, config)
-        callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
+        callback({
+          type = "server",
+          host = config.host or "127.0.0.1",
+          port = port,
+        })
       end
 
       vim.keymap.set("n", "<leader>dl", function()
-        require("osv").launch({ port = 8086 })
+        require("osv").launch({ host = "127.0.0.1", port = port })
       end, { noremap = true })
 
-      vim.keymap.set("n", "<leader>dw", function()
-        local widgets = require("dap.ui.widgets")
-        widgets.hover()
-      end)
-
-      vim.keymap.set("n", "<leader>df", function()
-        local widgets = require("dap.ui.widgets")
-        widgets.centered_float(widgets.frames)
-      end)
-      vim.keymap.set("n", "<leader>dl", function()
-        require("osv").launch({ port = 8086 })
+      vim.keymap.set("n", "<leader>dL", function()
+        require("osv").stop()
       end, { noremap = true })
 
       vim.keymap.set("n", "<leader>dw", function()

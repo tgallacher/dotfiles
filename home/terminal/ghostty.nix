@@ -1,0 +1,23 @@
+{
+  # pkgs,
+  upkgs,
+  # config,
+  ...
+}: {
+  programs.ghostty = {
+    enable = true;
+    package = upkgs.ghostty;
+    enableZshIntegration = true;
+    settings = {
+      theme = "rose-pine";
+      # shell-integration = "zsh";
+      window-decoration = "none";
+      macos-titlebar-style = "hidden";
+      macos-option-as-alt = true;
+      macos-window-shadow = false;
+      macos-auto-secure-input = false;
+      macos-secure-input-indication = true;
+    };
+  };
+}
+
