@@ -40,7 +40,8 @@ setopt SHARE_HISTORY
 unsetopt EXTENDED_HISTORY
 setopt autocd
 
-eval "$(brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
 fi
