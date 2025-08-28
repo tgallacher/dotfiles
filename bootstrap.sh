@@ -4,6 +4,7 @@ brew_formulae=(
   # OS
   "FelixKratz/formulae/borders" # jankyBorders
   "tmux"
+  "jackielii/tap/skhd-zig"
 
   # CORE
   "mise" # devtool manager
