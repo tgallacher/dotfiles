@@ -1,18 +1,17 @@
-font-family = Monaspace Argon
-font-size = 12
+font-family = Monaspace Argon NF
+# Only takes effect on new windows/tabs, etc
+font-size = 13
 
-# theme = rose-pine
-# theme = zenbones_dark
-# theme = kanagawabones
 theme = GruvboxDarkHard
 shell-integration = zsh
 
 cursor-style = block
 mouse-hide-while-typing = true
-window-padding-balance = true
 window-colorspace = "display-p3"
 
-macos-titlebar-style = hidden
+
+# FIXME: Re-enable when we have a twm again
+# macos-titlebar-style = hidden
 macos-option-as-alt = true
 macos-window-shadow = false
 macos-auto-secure-input = false
@@ -20,7 +19,9 @@ macos-secure-input-indication = true
 
 window-padding-x = 4
 window-padding-y = 6
-window-decoration = none
+window-padding-balance = true
+# FIXME: Re-enable when we have a twm again
+# window-decoration = none
 
 keybind = alt+three=text:#
 
