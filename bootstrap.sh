@@ -11,6 +11,8 @@ brew_formulae=(
   "jackielii/tap/skhd-zig"
 
   # CORE
+  "antidote" # zsh plugin manager
+  "tldr"
   "mise" # devtool manager
   "stow"
   "git"
