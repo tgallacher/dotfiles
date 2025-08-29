@@ -139,6 +139,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end
 
+    if client and client.server_capabilities.codeLensProvider then
+      vim.lsp.codelens.display(nil, event.buf, client.id)
+      vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
+        callback = function()
+          vim.lsp.codelens.refresh({
+            bufnr = event.buf,
+          })
+        end,
+      })
+    end
+
     -- stylua: ignore start
     map("n", "[e", function() goto_diagnostic(true, "ERROR") end, "Go to Prev [e]rror")
     map("n", "]e", function() goto_diagnostic(false, "ERROR") end, "Go to Next [e]rror")
