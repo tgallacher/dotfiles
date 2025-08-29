@@ -140,13 +140,13 @@ return {
       vim.keymap.set("n", "<leader>.",function() snacks.scratch() end, {    desc = "Snacks: toggle scratch buffer" })
       vim.keymap.set("n","<leader>ss", function() snacks.scratch.select() end, { desc = "Snacks: select scratch buffer" })
       -- Pickers + Explorers
-      vim.keymap.set("n","<leader>ee", function() snacks.explorer() end, { desc = "Snacks: Fil[e] [e]xplorer" })
+      -- vim.keymap.set("n","<leader>ee", function() snacks.explorer() end, { desc = "Snacks: Fil[e] [e]xplorer" })
       -- FIXME: default value of sort_lastused results in re-ordering of list when closing buffer via Snacks keymap <C-x>
       vim.keymap.set("n","<leader>,", function() snacks.picker.buffers({ current = true, sort_lastused = false }) end, { desc = "Snacks: buffers" })
       vim.keymap.set("n","<leader>fg", function() snacks.picker.grep() end, { desc = "Snacks: grep" })
       vim.keymap.set("n","<leader>f:", function() snacks.picker.command_history() end, { desc = "Snacks: [f]ind [c]ommand history" })
       -- Find
-      vim.keymap.set("n","<leader>fi", function() snacks.picker.files({filter = { cwd = true } }) end, { desc = "Snacks: [f]ind all f[i]les" })
+      vim.keymap.set("n","<leader>fi", function() snacks.picker.files({hidden = true, ignored = true, filter = { cwd = true } }) end, { desc = "Snacks: [f]ind all f[i]les" })
       vim.keymap.set("n","<leader>fr", function() snacks.picker.recent({filter = { cwd = true } }) end, { desc = "Snacks: [f]ind [r]ecent files" })
       vim.keymap.set("n","<leader>ff", function() snacks.picker.git_files() end, { desc = "Snacks: [f]ind git [f]iles" })
       -- Grep
