@@ -8,15 +8,6 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 # see: https://github.com/ohmyzsh/ohmyzsh/issues/11817#issuecomment-1655430206
 zstyle ':omz:plugins:docker' legacy-completion yes
 
-export BROWSER="brave"
-export EDITOR=nvim
-export TERMINAL=ghostty
-export PAGER="less"
-export VISUAL=ghostty
-export LEFTHOOK=0 # Disable Git pre-commit hooks that might be configured in some projects
-export HOMEBREW_NO_INSTALL_UPGRADE=1 # don't upgrade already installed formulae when running install for that formulae
-export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1 # don't install outdated formulae
-
 typeset -U path cdpath fpath manpath
 # Ensure path arrays do not contain duplicates.
 typeset -gU path fpath
@@ -42,20 +33,39 @@ setopt SHARE_HISTORY
 unsetopt EXTENDED_HISTORY
 setopt autocd
 
-# Setup homebrew
+# Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
-# Setup mise
+# Antidote
+source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
+# load plugins statically defined in "$(ZDOTDOR:-~)/.zsh_plugins.txt"
+antidote load
+
+# Mise
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
 fi
 
-# Setup Granted/Assume
+# FZF
+if command -v fzf >/dev/null 2>&1; then
+  # INFO: workaround for keybind conflict between fzf + jeffreytse/zsh-vi-mode
+  fzf --zsh > $HOME/.fzf.zsh
+  zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
+
+  if command -v fd >/dev/null 2>&1; then
+    export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git';
+    export FZF_CTRL_T_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git';
+    export FZF_ALT_C_COMMAND='fd --type=d --hidden --strip-cwd-prefix --exclude .git';
+  fi
+fi
+
+# Granted/Assume
 alias -- assume="source assume"
 
-# NOTE: Tied to external (installed separately) binary, `kubectl`
-# Load the kubectl completion code for zsh[1] into the current shell
-source <(kubectl completion zsh)
+# Kubectl
+if command -v kubectl >/dev/null 2>&1; then
+  source <(kubectl completion zsh)
+fi
 
 if command -v switcher >/dev/null 2>&1; then
   source <(switcher init zsh)
@@ -72,23 +82,16 @@ if [ -f $HOME/.custom.zshrc ]; then
   source $HOME/.custom.zshrc
 fi
 
-
-function yy() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-  yazi "$@" --cwd-file="$tmp"
-  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-    builtin cd -- "$cwd"
-  fi
-  rm -f -- "$tmp"
-}
-
+## Starship
 if [[ $TERM != "dumb" ]]; then
   eval "$(starship init zsh)"
 fi
 
+## Zoxide
 eval "$(zoxide init zsh --cmd cd)"
 
-# Aliases
+
+## Aliases
 alias -- cl=clear
 alias -- ecr-login='aws ecr get-login-password --region eu-east-1 | docker login --username AWS --password-stdin $(aws sts get-caller-identity | jq -r '\''.Account'\'').dkr.ecr.eu-east-1.amazonaws.com'
 alias -- egrep='egrep --color=auto'
@@ -103,3 +106,14 @@ alias -- p=pulumi
 alias -- sudo='sudo '
 alias -- v=nvim
 
+
+## Yazi
+# TODO - used?
+function yy() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}

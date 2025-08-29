@@ -1,0 +1,34 @@
+## Regular plugins
+# Utilities
+jeffreytse/zsh-vi-mode
+ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/copybuffer # copy current command line into system clipboard using `ctrl+o`
+ohmyzsh/ohmyzsh path:plugins/extract    # wrapper to extract file archives without knowing which command to use
+ohmyzsh/ohmyzsh path:plugins/colored-man-pages
+ohmyzsh/ohmyzsh path:plugins/gnu-utils # ensure gnu utils are bound, save having to type "g" prefix.
+
+## Prompts
+# Framework: zsh-utils
+belak/zsh-utils path:history
+
+## Deferred plugins
+zdharma-continuum/fast-syntax-highlighting kind:defer
+
+## Completions/Aliases for various cli tools
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/kubectl
+# ohmyzsh/ohmyzsh path:plugins/gh # completsion for github cli
+# ohmyzsh/ohmyzsh path:plugins/k9s
+# ohmyzsh/ohmyzsh path:plugins/helm
+# ohmyzsh/ohmyzsh path:plugins/docker
+# ohmyzsh/ohmyzsh path:plugins/terraform
+# romkatv/zsh-bench kind:path
+zsh-users/zsh-completions path:src kind:fpath
+belak/zsh-utils path:completion
+djui/alias-tips # annoy me when I forget there is an alias for a command
+
+## Final Plugins
+zsh-users/zsh-autosuggestions kind:defer
+zsh-users/zsh-history-substring-search
+
+# vi: ft=sh
