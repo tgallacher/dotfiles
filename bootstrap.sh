@@ -21,7 +21,7 @@ else
   echo "..Done"
 fi
 
-echo "To install brew packages, run `darwin-rebuild switch --flake ".#<hostname>`"
+echo "To install brew packages, run 'darwin-rebuild switch --flake \".#<hostname>'\""
 
 # #-- Configure
 # stow_pkgs=(

@@ -12,16 +12,24 @@
 
   homebrew = {
     enable = true;
+    taps = [
+      "FelixKratz/formulae" # jankyBorders
+      "pulumi/tap" # IaC
+      "supabase/tap" # CLI
+      "danielfoehrkn/switch" # kubectx for large scale k8s installations
+    ];
     brews = [
       # OS
       "FelixKratz/formulae/borders" # jankyBorders
-      "tmux"
+      {
+        name = "FelixKratz/formulae/sketchybar";
+        restart_service = "changed";
+      }
       "jackielii/tap/skhd-zig"
       "nixfmt"
 
       # CORE
       "antidote" # zsh plugin manager
-      "tldr"
       "mise" # devtool manager
       "stow"
       "git"
@@ -30,20 +38,16 @@
       "tldr" # Man docs helper
       "rsync" # File transfer
       "unzip" # Zip files
-      "unrar" # Rar files
-      "zip" # Zip
 
       # MISC
       "mtr" # traceroute alternative
       "ykman" # yubikey manager
-      "cargo" # (rnix)
       "gcc" # (C compiler)
       "gnumake"
       "rustc"
       "iperf" # Network performance
 
       # DEPS
-      "libiconv" # rnix-lsp
       "pngpaste" # required for Obsidian.nvim
       "trash" # nvim-tree
       {
