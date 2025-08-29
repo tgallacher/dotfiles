@@ -14,6 +14,8 @@ export TERMINAL=ghostty
 export PAGER="less"
 export VISUAL=ghostty
 export LEFTHOOK=0 # Disable Git pre-commit hooks that might be configured in some projects
+export HOMEBREW_NO_INSTALL_UPGRADE=1 # don't upgrade already installed formulae when running install for that formulae
+export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1 # don't install outdated formulae
 
 typeset -U path cdpath fpath manpath
 # Ensure path arrays do not contain duplicates.
@@ -40,12 +42,16 @@ setopt SHARE_HISTORY
 unsetopt EXTENDED_HISTORY
 setopt autocd
 
+# Setup homebrew
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
+# Setup mise
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
 fi
 
+# Setup Granted/Assume
+alias -- assume="source assume"
 
 # NOTE: Tied to external (installed separately) binary, `kubectl`
 # Load the kubectl completion code for zsh[1] into the current shell
