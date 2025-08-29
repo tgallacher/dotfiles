@@ -109,7 +109,7 @@ return {
     opts = {
       lsp = {
         auto_attach = true,
-        preference = { "ts_ls" },
+        -- preference = { "ts_ls" },
       },
     },
     init = function()

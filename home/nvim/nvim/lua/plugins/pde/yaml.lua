@@ -6,20 +6,14 @@ if isOk then
   vim.lsp.config.yamlls.settings.yaml.schemas = schemastore.yaml.schemas()
 end
 
+require("nvim-treesitter").install({ "yaml" })
+
 return {
   {
     "b0o/SchemaStore.nvim",
     lazy = true,
     version = false, -- last release is way too old
   },
-
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   opts = function(_, opts)
-  --     opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "yaml" })
-  --     return opts
-  --   end,
-  -- },
 
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",

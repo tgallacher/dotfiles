@@ -1,18 +1,18 @@
--- FIXME: Update to nvim 0.11 setup when this LSP is required
-return {
-  -- TODO: move to new nvim-treesitter approach
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   opts = function(_, opts)
-  --     opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "sql" })
-  --     return opts
-  --   end,
-  -- },
+-- vim.lsp.enable({ "sqls" })
+require("nvim-treesitter").install({ "sql" })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "sql" },
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
+
+return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "sqlfluff" })
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "sqlfluff", "sqruff" })
       return opts
     end,
   },
@@ -22,7 +22,7 @@ return {
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
         linters_by_ft = {
-          sql = { "sqlfluff" },
+          sql = { "sqruff" },
           mysql = { "sqlfluff" },
           plsql = { "sqlfluff" },
         },
@@ -40,7 +40,7 @@ return {
           },
         },
         formatters_by_ft = {
-          sql = { "sqlfluff" },
+          sql = { "sqruff" },
           mysql = { "sqlfluff" },
           plsql = { "sqlfluff" },
         },

@@ -129,7 +129,7 @@ return {
 
   {
     "RRethy/vim-illuminate",
-    enabled = false, -- no longer required in 0.11?
+    -- enabled = false, -- no longer required in 0.11?
     event = "InsertEnter",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
