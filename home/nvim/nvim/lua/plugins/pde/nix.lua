@@ -1,33 +1,21 @@
--- FIXME: Update to nvim 0.11 setup when this LSP is required
-local servers = {
-  -- WARNING: Large files may experience slow perf
-  -- see: https://github.com/oxalica/nil/issues/83
-  -- note: this may have been fixed in nvim 0.9.1+
-  nil_ls = {},
-}
+vim.lsp.enable({ "nil_ls" })
 
-return {} -- tmp disable
--- return {
---   {
---     "nvim-treesitter/nvim-treesitter",
---     opts = function(_, opts)
---       opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "nix" })
---       return opts
---     end,
---   },
---
---   {
---     "WhoIsSethDaniel/mason-tool-installer.nvim",
---     opts = function(_, opts)
---       opts.ensure_installed = vim.list_extend(opts.ensure_installed, vim.list_extend(vim.tbl_keys(servers), {}))
---       return opts
---     end,
---   },
---
---   { -- Autoformat
---     "stevearc/conform.nvim",
---     opts = function(_, opts)
---       return vim.tbl_deep_extend("force", opts, { formatters_by_ft = { nix = { "nixfmt" } } })
---     end,
---   },
--- }
+require("nvim-treesitter").install({ "nix" })
+
+return {
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = vim.list_extend(opts.ensure_installed, { "nil" })
+      return opts
+    end,
+  },
+
+  { -- Autoformat
+    "stevearc/conform.nvim",
+    opts = function(_, opts)
+      -- NOTE: need to install nixfmt using brew; Mason version not supported on OSX
+      return vim.tbl_deep_extend("force", opts, { formatters_by_ft = { nix = { "nixfmt" } } })
+    end,
+  },
+}
