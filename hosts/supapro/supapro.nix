@@ -4,12 +4,93 @@
   vars,
   host,
   ...
-}: {
+}:
+{
   imports = [
     ./system.nix
-    # ./windowmanager.nix
-    # ../../libs/osx/sketchybar
   ];
+
+  homebrew = {
+    enable = true;
+    brews = [
+      # OS
+      "FelixKratz/formulae/borders" # jankyBorders
+      "tmux"
+      "jackielii/tap/skhd-zig"
+      "nixfmt"
+
+      # CORE
+      "antidote" # zsh plugin manager
+      "tldr"
+      "mise" # devtool manager
+      "stow"
+      "git"
+      "dwdiff" # Another diff visualiser
+      "curl" # Fetch stuff
+      "tldr" # Man docs helper
+      "rsync" # File transfer
+      "unzip" # Zip files
+      "unrar" # Rar files
+      "zip" # Zip
+
+      # MISC
+      "mtr" # traceroute alternative
+      "ykman" # yubikey manager
+      "cargo" # (rnix)
+      "gcc" # (C compiler)
+      "gnumake"
+      "rustc"
+      "iperf" # Network performance
+
+      # DEPS
+      "libiconv" # rnix-lsp
+      "pngpaste" # required for Obsidian.nvim
+      "trash" # nvim-tree
+      {
+        # pgsl, pg_dump, etc
+        name = "libpq";
+        link = true;
+      }
+
+      # >supapro
+      "libpq" # pqsl cli
+      "danielfoehrkn/switch/switch" # kubectx for large scale k8s installations
+      "supabase/homebrew-packages/supa-admin-cli"
+      "supabase/tap/supabase" # CLI Note: nixpkgs has not been updated to v2 yet
+
+      "ifstat" # sketchybar
+      "switchaudio-osx" # volume item; sketchybar
+    ];
+    casks = [
+      # Base
+      "brave-browser"
+      "mullvad-vpn"
+      "obsidian"
+      "spotify"
+      "whatsapp"
+      "raycast"
+      "font-monaspace-nerd-font"
+
+      "sf-symbols" # sketchybar
+      "font-monaspace"
+
+      # supapro
+      "bitwarden"
+      "cloudflare-warp"
+      "dbeaver-community"
+      "discord"
+      "front" # support tickets
+      "linear-linear" # project management
+      "ngrok"
+      "notion"
+      "orbstack" # Docker desktop alternative
+      "slack"
+      "yubico-authenticator" # authenticator app
+    ];
+    global = {
+      autoUpdate = false;
+    };
+  };
 
   networking.computerName = host.name;
   users.users.${vars.username} = {

@@ -1,80 +1,5 @@
 #!/usr/bin/env bash
 
-brew_keg=(
-  "libpq"
-)
-
-brew_formulae=(
-  # OS
-  "FelixKratz/formulae/borders" # jankyBorders
-  "tmux"
-  "jackielii/tap/skhd-zig"
-
-  # CORE
-  "antidote" # zsh plugin manager
-  "tldr"
-  "mise" # devtool manager
-  "stow"
-  "git"
-  "dwdiff" # Another diff visualiser
-  "curl" # Fetch stuff
-  "tldr" # Man docs helper
-  "rsync" # File transfer
-  "unzip" # Zip files
-  "unrar" # Rar files
-  "zip" # Zip
-  # MISC
-  "mtr" # traceroute alternative
-  "ykman" # yubikey manager
-  "cargo" # (rnix)
-  "gcc" # (C compiler)
-  "gnumake"
-  "rustc"
-  "iperf" # Network performance
-
-  # DEPS
-  "libiconv" # rnix-lsp
-  "pngpaste" # required for Obsidian.nvim
-  "trash" # nvim-tree
-
-  # >supapro
-  "libpq" # pqsl cli
-  "danielfoehrkn/switch/switch" # kubectx for large scale k8s installations
-  "supabase/homebrew-packages/supa-admin-cli"
-  "supabase/tap/supabase" # CLI Note: nixpkgs has not been updated to v2 yet
-
-  "ifstat" # sketchybar
-  "switchaudio-osx" # volume item; sketchybar
-)
-
-brew_casks=(
-  # Base
-  "brave-browser"
-  "mullvad-vpn"
-  "obsidian"
-  "spotify"
-  "whatsapp"
-  "raycast"
-  "font-monaspace-nerd-font"
-
-  "sf-symbols" # sketchybar
-  "font-monaspace"
-
-  # supapro
-  "aws-vault"     # aws credential management
-  "bitwarden"
-  "cloudflare-warp"
-  "dbeaver-community"
-  "discord"
-  "front"         # support tickets
-  "linear-linear" # project management
-  "ngrok"
-  "notion"
-  "orbstack" # Docker desktop alternative
-  "slack"
-  "yubico-authenticator" # authenticator app
-)
-
 ###
 ## RUN
 ###
@@ -96,13 +21,7 @@ else
   echo "..Done"
 fi
 
-brew install --quiet "${brew_formulae[@]}"
-brew install --cask --quiet "${brew_casks[@]}"
-
-if [ ${#brew_keg[@]} -gt 0 ]; then
-  brew install  --quiet "${brew_keg[@]}"
-  brew link --force "${brew_keg[@]}"
-fi
+echo "To install brew packages, run `darwin-rebuild switch --flake ".#<hostname>`"
 
 # #-- Configure
 # stow_pkgs=(
