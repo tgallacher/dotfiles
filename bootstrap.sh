@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+brew_keg=(
+  "libpq"
+)
+
 brew_formulae=(
   # OS
   "FelixKratz/formulae/borders" # jankyBorders
@@ -51,6 +55,9 @@ brew_casks=(
   "raycast"
   "font-monaspace-nerd-font"
 
+  "sf-symbols" # sketchybar
+  "font-monaspace"
+
   # supapro
   "aws-vault"     # aws credential management
   "bitwarden"
@@ -64,8 +71,6 @@ brew_casks=(
   "orbstack" # Docker desktop alternative
   "slack"
   "yubico-authenticator" # authenticator app
-
-  "sf-symbols" # sketchybar
 )
 
 ###
@@ -91,6 +96,11 @@ fi
 
 brew install --quiet "${brew_formulae[@]}"
 brew install --cask --quiet "${brew_casks[@]}"
+
+if [ ${#brew_keg[@]} -gt 0 ]; then
+  brew install  --quiet "${brew_keg[@]}"
+  brew link --force "${brew_keg[@]}"
+fi
 
 # #-- Configure
 # stow_pkgs=(
