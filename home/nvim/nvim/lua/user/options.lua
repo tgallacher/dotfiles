@@ -102,11 +102,11 @@ vim.opt.guicursor = {
 
 -- == Diagnostics
 vim.diagnostic.config({
-  -- virtual_text = true,
+  virtual_text = true,
   -- OR
   -- virtual_text = { current_line = true },
   -- OR
-  virtual_lines = true,
+  -- virtual_lines = true,
   -- OR
   -- virtual_lines = { current_line = true },
 })
