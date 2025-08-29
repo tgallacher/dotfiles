@@ -73,10 +73,10 @@
 ##################################################
 
 # survive Apple's 65% keyboard
-fn - h : skhd -k "left"
-fn - j : skhd -k "down"
-fn - k : skhd -k "up"
-fn - l : skhd -k "right"
+fn - h | left
+fn - j | down
+fn - k | up
+fn - l | right
 
 ##
 ## Services
@@ -94,18 +94,18 @@ fn - l : skhd -k "right"
 ## Apps
 ## Note: get these names by `ll /Applications`
 ##################################################
-hyper - t : open -a "Ghostty.app"
-hyper - b : open -a "Brave Browser.app"
-hyper - d : open -a "Notion.app"
-hyper - s : open -a "Slack.app"
-hyper - l : open -a "Linear.app"
-hyper - w : open -a "WhatsApp.app"
+hyper - t : @toggle_app("Ghostty.app")
+hyper - b : @toggle_app("Brave Browser.app")
+hyper - d : @toggle_app("Notion.app")
+hyper - s : @toggle_app("Slack.app")
+hyper - l : @toggle_app("Linear.app")
+hyper - w : @toggle_app("WhatsApp.app")
 
 # Survive Apple keyboards...
-# @fn - t : @toggle_app("Ghostty")
-fn - t : open -a "Ghostty.app"
-fn - b : open -a "Brave Browser.app"
-fn - d : open -a "Notion.app"
-fn - s : open -a "Slack.app"
+@fn - t : @toggle_app("Ghostty")
+fn - b : @toggle_app("Brave Browser.app")
+fn - d : @toggle_app("Notion.app")
+fn - s : @toggle_app("Slack.app")
+# FIXME: clash with right arrow remap above
 # fn - l : open -a "Linear.app"
-fn - w : open -a "WhatsApp.app"
+fn - w : @toggle_app("WhatsApp.app")
