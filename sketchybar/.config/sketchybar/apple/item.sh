@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-CONFIG_ROOT=/Users/tomgallacher/.config/sketchybar
-source $CONFIG_ROOT/vars.sh
+CONFIG_ROOT=~/.config/sketchybar
+source "$CONFIG_ROOT/vars.sh"
 
 POPUP_OFF="sketchybar --set apple.logo popup.drawing=off"
 

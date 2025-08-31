@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-CONFIG_ROOT=/Users/tomgallacher/.config/sketchybar
+CONFIG_ROOT=~/.config/sketchybar
 source "$CONFIG_ROOT/vars.sh"
 
 function low_battery_label()
-                             {
+{
   if [[ "$BATT_PERCENT" -lt 50 ]]; then
     sketchybar --set "$NAME" label="$BATT_PERCENT%" label.drawing=on
   else
@@ -12,7 +12,7 @@ function low_battery_label()
 }
 
 function render_bar_item()
-                           {
+{
   COLOR="$COLOR_DICON"
 
   if [[ "$IS_CHARGING" -eq "1" ]]; then
@@ -24,7 +24,6 @@ function render_bar_item()
       ICON="􀛨"
     elif [ "$BATT_PERCENT" -ge "50" ]; then
       ICON="􀺶"
-      COLOR="$COLOR_INFORMATION"
     elif [ "$BATT_PERCENT" -ge "25" ]; then
       ICON="􀛩"
       COLOR="$COLOR_WARNING"
@@ -41,9 +40,9 @@ function render_bar_item()
 }
 
 function render_popup()
-                        {
+{
   LABEL="$BATT_PERCENT%"
-  if [ $BATT_REMAINING != "" ]; then
+  if [ "$BATT_REMAINING" != "" ]; then
     LABEL="$BATT_PERCENT% / $BATT_REMAINING"
   fi
 
@@ -61,7 +60,7 @@ function render_popup()
 }
 
 function popup()
-                 {
+{
   # TODO: being used?
   # BATT_PERCENT=$(sketchybar --query battery.details | jq -r '.label.value | sub("%"; "") | head -n1')
 
@@ -69,7 +68,7 @@ function popup()
 }
 
 function update()
-                  {
+{
   BATT_COMMAND=$(pmset -g batt)
   BATT_PERCENT=$(echo "$BATT_COMMAND" | grep -oE '[0-9]+%' | cut -d% -f1)
   BATT_REMAINING=$(echo "$BATT_COMMAND" | grep -oE '[0-9]{1,2}:[0-9]{1,2}\sremaining' | cut -d' ' -f1 | sed s/:/\\t/ | awk '{text = $1 "hrs " $2 "mins remaining"; print text};')

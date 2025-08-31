@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-CONFIG_ROOT=/Users/tomgallacher/.config/sketchybar
+CONFIG_ROOT=~/.config/sketchybar
 
 sketchybar \
   --add item cpu right \

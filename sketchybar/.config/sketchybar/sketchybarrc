@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-CONFIG_ROOT=/Users/tomgallacher/.config/sketchybar
+CONFIG_ROOT=~/.config/sketchybar
 source $CONFIG_ROOT/vars.sh
 
 # general bar appearance
@@ -35,23 +35,23 @@ sketchybar --default \
   \
   popup.background.border_width=1 \
   popup.background.corner_radius="RADIUS" \
-  popup.background.border_color="$COLOR_PRIMARY" \
+  popup.background.border_color="$COLOR_DLABEL" \
   popup.background.color="$COLOR_BAR" \
   popup.blur_radius=10 \
   popup.background.shadow.drawing=off
 
 ## LEFT
-source $CONFIG_ROOT/apple/item.sh
-source $CONFIG_ROOT/spaces/item.sh
-source $CONFIG_ROOT/front_app/item.sh
+source "$CONFIG_ROOT/apple/item.sh"
+source "$CONFIG_ROOT/spaces/item.sh"
+source "$CONFIG_ROOT/front_app/item.sh"
 
 # ## CENTER
 
 # ## RIGHT
-source $CONFIG_ROOT/calendar/item.sh
+source "$CONFIG_ROOT/calendar/item.sh"
 source "$CONFIG_ROOT/wifi/item.sh"
-source $CONFIG_ROOT/battery/item.sh
-source $CONFIG_ROOT/volume/item.sh
+source "$CONFIG_ROOT/battery/item.sh"
+source "$CONFIG_ROOT/volume/item.sh"
 
 sketchybar \
   --add item spacer right \
@@ -59,9 +59,9 @@ sketchybar \
   background.drawing=off \
   width=8
 
-source $CONFIG_ROOT/ram/item.sh
-source $CONFIG_ROOT/cpu/item.sh
-source $CONFIG_ROOT/network/item.sh
+source "$CONFIG_ROOT/ram/item.sh"
+source "$CONFIG_ROOT/cpu/item.sh"
+source "$CONFIG_ROOT/network/item.sh"
 
 bracket_style=(
   background.height=24
@@ -87,4 +87,3 @@ sketchybar \
 sketchybar --update
 
 echo "sketchybar configuation loaded.."
-

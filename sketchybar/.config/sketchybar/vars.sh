@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
+# shellcheck disable=2034
 
 ## Misc ##
 PADDINGS=3
 RADIUS=0
 
 ## FONTS ##
-NERD_FONT="JetBrainsMono Nerd Font" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
+NERD_FONT="Monaspace Krypton NF" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
 SKETCHYAPP_FONT="sketchybar-app-font"
 SF_FONT="SF Pro"
 
 ## COLORS ##
 getOpacity()
-             {
+{
   opacity=$1
 
   local o100=0xff
@@ -33,19 +34,19 @@ getOpacity()
   echo "$opacity"
 }
 
-COLOR_BAR="$(getOpacity 75)292c36"
-COLOR_BG=0xff474160
-COLOR_DLABEL=0xffd8d8d8 # Default label colour
-COLOR_DICON=0xffd8d8d8 # Default icon colour
+COLOR_BAR=0xff1D2021
+COLOR_BG=0xff504945
+COLOR_DLABEL=0xffd4be98 # Default label colour
+COLOR_DICON=0xffd4be98 # Default icon colour
 
-COLOR_PRIMARY=0xffb74989 # mauve
-COLOR_SECONDARY=0xffe8e8e8 # rosewater
-COLOR_TERTIARY=0xfff8f8f8 # lavendar
+COLOR_PRIMARY=0xffe78a4e
+COLOR_SECONDARY=0xff89b482
+COLOR_TERTIARY=0xfff7daea3
 
-COLOR_SUCCESS=0xff95c76f
-COLOR_ERROR=0xfff84547
-COLOR_WARNING=0xffefa16b
-COLOR_INFORMATION=0xff64878f
+COLOR_SUCCESS=0xffa9b665
+COLOR_ERROR=0xffea6962
+COLOR_WARNING=0xffda8657
+COLOR_INFORMATION=0xffffffff
 
 COLOR_WHITE=0xffffffff
 COLOR_TRANSPARENT=0x00000000
